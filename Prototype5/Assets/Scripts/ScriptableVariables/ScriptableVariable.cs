@@ -25,6 +25,7 @@ namespace ScriptableVariables
 
                 this.value = value;
                 this.valueChanged?.Invoke();
+                
 #if UNITY_EDITOR
                 if (this.Debug)
                     UnityEngine.Debug.Log(value, this);
