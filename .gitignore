@@ -81,6 +81,10 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 ### Unity ###
+# Keep
+Prototype5/Packages/manifest.json
+Prototype5/Packages/package-lock.json
+
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
