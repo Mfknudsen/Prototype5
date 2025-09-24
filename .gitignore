@@ -82,8 +82,8 @@ fabric.properties
 
 ### Unity ###
 # Keep
-Prototype5/Packages/manifest.json
-Prototype5/Packages/package-lock.json
+!Prototype5/Packages/manifest.json
+!Prototype5/Packages/package-lock.json
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #
