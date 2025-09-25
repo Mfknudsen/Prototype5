@@ -8,10 +8,10 @@ public class SelectLogic : MonoBehaviour
     [SerializeField] private LayerMask _raycastMask;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private GameObject _fallingObjectPrefab;
-    [SerializeField] private GameObject _potionResult;
+    [SerializeField] private PotionStats _potionStats;
+
     private Camera _camera;
     private Color _originalColor;
-    private PotionStats _potionStats;
     private MeshRenderer _potionLid, _potionBottom, _potionSubstance1, _potionSubstance2;
 
     public MeshRenderer currentHover;
@@ -20,9 +20,8 @@ public class SelectLogic : MonoBehaviour
     void Start()
     {
         _camera = Camera.main;
-        _potionStats = _potionResult.gameObject.GetComponent<PotionStats>();
-        _potionSubstance1 = _potionResult.transform.Find("Substance1").gameObject.GetComponent<MeshRenderer>();
-        _potionSubstance2 = _potionResult.transform.Find("Substance2").gameObject.GetComponent<MeshRenderer>();
+        _potionSubstance1 = _potionStats.transform.Find("Substance1").gameObject.GetComponent<MeshRenderer>();
+        _potionSubstance2 = _potionStats.transform.Find("Substance2").gameObject.GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -56,7 +55,7 @@ public class SelectLogic : MonoBehaviour
     private void SelectObject()
     {
         if (!currentHover) return;
-        if (_potionResult.activeSelf) return;
+        if (_potionStats.gameObject.activeSelf) return;
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -75,7 +74,7 @@ public class SelectLogic : MonoBehaviour
             }
             else if (currentHover.gameObject.CompareTag($"Cauldron"))
             {
-                _potionResult.gameObject.GetComponent<PotionStats>().ResetAllToDefault();
+                _potionStats.ResetAllToDefault();
             }
             else if (currentHover.gameObject.CompareTag($"Ladle"))
             {
@@ -83,7 +82,7 @@ public class SelectLogic : MonoBehaviour
                 _potionSubstance1.material.color = randomColor;
                 _potionSubstance2.material.color = randomColor;
                 
-                _potionResult.SetActive(true);
+                _potionStats.gameObject.SetActive(true);
                 StartCoroutine(DeactivatePotion());
             }
         }
@@ -93,7 +92,7 @@ public class SelectLogic : MonoBehaviour
     IEnumerator DeactivatePotion()
     {
         yield return new WaitForSeconds(3f);
-        _potionResult.SetActive(false);
-        _potionResult.gameObject.GetComponent<PotionStats>().ResetAllToDefault();
+        _potionStats.gameObject.SetActive(false);
+        _potionStats.ResetAllToDefault();
     }
 }

@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4803119761156037738}
   - component: {fileID: 3823783699961336442}
   - component: {fileID: 6907376783503337467}
-  m_Layer: 0
+  - component: {fileID: 5932928270010266432}
+  m_Layer: 3
   m_Name: Ingredient
-  m_TagString: Untagged
+  m_TagString: Ingredient
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,3 +129,18 @@ MonoBehaviour:
   _fallingObjectPrefab: {fileID: 0}
   _potionResult: {fileID: 0}
   currentHover: {fileID: 0}
+--- !u!114 &5932928270010266432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140117550148088844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0186b57edf0fcd645a321c09f4bc3d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength: 0
+  luck: 0
+  amnesia: 0
