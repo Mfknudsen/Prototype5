@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8856543305640163315}
   - component: {fileID: 4803119761156037738}
   - component: {fileID: 3823783699961336442}
-  - component: {fileID: 6907376783503337467}
   - component: {fileID: 5932928270010266432}
   m_Layer: 3
   m_Name: Ingredient
@@ -110,25 +109,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6907376783503337467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140117550148088844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7393c4fa8d0360e4699b7d0600c0a617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _raycastMask:
-    serializedVersion: 2
-    m_Bits: 8
-  _spawnPoint: {fileID: 0}
-  _fallingObjectPrefab: {fileID: 0}
-  _potionResult: {fileID: 0}
-  currentHover: {fileID: 0}
 --- !u!114 &5932928270010266432
 MonoBehaviour:
   m_ObjectHideFlags: 0
