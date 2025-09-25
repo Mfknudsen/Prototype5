@@ -118,6 +118,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 140117550148088844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e1cd88dc1f7b241902576f24918c00, type: 3}
+  m_Script: {fileID: 11500000, guid: 7393c4fa8d0360e4699b7d0600c0a617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _raycastMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _spawnPoint: {fileID: 0}
+  _fallingObjectPrefab: {fileID: 0}
+  _potionResult: {fileID: 0}
+  currentHover: {fileID: 0}
