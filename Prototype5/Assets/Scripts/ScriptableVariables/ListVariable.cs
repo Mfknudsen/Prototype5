@@ -6,19 +6,12 @@ namespace ScriptableVariables
     {
         public void Add(TGeneric o)
         {
-            this.value ??= new List<TGeneric>();
-
-            this.value.Add(o);
-            this.valueChanged?.Invoke();
+            
         }
 
         public void Remove(TGeneric o)
         {
-            if (this.value == null)
-                return;
-
-            this.value.Remove(o);
-            this.valueChanged?.Invoke();
+            
         }
     }
 }

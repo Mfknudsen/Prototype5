@@ -7,9 +7,8 @@ namespace Potions
     {
         [SerializeField] private PotionValue potionValue;
 
-        public float OnTrigger()
+        public void OnTrigger()
         {
-            return 0.0f;
         }
     }
 }

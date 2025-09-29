@@ -10,7 +10,7 @@ namespace Potions
 
         [SerializeField] private GameObjectVariable playerHoldingObject;
 
-        public float OnTrigger()
+        public void OnTrigger()
         {
             if (this.playerHoldingObject.Value != null)
             {
@@ -21,8 +21,6 @@ namespace Potions
             }
 
             this.playerHoldingObject.Value = this.gameObject;
-
-            return 0;
         }
     }
 }
