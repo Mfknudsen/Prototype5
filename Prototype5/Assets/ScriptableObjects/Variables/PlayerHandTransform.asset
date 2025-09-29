@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd5700093589d3547b94be4bbe21834f, type: 3}
-  m_Name: HotbarItemList
+  m_Script: {fileID: 11500000, guid: 7111a30aaac886649bec9f624c1410c4, type: 3}
+  m_Name: PlayerHandTransform
   m_EditorClassIdentifier: 
   Debug: 0
   description: 

@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace Managers
 {
@@ -23,6 +24,9 @@ namespace Managers
         public readonly UnityEvent<bool>
             RunInputEvent = new UnityEvent<bool>(),
             LeftClick = new UnityEvent<bool>();
+
+        public readonly UnityEvent<int>
+            HotbarKey = new UnityEvent<int>();
 
         private InputManager()
         {
@@ -48,6 +52,16 @@ namespace Managers
             playerInput.Player.Interact.performed += _ => this.InteractInputEvent.Invoke();
             playerInput.Player.Jump.performed += _ => this.JumpInputEvent.Invoke();
             playerInput.Player.Inventory.performed += _ => this.InventoryEvent.Invoke();
+
+            playerInput.Player.Hotbar.performed += context =>
+            {
+                //Stop the invoke on key released
+                if (context.ReadValue<float>() == 0)
+                    return;
+
+                int hotbarKey = int.Parse(context.control.displayName);
+                this.HotbarKey.Invoke(hotbarKey);
+            };
 
 
 #if UNITY_EDITOR

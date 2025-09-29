@@ -5,8 +5,9 @@ namespace Potions
 {
     public class MixingStation : MonoBehaviour, IInteractable
     {
-        public void OnTrigger()
+        public float OnTrigger()
         {
+            return 1.5f;
         }
     }
 }

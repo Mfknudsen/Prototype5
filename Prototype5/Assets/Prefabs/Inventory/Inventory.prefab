@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStateVariable: {fileID: 11400000, guid: 74e430132044fd04096f52e4a4319956, type: 2}
-  handTransform: {fileID: 0}
+  handTransform: {fileID: 11400000, guid: 8cce1e528e086c24f8f2d948e86e5b2a, type: 2}
   hotbar: {fileID: 2777110803739012611}
   backpack: {fileID: 1466479818652808884}
   backpackItems: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}

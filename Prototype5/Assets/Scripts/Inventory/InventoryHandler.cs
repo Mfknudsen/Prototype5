@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Managers;
 using ScriptableVariables.Enums;
+using ScriptableVariables.Objects;
 using ScriptableVariables.SystemSpecific;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace Inventory
     {
         [SerializeField] private PlayerStateVariable playerStateVariable;
 
-        [SerializeField] private Transform handTransform;
+        [SerializeField] private TransformVariable handTransform;
 
         [SerializeField] private GameObject hotbar, backpack;
 
@@ -22,9 +23,11 @@ namespace Inventory
 
         private bool clicked, isClickedHotbar;
 
-        private int clickedIndex;
+        private int clickedIndex, hotbarIndexSelected = -1;
 
         private OnUIButtonClick buttonClicked;
+
+        private Transform currentItemInHand;
 
         private class ItemCounter
         {
@@ -48,33 +51,22 @@ namespace Inventory
             for (int i = 0; i < hotbarCount + backpackCount; i++)
                 this.itemCounters.Add(null);
 
-            foreach (Transform t in this.hotbar.transform.GetChild(0))
-            {
-                OnUIButtonClick button = t.GetComponent<OnUIButtonClick>();
-                button.SetText("");
-            }
-
-            foreach (Transform horizontalGroup in this.backpack.transform.GetChild(0))
-            {
-                foreach (Transform t in horizontalGroup)
-                {
-                    OnUIButtonClick button = t.GetComponent<OnUIButtonClick>();
-                    button.SetText("");
-                }
-            }
-
             this.UpdatePlacements();
+
+            this.OnHotbarSelectInput(0);
         }
 
         private void OnEnable()
         {
             InputManager.Instance.InventoryEvent.AddListener(this.OnInventoryInputEvent);
+            InputManager.Instance.HotbarKey.AddListener(this.OnHotbarSelectInput);
             this.backpackItems.AddListener(this.OnBackpackUpdate);
         }
 
         private void OnDisable()
         {
             InputManager.Instance.InventoryEvent.RemoveListener(this.OnInventoryInputEvent);
+            InputManager.Instance.HotbarKey.RemoveListener(this.OnHotbarSelectInput);
             this.backpackItems.RemoveListener(this.OnBackpackUpdate);
         }
 
@@ -83,9 +75,8 @@ namespace Inventory
             if (this.backpack.activeSelf)
             {
                 this.backpack.SetActive(false);
-
                 Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.lockState = CursorLockMode.Locked;
                 this.playerStateVariable.Value = PlayerStateEnum.Free;
             }
             else
@@ -111,15 +102,28 @@ namespace Inventory
                 if (inventoryItem == null)
                     continue;
 
+                bool found = false;
+
                 for (int index = 0; index < this.itemCounters.Count; index++)
                 {
                     ItemCounter itemCounter = this.itemCounters[index];
-                    if (inventoryItem.CheckAgainstPrefab(itemCounter.ItemPrefab))
+                    if (!inventoryItem.CheckAgainstPrefab(itemCounter.ItemPrefab))
                         continue;
+
+                    found = true;
 
                     itemCounter.Count++;
                     this.itemCounters[index] = itemCounter;
                 }
+
+                if (found)
+                    continue;
+
+                this.itemCounters.Add(new ItemCounter
+                {
+                    ItemPrefab = inventoryItem.GetSelfPrefab(),
+                    Count = 1
+                });
             }
 
             for (int i = 0; i < this.itemCounters.Count; i++)
@@ -128,13 +132,70 @@ namespace Inventory
                 if (itemCounter.Count > 0)
                     continue;
 
-                this.itemCounters.RemoveAt(i);
-                i--;
+                this.itemCounters[i] = null;
+            }
+
+            this.UpdatePlacements();
+        }
+
+        private void OnHotbarSelectInput(int input)
+        {
+            if (input == this.hotbarIndexSelected)
+                return;
+
+            this.hotbarIndexSelected = input;
+
+            if (this.handTransform.Value == null)
+                return;
+
+            if (this.currentItemInHand != null)
+            {
+                this.currentItemInHand.SetParent(null);
+                this.currentItemInHand.gameObject.SetActive(false);
+            }
+
+            int index = input - 1;
+
+            //Since keyboards have 0 as the far right key this will stop errors and ensure it handle as expected by the player.
+            if (index < 0)
+                index = 9;
+
+            ItemCounter itemCounter = this.itemCounters[index];
+            foreach (InventoryItem inventoryItem in this.backpackItems.Value)
+            {
+                if (!inventoryItem.CheckAgainstPrefab(itemCounter.ItemPrefab))
+                    continue;
+
+                Transform t = this.handTransform.Value;
+                inventoryItem.transform.parent = t;
+                inventoryItem.transform.SetPositionAndRotation(t.position, t.rotation);
+
+                break;
             }
         }
 
         private void UpdatePlacements()
         {
+            int index = 0;
+
+            foreach (Transform t in this.hotbar.transform.GetChild(0))
+            {
+                ItemCounter itemCounter = this.itemCounters[index];
+                OnUIButtonClick button = t.GetComponent<OnUIButtonClick>();
+                button.SetText(itemCounter == null ? "" : itemCounter.ItemPrefab.name);
+                index++;
+            }
+
+            foreach (Transform horizontalGroup in this.backpack.transform.GetChild(0))
+            {
+                foreach (Transform t in horizontalGroup)
+                {
+                    ItemCounter itemCounter = this.itemCounters[index];
+                    OnUIButtonClick button = t.GetComponent<OnUIButtonClick>();
+                    button.SetText(itemCounter == null ? "" : itemCounter.ItemPrefab.name);
+                    index++;
+                }
+            }
         }
 
         public void Click(bool isHotbar, int index, OnUIButtonClick button)
@@ -183,6 +244,8 @@ namespace Inventory
             button.SetText(a != null ? a.ItemPrefab.name : "");
 
             this.buttonClicked.SetText(b != null ? b.ItemPrefab.name : "");
+
+            this.UpdatePlacements();
         }
     }
 }
