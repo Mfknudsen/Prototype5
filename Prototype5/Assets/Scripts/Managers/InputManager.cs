@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,7 +12,8 @@ namespace Managers
 
         public readonly UnityEvent<Vector2>
             MoveAxisInputEvent = new UnityEvent<Vector2>(),
-            TurnAxisInputEvent = new UnityEvent<Vector2>();
+            TurnAxisInputEvent = new UnityEvent<Vector2>(),
+            MousePosition = new UnityEvent<Vector2>();
 
         public readonly UnityEvent
             InteractInputEvent = new UnityEvent(),
@@ -19,7 +21,8 @@ namespace Managers
             InventoryEvent = new UnityEvent();
 
         public readonly UnityEvent<bool>
-            RunInputEvent = new UnityEvent<bool>();
+            RunInputEvent = new UnityEvent<bool>(),
+            LeftClick = new UnityEvent<bool>();
 
         private InputManager()
         {
@@ -39,10 +42,28 @@ namespace Managers
 
             playerInput.Player.Sprint.performed += _ => this.RunInputEvent.Invoke(true);
             playerInput.Player.Sprint.canceled += _ => this.RunInputEvent.Invoke(false);
+            playerInput.Player.Attack.performed += _ => this.LeftClick.Invoke(true);
+            playerInput.Player.Attack.canceled += _ => this.LeftClick.Invoke(false);
 
             playerInput.Player.Interact.performed += _ => this.InteractInputEvent.Invoke();
             playerInput.Player.Jump.performed += _ => this.JumpInputEvent.Invoke();
-            playerInput.Player.Interact.performed += _ => this.InventoryEvent.Invoke();
+            playerInput.Player.Inventory.performed += _ => this.InventoryEvent.Invoke();
+
+
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged += change => OnPlaymodeChanged(change, playerInput);
+#endif
         }
+
+#if UNITY_EDITOR
+        private static void OnPlaymodeChanged(PlayModeStateChange change, InputSystem_Actions playerInput)
+        {
+            if (change != PlayModeStateChange.ExitingPlayMode)
+                return;
+
+            playerInput.Disable();
+            _instance = null;
+        }
+#endif
     }
 }
