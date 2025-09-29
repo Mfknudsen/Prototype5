@@ -39,7 +39,7 @@ namespace Inventory
         {
             this.backpack.SetActive(false);
             Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
 
             this.itemCounters = new List<ItemCounter>();
 
