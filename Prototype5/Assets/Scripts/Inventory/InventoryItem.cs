@@ -10,12 +10,10 @@ namespace Inventory
 
         [SerializeField] private InventoryItemListVariable backpack;
 
-        public float OnTrigger()
+        public void OnTrigger()
         {
             this.backpack.Add(this);
             this.gameObject.SetActive(false);
-
-            return 0.0f;
         }
 
         public bool CheckAgainstPrefab(GameObject toCheck)
