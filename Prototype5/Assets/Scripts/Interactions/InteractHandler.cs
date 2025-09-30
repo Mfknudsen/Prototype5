@@ -6,6 +6,8 @@ namespace Interactions
 {
     public sealed class InteractHandler : MonoBehaviour
     {
+        [SerializeField] private LayerMask layerMask;
+
         [SerializeField] private TransformVariable cameraTransform, playerTransform;
 
         [SerializeField] private float maxDistance = 5.0f;
@@ -30,7 +32,7 @@ namespace Interactions
             Ray ray = new Ray(this.cameraTransform.Position, this.cameraTransform.Forward);
 
             // ReSharper disable once Unity.PreferNonAllocApi
-            RaycastHit[] hits = Physics.RaycastAll(ray);
+            RaycastHit[] hits = Physics.RaycastAll(ray, this.layerMask);
 
             IInteractable closest = null;
 

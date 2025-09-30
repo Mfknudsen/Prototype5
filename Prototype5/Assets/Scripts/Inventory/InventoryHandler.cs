@@ -51,7 +51,28 @@ namespace Inventory
             for (int i = 0; i < hotbarCount + backpackCount; i++)
                 this.itemCounters.Add(null);
 
-            this.UpdatePlacements();
+            int index = 0;
+
+            foreach (Transform t in this.hotbar.transform.GetChild(0))
+            {
+                ItemCounter itemCounter = this.itemCounters[index];
+                OnUIButtonClick button = t.GetComponent<OnUIButtonClick>();
+                button.SetText(itemCounter == null ? "" : itemCounter.ItemPrefab.name);
+                button.SetIndexAndIsHotbar(true, index);
+                index++;
+            }
+
+            foreach (Transform horizontalGroup in this.backpack.transform.GetChild(0))
+            {
+                foreach (Transform t in horizontalGroup)
+                {
+                    ItemCounter itemCounter = this.itemCounters[index];
+                    OnUIButtonClick button = t.GetComponent<OnUIButtonClick>();
+                    button.SetText(itemCounter == null ? "" : itemCounter.ItemPrefab.name);
+                    button.SetIndexAndIsHotbar(false, index - 10);
+                    index++;
+                }
+            }
 
             this.OnHotbarSelectInput(0);
         }
@@ -119,11 +140,19 @@ namespace Inventory
                 if (found)
                     continue;
 
-                this.itemCounters.Add(new ItemCounter
+                for (int i = 10; i < this.itemCounters.Count; i++)
                 {
-                    ItemPrefab = inventoryItem.GetSelfPrefab(),
-                    Count = 1
-                });
+                    if (this.itemCounters[i] != null)
+                        continue;
+
+                    this.itemCounters[i] = new ItemCounter
+                    {
+                        ItemPrefab = inventoryItem.GetSelfPrefab(),
+                        Count = 1
+                    };
+
+                    break;
+                }
             }
 
             for (int i = 0; i < this.itemCounters.Count; i++)

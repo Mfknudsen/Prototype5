@@ -39,5 +39,11 @@ namespace Inventory
         {
             this.text.text = set;
         }
+
+        public void SetIndexAndIsHotbar(bool setHotbar, int setIndex)
+        {
+            this.isHotbar = setHotbar;
+            this.index = setIndex;
+        }
     }
 }
