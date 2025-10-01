@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 1386895223456560887}
   - component: {fileID: 5313819035121096882}
   - component: {fileID: 6854806492714604786}
-  - component: {fileID: 4166181584993767902}
-  - component: {fileID: 8922755288208552370}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -112,42 +110,3 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &4166181584993767902
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7909263290757921648}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &8922755288208552370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7909263290757921648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad9079244d26f8f4b8e53832096dc38a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDistanceToTarget: 20
-  minDistanceToTarget: 4
-  npcRadius: 15
-  speed: 2.5
-  targetTransform: {fileID: 0}
