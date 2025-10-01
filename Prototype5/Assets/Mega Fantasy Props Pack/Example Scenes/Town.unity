@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 0f2b8b65ced5e8443938ec74b2f664c2, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: ba13010ad9640354d97ea5041ecc656a, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 8fd749dc2344f6b488bd4b2b0181ffa3, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -14598,7 +14598,7 @@ TerrainCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: 5ab3cfce59164bc4b92d44860a17097b, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 17eafc7408d43184f926b482e604c45b, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1781037109
 Terrain:
@@ -14609,7 +14609,7 @@ Terrain:
   m_GameObject: {fileID: 1781037107}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 5ab3cfce59164bc4b92d44860a17097b, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 17eafc7408d43184f926b482e604c45b, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
