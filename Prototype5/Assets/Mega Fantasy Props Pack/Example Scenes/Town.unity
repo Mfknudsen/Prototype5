@@ -18518,6 +18518,10 @@ PrefabInstance:
       propertyPath: 'npcPrefabs.Array.data[0]'
       value: 
       objectReference: {fileID: 7909263290757921648, guid: 20746a9960a8ea84b8e00c7046f4bdd1, type: 3}
+    - target: {fileID: 6379562069624687659, guid: 82d9e129874dc24488d365eb0291fcc6, type: 3}
+      propertyPath: 'npcPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 5187084931165711824, guid: a593f4f80c757274a8d8dec70f051c89, type: 3}
     - target: {fileID: 8502955513247984652, guid: 82d9e129874dc24488d365eb0291fcc6, type: 3}
       propertyPath: m_Name
       value: NPCSpawnPoint
