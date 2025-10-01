@@ -1,49 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
+using ScriptableVariables.Objects;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+namespace Player
 {
-    public CharacterController controller;
-    public float baseSpeed = 12f;
-    public float gravity = -9.81f;
-    public float jumpHeight = 3f;
-    public float sprintSpeed = 5f;
-
-    float speedBoost = 1f;
-    Vector3 velocity;
-    void Start()
+    public class PlayerMovement : MonoBehaviour
     {
+        [SerializeField] private Transform cameraTransform, handTransform;
 
-    }
+        [SerializeField] private TransformVariable cameraTransformVariable,
+            handTransformVariable,
+            playerTransformVariable;
 
-    void Update()
-    {
-        if (controller.isGrounded && velocity.y < 0)
+        public CharacterController controller;
+        public float baseSpeed = 12f;
+        public float gravity = -9.81f;
+        public float jumpHeight = 3f;
+        public float sprintSpeed = 5f;
+
+        private float speedBoost = 1f;
+        private Vector3 velocity;
+
+        private void Start()
         {
-            velocity.y = -2f;
+            this.playerTransformVariable.Value = this.transform;
+            this.cameraTransformVariable.Value = this.cameraTransform;
+            this.handTransformVariable.Value = this.handTransform;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        if (Input.GetButton("Fire3"))
-            speedBoost = sprintSpeed;
-        else
-            speedBoost = 1f;
-
-
-        Vector3 move = transform.right * x + transform.forward * z;
-
-        controller.Move(move * (baseSpeed + speedBoost) * Time.deltaTime);
-
-        if (Input.GetButtonDown("Jump") && controller.isGrounded)
+        private void Update()
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            if (this.controller.isGrounded && this.velocity.y < 0)
+                this.velocity.y = -2f;
+
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            this.speedBoost = Input.GetButton("Fire3") ? this.sprintSpeed : 1f;
+
+
+            Vector3 move = this.transform.right * x + this.transform.forward * z;
+
+            this.controller.Move(move * ((this.baseSpeed + this.speedBoost) * Time.deltaTime));
+
+            if (Input.GetButtonDown("Jump") && this.controller.isGrounded)
+            {
+                this.velocity.y = Mathf.Sqrt(this.jumpHeight * -2f * this.gravity);
+            }
+
+            this.velocity.y += this.gravity * Time.deltaTime;
+
+            this.controller.Move(this.velocity * Time.deltaTime);
         }
-
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
     }
 }
