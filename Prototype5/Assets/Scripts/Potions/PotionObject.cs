@@ -3,12 +3,13 @@ using UnityEngine;
 
 namespace Potions
 {
-    public sealed class PotionObject : MonoBehaviour, IInteractable
+    public sealed class PotionObject : MonoBehaviour
     {
         [SerializeField] private PotionValue potionValue;
 
-        public void OnTrigger()
+        public PotionValue GetValue()
         {
+            return this.potionValue;
         }
     }
 }
