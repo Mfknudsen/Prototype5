@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager _manager;
+    
     [SerializeField] private string START_SCENE = "Scenes/SampleScene";
     [SerializeField] private GameObject MainMenuContainer;
     [SerializeField] private GameObject SettingsMenuContainer;
@@ -85,6 +86,10 @@ public class MainMenuManager : MonoBehaviour
 
     private void QuitGame()
     {
-        Application.Quit();
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.ExitPlaymode();
+        #else        
+            Application.Quit();
+        #endif
     }
 }
