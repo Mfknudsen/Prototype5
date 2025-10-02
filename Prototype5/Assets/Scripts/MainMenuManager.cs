@@ -4,24 +4,26 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager _manager;
-    
+
     [SerializeField] private string START_SCENE = "Scenes/SampleScene";
     [SerializeField] private GameObject MainMenuContainer;
     [SerializeField] private GameObject SettingsMenuContainer;
     [SerializeField] private bool debugMode;
-    
+
     public enum MainMenuButtons
     {
         Play,
         Settings,
-        Quit, 
-        Audio, 
+        Quit,
+        Audio,
         Back
     };
-    
+
     // Singleton access to static instance
     public void Awake()
     {
+        Application.targetFrameRate = 144;
+
         if (_manager == null)
         {
             _manager = this;
@@ -30,7 +32,6 @@ public class MainMenuManager : MonoBehaviour
         {
             Debug.LogError("There is already a MainMenuManager in the scene");
         }
-        
     }
 
     public void MainMenuButtonClicked(MainMenuButtons buttonClicked)
@@ -66,7 +67,7 @@ public class MainMenuManager : MonoBehaviour
             Debug.Log(message);
         }
     }
-    
+
     private void PlayGame()
     {
         SceneManager.LoadScene(START_SCENE);
@@ -86,10 +87,10 @@ public class MainMenuManager : MonoBehaviour
 
     private void QuitGame()
     {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.ExitPlaymode();
-        #else        
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.ExitPlaymode();
+#else
             Application.Quit();
-        #endif
+#endif
     }
 }

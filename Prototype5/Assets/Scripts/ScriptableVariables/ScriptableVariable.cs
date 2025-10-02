@@ -20,12 +20,12 @@ namespace ScriptableVariables
             get => this.value;
             set
             {
-                if (this.value.Equals(value))
+                if (this.value != null && this.value.Equals(value))
                     return;
 
                 this.value = value;
                 this.valueChanged?.Invoke();
-                
+
 #if UNITY_EDITOR
                 if (this.Debug)
                     UnityEngine.Debug.Log(value, this);

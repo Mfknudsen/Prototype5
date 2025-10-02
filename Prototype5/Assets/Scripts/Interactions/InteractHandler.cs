@@ -36,7 +36,7 @@ namespace Interactions
 
             // ReSharper disable once Unity.PreferNonAllocApi
             RaycastHit[] hits =
-                Physics.SphereCastAll(ray, .1f, this.maxDistance, this.layerMask);
+                Physics.SphereCastAll(ray, .2f, this.maxDistance, this.layerMask);
 
             IInteractable closest = null;
 
@@ -47,8 +47,8 @@ namespace Interactions
             foreach (RaycastHit raycastHit in hits)
             {
                 Debug.Log(
-                    $"{raycastHit.collider.gameObject.name} : {Vector3.Distance(raycastHit.collider.transform.position, this.playerTransform.Position)}");
-                if (Vector3.Distance(raycastHit.collider.transform.position, this.playerTransform.Position) >
+                    $"{raycastHit.collider.gameObject.name} : {Vector3.Distance(raycastHit.point, this.playerTransform.Position)}");
+                if (Vector3.Distance(raycastHit.point, this.playerTransform.Position) >
                     this.maxDistance)
                     continue;
 
@@ -57,7 +57,7 @@ namespace Interactions
 
                 if (!interactable.IsActive())
                     continue;
-                
+
                 closest = interactable;
             }
 

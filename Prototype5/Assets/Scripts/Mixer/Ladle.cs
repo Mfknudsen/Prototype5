@@ -9,6 +9,7 @@ namespace Mixer
 
         public void OnTrigger()
         {
+            Debug.Log("Laddle");
             this.mixingStation.TriggerMixing();
         }
 
