@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 16534b39d323e0146b67989200ddbb9f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rumor: {fileID: 11400000, guid: 38a13f34e8ab6ca4cb1657baed8508c8, type: 2}
+  - floatingText: {instanceID: 0}
+  - playerHandTransform: {fileID: 11400000, guid: a6eefd8b6e7b757489be447beedd7bf1, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
