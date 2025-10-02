@@ -150,7 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544fb994b587757419aad57fa3261472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 200
+  playerStateVariable: {fileID: 11400000, guid: 74e430132044fd04096f52e4a4319956, type: 2}
+  mouseSensitivity: 20
   playerBody: {fileID: 7606262035328276592}
 --- !u!1 &5989371418687495725
 GameObject:
@@ -225,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e478c0cc6d326d0428f3ef40bdce5aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStateVariable: {fileID: 11400000, guid: 74e430132044fd04096f52e4a4319956, type: 2}
   cameraTransform: {fileID: 7373795340436703339}
   handTransform: {fileID: 8020468614364741827}
   cameraTransformVariable: {fileID: 11400000, guid: ec58220940681b44e95eb43141c15de2, type: 2}

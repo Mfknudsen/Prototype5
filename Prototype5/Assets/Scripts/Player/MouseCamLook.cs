@@ -1,4 +1,6 @@
-﻿using ScriptableVariables.Enums;
+﻿using System;
+using Managers;
+using ScriptableVariables.Enums;
 using UnityEngine;
 
 namespace Player
@@ -11,9 +13,16 @@ namespace Player
         public Transform playerBody;
         private float xRotation;
 
-        private void Start()
+        private Vector2 mouseInput;
+
+        private void OnEnable()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            InputManager.Instance.TurnAxisInputEvent.AddListener(this.OnMouseInput);
+        }
+
+        private void OnDisable()
+        {
+            InputManager.Instance.TurnAxisInputEvent.RemoveListener(this.OnMouseInput);
         }
 
         private void Update()
@@ -21,8 +30,8 @@ namespace Player
             if (this.playerStateVariable.Value != PlayerStateEnum.Free)
                 return;
 
-            float mouseX = Input.GetAxis("Mouse X") * this.mouseSensitivity * Time.deltaTime;
-            float mouseY = Input.GetAxis("Mouse Y") * this.mouseSensitivity * Time.deltaTime;
+            float mouseX = this.mouseInput.x * this.mouseSensitivity * Time.deltaTime;
+            float mouseY = this.mouseInput.y * this.mouseSensitivity * Time.deltaTime;
 
             this.xRotation -= mouseY;
             this.xRotation = Mathf.Clamp(this.xRotation, -90f, 90f);
@@ -30,6 +39,11 @@ namespace Player
             this.transform.localRotation = Quaternion.Euler(this.xRotation, 0f, 0f);
 
             this.playerBody.Rotate(Vector3.up * mouseX);
+        }
+
+        private void OnMouseInput(Vector2 input)
+        {
+            this.mouseInput = input;
         }
     }
 }
