@@ -55,6 +55,9 @@ namespace Interactions
                 if (!raycastHit.collider.gameObject.TryGetComponent(out IInteractable interactable))
                     continue;
 
+                if (!interactable.IsActive())
+                    continue;
+                
                 closest = interactable;
             }
 

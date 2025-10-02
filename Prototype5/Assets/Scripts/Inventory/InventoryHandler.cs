@@ -188,6 +188,7 @@ namespace Inventory
             {
                 this.currentItemInHand.SetParent(null);
                 this.currentItemInHand.gameObject.SetActive(false);
+                this.currentItemInHand.GetComponent<InventoryItem>().enabled = true;
             }
 
             int index = input - 1;
@@ -213,6 +214,7 @@ namespace Inventory
                 inventoryItem.transform.parent = t;
                 inventoryItem.transform.SetPositionAndRotation(t.position, t.rotation);
                 inventoryItem.gameObject.SetActive(true);
+                inventoryItem.enabled = false;
 
                 break;
             }

@@ -26,5 +26,10 @@ namespace Inventory
         {
             return this.ItemName;
         }
+        
+        public bool IsActive()
+        {
+            return this.enabled;
+        }
     }
 }

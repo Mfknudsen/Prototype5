@@ -29,6 +29,7 @@ namespace Mixer
         public void OnTrigger()
         {
             Debug.Log("Mixer");
+            
             if (this.handTransformVariable == null || this.handTransformVariable.Value == null)
                 return;
 
@@ -38,7 +39,6 @@ namespace Mixer
                 if (t.gameObject.TryGetComponent(out ingredientObject))
                     break;
             }
-
 
             if (ingredientObject == null)
                 return;
@@ -55,6 +55,12 @@ namespace Mixer
         {
             if (this.currentAddedIngredients.Count == 0)
                 return;
+
+            Debug.Log("Ladle Mix");
+            foreach (IngredientObject currentAddedIngredient in this.currentAddedIngredients)
+            {
+                Debug.Log(currentAddedIngredient.gameObject.name);
+            }
 
             foreach (PotionRecipe potionRecipe in this.allRecipes)
             {
@@ -79,6 +85,11 @@ namespace Mixer
                 Destroy(currentAddedIngredient);
 
             this.currentAddedIngredients.Clear();
+        }
+        
+        public bool IsActive()
+        {
+            return this.enabled;
         }
     }
 }

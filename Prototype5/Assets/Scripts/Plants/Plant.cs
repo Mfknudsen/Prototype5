@@ -72,5 +72,10 @@ namespace Plants
             this.transform.parent.GetComponent<SphereCollider>().enabled = true;
             Destroy(this.gameObject);
         }
+
+        public bool IsActive()
+        {
+            return this.enabled;
+        }
     }
 }

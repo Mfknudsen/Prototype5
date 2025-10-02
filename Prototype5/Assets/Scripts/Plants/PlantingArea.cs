@@ -44,5 +44,10 @@ namespace Plants
             this.itemListVariable.Remove(seed.GetComponent<InventoryItem>());
             Destroy(seed.gameObject);
         }
+
+        public bool IsActive()
+        {
+            return this.enabled;
+        }
     }
 }

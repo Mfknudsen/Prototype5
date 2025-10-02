@@ -51,13 +51,18 @@ namespace Rumors
 
                 this.hasGivingRumor = false;
                 this.floatingText.gameObject.SetActive(false);
-                
+
                 return;
             }
 
             this.hasGivingRumor = true;
             this.floatingText.text = this.rumor.GetDisplayText();
             this.floatingText.gameObject.SetActive(true);
+        }
+
+        public bool IsActive()
+        {
+            return this.enabled;
         }
     }
 }
