@@ -55,7 +55,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.6, y: 2, z: 1.85}
+  m_Size: {x: 2.5, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4237886302362383403
 MonoBehaviour:
@@ -69,8 +69,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2bdb3069a31f04eb336636171fc032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allRecipes: []
+  allRecipes:
+  - {fileID: 11400000, guid: cbd223d0305435a47bb22fabc6e49c44, type: 2}
   handTransformVariable: {fileID: 11400000, guid: 8cce1e528e086c24f8f2d948e86e5b2a, type: 2}
+  inventoryItemListVariable: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}
   resultSpawnPoint: {fileID: 3607008302455510177}
 --- !u!1 &2738028523765835227
 GameObject:
@@ -100,7 +102,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1, z: 0}
-  m_LocalScale: {x: 4.94, y: 0.81131387, z: 2.47}
+  m_LocalScale: {x: 2.361172, y: 0.3877837, z: 1.180586}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3712223940119904290}
@@ -186,7 +188,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.48, y: 0.9, z: 2.74}
+  m_LocalScale: {x: 2.5, y: 0.466605, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3712223940119904290}

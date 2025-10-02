@@ -18,9 +18,6 @@ namespace Inventory
 
         public void OnClick()
         {
-            if (this.text.text.Equals(""))
-                return;
-
             this.image.color = Color.green;
             this.handler.Click(this.isHotbar, this.index, this);
         }

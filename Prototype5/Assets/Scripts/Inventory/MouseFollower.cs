@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,22 @@ namespace Inventory
         [SerializeField] private TextMeshProUGUI text;
 
         [SerializeField] private RectTransform rectTransform;
+
+        private void Start()
+        {
+            Transform parent = this.transform.parent;
+            while (this.canvas == null)
+            {
+                this.canvas = parent.GetComponent<Canvas>();
+                parent = parent.parent;
+
+                if (parent != null)
+                    continue;
+
+                Debug.LogError("MOUSE FOLLOWER NOT UNDER CANVAS");
+                break;
+            }
+        }
 
         private void Update()
         {

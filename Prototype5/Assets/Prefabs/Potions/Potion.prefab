@@ -160,8 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b23b24d6df7fa94196bdd6ec94fd155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfPrefab: {fileID: 5187084931165711824}
   backpack: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}
+  ItemName: Potion
 --- !u!114 &6398016380117158941
 MonoBehaviour:
   m_ObjectHideFlags: 0
