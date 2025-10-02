@@ -1,28 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using ScriptableVariables.Enums;
 using UnityEngine;
 
-public class MouseCamLook : MonoBehaviour
+namespace Player
 {
-    public float mouseSensitivity = 100f;
-    public Transform playerBody;
-    float xRotation = 0f;
-
-    void Start()
+    public class MouseCamLook : MonoBehaviour
     {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+        [SerializeField] private PlayerStateVariable playerStateVariable;
 
-    void Update()
-    {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        public float mouseSensitivity = 100f;
+        public Transform playerBody;
+        private float xRotation;
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        private void Update()
+        {
+            if (this.playerStateVariable.Value != PlayerStateEnum.Free)
+                return;
 
-        playerBody.Rotate(Vector3.up * mouseX);
+            float mouseX = Input.GetAxis("Mouse X") * this.mouseSensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * this.mouseSensitivity * Time.deltaTime;
+
+            this.xRotation -= mouseY;
+            this.xRotation = Mathf.Clamp(this.xRotation, -90f, 90f);
+
+            this.transform.localRotation = Quaternion.Euler(this.xRotation, 0f, 0f);
+
+            this.playerBody.Rotate(Vector3.up * mouseX);
+        }
     }
 }
