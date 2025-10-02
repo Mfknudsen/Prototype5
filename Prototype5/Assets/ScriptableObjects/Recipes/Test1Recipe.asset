@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test1Recipe
   m_EditorClassIdentifier: 
   ingredients:
-  - ingredientValue: {fileID: 0}
-    count: 0
+  - ingredientValue: {fileID: 11400000, guid: 2deb61f039a47db4e920d7c6bed642a7, type: 2}
+    count: 2
   potionResults:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 303c586e561fce84e8d8467f47826c97, type: 2}

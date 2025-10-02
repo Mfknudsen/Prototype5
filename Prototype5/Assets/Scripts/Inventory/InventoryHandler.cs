@@ -23,7 +23,7 @@ namespace Inventory
 
         private bool clicked, isClickedHotbar;
 
-        private int clickedIndex, hotbarIndexSelected = -1;
+        private int clickedIndex, hotbarIndexSelected;
 
         private OnUIButtonClick buttonClicked;
 
@@ -32,7 +32,7 @@ namespace Inventory
         private class ItemCounter
         {
             public int Count;
-            public GameObject ItemPrefab;
+            public string ItemName;
         }
 
         private void Start()
@@ -57,7 +57,7 @@ namespace Inventory
             {
                 ItemCounter itemCounter = this.itemCounters[index];
                 OnUIButtonClick button = t.GetComponent<OnUIButtonClick>();
-                button.SetText(itemCounter == null ? "" : itemCounter.ItemPrefab.name);
+                button.SetText(itemCounter == null ? "" : itemCounter.ItemName);
                 button.SetIndexAndIsHotbar(true, index);
                 index++;
             }
@@ -68,13 +68,13 @@ namespace Inventory
                 {
                     ItemCounter itemCounter = this.itemCounters[index];
                     OnUIButtonClick button = t.GetComponent<OnUIButtonClick>();
-                    button.SetText(itemCounter == null ? "" : itemCounter.ItemPrefab.name);
+                    button.SetText(itemCounter == null ? "" : itemCounter.ItemName);
                     button.SetIndexAndIsHotbar(false, index - 10);
                     index++;
                 }
             }
 
-            this.OnHotbarSelectInput(0);
+            this.OnHotbarSelectInput(1);
         }
 
         private void OnEnable()
@@ -111,9 +111,14 @@ namespace Inventory
 
         private void OnBackpackUpdate()
         {
+            Debug.Log("Inventory");
+
             for (int i = 0; i < this.itemCounters.Count; i++)
             {
                 ItemCounter itemCounter = this.itemCounters[i];
+                if (itemCounter == null)
+                    continue;
+
                 itemCounter.Count = 0;
                 this.itemCounters[i] = itemCounter;
             }
@@ -128,8 +133,10 @@ namespace Inventory
                 for (int index = 0; index < this.itemCounters.Count; index++)
                 {
                     ItemCounter itemCounter = this.itemCounters[index];
-                    if (!inventoryItem.CheckAgainstPrefab(itemCounter.ItemPrefab))
+                    if (itemCounter == null)
                         continue;
+
+                    if (!inventoryItem.CheckAgainstPrefab(itemCounter.ItemName)) continue;
 
                     found = true;
 
@@ -140,14 +147,14 @@ namespace Inventory
                 if (found)
                     continue;
 
-                for (int i = 10; i < this.itemCounters.Count; i++)
+                for (int i = 0; i < this.itemCounters.Count; i++)
                 {
                     if (this.itemCounters[i] != null)
                         continue;
 
                     this.itemCounters[i] = new ItemCounter
                     {
-                        ItemPrefab = inventoryItem.GetSelfPrefab(),
+                        ItemName = inventoryItem.GetPrefabPath(),
                         Count = 1
                     };
 
@@ -158,6 +165,9 @@ namespace Inventory
             for (int i = 0; i < this.itemCounters.Count; i++)
             {
                 ItemCounter itemCounter = this.itemCounters[i];
+                if (itemCounter == null)
+                    continue;
+
                 if (itemCounter.Count > 0)
                     continue;
 
@@ -169,9 +179,6 @@ namespace Inventory
 
         private void OnHotbarSelectInput(int input)
         {
-            if (input == this.hotbarIndexSelected)
-                return;
-
             this.hotbarIndexSelected = input;
 
             if (this.handTransform.Value == null)
@@ -181,6 +188,7 @@ namespace Inventory
             {
                 this.currentItemInHand.SetParent(null);
                 this.currentItemInHand.gameObject.SetActive(false);
+                this.currentItemInHand.GetComponent<InventoryItem>().enabled = true;
             }
 
             int index = input - 1;
@@ -190,14 +198,23 @@ namespace Inventory
                 index = 9;
 
             ItemCounter itemCounter = this.itemCounters[index];
+            if (itemCounter == null)
+                return;
+
             foreach (InventoryItem inventoryItem in this.backpackItems.Value)
             {
-                if (!inventoryItem.CheckAgainstPrefab(itemCounter.ItemPrefab))
+                if (inventoryItem == null)
+                    continue;
+
+                if (!inventoryItem.CheckAgainstPrefab(itemCounter.ItemName))
                     continue;
 
                 Transform t = this.handTransform.Value;
+                this.currentItemInHand = inventoryItem.transform;
                 inventoryItem.transform.parent = t;
                 inventoryItem.transform.SetPositionAndRotation(t.position, t.rotation);
+                inventoryItem.gameObject.SetActive(true);
+                inventoryItem.enabled = false;
 
                 break;
             }
@@ -211,7 +228,9 @@ namespace Inventory
             {
                 ItemCounter itemCounter = this.itemCounters[index];
                 OnUIButtonClick button = t.GetComponent<OnUIButtonClick>();
-                button.SetText(itemCounter == null ? "" : itemCounter.ItemPrefab.name);
+                button.SetText(itemCounter == null || itemCounter.Count == 0
+                    ? ""
+                    : $"{itemCounter.ItemName}\n{itemCounter.Count}");
                 index++;
             }
 
@@ -221,14 +240,19 @@ namespace Inventory
                 {
                     ItemCounter itemCounter = this.itemCounters[index];
                     OnUIButtonClick button = t.GetComponent<OnUIButtonClick>();
-                    button.SetText(itemCounter == null ? "" : itemCounter.ItemPrefab.name);
+                    button.SetText(itemCounter == null || itemCounter.Count == 0
+                        ? ""
+                        : $"{itemCounter.ItemName}\n{itemCounter.Count}");
                     index++;
                 }
             }
+
+            this.OnHotbarSelectInput(this.hotbarIndexSelected);
         }
 
         public void Click(bool isHotbar, int index, OnUIButtonClick button)
         {
+            Debug.Log($"{isHotbar} | {index}");
             if (this.clicked)
             {
                 this.mouseFollower.gameObject.SetActive(false);
@@ -252,7 +276,7 @@ namespace Inventory
             this.clickedIndex = index;
 
             this.mouseFollower.SetMouseFollowerValues(button);
-            this.mouseFollower.gameObject.SetActive(true);
+            //this.mouseFollower.gameObject.SetActive(true);
 
             this.buttonClicked = button;
         }
@@ -270,9 +294,9 @@ namespace Inventory
             ItemCounter a = this.itemCounters[indexA],
                 b = this.itemCounters[indexB];
 
-            button.SetText(a != null ? a.ItemPrefab.name : "");
+            button.SetText(a != null ? a.ItemName : "");
 
-            this.buttonClicked.SetText(b != null ? b.ItemPrefab.name : "");
+            this.buttonClicked.SetText(b != null ? b.ItemName : "");
 
             this.UpdatePlacements();
         }

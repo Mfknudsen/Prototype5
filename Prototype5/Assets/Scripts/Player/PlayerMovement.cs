@@ -1,3 +1,4 @@
+using ScriptableVariables.Enums;
 using ScriptableVariables.Objects;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
+        [SerializeField] private PlayerStateVariable playerStateVariable;
+
         [SerializeField] private Transform cameraTransform, handTransform;
 
         [SerializeField] private TransformVariable cameraTransformVariable,
@@ -29,6 +32,9 @@ namespace Player
 
         private void Update()
         {
+            if (this.playerStateVariable.Value != PlayerStateEnum.Free)
+                return;
+
             if (this.controller.isGrounded && this.velocity.y < 0)
                 this.velocity.y = -2f;
 

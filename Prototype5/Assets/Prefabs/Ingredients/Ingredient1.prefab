@@ -222,8 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b23b24d6df7fa94196bdd6ec94fd155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfPrefab: {fileID: 8097309241775028901}
   backpack: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}
+  ItemName: Ingredient1
 --- !u!1 &8554855570199176891
 GameObject:
   m_ObjectHideFlags: 0

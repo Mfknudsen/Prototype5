@@ -11,5 +11,10 @@ namespace Mixer
         {
             this.mixingStation.TriggerMixing();
         }
+
+        public bool IsActive()
+        {
+            return this.enabled;
+        }
     }
 }

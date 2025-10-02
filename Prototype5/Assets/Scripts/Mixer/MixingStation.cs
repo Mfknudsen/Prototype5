@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using Interactions;
+using Inventory;
 using Potions;
 using ScriptableVariables.Objects;
+using ScriptableVariables.SystemSpecific;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,6 +14,8 @@ namespace Mixer
         [SerializeField] private List<PotionRecipe> allRecipes;
 
         [SerializeField] private TransformVariable handTransformVariable;
+
+        [SerializeField] private InventoryItemListVariable inventoryItemListVariable;
 
         [SerializeField] private Transform resultSpawnPoint;
 
@@ -24,6 +28,8 @@ namespace Mixer
 
         public void OnTrigger()
         {
+            Debug.Log("Mixer");
+            
             if (this.handTransformVariable == null || this.handTransformVariable.Value == null)
                 return;
 
@@ -37,13 +43,24 @@ namespace Mixer
             if (ingredientObject == null)
                 return;
 
+            Debug.Log($"Ingredient : {ingredientObject.name}");
             this.currentAddedIngredients.Add(ingredientObject);
+
+            this.inventoryItemListVariable.Remove(ingredientObject.GetComponent<InventoryItem>());
+            ingredientObject.gameObject.SetActive(false);
+            ingredientObject.transform.parent = null;
         }
 
         public void TriggerMixing()
         {
             if (this.currentAddedIngredients.Count == 0)
                 return;
+
+            Debug.Log("Ladle Mix");
+            foreach (IngredientObject currentAddedIngredient in this.currentAddedIngredients)
+            {
+                Debug.Log(currentAddedIngredient.gameObject.name);
+            }
 
             foreach (PotionRecipe potionRecipe in this.allRecipes)
             {
@@ -68,6 +85,11 @@ namespace Mixer
                 Destroy(currentAddedIngredient);
 
             this.currentAddedIngredients.Clear();
+        }
+        
+        public bool IsActive()
+        {
+            return this.enabled;
         }
     }
 }

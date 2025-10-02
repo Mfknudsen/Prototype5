@@ -6,24 +6,30 @@ namespace Inventory
 {
     public sealed class InventoryItem : MonoBehaviour, IInteractable
     {
-        [SerializeField] private GameObject selfPrefab;
-
         [SerializeField] private InventoryItemListVariable backpack;
+
+        [SerializeField] private string ItemName;
 
         public void OnTrigger()
         {
+            Debug.Log($"Trigger: {this.gameObject.name}");
             this.backpack.Add(this);
             this.gameObject.SetActive(false);
         }
 
-        public bool CheckAgainstPrefab(GameObject toCheck)
+        public bool CheckAgainstPrefab(string toCheck)
         {
-            return this.selfPrefab.Equals(toCheck);
+            return this.ItemName.Equals(toCheck);
         }
 
-        public GameObject GetSelfPrefab()
+        public string GetPrefabPath()
         {
-            return this.selfPrefab;
+            return this.ItemName;
+        }
+        
+        public bool IsActive()
+        {
+            return this.enabled;
         }
     }
 }
