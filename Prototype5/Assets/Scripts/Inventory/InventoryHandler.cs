@@ -23,7 +23,7 @@ namespace Inventory
 
         private bool clicked, isClickedHotbar;
 
-        private int clickedIndex, hotbarIndexSelected = 0;
+        private int clickedIndex, hotbarIndexSelected;
 
         private OnUIButtonClick buttonClicked;
 
@@ -136,13 +136,12 @@ namespace Inventory
                     if (itemCounter == null)
                         continue;
 
-                    if (inventoryItem.CheckAgainstPrefab(itemCounter.ItemName))
-                    {
-                        found = true;
+                    if (!inventoryItem.CheckAgainstPrefab(itemCounter.ItemName)) continue;
 
-                        itemCounter.Count++;
-                        this.itemCounters[index] = itemCounter;
-                    }
+                    found = true;
+
+                    itemCounter.Count++;
+                    this.itemCounters[index] = itemCounter;
                 }
 
                 if (found)

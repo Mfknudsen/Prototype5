@@ -36,7 +36,7 @@ namespace Interactions
 
             // ReSharper disable once Unity.PreferNonAllocApi
             RaycastHit[] hits =
-                Physics.RaycastAll(ray, this.maxDistance, this.layerMask, QueryTriggerInteraction.Collide);
+                Physics.SphereCastAll(ray, .1f, this.maxDistance, this.layerMask);
 
             IInteractable closest = null;
 
