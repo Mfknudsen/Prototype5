@@ -75,7 +75,12 @@ namespace Plants
 
         public bool IsActive()
         {
-            return this.enabled;
+            return this.enabled && this.currentTime / 60.0f > this.growthTime;
+        }
+
+        public Vector3 Hover()
+        {
+            return this.transform.position;
         }
     }
 }

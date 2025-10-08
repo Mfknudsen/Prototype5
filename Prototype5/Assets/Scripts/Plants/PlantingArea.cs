@@ -12,7 +12,7 @@ namespace Plants
 
         [SerializeField] private InventoryItemListVariable itemListVariable;
 
-        private SphereCollider collider;
+        private new SphereCollider collider;
 
         private void Start()
         {
@@ -47,7 +47,12 @@ namespace Plants
 
         public bool IsActive()
         {
-            return this.enabled;
+            return this.enabled && this.collider.enabled;
+        }
+
+        public Vector3 Hover()
+        {
+            return this.transform.position;
         }
     }
 }

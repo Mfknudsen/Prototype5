@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,9 +34,9 @@ namespace Inventory
         {
             RectTransformUtility.ScreenPointToLocalPointInRectangle(this.canvas.transform as RectTransform,
                 Input.mousePosition, this.canvas.worldCamera,
-                out Vector2 movePos);
+                out Vector2 movePosition);
 
-            this.transform.position = this.canvas.transform.TransformPoint(movePos);
+            this.transform.position = this.canvas.transform.TransformPoint(movePosition);
         }
 
         public void SetMouseFollowerValues(OnUIButtonClick buttonClick)

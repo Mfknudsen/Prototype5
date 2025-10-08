@@ -64,5 +64,10 @@ namespace Rumors
         {
             return this.enabled;
         }
+
+        public Vector3 Hover()
+        {
+            return this.transform.position;
+        }
     }
 }

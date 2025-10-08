@@ -31,7 +31,7 @@ namespace Managers
             InputSystem_Actions playerInput = new InputSystem_Actions();
 
             playerInput.Player.Enable();
-
+            
             playerInput.Player.Move.performed +=
                 context => this.MoveAxisInputEvent.Invoke(context.ReadValue<Vector2>());
             playerInput.Player.Move.canceled +=

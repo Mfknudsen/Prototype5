@@ -7,5 +7,7 @@ namespace Interactions
         public void OnTrigger();
 
         public bool IsActive();
+
+        public Vector3 Hover();
     }
 }
