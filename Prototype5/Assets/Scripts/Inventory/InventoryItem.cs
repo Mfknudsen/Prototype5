@@ -13,8 +13,8 @@ namespace Inventory
         public void OnTrigger()
         {
             Debug.Log($"Trigger: {this.gameObject.name}");
-            this.backpack.Add(this);
             this.gameObject.SetActive(false);
+            this.backpack.Add(this);
         }
 
         public bool CheckAgainstPrefab(string toCheck)
@@ -26,7 +26,7 @@ namespace Inventory
         {
             return this.ItemName;
         }
-        
+
         public bool IsActive()
         {
             return this.enabled;
