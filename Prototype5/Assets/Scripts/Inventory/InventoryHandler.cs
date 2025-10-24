@@ -300,5 +300,10 @@ namespace Inventory
 
             this.UpdatePlacements();
         }
+
+        public void DeactivateInventory()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
