@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8020468614364741827}
   m_Father: {fileID: 7606262035328276592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &5643103478076261454
@@ -188,7 +189,6 @@ Transform:
   m_Children:
   - {fileID: 6432014990184400984}
   - {fileID: 7373795340436703339}
-  - {fileID: 8020468614364741827}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6560815856874841653
@@ -274,6 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a30c7a5ca8235489b320c469d4ae7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiInteractButtonTransform: {fileID: 0}
+  canvas: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -477,10 +479,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9083520733775824979}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.162, z: 0.68}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01999998, y: -0.36800003, z: 0.6799998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7606262035328276592}
+  m_Father: {fileID: 7373795340436703339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
