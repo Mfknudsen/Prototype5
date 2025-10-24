@@ -5,6 +5,7 @@ namespace Potions.Effects
         All,
         Static,
         Character,
-        RigidBody
+        RigidBody,
+        Player
     }
 }

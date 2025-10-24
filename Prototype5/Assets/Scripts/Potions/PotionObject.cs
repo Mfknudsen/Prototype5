@@ -15,7 +15,7 @@ namespace Potions
         {
             foreach (PotionEffectBase potionEffectBase in this.potionValue.GetEffects())
             {
-                if (!potionEffectBase.GetDebugGizmo())
+                if (potionEffectBase == null || !potionEffectBase.GetDebugGizmo())
                     continue;
 
                 Gizmos.DrawWireSphere(this.transform.position, potionEffectBase.GetRadius());

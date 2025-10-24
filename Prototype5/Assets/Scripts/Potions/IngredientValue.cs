@@ -9,6 +9,8 @@ namespace Potions
 
         [SerializeField] [TextArea] private string description;
 
+        [SerializeField] private IngredientTag tag1, tag2;
+
         public string GetDescription()
         {
             return this.description;
