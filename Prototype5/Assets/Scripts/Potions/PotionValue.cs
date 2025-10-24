@@ -12,8 +12,10 @@ namespace Potions
     {
         [SerializeField] private GameObject potionPrefab;
 
-        [SerializeField] [TextArea] private string description;
+        [SerializeField] private GameObject onShatterVFX;
 
+        [SerializeField] [TextArea] private string description;
+        
         [SerializeReference]
 #if UNITY_EDITOR
         [SerializeReferenceDrawer]
