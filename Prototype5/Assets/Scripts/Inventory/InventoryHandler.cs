@@ -184,11 +184,11 @@ namespace Inventory
             if (this.handTransform.Value == null)
                 return;
 
-            if (this.currentItemInHand != null)
+            if (this.currentItemInHand != null && this.currentItemInHand.parent == this.handTransform.Value)
             {
                 this.currentItemInHand.SetParent(null);
                 this.currentItemInHand.gameObject.SetActive(false);
-                this.currentItemInHand.GetComponent<InventoryItem>().enabled = true;
+                this.currentItemInHand.GetComponent<InventoryItem>().SetInHand(false);
             }
 
             int index = input - 1;
@@ -214,7 +214,7 @@ namespace Inventory
                 inventoryItem.transform.parent = t;
                 inventoryItem.transform.SetPositionAndRotation(t.position, t.rotation);
                 inventoryItem.gameObject.SetActive(true);
-                inventoryItem.enabled = false;
+                inventoryItem.SetInHand(true);
 
                 break;
             }

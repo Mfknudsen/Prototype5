@@ -18,7 +18,8 @@ namespace Managers
         public readonly UnityEvent
             InteractInputEvent = new UnityEvent(),
             JumpInputEvent = new UnityEvent(),
-            InventoryEvent = new UnityEvent();
+            InventoryEvent = new UnityEvent(),
+            AttackEvent = new UnityEvent();
 
         public readonly UnityEvent<bool>
             RunInputEvent = new UnityEvent<bool>();
@@ -31,7 +32,7 @@ namespace Managers
             InputSystem_Actions playerInput = new InputSystem_Actions();
 
             playerInput.Player.Enable();
-            
+
             playerInput.Player.Move.performed +=
                 context => this.MoveAxisInputEvent.Invoke(context.ReadValue<Vector2>());
             playerInput.Player.Move.canceled +=
@@ -48,6 +49,7 @@ namespace Managers
             playerInput.Player.Interact.performed += _ => this.InteractInputEvent.Invoke();
             playerInput.Player.Jump.performed += _ => this.JumpInputEvent.Invoke();
             playerInput.Player.Inventory.performed += _ => this.InventoryEvent.Invoke();
+            playerInput.Player.Attack.performed += _ => this.AttackEvent.Invoke();
 
             playerInput.Player.HotbarKey.performed += context =>
             {
