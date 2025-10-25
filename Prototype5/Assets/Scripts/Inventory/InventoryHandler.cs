@@ -300,5 +300,12 @@ namespace Inventory
 
             this.UpdatePlacements();
         }
+
+        public void DeactivateInventory()
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            gameObject.SetActive(false);
+        }
     }
 }
