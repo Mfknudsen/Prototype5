@@ -121,12 +121,21 @@ public class BookRaw : MonoBehaviour {
         else if (canvas.renderMode == RenderMode.WorldSpace)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 10, Color.red);
             Vector3 globalEBR = transform.TransformPoint(ebr);
             Vector3 globalEBL = transform.TransformPoint(ebl);
             Vector3 globalSt = transform.TransformPoint(st);
             Plane p = new Plane(globalEBR, globalEBL, globalSt);
             float distance;
+            if (p.Raycast(ray, out distance))
+                Debug.Log($"Ray hit plane at distance {distance}");
+            else
+                Debug.Log("Ray did NOT hit the book plane!");
+            
             p.Raycast(ray, out distance);
+            
+            
+            
             Vector2 localPos = BookPanel.InverseTransformPoint(ray.GetPoint(distance));
             return localPos;
         }
@@ -307,8 +316,15 @@ public class BookRaw : MonoBehaviour {
     public void OnMouseDragRightPage()
     {
         if (interactable)
-        DragRightPageToPoint(transformPoint(Input.mousePosition));
+            DragRightPageToPoint(transformPoint(Input.mousePosition));
         
+    }
+    
+    public void OnMouseDragRightPage(Vector3 worldPoint)
+    {
+        // Use worldPoint instead of ray.GetPoint()
+        c = worldPoint;
+        UpdateBook();
     }
     public void DragLeftPageToPoint(Vector3 point)
     {
@@ -338,12 +354,20 @@ public class BookRaw : MonoBehaviour {
         if (enableShadowEffect) ShadowLTR.gameObject.SetActive(true);
         UpdateBookLTRToPoint(f);
     }
+    
     public void OnMouseDragLeftPage()
     {
         if (interactable)
-        DragLeftPageToPoint(transformPoint(Input.mousePosition));
+            DragLeftPageToPoint(transformPoint(Input.mousePosition));
         
+    }    
+    public void OnMouseDragLeftPage(Vector3 worldPoint)
+    {
+        // Use worldPoint instead of ray.GetPoint()
+        c = worldPoint;
+        UpdateBook();
     }
+    
     public void OnMouseRelease()
     {
         if (interactable)
