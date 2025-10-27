@@ -66,4 +66,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71243934f81f05e4f80394d566eef66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageType: {fileID: 11400000, guid: 1d9aed774d2d2574297dd275f644c438, type: 2}
   sphereCollider: {fileID: 147063137905336720}
+  damagePerTick: 5

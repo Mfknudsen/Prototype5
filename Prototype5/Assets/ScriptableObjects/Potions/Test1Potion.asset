@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Test1Potion
   m_EditorClassIdentifier: 
   potionPrefab: {fileID: 5187084931165711824, guid: 0dceca8942f345943b1a23a7b65c68f4, type: 3}
+  onShatterVFX: {fileID: 0}
   description: 
   effects:
   - rid: 7969916117750644985
+  - rid: 7969916141511376973
   references:
     version: 2
     RefIds:
@@ -25,3 +27,10 @@ MonoBehaviour:
         debugGizmo: 1
         effectRadius: 2
         forceStrength: 1500
+    - rid: 7969916141511376973
+      type: {class: ThornEffect, ns: Potions.Effects, asm: Assembly-CSharp}
+      data:
+        debugGizmo: 0
+        effectRadius: 0
+        persistentThornGameObject: {fileID: 4661402579496498467, guid: 27ee6c7f377ec6c48a91c4c7fa565549, type: 3}
+        duration: 0

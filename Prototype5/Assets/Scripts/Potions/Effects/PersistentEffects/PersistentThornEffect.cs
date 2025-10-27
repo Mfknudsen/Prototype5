@@ -1,4 +1,5 @@
 using System.Linq;
+using ScriptableVariables.Objects;
 using UnityEngine;
 
 namespace Potions.Effects.PersistentEffects
@@ -7,6 +8,8 @@ namespace Potions.Effects.PersistentEffects
     public sealed class PersistentThornEffect : MonoBehaviour
     {
         [SerializeField] private float damageOnTouch;
+
+        [SerializeField] private DamageType damageType;
 
         public void Trigger(float radius, float duration)
         {
@@ -22,6 +25,8 @@ namespace Potions.Effects.PersistentEffects
 
             if (!potionEffectTarget.GetTargetTags().Contains(EffectTargetTag.Character))
                 return;
+
+            potionEffectTarget.GetComponent<CharacterHealth.Health>().ApplyDamageType(this.damageOnTouch, this.damageType);
         }
     }
 }

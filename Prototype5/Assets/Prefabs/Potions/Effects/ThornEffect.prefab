@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageOnTouch: 15
+  damageType: {fileID: 11400000, guid: ae218bfcb3309ca469dd56779d77bce9, type: 2}
 --- !u!64 &8528033363619560299
 MeshCollider:
   m_ObjectHideFlags: 0

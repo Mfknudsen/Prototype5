@@ -1,4 +1,5 @@
 using System;
+using ScriptableVariables.Objects;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -10,6 +11,8 @@ namespace Potions.Effects
         [SerializeField] private GameObject onHitVFX;
 
         [SerializeField, Min(0)] private float damage;
+
+        [SerializeField] private DamageType damageType;
 
         private readonly EffectTargetTag[] includes =
             {
@@ -38,7 +41,7 @@ namespace Potions.Effects
                 transform.position = target.transform.position;
             }
 
-            //Damage
+            potionObject.GetComponent<CharacterHealth.Health>().ApplyDamageType(this.damage, this.damageType);
         }
     }
 }
