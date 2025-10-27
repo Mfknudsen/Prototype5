@@ -34,14 +34,9 @@ namespace Potions.Effects
             {
                 IReadOnlyList<EffectTargetTag> tags = potionEffectTarget.GetTargetTags();
 
-                Debug.Log(this.include().Any(effectTargetTag => tags.Contains(effectTargetTag)));
-                Debug.Log(this.exclude().Any(effectTargetTag => tags.Contains(effectTargetTag)));
-
                 if (!this.include().Any(effectTargetTag => tags.Contains(effectTargetTag)) ||
                     this.exclude().Any(effectTargetTag => tags.Contains(effectTargetTag)))
                     continue;
-                
-                Debug.Log("T");
 
                 this.Effect(potionObject, potionEffectTarget);
             }
