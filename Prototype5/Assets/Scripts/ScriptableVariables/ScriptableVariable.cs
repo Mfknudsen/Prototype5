@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace ScriptableVariables
 {
     public abstract class ScriptableVariable<TGeneric> : ScriptableObject
-    {
+    { 
         protected TGeneric value;
 
         protected UnityEvent valueChanged;

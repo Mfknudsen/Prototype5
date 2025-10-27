@@ -93,6 +93,9 @@ namespace Inventory
 
         private void OnInventoryInputEvent()
         {
+            if (this.playerStateVariable.Value != PlayerStateEnum.Free)
+                return;
+
             if (this.backpack.activeSelf)
             {
                 this.backpack.SetActive(false);
@@ -179,6 +182,9 @@ namespace Inventory
 
         private void OnHotbarSelectInput(int input)
         {
+            if (this.playerStateVariable.Value != PlayerStateEnum.Free)
+                return;
+
             this.hotbarIndexSelected = input;
 
             if (this.handTransform.Value == null)

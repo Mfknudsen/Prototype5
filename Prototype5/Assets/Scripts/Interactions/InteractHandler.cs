@@ -1,4 +1,5 @@
 using Managers;
+using ScriptableVariables.Enums;
 using ScriptableVariables.Objects;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace Interactions
 {
     public sealed class InteractHandler : MonoBehaviour
     {
+        [SerializeField] private PlayerStateVariable playerStateVariable;
+
         [SerializeField] private RectTransform uiInteractButtonTransform;
 
         [SerializeField] private Canvas canvas;
@@ -91,6 +94,12 @@ namespace Interactions
                 return;
             }
 
+            if (this.current != null && this.playerStateVariable.Value != PlayerStateEnum.Free)
+            {
+                this.uiInteractButtonTransform.gameObject.SetActive(false);
+                return;
+            }
+
             if (this.current != null && !this.uiInteractButtonTransform.gameObject.activeSelf)
                 this.uiInteractButtonTransform.gameObject.SetActive(true);
 
@@ -100,6 +109,9 @@ namespace Interactions
 
         private void OnInputTrigger()
         {
+            if (this.playerStateVariable.Value != PlayerStateEnum.Free)
+                return;
+
             Debug.Log("Trigger");
             this.current?.OnTrigger();
         }
