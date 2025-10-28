@@ -48,6 +48,9 @@ namespace UI.Book
         [SerializeField] private BookTurnAction bookTurnBookAction;
         [SerializeField] private CloseBookAction closeBookActionAction;
 
+        [SerializeField] private List<GameObject> pages = new();
+        private int currentPageIndex = 0;
+
         private readonly Dictionary<string, BookButton> buttonReferences = new Dictionary<string, BookButton>();
         private readonly Dictionary<string, BookSlider> sliderReferences = new Dictionary<string, BookSlider>();
 
@@ -111,6 +114,7 @@ namespace UI.Book
                     this.bookCanvas.gameObject.SetActive(true);
                     this.currentBookAction =
                         this.StartCoroutine(this.bookOpenActionAction.Operation(() => this.currentBookAction = null));
+                    this.UpdatePageVisibility();
                     break;
 
                 case BookTurn.Close:
@@ -123,15 +127,32 @@ namespace UI.Book
                     break;
 
                 case BookTurn.Left:
-                    this.bookTurnBookAction.SetDirection(false);
-                    this.currentBookAction =
-                        this.StartCoroutine(this.bookTurnBookAction.Operation(() => this.currentBookAction = null));
+                    if (currentPageIndex > 0)
+                    {
+                        this.currentPageIndex--;
+                        this.bookTurnBookAction.SetDirection(false);
+                        this.currentBookAction =
+                            this.StartCoroutine(this.bookTurnBookAction.Operation(() =>
+                            {
+                                this.currentBookAction = null;
+                                UpdatePageVisibility();
+                            }));
+                    }
+
                     break;
 
                 case BookTurn.Right:
-                    this.bookTurnBookAction.SetDirection(true);
-                    this.currentBookAction =
-                        this.StartCoroutine(this.bookTurnBookAction.Operation(() => this.currentBookAction = null));
+                    if (currentPageIndex < pages.Count - 1)
+                    {
+                        currentPageIndex++;
+                        this.bookTurnBookAction.SetDirection(true);
+                        this.currentBookAction =
+                            this.StartCoroutine(this.bookTurnBookAction.Operation(() =>
+                            {
+                                this.currentBookAction = null;
+                                UpdatePageVisibility();
+                            }));
+                    }
                     break;
 
                 case BookTurn.Null:
@@ -276,6 +297,52 @@ namespace UI.Book
 
             this.invisiblyUI.SetActive(true);
         }
+        
+        private void UpdatePageVisibility()
+        {
+            for (int i = 0; i < pages.Count; i++)
+            {
+                pages[i].SetActive(i == currentPageIndex);
+            }
+            
+            Debug.Log($"Showing page {currentPageIndex + 1} of {pages.Count}");
+        }
+        
+        public void CloseBook() => Effect(BookTurn.Close);
+
+        public void FlipRight() => Effect(BookTurn.Right);
+        
+        public void FlipLeft() => Effect(BookTurn.Left);
+        
+        private void Update()
+        {
+            // Only handle input if the book is open
+            if (!bookCanvas.gameObject.activeSelf)
+                return;
+
+            // Prevent new input while an animation is running
+            if (currentBookAction != null)
+                return;
+
+            // Right Arrow → turn right (next page)
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                FlipRight();
+            }
+
+            // Left Arrow → turn left (previous page)
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                FlipLeft();
+            }
+
+            // Optional: Escape key closes the book
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                CloseBook();
+            }
+        }
+
 
         #endregion
     }

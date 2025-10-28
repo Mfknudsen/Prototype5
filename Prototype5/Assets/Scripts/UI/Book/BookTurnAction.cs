@@ -55,6 +55,7 @@ namespace UI.Book
             this.SetOpens(true);
 
             this.uiBook.ConstructUI();
+            
             this.done = true;
 
             onEnd?.Invoke();
