@@ -10,25 +10,24 @@ namespace DayNightCycle
 
         [Header("Morning")] [SerializeField] private Color morningColor = Color.white;
         [SerializeField] private bool morningOnState = true;
-        [SerializeField] private int morningIntensity = 1;
+        [SerializeField] private float morningIntensity = 1;
 
         [Header("Evening")] [SerializeField] private Color eveningColor = Color.white;
         [SerializeField] private bool eveningOnState = true;
-        [SerializeField] private int eveningIntensity = 1;
+        [SerializeField] private float eveningIntensity = 1;
 
         [Header("Afternoon")] [SerializeField] private Color afternoonColor = Color.white;
         [SerializeField] private bool afternoonOnState = true;
-        [SerializeField] private int afternoonIntensity = 1;
+        [SerializeField] private float afternoonIntensity = 1;
 
         [Header("Night")] [SerializeField] private Color nightColor = Color.white;
         [SerializeField] private bool nightOnState = true;
-        [SerializeField] private int nightIntensity = 1;
+        [SerializeField] private float nightIntensity = 1;
 
         [Header("Midnight")] [SerializeField] private Color midnightColor = Color.white;
         [SerializeField] private bool midnightOnState = true;
-        [SerializeField] private int midnightIntensity = 1;
-
-
+        [SerializeField] private float midnightIntensity = 1;
+        
         private void OnValidate()
         {
             this.lightComponent = this.GetComponent<Light>();

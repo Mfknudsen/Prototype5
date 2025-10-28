@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ScriptableVariables.Objects;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -27,6 +28,12 @@ namespace DayNightCycle
         private static DayNightTime _currentDayNightTime;
 
         private static UnityEvent<DayNightTime> _onTimeChangeEvent;
+
+        private static SkyboxSetting skyboxSetting;
+
+        private static Camera playerCamera;
+
+        private static TransformVariable cameraTransformVariable;
 
         #region Setters
 
@@ -75,6 +82,19 @@ namespace DayNightCycle
             _allLights = new List<DayNightLight>(32);
             _onTimeChangeEvent = new UnityEvent<DayNightTime>();
 
+            skyboxSetting = (SkyboxSetting)AssetDatabase.LoadAssetAtPath(
+                "Assets/ScriptableObjects/DayNight/SkyboxSetting.asset",
+                typeof(SkyboxSetting));
+
+            cameraTransformVariable =
+                (TransformVariable)AssetDatabase.LoadAssetAtPath(
+                    "Assets/ScriptableObjects/Variables/CameraTransform.asset",
+                    typeof(TransformVariable));
+
+            playerCamera = cameraTransformVariable.Value.GetComponent<Camera>();
+
+            cameraTransformVariable.AddListener(OnCameraTransformUpdate);
+
             PlayerLoopSystem playerLoopSystem = PlayerLoop.GetCurrentPlayerLoop();
             for (int i = 0; i < playerLoopSystem.subSystemList.Length; i++)
             {
@@ -103,6 +123,8 @@ namespace DayNightCycle
         {
             if (!state.Equals(PlayModeStateChange.ExitingPlayMode))
                 return;
+
+            cameraTransformVariable.RemoveListener(OnCameraTransformUpdate);
 
             PlayerLoopSystem playerLoopSystem = PlayerLoop.GetCurrentPlayerLoop();
             for (int i = 0; i < playerLoopSystem.subSystemList.Length; i++)
@@ -152,8 +174,22 @@ namespace DayNightCycle
                 _ => throw new ArgumentOutOfRangeException()
             };
 
+            if (skyboxSetting != null)
+            {
+                (Color color, float intensity) = skyboxSetting.Get(_currentDayNightTime, t);
+                //RenderSettings.skybox.color = color;
+                RenderSettings.ambientLight = color;
+                RenderSettings.ambientIntensity = intensity;
+                playerCamera.backgroundColor = color;
+            }
+
             foreach (DayNightLight dayNightLight in _allLights)
                 dayNightLight.UpdateLight(_currentDayNightTime, t);
+        }
+
+        private static void OnCameraTransformUpdate()
+        {
+            playerCamera = cameraTransformVariable.Value.GetComponent<Camera>();
         }
 
         #endregion
