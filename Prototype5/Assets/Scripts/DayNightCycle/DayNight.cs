@@ -49,7 +49,7 @@ namespace DayNightCycle
 
         public static void SetTime(float timeInMinutes)
         {
-            _currentTime = timeInMinutes % 24;
+            _currentTime = timeInMinutes * _timeOffset % 24;
         }
 
         public static void SetTime(DayNightTime dayNightTime)
