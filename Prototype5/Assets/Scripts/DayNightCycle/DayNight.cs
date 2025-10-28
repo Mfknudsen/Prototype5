@@ -187,9 +187,9 @@ namespace DayNightCycle
                 dayNightLight.UpdateLight(_currentDayNightTime, t);
         }
 
-        private static void OnCameraTransformUpdate()
+        private static void OnCameraTransformUpdate(Transform transform)
         {
-            playerCamera = cameraTransformVariable.Value.GetComponent<Camera>();
+            playerCamera = transform.GetComponent<Camera>();
         }
 
         #endregion

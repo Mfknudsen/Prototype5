@@ -109,7 +109,7 @@ namespace Inventory
             }
         }
 
-        private void OnBackpackUpdate()
+        private void OnBackpackUpdate(List<InventoryItem> _)
         {
             Debug.Log("Inventory");
 
@@ -305,7 +305,7 @@ namespace Inventory
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
     }
 }

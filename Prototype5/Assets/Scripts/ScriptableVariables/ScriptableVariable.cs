@@ -7,7 +7,7 @@ namespace ScriptableVariables
     {
         protected TGeneric value;
 
-        protected UnityEvent valueChanged;
+        protected UnityEvent<TGeneric> valueChanged;
 
 #if UNITY_EDITOR
         [SerializeField] protected bool Debug;
@@ -24,7 +24,7 @@ namespace ScriptableVariables
                     return;
 
                 this.value = value;
-                this.valueChanged?.Invoke();
+                this.valueChanged?.Invoke(value);
 
 #if UNITY_EDITOR
                 if (this.Debug)
@@ -33,14 +33,14 @@ namespace ScriptableVariables
             }
         }
 
-        public void AddListener(UnityAction action)
+        public void AddListener(UnityAction<TGeneric> action)
         {
-            this.valueChanged ??= new UnityEvent();
+            this.valueChanged ??= new UnityEvent<TGeneric>();
 
             this.valueChanged.AddListener(action);
         }
 
-        public void RemoveListener(UnityAction action)
+        public void RemoveListener(UnityAction<TGeneric> action)
         {
             this.valueChanged?.RemoveListener(action);
         }

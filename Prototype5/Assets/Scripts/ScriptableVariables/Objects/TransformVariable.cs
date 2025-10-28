@@ -19,7 +19,7 @@ namespace ScriptableVariables.Objects
 
             this.value.position += v;
 
-            this.valueChanged.Invoke();
+            this.valueChanged.Invoke(this.value);
         }
     }
 }

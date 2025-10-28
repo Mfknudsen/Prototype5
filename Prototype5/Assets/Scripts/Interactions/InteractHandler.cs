@@ -104,10 +104,10 @@ namespace Interactions
             this.current?.OnTrigger();
         }
 
-        private void OnCameraTransformUpdate()
+        private void OnCameraTransformUpdate(Transform t)
         {
             this.cam = null;
-            if (!this.cameraTransform.Value)
+            if (!t)
                 return;
 
             this.cam = this.cameraTransform.Value.GetComponent<Camera>();
