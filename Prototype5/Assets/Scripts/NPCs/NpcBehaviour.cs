@@ -1,4 +1,4 @@
-using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -16,13 +16,10 @@ namespace NPCs
         [SerializeField] private GameObject[] npcPrefabs;
         [SerializeField] private Vector3 spawnPrefabOffset = new Vector3(0.0f, 0.8f, 0.0f);
 
-        [Header("Random Movement")]
-        [SerializeField] private bool useRandomWalk = true;
-        [SerializeField] private float npcRadius = 15.0f;
-        
-        [Header("Fixed Movement")]
-        [SerializeField] private Vector3[] pathPoints;
-        [SerializeField] private Terrain terrain;
+        [Header("Movement")]
+        [HideInInspector] public bool useRandomWalk = true;
+        [HideInInspector] public float npcRadius = 15.0f;
+        [HideInInspector] public Vector3[] pathPoints;
         
         private NavMeshAgent _agent;
         private bool _hasArrived = false;
@@ -33,7 +30,6 @@ namespace NPCs
         {
             SpawnRandomPrefab();
             _agent = GetComponent<NavMeshAgent>();
-            SampleTerrainHeights();
         }
 
         void Update()
@@ -94,18 +90,7 @@ namespace NPCs
                 Debug.Log("NPC prefab list is empty!");
             }
         }
-
-        void SampleTerrainHeights()
-        {
-            if (useRandomWalk || pathPoints.Length <= 1) return;
-
-            for (int i = 0; i < pathPoints.Length; i++)
-            {
-                float height = terrain.SampleHeight(pathPoints[i]);
-                pathPoints[i] = new Vector3(pathPoints[i].x, height, pathPoints[i].z);
-            }
-        }
-
+        
         void WalkPath()
         {
             if (pathPoints.Length <= 1) return;
@@ -134,6 +119,40 @@ namespace NPCs
                 
                 _agent.SetDestination(pathPoints[_currentIndex]);
             }
+        }
+    }
+
+    [CustomEditor(typeof(NpcBehaviour))]
+    public class NpcBehaviourEditor : Editor
+    {
+        private SerializedProperty _useRandomWalkProperty;
+        private SerializedProperty _pathPointsProperty;
+        private SerializedProperty _npcRadiusProperty;
+        
+        private void OnEnable()
+        {
+            _useRandomWalkProperty = serializedObject.FindProperty("useRandomWalk");
+            _pathPointsProperty = serializedObject.FindProperty("pathPoints");
+            _npcRadiusProperty = serializedObject.FindProperty("npcRadius");
+        }
+
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+            DrawDefaultInspector();
+
+            EditorGUILayout.PropertyField(_useRandomWalkProperty);
+
+            if (!_useRandomWalkProperty.boolValue)
+            {
+                EditorGUILayout.PropertyField(_pathPointsProperty, new GUIContent("Path points"), true);
+            }
+            else
+            {
+                EditorGUILayout.PropertyField(_npcRadiusProperty);
+            }
+
+            serializedObject.ApplyModifiedProperties();
         }
     }
 }

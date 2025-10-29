@@ -69,6 +69,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDistanceToTarget: 20
   minDistanceToTarget: 4
-  npcRadius: 15
-  speed: 2.5
   targetTransform: {fileID: 0}
+  npcPrefabs: []
+  spawnPrefabOffset: {x: 0, y: 0.8, z: 0}
+  useRandomWalk: 0
+  npcRadius: 15
+  pathPoints: []
