@@ -5,12 +5,12 @@ using Random = UnityEngine.Random;
 
 namespace NPCs
 {
-    public class NpcBehaviour : MonoBehaviour
+    public class NpcBehaviour : NpcStateMachine
     {
         [Header("Seek Target")]
-        [SerializeField] private float maxDistanceToTarget = 20.0f;
-        [SerializeField] private float minDistanceToTarget = 4.0f;
-        [SerializeField] private Transform targetTransform;
+        public float maxDistanceToTarget = 20.0f;
+        public float minDistanceToTarget = 4.0f;
+        public Transform targetTransform;
         
         [Header("Prefabs")]
         [SerializeField] private GameObject[] npcPrefabs;
@@ -21,62 +21,29 @@ namespace NPCs
         [HideInInspector] public float npcRadius = 15.0f;
         [HideInInspector] public Vector3[] pathPoints;
         
-        private NavMeshAgent _agent;
-        private bool _hasArrived = false;
-        private int _currentIndex = 0;
-        private bool _walksForward = true;
+        [HideInInspector] public NpcWanderState wanderState;
+        [HideInInspector] public NpcState seekState;
+        [HideInInspector] public NpcState idleState;
         
-        void Start()
+        public NavMeshAgent agent;
+
+        public float DistanceToTarget => Vector3.Distance(transform.position, targetTransform.position);
+        
+        private void Awake()
         {
             SpawnRandomPrefab();
-            _agent = GetComponent<NavMeshAgent>();
+            agent = GetComponent<NavMeshAgent>();
+            
+            wanderState = new NpcWanderState(this);
+            seekState = new NpcSeekState(this);
+            idleState = new NpcIdleState(this);
         }
 
-        void Update()
+        void Start()
         {
-            HandleMovement();
+            SwitchState(wanderState);
         }
-
-        void HandleMovement()
-        {
-            float distanceToTarget = Vector3.Distance(transform.position, targetTransform.position);
-
-            if (distanceToTarget >= maxDistanceToTarget)
-            {
-                _hasArrived = false;
-                
-                if (useRandomWalk) Wander();
-                else WalkPath();
-            }
-            else if (!_hasArrived && distanceToTarget > minDistanceToTarget) 
-                SeekTarget();
-            else
-            {
-                _agent.isStopped = true;
-                _hasArrived = true;
-            }
-        }
-    
-        void SeekTarget()
-        {
-            _agent.isStopped = false;
-            _agent.SetDestination(targetTransform.position);
-        }
-
-        void Wander()
-        {
-            _agent.isStopped = false;
         
-            if (!_agent.pathPending && _agent.remainingDistance < 0.5f)
-            {
-                Vector3 randomSpherePoint = transform.position + Random.insideUnitSphere * npcRadius;
-        
-                NavMeshHit hit;
-                if (NavMesh.SamplePosition(randomSpherePoint, out hit, npcRadius, NavMesh.AllAreas))
-                    _agent.SetDestination(hit.position);   
-            }
-        }
-
         void SpawnRandomPrefab()
         {
             if (npcPrefabs.Length >= 1)
@@ -91,35 +58,6 @@ namespace NPCs
             }
         }
         
-        void WalkPath()
-        {
-            if (pathPoints.Length <= 1) return;
-            
-            _agent.isStopped = false;
-            if (!_agent.pathPending && _agent.remainingDistance < 0.5f)
-            {
-                if (_walksForward)
-                {
-                    _currentIndex++;
-                    if (_currentIndex == pathPoints.Length)
-                    {
-                        _currentIndex = pathPoints.Length - 2;
-                        _walksForward = false;
-                    }
-                }
-                else
-                {
-                    _currentIndex--;
-                    if (_currentIndex < 0)
-                    {
-                        _currentIndex = 1;
-                        _walksForward = true;
-                    }
-                }
-                
-                _agent.SetDestination(pathPoints[_currentIndex]);
-            }
-        }
     }
 
     [CustomEditor(typeof(NpcBehaviour))]
