@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b476188c2099e7458fdef1d2f6d49a3, type: 3}
-  m_Name: Potion Potion of Aging
+  m_Name: Potion Potion of Age
   m_EditorClassIdentifier: 
   potionPrefab: {fileID: 5187084931165711824, guid: 530d134a3645fb44481f05a0110349f9, type: 3}
   onShatterVFX: {fileID: 0}

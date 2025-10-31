@@ -164,7 +164,7 @@ MonoBehaviour:
   itemCollider: {fileID: 7750847899951746458}
   rb: {fileID: 2603239617512986011}
   backpack: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}
-  ItemName: Potion
+  ItemName: Potion of Fire
   throwForce: 5
   throwable: 1
 --- !u!114 &6398016380117158941
