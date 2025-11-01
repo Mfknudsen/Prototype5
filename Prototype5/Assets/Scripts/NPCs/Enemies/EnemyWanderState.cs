@@ -16,8 +16,7 @@ namespace NPCs.Enemies
 
         public override void UpdateLogic()
         {
-            // TODO: add fov
-            if (fsm.DistanceToTarget < fsm.chaseStateRange)
+            if (fsm.DistanceToTarget <= fsm.chaseStateRange && fsm.SeesPlayer())
                 fsm.SwitchState(fsm.ChaseState);
         }
 

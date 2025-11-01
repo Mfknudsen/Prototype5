@@ -10,6 +10,7 @@ namespace NPCs.Enemies
         public float chaseStateRange = 10.0f;
         public float attackStateRange = 2.0f;
         public Transform playerTransform;
+        public float viewAngle = 40.0f; 
 
         [Header("Movement")] 
         public float npcRadius = 7.0f;
@@ -34,6 +35,20 @@ namespace NPCs.Enemies
         private void Start()
         {
             SwitchState(WanderState);
+        }
+
+        public bool SeesPlayer() {
+            if (playerTransform == null) return false;
+
+            Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
+            float angle = Vector3.Angle(transform.forward, directionToPlayer);
+
+            if (angle < viewAngle / 2f)
+                if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, chaseStateRange))
+                    if (hit.transform == playerTransform)
+                        return true;
+
+            return false;
         }
     }
 }

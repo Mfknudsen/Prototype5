@@ -14,10 +14,9 @@ namespace NPCs.Enemies
 
         public override void UpdateLogic()
         {
-            // TODO: check if the player is out of the fov
-            if (fsm.DistanceToTarget >= fsm.chaseStateRange)
+            if (fsm.DistanceToTarget > fsm.chaseStateRange || !fsm.SeesPlayer())
                 fsm.SwitchState(fsm.WanderState);
-            else if (fsm.DistanceToTarget < fsm.attackStateRange)
+            else if (fsm.DistanceToTarget < fsm.attackStateRange && fsm.SeesPlayer())
                 fsm.SwitchState(fsm.AttackState);
         }
 
