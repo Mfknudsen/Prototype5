@@ -6,7 +6,6 @@ namespace NPCs.Enemies
 {
     public class EnemyAttackState : NpcState<EnemyStateMachine>
     {
-        private const float attackExtraDistance = 2.0f;
         private bool canAttack = true;
         
         public EnemyAttackState(EnemyStateMachine fsm) : base(fsm) {}
@@ -18,10 +17,10 @@ namespace NPCs.Enemies
 
         public override void UpdateLogic()
         {
-            if (fsm.DistanceToTarget >= fsm.attackStateRange + attackExtraDistance && fsm.SeesPlayer())
-                fsm.SwitchState(fsm.ChaseState);
-            else if (canAttack)
+            if (canAttack)
                 fsm.StartCoroutine(AttackPlayerCoroutine());
+            else
+                fsm.SwitchState(fsm.WanderState);
         }
 
         private void AttackPlayer()

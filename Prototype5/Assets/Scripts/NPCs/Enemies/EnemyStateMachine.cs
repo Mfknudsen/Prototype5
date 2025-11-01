@@ -8,14 +8,12 @@ namespace NPCs.Enemies
     public class EnemyStateMachine : NpcStateMachine<EnemyStateMachine>
     {
         [Header("Chase Player")]
-        public float chaseStateRange = 10.0f;
-        public Transform playerTransform;
+        public float chaseStateRange = 15.0f;
         public float viewAngle = 40.0f;
         
         [Header("Attack Player")]
         public float attackStateRange = 2.0f;
         public float damageAmount = 8.0f;
-        public DamageType damageType;
         public float attackCooldown = 1f; // in seconds
 
         [Header("Movement")] 
@@ -28,17 +26,20 @@ namespace NPCs.Enemies
         [HideInInspector] public EnemyAttackState AttackState;
         
         [HideInInspector] public NavMeshAgent agent;
+        [HideInInspector] public Transform playerTransform;
         [HideInInspector] public CharacterHealth.Health playerHealth;
+        [HideInInspector] public DamageType damageType;
         
         public float DistanceToTarget => Vector3.Distance(transform.position, playerTransform.position);
 
         private void Awake()
         {
+            playerHealth = playerTransform.gameObject.GetComponent<CharacterHealth.Health>();
+            agent = GetComponent<NavMeshAgent>();
+            
             WanderState = new EnemyWanderState(this);
             ChaseState = new EnemyChaseState(this);
             AttackState = new EnemyAttackState(this);
-
-            playerHealth = playerTransform.gameObject.GetComponent<CharacterHealth.Health>();
         }
 
         private void Start()
