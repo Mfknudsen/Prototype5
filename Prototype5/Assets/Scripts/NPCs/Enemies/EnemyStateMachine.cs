@@ -1,4 +1,5 @@
 using NPCs.Base;
+using ScriptableVariables.Objects;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,11 +7,16 @@ namespace NPCs.Enemies
 {
     public class EnemyStateMachine : NpcStateMachine<EnemyStateMachine>
     {
-        [Header("Seek Target")]
+        [Header("Chase Player")]
         public float chaseStateRange = 10.0f;
-        public float attackStateRange = 2.0f;
         public Transform playerTransform;
-        public float viewAngle = 40.0f; 
+        public float viewAngle = 40.0f;
+        
+        [Header("Attack Player")]
+        public float attackStateRange = 2.0f;
+        public float damageAmount = 8.0f;
+        public DamageType damageType;
+        public float attackCooldown = 1f; // in seconds
 
         [Header("Movement")] 
         public float npcRadius = 7.0f;
@@ -22,6 +28,7 @@ namespace NPCs.Enemies
         [HideInInspector] public EnemyAttackState AttackState;
         
         [HideInInspector] public NavMeshAgent agent;
+        [HideInInspector] public CharacterHealth.Health playerHealth;
         
         public float DistanceToTarget => Vector3.Distance(transform.position, playerTransform.position);
 
@@ -30,6 +37,8 @@ namespace NPCs.Enemies
             WanderState = new EnemyWanderState(this);
             ChaseState = new EnemyChaseState(this);
             AttackState = new EnemyAttackState(this);
+
+            playerHealth = playerTransform.gameObject.GetComponent<CharacterHealth.Health>();
         }
 
         private void Start()
