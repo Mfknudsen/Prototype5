@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace NPCs
 {
-    public class NpcStateMachine : MonoBehaviour
+    public class NpcStateMachine<T> : MonoBehaviour where T : NpcStateMachine<T>
     {
-        protected NpcState currentState;
+        protected NpcState<T> currentState;
 
-        public void SwitchState(NpcState npcState)
+        public void SwitchState(NpcState<T> npcState)
         {
             currentState?.Exit();
             currentState = npcState;

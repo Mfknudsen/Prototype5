@@ -1,10 +1,10 @@
 namespace NPCs
 {
-    public abstract class NpcState
+    public abstract class NpcState<T> where T : NpcStateMachine<T>
     {
-        protected NpcBehaviour npcBehaviour;
+        protected T fsm;
 
-        public NpcState(NpcBehaviour npcBehaviour) => this.npcBehaviour = npcBehaviour;
+        public NpcState(T fsm) => this.fsm = fsm;
         
         public virtual void Enter() {}
         public virtual void UpdateLogic() {}

@@ -3,52 +3,52 @@ using UnityEngine.AI;
 
 namespace NPCs
 {
-    public class NpcWanderState : NpcState
+    public class NpcWanderState : NpcState<VillagerStateMachine>
     {
         private int _currentIndex = 0;
         private bool _walksForward = true;
         
-        public NpcWanderState(NpcBehaviour npcBehaviour) : base(npcBehaviour) {}
+        public NpcWanderState(VillagerStateMachine fsm) : base(fsm) {}
 
         public override void Enter()
         {
-            npcBehaviour.agent.isStopped = false;
+            fsm.agent.isStopped = false;
         }
 
         public override void UpdateLogic()
         {
-            if (npcBehaviour.DistanceToTarget < npcBehaviour.minDistanceToTarget)
+            if (fsm.DistanceToTarget < fsm.seekStateRange)
             {
-                npcBehaviour.SwitchState(npcBehaviour.seekState);
+                fsm.SwitchState(fsm.seekState);
             }
         }
 
         public override void UpdatePhysics()
         {
-            if (npcBehaviour.useRandomWalk) Wander();
+            if (fsm.useRandomWalk) Wander();
             else WalkPath();
         }
         
         void Wander()
         {
-            NavMeshAgent agent = npcBehaviour.agent;
+            NavMeshAgent agent = fsm.agent;
             agent.isStopped = false;
         
             if (!agent.pathPending && agent.remainingDistance < 0.5f)
             {
-                Vector3 randomSpherePoint = npcBehaviour.transform.position + Random.insideUnitSphere * npcBehaviour.npcRadius;
+                Vector3 randomSpherePoint = fsm.transform.position + Random.insideUnitSphere * fsm.npcRadius;
         
                 NavMeshHit hit;
-                if (NavMesh.SamplePosition(randomSpherePoint, out hit, npcBehaviour.npcRadius, NavMesh.AllAreas))
+                if (NavMesh.SamplePosition(randomSpherePoint, out hit, fsm.npcRadius, NavMesh.AllAreas))
                     agent.SetDestination(hit.position);   
             }
         }
         
         void WalkPath()
         {
-            if (npcBehaviour.pathPoints.Length <= 1) return;
+            if (fsm.pathPoints.Length <= 1) return;
             
-            NavMeshAgent agent = npcBehaviour.agent;
+            NavMeshAgent agent = fsm.agent;
             agent.isStopped = false;
             
             if (!agent.pathPending && agent.remainingDistance < 0.5f)
@@ -56,9 +56,9 @@ namespace NPCs
                 if (_walksForward)
                 {
                     _currentIndex++;
-                    if (_currentIndex == npcBehaviour.pathPoints.Length)
+                    if (_currentIndex == fsm.pathPoints.Length)
                     {
-                        _currentIndex = npcBehaviour.pathPoints.Length - 2;
+                        _currentIndex = fsm.pathPoints.Length - 2;
                         _walksForward = false;
                     }
                 }
@@ -72,7 +72,7 @@ namespace NPCs
                     }
                 }
                 
-                agent.SetDestination(npcBehaviour.pathPoints[_currentIndex]);
+                agent.SetDestination(fsm.pathPoints[_currentIndex]);
             }
         }
     }

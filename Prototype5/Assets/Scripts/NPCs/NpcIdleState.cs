@@ -1,19 +1,19 @@
 namespace NPCs
 {
-    public class NpcIdleState : NpcState
+    public class NpcIdleState: NpcState<VillagerStateMachine>
     {
         private const float wanderExtraDistance = 2.0f;
-        public NpcIdleState(NpcBehaviour npcBehaviour) : base(npcBehaviour) {}
+        public NpcIdleState(VillagerStateMachine fsm) : base(fsm) {}
 
         public override void Enter()
         {
-            npcBehaviour.agent.isStopped = true;
+            fsm.agent.isStopped = true;
         }
 
         public override void UpdateLogic()
         {
-            if (npcBehaviour.DistanceToTarget >= npcBehaviour.maxDistanceToTarget + wanderExtraDistance)
-                npcBehaviour.SwitchState(npcBehaviour.wanderState);
+            if (fsm.DistanceToTarget >= fsm.seekStateRange + wanderExtraDistance)
+                fsm.SwitchState(fsm.wanderState);
         }
     }
 }

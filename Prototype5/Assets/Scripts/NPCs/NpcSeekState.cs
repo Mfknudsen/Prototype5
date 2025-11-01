@@ -1,20 +1,20 @@
 namespace NPCs
 {
-    public class NpcSeekState : NpcState
+    public class NpcSeekState : NpcState<VillagerStateMachine>
     {
-        public NpcSeekState(NpcBehaviour npcBehaviour) : base(npcBehaviour) {}
+        public NpcSeekState(VillagerStateMachine fsm) : base(fsm) {}
 
         public override void Enter()
         {
-            npcBehaviour.agent.isStopped = false;
+            fsm.agent.isStopped = false;
         }
 
         public override void UpdateLogic()
         {
-            if (npcBehaviour.DistanceToTarget < npcBehaviour.minDistanceToTarget)
-                npcBehaviour.SwitchState(npcBehaviour.idleState);
-            else if (npcBehaviour.DistanceToTarget >= npcBehaviour.maxDistanceToTarget)
-                npcBehaviour.SwitchState(npcBehaviour.wanderState);
+            if (fsm.DistanceToTarget < fsm.idleStateRange)
+                fsm.SwitchState(fsm.idleState);
+            else if (fsm.DistanceToTarget >= fsm.seekStateRange)
+                fsm.SwitchState(fsm.wanderState);
         }
 
         public override void UpdatePhysics()
@@ -24,7 +24,7 @@ namespace NPCs
 
         private void SeekTarget()
         {
-            npcBehaviour.agent.SetDestination(npcBehaviour.targetTransform.position);
+            fsm.agent.SetDestination(fsm.targetTransform.position);
         }
     }
 }

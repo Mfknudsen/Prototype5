@@ -5,11 +5,11 @@ using Random = UnityEngine.Random;
 
 namespace NPCs
 {
-    public class NpcBehaviour : NpcStateMachine
+    public class VillagerStateMachine : NpcStateMachine<VillagerStateMachine>
     {
         [Header("Seek Target")]
-        public float maxDistanceToTarget = 20.0f;
-        public float minDistanceToTarget = 4.0f;
+        public float seekStateRange = 20.0f;
+        public float idleStateRange = 4.0f;
         public Transform targetTransform;
         
         [Header("Prefabs")]
@@ -22,10 +22,10 @@ namespace NPCs
         [HideInInspector] public Vector3[] pathPoints;
         
         [HideInInspector] public NpcWanderState wanderState;
-        [HideInInspector] public NpcState seekState;
-        [HideInInspector] public NpcState idleState;
+        [HideInInspector] public NpcSeekState seekState;
+        [HideInInspector] public NpcIdleState idleState;
         
-        public NavMeshAgent agent;
+        [HideInInspector] public NavMeshAgent agent;
 
         public float DistanceToTarget => Vector3.Distance(transform.position, targetTransform.position);
         
@@ -34,7 +34,7 @@ namespace NPCs
             SpawnRandomPrefab();
             agent = GetComponent<NavMeshAgent>();
             
-            wanderState = new NpcWanderState(this);
+            wanderState = new NpcWanderState(this) ;
             seekState = new NpcSeekState(this);
             idleState = new NpcIdleState(this);
         }
@@ -60,7 +60,7 @@ namespace NPCs
         
     }
 
-    [CustomEditor(typeof(NpcBehaviour))]
+    [CustomEditor(typeof(VillagerStateMachine))]
     public class NpcBehaviourEditor : Editor
     {
         private SerializedProperty _useRandomWalkProperty;
