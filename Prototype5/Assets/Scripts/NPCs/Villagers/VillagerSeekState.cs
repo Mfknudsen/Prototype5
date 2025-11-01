@@ -1,6 +1,6 @@
 using NPCs.Base;
 
-namespace NPCs
+namespace NPCs.Villagers
 {
     public class VillagerSeekState : NpcState<VillagerStateMachine>
     {

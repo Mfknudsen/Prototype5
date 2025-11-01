@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-namespace NPCs
+namespace NPCs.Villagers
 {
     public class VillagerStateMachine : NpcStateMachine<VillagerStateMachine>
     {

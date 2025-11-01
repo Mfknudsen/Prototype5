@@ -1,6 +1,6 @@
 using NPCs.Base;
 
-namespace NPCs
+namespace NPCs.Enemies
 {
     public class EnemyChaseState : NpcState<EnemyStateMachine>
     {

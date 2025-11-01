@@ -2,7 +2,7 @@ using NPCs.Base;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace NPCs
+namespace NPCs.Enemies
 {
     public class EnemyStateMachine : NpcStateMachine<EnemyStateMachine>
     {

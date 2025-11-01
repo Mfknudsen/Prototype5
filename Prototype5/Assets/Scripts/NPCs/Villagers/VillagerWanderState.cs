@@ -2,7 +2,7 @@ using NPCs.Base;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace NPCs
+namespace NPCs.Villagers
 {
     public class VillagerWanderState : NpcState<VillagerStateMachine>
     {
