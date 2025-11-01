@@ -2,6 +2,7 @@ using Interactions;
 using Managers;
 using ScriptableVariables.SystemSpecific;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Inventory
 {
@@ -21,9 +22,12 @@ namespace Inventory
 
         private bool inHand;
 
+        private UnityEvent<InventoryItem> onTrigger;
+
         public void OnTrigger()
         {
             Debug.Log($"Trigger: {this.gameObject.name}");
+            this.onTrigger?.Invoke(this);
             this.gameObject.SetActive(false);
             this.backpack.Add(this);
         }
@@ -81,6 +85,18 @@ namespace Inventory
 
             this.inHand = false;
             InputManager.Instance.AttackEvent.RemoveListener(this.OnThrowInput);
+        }
+
+        public void AddEventListener(UnityAction<InventoryItem> action)
+        {
+            this.onTrigger ??= new UnityEvent<InventoryItem>();
+
+            this.onTrigger.AddListener(action);
+        }
+
+        public void RemoveEventListener(UnityAction<InventoryItem> action)
+        {
+            this.onTrigger?.RemoveListener(action);
         }
     }
 }
