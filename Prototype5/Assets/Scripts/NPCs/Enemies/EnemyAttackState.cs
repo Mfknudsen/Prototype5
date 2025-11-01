@@ -17,10 +17,10 @@ namespace NPCs.Enemies
 
         public override void UpdateLogic()
         {
-            if (canAttack)
-                fsm.StartCoroutine(AttackPlayerCoroutine());
-            else
+            if (fsm.DistanceToTarget >= fsm.attackStateRange)
                 fsm.SwitchState(fsm.WanderState);
+            else if (canAttack)
+                fsm.StartCoroutine(AttackPlayerCoroutine());
         }
 
         private void AttackPlayer()

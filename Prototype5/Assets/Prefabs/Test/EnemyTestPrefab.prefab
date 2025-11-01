@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseStateRange: 15
-  viewAngle: 40
-  attackStateRange: 2
+  viewAngle: 70
+  attackStateRange: 1.4
   damageAmount: 8
-  attackCooldown: 1
+  attackCooldown: 2
   npcRadius: 7
   chaseSpeed: 4
   wanderSpeed: 2

@@ -33,7 +33,6 @@ namespace NPCs.Villagers
         void Wander()
         {
             NavMeshAgent agent = fsm.agent;
-            agent.isStopped = false;
         
             if (!agent.pathPending && agent.remainingDistance < 0.5f)
             {

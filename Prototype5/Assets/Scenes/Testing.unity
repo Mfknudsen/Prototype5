@@ -886,8 +886,6 @@ MonoBehaviour:
   dayMobPrefab: {fileID: 838044028708054749, guid: 7e107f3cc675e454fa5cad18b964bf3a, type: 3}
   spawnPositions:
   - {x: 15.73, y: 1.14, z: 7.91}
-  - {x: -16.02, y: 1.14, z: 13.03}
-  - {x: 1.32, y: 1.14, z: 18.44}
   playerTransform: {fileID: 1202719867}
   damageType: {fileID: 11400000, guid: 280e1525c5c479d418d3bbedf81adb36, type: 2}
 --- !u!1001 &839283385
