@@ -1,6 +1,6 @@
+using NPCs.Base;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace NPCs
 {
@@ -16,9 +16,9 @@ namespace NPCs
         public float chaseSpeed = 4.0f;
         public float wanderSpeed = 2.0f;
 
-        [HideInInspector] public EnemyWanderState wanderState;
-        [HideInInspector] public EnemyChaseState chaseState;
-        [HideInInspector] public EnemyAttackState attackState;
+        [HideInInspector] public EnemyWanderState WanderState;
+        [HideInInspector] public EnemyChaseState ChaseState;
+        [HideInInspector] public EnemyAttackState AttackState;
         
         [HideInInspector] public NavMeshAgent agent;
         
@@ -26,14 +26,14 @@ namespace NPCs
 
         private void Awake()
         {
-            wanderState = new EnemyWanderState(this);
-            chaseState = new EnemyChaseState(this);
-            attackState = new EnemyAttackState(this);
+            WanderState = new EnemyWanderState(this);
+            ChaseState = new EnemyChaseState(this);
+            AttackState = new EnemyAttackState(this);
         }
 
         private void Start()
         {
-            SwitchState(wanderState);
+            SwitchState(WanderState);
         }
     }
 }

@@ -1,3 +1,4 @@
+using NPCs.Base;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,7 +18,7 @@ namespace NPCs
         {
             // TODO: add fov
             if (fsm.DistanceToTarget < fsm.chaseStateRange)
-                fsm.SwitchState(fsm.chaseState);
+                fsm.SwitchState(fsm.ChaseState);
         }
 
         public override void UpdatePhysics()

@@ -1,3 +1,5 @@
+using NPCs.Base;
+
 namespace NPCs
 {
     public class EnemyAttackState : NpcState<EnemyStateMachine>
@@ -14,7 +16,7 @@ namespace NPCs
         {
             // TODO: add fov
             if (fsm.DistanceToTarget >= fsm.attackStateRange + attackExtraDistance)
-                fsm.SwitchState(fsm.chaseState);
+                fsm.SwitchState(fsm.ChaseState);
         }
     }
 }

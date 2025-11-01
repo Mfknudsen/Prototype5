@@ -1,3 +1,4 @@
+using NPCs.Base;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -21,9 +22,9 @@ namespace NPCs
         [HideInInspector] public float npcRadius = 15.0f;
         [HideInInspector] public Vector3[] pathPoints;
         
-        [HideInInspector] public NpcWanderState wanderState;
-        [HideInInspector] public NpcSeekState seekState;
-        [HideInInspector] public NpcIdleState idleState;
+        [HideInInspector] public VillagerWanderState WanderState;
+        [HideInInspector] public VillagerSeekState SeekState;
+        [HideInInspector] public VillagerIdleState IdleState;
         
         [HideInInspector] public NavMeshAgent agent;
 
@@ -34,14 +35,14 @@ namespace NPCs
             SpawnRandomPrefab();
             agent = GetComponent<NavMeshAgent>();
             
-            wanderState = new NpcWanderState(this) ;
-            seekState = new NpcSeekState(this);
-            idleState = new NpcIdleState(this);
+            WanderState = new VillagerWanderState(this) ;
+            SeekState = new VillagerSeekState(this);
+            IdleState = new VillagerIdleState(this);
         }
 
         void Start()
         {
-            SwitchState(wanderState);
+            SwitchState(WanderState);
         }
         
         void SpawnRandomPrefab()

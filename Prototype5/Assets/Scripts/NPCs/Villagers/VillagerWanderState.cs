@@ -1,14 +1,15 @@
+using NPCs.Base;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace NPCs
 {
-    public class NpcWanderState : NpcState<VillagerStateMachine>
+    public class VillagerWanderState : NpcState<VillagerStateMachine>
     {
         private int _currentIndex = 0;
         private bool _walksForward = true;
         
-        public NpcWanderState(VillagerStateMachine fsm) : base(fsm) {}
+        public VillagerWanderState(VillagerStateMachine fsm) : base(fsm) {}
 
         public override void Enter()
         {
@@ -19,7 +20,7 @@ namespace NPCs
         {
             if (fsm.DistanceToTarget < fsm.seekStateRange)
             {
-                fsm.SwitchState(fsm.seekState);
+                fsm.SwitchState(fsm.SeekState);
             }
         }
 

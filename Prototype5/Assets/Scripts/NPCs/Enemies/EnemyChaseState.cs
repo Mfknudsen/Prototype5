@@ -1,4 +1,4 @@
-using UnityEngine;
+using NPCs.Base;
 
 namespace NPCs
 {
@@ -16,9 +16,9 @@ namespace NPCs
         {
             // TODO: check if the player is out of the fov
             if (fsm.DistanceToTarget >= fsm.chaseStateRange)
-                fsm.SwitchState(fsm.wanderState);
+                fsm.SwitchState(fsm.WanderState);
             else if (fsm.DistanceToTarget < fsm.attackStateRange)
-                fsm.SwitchState(fsm.attackState);
+                fsm.SwitchState(fsm.AttackState);
         }
 
         public override void UpdatePhysics()

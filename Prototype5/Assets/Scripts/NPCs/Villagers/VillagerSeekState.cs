@@ -1,8 +1,10 @@
+using NPCs.Base;
+
 namespace NPCs
 {
-    public class NpcSeekState : NpcState<VillagerStateMachine>
+    public class VillagerSeekState : NpcState<VillagerStateMachine>
     {
-        public NpcSeekState(VillagerStateMachine fsm) : base(fsm) {}
+        public VillagerSeekState(VillagerStateMachine fsm) : base(fsm) {}
 
         public override void Enter()
         {
@@ -12,9 +14,9 @@ namespace NPCs
         public override void UpdateLogic()
         {
             if (fsm.DistanceToTarget < fsm.idleStateRange)
-                fsm.SwitchState(fsm.idleState);
+                fsm.SwitchState(fsm.IdleState);
             else if (fsm.DistanceToTarget >= fsm.seekStateRange)
-                fsm.SwitchState(fsm.wanderState);
+                fsm.SwitchState(fsm.WanderState);
         }
 
         public override void UpdatePhysics()

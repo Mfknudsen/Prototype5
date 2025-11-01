@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace NPCs
+namespace NPCs.Base
 {
     public class NpcStateMachine<T> : MonoBehaviour where T : NpcStateMachine<T>
     {

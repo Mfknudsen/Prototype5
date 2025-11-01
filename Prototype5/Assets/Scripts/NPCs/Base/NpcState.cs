@@ -1,4 +1,4 @@
-namespace NPCs
+namespace NPCs.Base
 {
     public abstract class NpcState<T> where T : NpcStateMachine<T>
     {
