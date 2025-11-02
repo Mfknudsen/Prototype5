@@ -884,29 +884,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6ed51704bc548c44a1062e86a905477, type: 3}
---- !u!1 &834966470 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1894402836525160426, guid: 59169caba78938c499655b68e4a304d2, type: 3}
-  m_PrefabInstance: {fileID: 5445265719812234220}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &834966472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 834966470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f7cf1420609ef5429e03813cfdfecc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nightMobPrefab: {fileID: 5314854918806782011, guid: c346b4fa302c02f40967de656eeae867, type: 3}
-  dayMobPrefab: {fileID: 838044028708054749, guid: 7e107f3cc675e454fa5cad18b964bf3a, type: 3}
-  spawnPositions:
-  - {x: 15.73, y: 1.14, z: 7.91}
-  playerTransform: {fileID: 1202719867}
-  damageType: {fileID: 11400000, guid: 280e1525c5c479d418d3bbedf81adb36, type: 2}
 --- !u!1001 &839283385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3775,13 +3752,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawnManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1894402836525160426, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1202719867}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: spawnPositions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: spawnPositions.Array.data[0].x
+      value: 15.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: spawnPositions.Array.data[0].y
+      value: 1.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: spawnPositions.Array.data[0].z
+      value: 7.91
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1894402836525160426, guid: 59169caba78938c499655b68e4a304d2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 834966472}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59169caba78938c499655b68e4a304d2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

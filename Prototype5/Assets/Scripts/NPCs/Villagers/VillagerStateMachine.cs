@@ -34,7 +34,7 @@ namespace NPCs.Villagers
         {
             SpawnRandomPrefab();
             agent = GetComponent<NavMeshAgent>();
-            animator = GetComponent<Animator>();
+            
             
             WanderState = new VillagerWanderState(this) ;
             SeekState = new VillagerSeekState(this);
@@ -51,8 +51,10 @@ namespace NPCs.Villagers
             if (npcPrefabs.Length >= 1)
             {
                 int random = Random.Range(0, npcPrefabs.Length);
-                Instantiate(npcPrefabs[random], transform.position + spawnPrefabOffset,
-                    Quaternion.identity, transform);                
+                GameObject prefab = Instantiate(npcPrefabs[random], transform.position + spawnPrefabOffset,
+                    Quaternion.identity, transform);
+
+                animator = prefab.GetComponent<Animator>();
             }
             else
             {

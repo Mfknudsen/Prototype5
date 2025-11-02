@@ -6,6 +6,9 @@ namespace NPCs.Villagers
 {
     public class VillagerWanderState : NpcState<VillagerStateMachine>
     {
+        private const string WanderAnimation = "Villager_Walk";
+        private const float AnimationSpeed = 0.7f;
+        
         private int _currentIndex = 0;
         private bool _walksForward = true;
         
@@ -14,6 +17,11 @@ namespace NPCs.Villagers
         public override void Enter()
         {
             fsm.agent.isStopped = false;
+            
+            if (fsm.animator.GetCurrentAnimatorStateInfo(0).IsName(WanderAnimation)) return;
+            
+            fsm.animator.speed = AnimationSpeed;
+            fsm.animator.Play(WanderAnimation);
         }
 
         public override void UpdateLogic()
