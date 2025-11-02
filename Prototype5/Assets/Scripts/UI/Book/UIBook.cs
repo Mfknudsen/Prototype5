@@ -10,6 +10,9 @@ using UI.Book.Slider;
 using UI.Book.TextInputField;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
+using System.IO;
+using Potions;
 
 #endregion
 
@@ -51,6 +54,8 @@ namespace UI.Book
         [SerializeField] private List<GameObject> pages = new();
         private int currentPageIndex = 0;
 
+        [SerializeField] private List<GameObject> potions = new();
+
         private readonly Dictionary<string, BookButton> buttonReferences = new Dictionary<string, BookButton>();
         private readonly Dictionary<string, BookSlider> sliderReferences = new Dictionary<string, BookSlider>();
 
@@ -81,6 +86,13 @@ namespace UI.Book
 
             this.turnRight.SetActive(false);
             this.turnLeft.SetActive(false);
+            
+            LoadPotionsFromScriptableObjects();
+        }
+
+        private void Update()
+        {
+            ManualPageUpdate();
         }
 
         #endregion
@@ -314,7 +326,7 @@ namespace UI.Book
         
         public void FlipLeft() => Effect(BookTurn.Left);
         
-        private void Update()
+        private void ManualPageUpdate()
         {
             // Only handle input if the book is open
             if (!bookCanvas.gameObject.activeSelf)
@@ -343,6 +355,40 @@ namespace UI.Book
             }
         }
 
+        private void LoadPotionsFromScriptableObjects()
+        {
+            string folder = "Assets/ScriptableObjects/Potions";
+            potions.Clear();
+
+            // Load all PotionValue assets directly from that folder
+            string[] guids = AssetDatabase.FindAssets("t:PotionValue", new[] { folder });
+            if (guids.Length == 0)
+            {
+                Debug.Log($"No PotionValue Assets found in: {folder}");
+            }
+
+            foreach (string guid in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                PotionValue potionValue = AssetDatabase.LoadAssetAtPath<PotionValue>(path);
+
+                if (potionValue != null && potionValue.GetPrefab() != null)
+                {
+                    GameObject potionInstance = Instantiate(potionValue.GetPrefab());
+                    potionInstance.name = potionValue.name;
+                    potionInstance.hideFlags = HideFlags.HideInHierarchy;
+
+                    potions.Add(potionInstance);
+                }
+            }
+
+            Debug.Log($"Loaded {potions.Count} potions from {folder}");
+            foreach (var potion in potions)
+            {
+                Debug.Log($"Name: {potion.name}");
+            }
+        }
+        
 
         #endregion
     }
