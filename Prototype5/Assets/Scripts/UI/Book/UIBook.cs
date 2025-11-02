@@ -13,6 +13,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using System.IO;
 using Potions;
+// ReSharper disable CanSimplifyDictionaryLookupWithTryGetValue
 
 #endregion
 
