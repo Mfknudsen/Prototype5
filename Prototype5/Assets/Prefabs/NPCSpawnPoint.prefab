@@ -70,7 +70,11 @@ MonoBehaviour:
   seekStateRange: 20
   idleStateRange: 4
   targetTransform: {fileID: 0}
-  npcPrefabs: []
+  npcPrefabs:
+  - {fileID: 7184942820666432610, guid: d1e9635b3b464294cb9ec3e7634e6f95, type: 3}
+  - {fileID: 1195070625180087783, guid: 946321d546a58e54c86aa275872ab2f7, type: 3}
+  - {fileID: 6922198130855530510, guid: 580b2ce62f784a54684d1f26b2701a79, type: 3}
+  - {fileID: 6822186155988169706, guid: 9f3a9492d1a99354c859afb9652ee3f7, type: 3}
   spawnPrefabOffset: {x: 0, y: 0, z: 0}
   useRandomWalk: 0
   npcRadius: 15
