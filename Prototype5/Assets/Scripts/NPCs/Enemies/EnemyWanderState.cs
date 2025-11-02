@@ -6,12 +6,19 @@ namespace NPCs.Enemies
 {
     public class EnemyWanderState : NpcState<EnemyStateMachine>
     {
+        private const string WanderAnimation = "Goblin_run";
+        private const float TransitionTime = 0.2f;
+        private const float AnimationSpeed = 0.7f;
+            
         public EnemyWanderState(EnemyStateMachine fsm) : base(fsm) {}
-
+        
         public override void Enter()
         {
             fsm.agent.isStopped = false;
             fsm.agent.speed = fsm.wanderSpeed;
+            
+            fsm.animator.speed = AnimationSpeed;
+            fsm.animator.CrossFade(WanderAnimation, TransitionTime);
         }
 
         public override void UpdateLogic()

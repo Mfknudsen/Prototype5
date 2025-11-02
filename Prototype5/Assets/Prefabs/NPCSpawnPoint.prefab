@@ -67,11 +67,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9079244d26f8f4b8e53832096dc38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistanceToTarget: 20
-  minDistanceToTarget: 4
+  seekStateRange: 20
+  idleStateRange: 4
   targetTransform: {fileID: 0}
   npcPrefabs: []
-  spawnPrefabOffset: {x: 0, y: 0.8, z: 0}
+  spawnPrefabOffset: {x: 0, y: 0, z: 0}
   useRandomWalk: 0
   npcRadius: 15
   pathPoints: []
+  agent: {fileID: 0}

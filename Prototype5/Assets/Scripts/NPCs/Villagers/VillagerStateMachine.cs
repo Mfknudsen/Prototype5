@@ -34,6 +34,7 @@ namespace NPCs.Villagers
         {
             SpawnRandomPrefab();
             agent = GetComponent<NavMeshAgent>();
+            animator = GetComponent<Animator>();
             
             WanderState = new VillagerWanderState(this) ;
             SeekState = new VillagerSeekState(this);

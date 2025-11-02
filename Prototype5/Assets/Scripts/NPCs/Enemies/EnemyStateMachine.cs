@@ -36,6 +36,7 @@ namespace NPCs.Enemies
         {
             playerHealth = playerTransform.gameObject.GetComponent<CharacterHealth.Health>();
             agent = GetComponent<NavMeshAgent>();
+            animator = GetComponent<Animator>();
             
             WanderState = new EnemyWanderState(this);
             ChaseState = new EnemyChaseState(this);

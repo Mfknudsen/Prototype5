@@ -5,9 +5,12 @@ namespace NPCs.Base
     public class NpcStateMachine<T> : MonoBehaviour where T : NpcStateMachine<T>
     {
         protected NpcState<T> currentState;
+        protected internal Animator animator;
 
         public void SwitchState(NpcState<T> npcState)
         {
+            if (currentState == npcState) return;
+            
             currentState?.Exit();
             currentState = npcState;
             currentState.Enter();
