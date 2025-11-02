@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8431520569255590598}
   - component: {fileID: 124029363737173621}
   - component: {fileID: 2359051908800801190}
+  - component: {fileID: 3405177610550721056}
+  - component: {fileID: 7504649546313349945}
   m_Layer: 0
   m_Name: Seed
   m_TagString: Untagged
@@ -60,8 +62,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b23b24d6df7fa94196bdd6ec94fd155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemCollider: {fileID: 2359051908800801190}
+  rb: {fileID: 3405177610550721056}
   backpack: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}
   ItemName: Seed
+  throwForce: 5
+  throwable: 1
 --- !u!65 &2359051908800801190
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -83,6 +89,46 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &3405177610550721056
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280318064454551970}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
+--- !u!114 &7504649546313349945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280318064454551970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbcdea26284e7a24eaf8b749b952c47d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 03000000
 --- !u!1 &1452847845330230908
 GameObject:
   m_ObjectHideFlags: 0

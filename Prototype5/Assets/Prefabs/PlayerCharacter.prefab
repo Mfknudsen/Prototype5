@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8020468614364741827}
   m_Father: {fileID: 7606262035328276592}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &5643103478076261454
@@ -166,6 +167,7 @@ GameObject:
   - component: {fileID: 7824877656828778782}
   - component: {fileID: 1280120569408198420}
   - component: {fileID: 1537406970109728459}
+  - component: {fileID: 7896695916428043624}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -188,7 +190,6 @@ Transform:
   m_Children:
   - {fileID: 6432014990184400984}
   - {fileID: 7373795340436703339}
-  - {fileID: 8020468614364741827}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6560815856874841653
@@ -274,7 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a30c7a5ca8235489b320c469d4ae7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStateVariable: {fileID: 11400000, guid: 74e430132044fd04096f52e4a4319956, type: 2}
   uiInteractButtonTransform: {fileID: 0}
   canvas: {fileID: 0}
   layerMask:
@@ -283,6 +283,19 @@ MonoBehaviour:
   cameraTransform: {fileID: 11400000, guid: ec58220940681b44e95eb43141c15de2, type: 2}
   playerTransform: {fileID: 11400000, guid: a6eefd8b6e7b757489be447beedd7bf1, type: 2}
   maxDistance: 5
+--- !u!114 &7896695916428043624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989371418687495725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14f8e2c7463e264c99af5868583bf78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMaxHealth: 100
 --- !u!1 &6469484704334315488
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,10 +493,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9083520733775824979}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.162, z: 0.68}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01999998, y: -0.36800003, z: 0.6799998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7606262035328276592}
+  m_Father: {fileID: 7373795340436703339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

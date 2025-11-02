@@ -1,0 +1,201 @@
+using System;
+using System.Collections.Generic;
+using ScriptableVariables.Objects;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.LowLevel;
+using UnityEngine.PlayerLoop;
+
+namespace DayNightCycle
+{
+    public enum DayNightTime
+    {
+        Morning = 5,
+        Evening = 8,
+        Afternoon = 14,
+        Night = 18,
+        Midnight = 22
+    }
+
+    public static class DayNight
+    {
+        private const float CycleTime = 20; //In Minutes
+        private static float _currentTime, _timeOffset;
+
+        private static List<DayNightLight> _allLights;
+
+        private static DayNightTime _currentDayNightTime;
+
+        private static UnityEvent<DayNightTime> _onTimeChangeEvent;
+
+        private static SkyboxSetting skyboxSetting;
+
+        private static Camera playerCamera;
+
+        private static TransformVariable cameraTransformVariable;
+
+        #region Setters
+
+        public static void AddListener(UnityAction<DayNightTime> toAdd)
+        {
+            _onTimeChangeEvent.AddListener(toAdd);
+        }
+
+        public static void RemoveListener(UnityAction<DayNightTime> toRemove)
+        {
+            _onTimeChangeEvent.RemoveListener(toRemove);
+        }
+
+        public static void SetTime(float timeInMinutes)
+        {
+            _currentTime = timeInMinutes * _timeOffset % 24;
+        }
+
+        public static void SetTime(DayNightTime dayNightTime)
+        {
+            _currentDayNightTime = dayNightTime;
+            _currentTime = (float)dayNightTime * _timeOffset;
+        }
+
+        #endregion
+
+        #region In
+
+        internal static void AddLight(DayNightLight light)
+        {
+            _allLights.Add(light);
+        }
+
+        internal static void RemoveLight(DayNightLight light)
+        {
+            _allLights.Remove(light);
+        }
+
+        #endregion
+
+        #region Internal
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
+        private static void Initialize()
+        {
+            _allLights = new List<DayNightLight>(32);
+            _onTimeChangeEvent = new UnityEvent<DayNightTime>();
+
+            skyboxSetting = (SkyboxSetting)AssetDatabase.LoadAssetAtPath(
+                "Assets/ScriptableObjects/DayNight/SkyboxSetting.asset",
+                typeof(SkyboxSetting));
+
+            cameraTransformVariable =
+                (TransformVariable)AssetDatabase.LoadAssetAtPath(
+                    "Assets/ScriptableObjects/Variables/CameraTransform.asset",
+                    typeof(TransformVariable));
+
+            Debug.Log(cameraTransformVariable == null);
+            Debug.Log(cameraTransformVariable.Value == null);
+
+            if (cameraTransformVariable.Value != null)
+                playerCamera = cameraTransformVariable.Value.GetComponent<Camera>();
+
+            cameraTransformVariable.AddListener(OnCameraTransformUpdate);
+
+            PlayerLoopSystem playerLoopSystem = PlayerLoop.GetCurrentPlayerLoop();
+            for (int i = 0; i < playerLoopSystem.subSystemList.Length; i++)
+            {
+                if (playerLoopSystem.subSystemList[i].type == typeof(Update))
+                    playerLoopSystem.subSystemList[i].updateDelegate += Update;
+            }
+
+            PlayerLoop.SetPlayerLoop(playerLoopSystem);
+
+            //System works on a 24hour basis but offset to match the desired cycle time
+            _timeOffset = 24.0f / CycleTime;
+
+            _currentDayNightTime = DayNightTime.Evening;
+            _currentTime = (float)DayNightTime.Evening;
+
+#if UNITY_EDITOR
+            EditorApplication.playModeStateChanged += OnExitPlayMode;
+#endif
+        }
+
+        /// <summary>
+        ///     Clean up on exiting play mode.
+        /// </summary>
+        /// <param name="state">State giving by Unity</param>
+        private static void OnExitPlayMode(PlayModeStateChange state)
+        {
+            if (!state.Equals(PlayModeStateChange.ExitingPlayMode))
+                return;
+
+            cameraTransformVariable.RemoveListener(OnCameraTransformUpdate);
+
+            PlayerLoopSystem playerLoopSystem = PlayerLoop.GetCurrentPlayerLoop();
+            for (int i = 0; i < playerLoopSystem.subSystemList.Length; i++)
+            {
+                if (playerLoopSystem.subSystemList[i].type == typeof(Update))
+                    playerLoopSystem.subSystemList[i].updateDelegate -= Update;
+            }
+
+            PlayerLoop.SetPlayerLoop(playerLoopSystem);
+
+            EditorApplication.playModeStateChanged -= OnExitPlayMode;
+        }
+
+        private static void Update()
+        {
+            _currentTime += Time.deltaTime / 60.0f * _timeOffset; // Seconds to minutes
+
+            DayNightTime previous = _currentDayNightTime;
+            _currentDayNightTime = _currentTime switch
+            {
+                < (float)DayNightTime.Morning => DayNightTime.Midnight,
+                < (float)DayNightTime.Evening => DayNightTime.Morning,
+                < (float)DayNightTime.Afternoon => DayNightTime.Evening,
+                < (float)DayNightTime.Night => DayNightTime.Afternoon,
+                < (float)DayNightTime.Midnight => DayNightTime.Night,
+                _ => DayNightTime.Midnight
+            };
+
+            if (_currentDayNightTime != previous)
+                _onTimeChangeEvent.Invoke(_currentDayNightTime);
+
+            if (_currentTime > 24)
+                _currentTime -= 24;
+
+            float t = _currentDayNightTime switch
+            {
+                DayNightTime.Morning => (_currentTime - (float)DayNightTime.Morning) /
+                                        ((float)DayNightTime.Evening - (float)DayNightTime.Morning),
+                DayNightTime.Evening => (_currentTime - (float)DayNightTime.Evening) /
+                                        ((float)DayNightTime.Afternoon - (float)DayNightTime.Evening),
+                DayNightTime.Afternoon => (_currentTime - (float)DayNightTime.Afternoon) /
+                                          ((float)DayNightTime.Night - (float)DayNightTime.Afternoon),
+                DayNightTime.Night => (_currentTime - (float)DayNightTime.Night) /
+                                      ((float)DayNightTime.Midnight - (float)DayNightTime.Night),
+                DayNightTime.Midnight => (_currentTime + (24 - (float)DayNightTime.Midnight)) /
+                                         ((float)DayNightTime.Morning + (24 - (float)DayNightTime.Midnight)),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
+            if (skyboxSetting != null)
+            {
+                (Color color, float intensity) = skyboxSetting.Get(_currentDayNightTime, t);
+                //RenderSettings.skybox.color = color;
+                RenderSettings.ambientLight = color;
+                RenderSettings.ambientIntensity = intensity;
+                playerCamera.backgroundColor = color;
+            }
+
+            foreach (DayNightLight dayNightLight in _allLights)
+                dayNightLight.UpdateLight(_currentDayNightTime, t);
+        }
+
+        private static void OnCameraTransformUpdate(Transform transform)
+        {
+            playerCamera = transform?.GetComponent<Camera>();
+        }
+
+        #endregion
+    }
+}
