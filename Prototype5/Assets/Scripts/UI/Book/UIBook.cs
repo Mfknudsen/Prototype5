@@ -390,7 +390,13 @@ namespace UI.Book
             }
         }
         
-
+        public void SetPages(List<GameObject> newPages)
+        {
+            this.pages = newPages;
+            this.currentPageIndex = 0;
+            UpdatePageVisibility();
+        }
+        
         #endregion
     }
 }

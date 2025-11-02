@@ -54,5 +54,8 @@ namespace Potions
         {
             return this.maxEffectDistance;
         }
+        
+        public string GetDescription() => description;
+
     }
 }

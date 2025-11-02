@@ -28,11 +28,11 @@ namespace Potions.Effects
 
         public override void TriggerSelf(PotionObject potionObject)
         {
-            PersistentFireEffect persistentFireEffect = Object.Instantiate(this.persistentGameObject)
-                .GetComponent<PersistentFireEffect>();
-
-            persistentFireEffect.transform.position = potionObject.transform.position;
-            persistentFireEffect.Trigger(this.effectRadius, this.effectDuration);
+            // PersistentFireEffect persistentFireEffect = Object.Instantiate(this.persistentGameObject)
+            //     .GetComponent<PersistentFireEffect>();
+            //
+            // persistentFireEffect.transform.position = potionObject.transform.position;
+            // persistentFireEffect.Trigger(this.effectRadius, this.effectDuration);
         }
     }
 }
