@@ -91,7 +91,11 @@ namespace DayNightCycle
                     "Assets/ScriptableObjects/Variables/CameraTransform.asset",
                     typeof(TransformVariable));
 
-            playerCamera = cameraTransformVariable.Value.GetComponent<Camera>();
+            Debug.Log(cameraTransformVariable == null);
+            Debug.Log(cameraTransformVariable.Value == null);
+
+            if (cameraTransformVariable.Value != null)
+                playerCamera = cameraTransformVariable.Value.GetComponent<Camera>();
 
             cameraTransformVariable.AddListener(OnCameraTransformUpdate);
 
@@ -189,7 +193,7 @@ namespace DayNightCycle
 
         private static void OnCameraTransformUpdate(Transform transform)
         {
-            playerCamera = transform.GetComponent<Camera>();
+            playerCamera = transform?.GetComponent<Camera>();
         }
 
         #endregion
