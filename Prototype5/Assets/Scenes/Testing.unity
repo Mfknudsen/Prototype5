@@ -624,10 +624,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3747287168622631327, guid: fc9327efe5f4c48cb8214ce2c98c91ef, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4045338049378639654, guid: fc9327efe5f4c48cb8214ce2c98c91ef, type: 3}
       propertyPath: pageBackground
       value: 
       objectReference: {fileID: 736011629}
+    - target: {fileID: 4497086672848901097, guid: fc9327efe5f4c48cb8214ce2c98c91ef, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3480,7 +3488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3680662792257014938, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
       propertyPath: pages.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3680662792257014938, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
       propertyPath: 'pages.Array.data[0]'

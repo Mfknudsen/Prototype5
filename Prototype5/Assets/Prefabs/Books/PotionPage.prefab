@@ -376,10 +376,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5195877465724709865}
+  - {fileID: 704407242292358888}
   - {fileID: 8366866061991395675}
   - {fileID: 3099765643160639826}
   - {fileID: 3721085440330322749}
-  - {fileID: 704407242292358888}
   - {fileID: 7455678633678037119}
   - {fileID: 1287725165608443507}
   m_Father: {fileID: 1697073534734738948}
@@ -578,6 +578,8 @@ MonoBehaviour:
   flavourDescription: {fileID: 7571600446229013507}
   potionParent: {fileID: 0}
   pageBackground: {fileID: 0}
+  ingredient1: {fileID: 3747287168622631327}
+  ingredient2: {fileID: 4497086672848901097}
 --- !u!1 &3231480273475042318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,6 +1067,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 558362841942797617}
+  - component: {fileID: 1668914338628244495}
+  - component: {fileID: 3747287168622631327}
   m_Layer: 7
   m_Name: Ingredient1
   m_TagString: Untagged
@@ -1088,9 +1092,47 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 58, y: -13}
+  m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1668914338628244495
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7262631388672816680}
+  m_CullTransparentMesh: 1
+--- !u!114 &3747287168622631327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7262631388672816680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7806546508893131339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1531,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5661797293373051188}
+  - component: {fileID: 6217233051226438355}
+  - component: {fileID: 4497086672848901097}
   m_Layer: 7
   m_Name: Ingredient2
   m_TagString: Untagged
@@ -1512,9 +1556,47 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 889, y: -13}
+  m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6217233051226438355
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819402717689488392}
+  m_CullTransparentMesh: 1
+--- !u!114 &4497086672848901097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819402717689488392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8933387818960053669
 GameObject:
   m_ObjectHideFlags: 0
