@@ -75,7 +75,9 @@ namespace GameWorld
             {
                 int index = Random.Range(0, this.spawnPoints.Count);
                 Transform t = this.spawnPoints[index];
-                Instantiate(this.potion.GetPrefab(), t.position, t.rotation);
+                InventoryItem item =
+                    Instantiate(this.potion.GetPrefab(), t.position, t.rotation).GetComponent<InventoryItem>();
+                item.AddEventListener(this.OnTriggerAction);
             }
 
             this.spawnedCount++;

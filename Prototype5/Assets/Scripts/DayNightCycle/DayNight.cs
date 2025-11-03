@@ -35,6 +35,15 @@ namespace DayNightCycle
 
         private static TransformVariable cameraTransformVariable;
 
+        #region Getters
+
+        public static int GetCurrentHour()
+        {
+            return (int)_currentTime;
+        }
+
+        #endregion
+
         #region Setters
 
         public static void AddListener(UnityAction<DayNightTime> toAdd)
@@ -90,10 +99,7 @@ namespace DayNightCycle
                 (TransformVariable)AssetDatabase.LoadAssetAtPath(
                     "Assets/ScriptableObjects/Variables/CameraTransform.asset",
                     typeof(TransformVariable));
-
-            Debug.Log(cameraTransformVariable == null);
-            Debug.Log(cameraTransformVariable.Value == null);
-
+            
             if (cameraTransformVariable.Value != null)
                 playerCamera = cameraTransformVariable.Value.GetComponent<Camera>();
 
