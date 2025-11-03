@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Potions;
 using UI.Book;
 using UnityEngine;
+using UnityEngine.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,25 +20,30 @@ namespace UI.Page
         [SerializeField] private Transform pageParent;        // Usually inside the Book Canvas
 
         private readonly List<GameObject> createdPages = new();
-
+        private Dictionary<string, Sprite> ingredientImages = new();
+        private const string POTION_FOLDER = "Assets/ScriptableObjects/Potions";
+        private const string INGREDIENT_IMAGE_FOLDER = "Assets/RenderTextures/Ingredients";
+        
         private void Start()
         {
             if (uiBook == null)
             {
-                uiBook = FindAnyObjectByType<UIBook>();
+                uiBook = FindFirstObjectByType<UIBook>();
                 if (uiBook == null)
                 {
-                    Debug.LogError("PotionBookLoader: Could not find a UIBook in the scene.", this);
+                    Debug.LogError("PotionBookLoader: Could not find a UIBook in the scene", this);
                     return;
                 }
             }
 
+            LoadAllIngredientImages();
+            
             LoadPotionPages();
         }
 
         private void LoadPotionPages()
         {
-            PotionValue[] potions = LoadAllPotionValues();
+            var potions = LoadAllPotionValues();
 
             if (potions == null || potions.Length == 0)
             {
@@ -50,17 +57,18 @@ namespace UI.Page
             {
                 if (potion == null) continue;
 
-                GameObject page = Instantiate(potionPagePrefab, pageParent);
+                var page = Instantiate(potionPagePrefab, pageParent);
                 page.name = potion.name;
 
-                PotionPage potionPage = page.GetComponentInChildren<PotionPage>(true);
+                var potionPage = page.GetComponentInChildren<PotionPage>(true);
                 if (potionPage == null)
                 {
                     Debug.LogError($"PotionPage component not found on prefab: {potionPagePrefab.name}", page);
                     continue;
                 }
-
-                potionPage.SetupFromPotion(potion);
+                
+                potionPage.SetupFromPotion(potion, GetTwoRandomIngredientImages());
+                
                 createdPages.Add(page);
             }
 
@@ -69,16 +77,15 @@ namespace UI.Page
 
             Debug.Log($"PotionBookLoader: Added {createdPages.Count} pages to UIBook.");
         }
-
+        
         private static PotionValue[] LoadAllPotionValues()
         {
-            string folder = "Assets/ScriptableObjects/Potions";
-            string[] guids = AssetDatabase.FindAssets("t:PotionValue", new[] { folder });
+            var guids = AssetDatabase.FindAssets("t:PotionValue", new[] { POTION_FOLDER });
 
             var potions = guids
                 .Select(guid =>
                 {
-                    string path = AssetDatabase.GUIDToAssetPath(guid);
+                    var path = AssetDatabase.GUIDToAssetPath(guid);
                     return AssetDatabase.LoadAssetAtPath<PotionValue>(path);
                 })
                 .Where(asset => asset != null)
@@ -90,6 +97,62 @@ namespace UI.Page
             }
             
             return potions;
+        }
+
+        private void LoadAllIngredientImages()
+        {
+            var images = new Dictionary<string, Sprite>();
+
+            // Find all Sprite assets in the folder
+            var guids = AssetDatabase.FindAssets("t:Sprite", new[] { INGREDIENT_IMAGE_FOLDER });
+            if (guids.Length == 0)
+            {
+                Debug.LogWarning($"No Sprites found in {INGREDIENT_IMAGE_FOLDER}");
+            }
+
+            foreach (var guid in guids)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(guid);
+                var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+
+                if (sprite == null)
+                    continue;
+
+                // Strip folder path, get clean name
+                var name = System.IO.Path.GetFileNameWithoutExtension(path);
+                images[name] = sprite;
+
+                Debug.Log($"Loaded ingredient sprite: {name}");
+            }
+
+            ingredientImages = images;
+        }
+
+        private Sprite[] GetTwoRandomIngredientImages()
+        {
+            if (ingredientImages == null || ingredientImages.Count < 2)
+            {
+                Debug.LogWarning("Not enough ingredient images to pick two unique ones.");
+                return Array.Empty<Sprite>();
+            }
+            
+            // Get a random list of unique sprites
+            var sprites = ingredientImages.Values.ToList();
+
+            int firstIndex = UnityEngine.Random.Range(0, sprites.Count);
+            int secondIndex;
+
+            // ensure sprites are unique
+            do
+            {
+                secondIndex = UnityEngine.Random.Range(0, sprites.Count);
+            } 
+            while (secondIndex == firstIndex);
+
+            var firstSprite = sprites[firstIndex];
+            var secondSprite = sprites[secondIndex];
+           
+            return new[] { firstSprite, secondSprite };
         }
     }
 }
