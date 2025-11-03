@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredients:
   - ingredientValue: {fileID: 11400000, guid: 5861374817e17204ab6f4526f89aa669, type: 2}
-    count: 2
+    count: 1
   - ingredientValue: {fileID: 11400000, guid: 56eb0086f4fa7e04580f7b90dd56a34d, type: 2}
-    count: 2
+    count: 1
   potionResults:
   - {fileID: 11400000, guid: 10abb55b6c380dc46af0c932618b8ce2, type: 2}
