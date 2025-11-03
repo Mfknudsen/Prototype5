@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efadfa77ef8af24a9b9d95a56f595ac, type: 3}
   m_Name: Rumor The Young Lord
   m_EditorClassIdentifier: 
-  displayText: 
-  correctPotionOptions: []
+  displayText: "\u201CI heard the young lord is desperate to look older so the council
+    takes him seriously.\u201D"
+  correctPotionOptions:
+  - {fileID: 11400000, guid: 10abb55b6c380dc46af0c932618b8ce2, type: 2}
+  - {fileID: 11400000, guid: 676a1ecf21ebe6b4c836c1462134bf4c, type: 2}
+  - {fileID: 11400000, guid: 184b825e2290871418ad5cfa3a35c9cd, type: 2}
