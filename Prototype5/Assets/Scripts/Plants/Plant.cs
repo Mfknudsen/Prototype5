@@ -1,6 +1,7 @@
 using Interactions;
 using Potions;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Plants
 {
@@ -19,6 +20,8 @@ namespace Plants
         private float timeToStageTwo, timeToStageThree;
 
         private float currentTime;
+
+        private UnityEvent<Plant> onTriggerEvent;
 
         private void Start()
         {
@@ -81,6 +84,18 @@ namespace Plants
         public Vector3 Hover()
         {
             return this.transform.position;
+        }
+
+        public void AddEventListener(UnityAction<Plant> action)
+        {
+            this.onTriggerEvent ??= new UnityEvent<Plant>();
+
+            this.onTriggerEvent.AddListener(action);
+        }
+
+        public void RemoveEventListener(UnityAction<Plant> action)
+        {
+            this.onTriggerEvent?.RemoveListener(action);
         }
     }
 }
