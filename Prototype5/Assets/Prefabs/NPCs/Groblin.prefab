@@ -1010,7 +1010,7 @@ MonoBehaviour:
   viewAngle: 70
   attackStateRange: 2
   damageAmount: 8
-  attackCooldown: 0.5
+  attackCooldown: 0.8
   npcRadius: 13
   chaseSpeed: 4
   wanderSpeed: 2
