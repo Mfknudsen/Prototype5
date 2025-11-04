@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263063a3fc181cd49a0c3f42003a2512, type: 3}
   m_Name: SkyboxSetting
   m_EditorClassIdentifier: 
+  minutesPerDay: 10
   morningColor: {r: 0.31706125, g: 0.6755518, b: 0.8962264, a: 1}
   morningIntensity: 1
   eveningColor: {r: 0.042452812, g: 0.7711523, b: 1, a: 1}

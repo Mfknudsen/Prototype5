@@ -6,6 +6,8 @@ namespace DayNightCycle
     [CreateAssetMenu(fileName = "SkyboxSetting", menuName = "Scriptable Objects/SkyboxSetting")]
     public sealed class SkyboxSetting : ScriptableObject
     {
+        [SerializeField] private float minutesPerDay;
+
         [Header("Morning")] [SerializeField] private Color morningColor = Color.white;
         [SerializeField] private float morningIntensity = 1;
 
@@ -37,6 +39,11 @@ namespace DayNightCycle
                     Mathf.Lerp(this.nightIntensity, this.midnightIntensity, time)),
                 _ => throw new ArgumentOutOfRangeException(nameof(dayNightTime), dayNightTime, null)
             };
+        }
+
+        public float GetCycleTime()
+        {
+            return this.minutesPerDay;
         }
     }
 }

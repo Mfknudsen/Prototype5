@@ -22,7 +22,7 @@ namespace DayNightCycle
 
     public static class DayNight
     {
-        private const float CycleTime = 20; //In Minutes
+        private static float CycleTime = 20; //In Minutes
         private static float _currentTime, _timeOffset;
 
         private static List<DayNightLight> _allLights;
@@ -95,7 +95,15 @@ namespace DayNightCycle
 
             AsyncOperationHandle<SkyboxSetting> loadSkyboxSetting = Addressables
                 .LoadAssetAsync<SkyboxSetting>("Assets/ScriptableObjects/DayNight/SkyboxSetting.asset");
-            loadSkyboxSetting.Completed += t => { skyboxSetting = t.Result; };
+            loadSkyboxSetting.Completed += t =>
+            {
+                skyboxSetting = t.Result;
+
+                CycleTime = skyboxSetting.GetCycleTime();
+                
+                //System works on a 24hour basis but offset to match the desired cycle time
+                _timeOffset = 24.0f / CycleTime;
+            };
 
             AsyncOperationHandle<TransformVariable> loadTransformVariable =
                 Addressables.LoadAssetAsync<TransformVariable>(
@@ -119,9 +127,6 @@ namespace DayNightCycle
             }
 
             PlayerLoop.SetPlayerLoop(playerLoopSystem);
-
-            //System works on a 24hour basis but offset to match the desired cycle time
-            _timeOffset = 24.0f / CycleTime;
 
             _currentDayNightTime = DayNightTime.Evening;
             _currentTime = (float)DayNightTime.Evening;
