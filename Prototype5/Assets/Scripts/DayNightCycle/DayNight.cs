@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using ScriptableVariables.Objects;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
 using UnityEngine.LowLevel;
 using UnityEngine.PlayerLoop;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace DayNightCycle
 {
@@ -91,19 +93,23 @@ namespace DayNightCycle
             _allLights = new List<DayNightLight>(32);
             _onTimeChangeEvent = new UnityEvent<DayNightTime>();
 
-            skyboxSetting = (SkyboxSetting)AssetDatabase.LoadAssetAtPath(
-                "Assets/ScriptableObjects/DayNight/SkyboxSetting.asset",
-                typeof(SkyboxSetting));
+            AsyncOperationHandle<SkyboxSetting> loadSkyboxSetting = Addressables
+                .LoadAssetAsync<SkyboxSetting>("Assets/ScriptableObjects/DayNight/SkyboxSetting.asset");
+            loadSkyboxSetting.Completed += t => { skyboxSetting = t.Result; };
 
-            cameraTransformVariable =
-                (TransformVariable)AssetDatabase.LoadAssetAtPath(
-                    "Assets/ScriptableObjects/Variables/CameraTransform.asset",
-                    typeof(TransformVariable));
-            
-            if (cameraTransformVariable.Value != null)
-                playerCamera = cameraTransformVariable.Value.GetComponent<Camera>();
+            AsyncOperationHandle<TransformVariable> loadTransformVariable =
+                Addressables.LoadAssetAsync<TransformVariable>(
+                    "Assets/ScriptableObjects/Variables/CameraTransform.asset");
+            cameraTransformVariable = loadTransformVariable.Result;
+            loadTransformVariable.Completed += t =>
+            {
+                cameraTransformVariable = t.Result;
 
-            cameraTransformVariable.AddListener(OnCameraTransformUpdate);
+                if (cameraTransformVariable.Value != null)
+                    playerCamera = cameraTransformVariable.Value.GetComponent<Camera>();
+
+                cameraTransformVariable.AddListener(OnCameraTransformUpdate);
+            };
 
             PlayerLoopSystem playerLoopSystem = PlayerLoop.GetCurrentPlayerLoop();
             for (int i = 0; i < playerLoopSystem.subSystemList.Length; i++)
@@ -125,6 +131,7 @@ namespace DayNightCycle
 #endif
         }
 
+#if UNITY_EDITOR
         /// <summary>
         ///     Clean up on exiting play mode.
         /// </summary>
@@ -134,7 +141,7 @@ namespace DayNightCycle
             if (!state.Equals(PlayModeStateChange.ExitingPlayMode))
                 return;
 
-            cameraTransformVariable.RemoveListener(OnCameraTransformUpdate);
+            cameraTransformVariable?.RemoveListener(OnCameraTransformUpdate);
 
             PlayerLoopSystem playerLoopSystem = PlayerLoop.GetCurrentPlayerLoop();
             for (int i = 0; i < playerLoopSystem.subSystemList.Length; i++)
@@ -147,6 +154,7 @@ namespace DayNightCycle
 
             EditorApplication.playModeStateChanged -= OnExitPlayMode;
         }
+#endif
 
         private static void Update()
         {
@@ -190,7 +198,8 @@ namespace DayNightCycle
                 //RenderSettings.skybox.color = color;
                 RenderSettings.ambientLight = color;
                 RenderSettings.ambientIntensity = intensity;
-                playerCamera.backgroundColor = color;
+                if (playerCamera != null)
+                    playerCamera.backgroundColor = color;
             }
 
             foreach (DayNightLight dayNightLight in _allLights)

@@ -8,35 +8,32 @@ namespace NPCs.Villagers
 {
     public class VillagerStateMachine : NpcStateMachine<VillagerStateMachine>
     {
-        [Header("Seek Target")]
-        public float seekStateRange = 20.0f;
+        [Header("Seek Target")] public float seekStateRange = 20.0f;
         public float idleStateRange = 4.0f;
         public Transform targetTransform;
-        
-        [Header("Prefabs")]
-        [SerializeField] private GameObject[] npcPrefabs;
+
+        [Header("Prefabs")] [SerializeField] private GameObject[] npcPrefabs;
         [SerializeField] private Vector3 spawnPrefabOffset = new Vector3(0.0f, 0.8f, 0.0f);
 
-        [Header("Movement")]
-        [HideInInspector] public bool useRandomWalk = true;
+        [Header("Movement")] [HideInInspector] public bool useRandomWalk = true;
         [HideInInspector] public float npcRadius = 15.0f;
         [HideInInspector] public Vector3[] pathPoints;
-        
+
         [HideInInspector] public VillagerWanderState WanderState;
         [HideInInspector] public VillagerSeekState SeekState;
         [HideInInspector] public VillagerIdleState IdleState;
-        
+
         [HideInInspector] public NavMeshAgent agent;
 
         public float DistanceToTarget => Vector3.Distance(transform.position, targetTransform.position);
-        
+
         private void Awake()
         {
             SpawnRandomPrefab();
             agent = GetComponent<NavMeshAgent>();
-            
-            
-            WanderState = new VillagerWanderState(this) ;
+
+
+            WanderState = new VillagerWanderState(this);
             SeekState = new VillagerSeekState(this);
             IdleState = new VillagerIdleState(this);
         }
@@ -45,7 +42,7 @@ namespace NPCs.Villagers
         {
             SwitchState(WanderState);
         }
-        
+
         void SpawnRandomPrefab()
         {
             if (npcPrefabs.Length >= 1)
@@ -61,16 +58,16 @@ namespace NPCs.Villagers
                 Debug.Log("NPC prefab list is empty!");
             }
         }
-        
     }
 
+#if UNITY_EDITOR
     [CustomEditor(typeof(VillagerStateMachine))]
     public class NpcBehaviourEditor : Editor
     {
         private SerializedProperty _useRandomWalkProperty;
         private SerializedProperty _pathPointsProperty;
         private SerializedProperty _npcRadiusProperty;
-        
+
         private void OnEnable()
         {
             _useRandomWalkProperty = serializedObject.FindProperty("useRandomWalk");
@@ -97,4 +94,5 @@ namespace NPCs.Villagers
             serializedObject.ApplyModifiedProperties();
         }
     }
+#endif
 }

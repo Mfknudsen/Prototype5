@@ -11,6 +11,8 @@ namespace Potions
 
         [SerializeField] private IngredientTag tag1, tag2;
 
+        [SerializeField] private Sprite sprite;
+
         public string GetDescription()
         {
             return this.description;
@@ -19,6 +21,11 @@ namespace Potions
         public GameObject GetPrefab()
         {
             return this.ingredientPrefab;
+        }
+
+        public Sprite GetSprite()
+        {
+            return this.sprite;
         }
     }
 }

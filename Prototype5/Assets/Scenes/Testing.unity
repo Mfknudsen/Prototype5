@@ -598,7 +598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1697073534734738948, guid: fc9327efe5f4c48cb8214ce2c98c91ef, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -451
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1697073534734738948, guid: fc9327efe5f4c48cb8214ce2c98c91ef, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -616,33 +616,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1914408062756292417, guid: fc9327efe5f4c48cb8214ce2c98c91ef, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2808599248352362905, guid: fc9327efe5f4c48cb8214ce2c98c91ef, type: 3}
       propertyPath: m_Name
       value: PotionPage
-      objectReference: {fileID: 0}
-    - target: {fileID: 2808599248352362905, guid: fc9327efe5f4c48cb8214ce2c98c91ef, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3747287168622631327, guid: fc9327efe5f4c48cb8214ce2c98c91ef, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4045338049378639654, guid: fc9327efe5f4c48cb8214ce2c98c91ef, type: 3}
-      propertyPath: pageBackground
-      value: 
-      objectReference: {fileID: 736011629}
-    - target: {fileID: 4497086672848901097, guid: fc9327efe5f4c48cb8214ce2c98c91ef, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8120748798727019230, guid: fc9327efe5f4c48cb8214ce2c98c91ef, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -959,17 +935,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dceca8942f345943b1a23a7b65c68f4, type: 3}
---- !u!114 &736011629 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5708164372292790447, guid: 8e109d7d0cfb52a41bf0c745a2723e9c, type: 3}
-  m_PrefabInstance: {fileID: 1383222034}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &832695313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2458,6 +2423,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3c0dd5bc4642b28b5f291617177822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  potions:
+  - {fileID: 11400000, guid: 10abb55b6c380dc46af0c932618b8ce2, type: 2}
+  - {fileID: 11400000, guid: 676a1ecf21ebe6b4c836c1462134bf4c, type: 2}
+  - {fileID: 11400000, guid: 184b825e2290871418ad5cfa3a35c9cd, type: 2}
+  - {fileID: 11400000, guid: f9b01738c45289241b4e367d4fbab2a6, type: 2}
+  - {fileID: 11400000, guid: b6468b52a6879974bae2db0e0c4952f9, type: 2}
   uiBook: {fileID: 1414106583}
   potionPagePrefab: {fileID: 378569841}
   pageParent: {fileID: 1710376937}
@@ -2469,12 +2440,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086394079}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -450.86237, y: -0.66259766, z: 92.082466}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -450.99997, y: -0.000058174133, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1414106584}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1111616391
 PrefabInstance:
@@ -2760,6 +2731,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93979ef7da448d4c9968af4a0592ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1414106584 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 11156926045935508, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
+  m_PrefabInstance: {fileID: 1710376936}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1433739533
 GameObject:
   m_ObjectHideFlags: 0
@@ -3518,6 +3494,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 11156926045935508, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1086394081}
     - targetCorrespondingSourceObject: {fileID: 6714897635721754576, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 378569840}
@@ -4099,4 +4078,3 @@ SceneRoots:
   - {fileID: 1383222034}
   - {fileID: 5445265719812234220}
   - {fileID: 1710376936}
-  - {fileID: 1086394081}

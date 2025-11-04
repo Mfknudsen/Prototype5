@@ -1,84 +1,86 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Potions;
 using UI.Book;
 using UnityEngine;
-using UnityEngine.UI;
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace UI.Page
 {
     public class PotionBookLoader : MonoBehaviour
     {
-        [Header("References")]
-        [SerializeField] private UIBook uiBook;              // The main book controller
-        [SerializeField] private GameObject potionPagePrefab; // Prefab with PotionPage.cs
-        [SerializeField] private Transform pageParent;        // Usually inside the Book Canvas
+        [Header("References")] [SerializeField]
+        private List<PotionValue> potions;
 
-        private readonly List<GameObject> createdPages = new();
-        private Dictionary<string, Sprite> ingredientImages = new();
-        private const string POTION_FOLDER = "Assets/ScriptableObjects/Potions";
-        private const string INGREDIENT_IMAGE_FOLDER = "Assets/RenderTextures/Ingredients";
-        
+        [SerializeField] private UIBook uiBook; // The main book controller
+        [SerializeField] private GameObject potionPagePrefab; // Prefab with PotionPage.cs
+        [SerializeField] private Transform pageParent; // Usually inside the Book Canvas
+
+        private readonly List<GameObject> createdPages = new List<GameObject>();
+
+        //private Dictionary<string, Sprite> ingredientImages = new Dictionary<string, Sprite>();
+        //private const string POTION_FOLDER = "Assets/ScriptableObjects/Potions";
+        //private const string INGREDIENT_IMAGE_FOLDER = "Assets/RenderTextures/Ingredients";
+
         private void Start()
         {
-            if (uiBook == null)
+            if (this.uiBook == null)
             {
-                uiBook = FindFirstObjectByType<UIBook>();
-                if (uiBook == null)
+                this.uiBook = FindFirstObjectByType<UIBook>();
+                if (this.uiBook == null)
                 {
                     Debug.LogError("PotionBookLoader: Could not find a UIBook in the scene", this);
                     return;
                 }
             }
 
-            LoadAllIngredientImages();
-            
-            LoadPotionPages();
+            //this.LoadAllIngredientImages();
+            this.LoadPotionPages();
         }
 
         private void LoadPotionPages()
         {
-            var potions = LoadAllPotionValues();
+            //var potions = LoadAllPotionValues();
 
-            if (potions == null || potions.Length == 0)
+            if (this.potions == null || this.potions.Count == 0)
             {
                 Debug.LogWarning("PotionBookLoader: No PotionValue assets found.");
                 return;
             }
 
-            createdPages.Clear();
+            this.createdPages.Clear();
 
-            foreach (var potion in potions)
+            //foreach (PotionValue potion in this.potions)
+            for (int i = 0; i < this.potions.Count; i += 2)
             {
-                if (potion == null) continue;
+                PotionValue potion1 = this.potions[i],
+                    potion2 = i + 1 < this.potions.Count ? this.potions[i + 1] : null;
 
-                var page = Instantiate(potionPagePrefab, pageParent);
-                page.name = potion.name;
+                Debug.Log($"{i} : {potion1}");
+                Debug.Log($"{i + 1} : {potion2}");
 
-                var potionPage = page.GetComponentInChildren<PotionPage>(true);
+                if (potion1 == null) continue;
+
+                GameObject page = Instantiate(this.potionPagePrefab, this.pageParent);
+                page.name = potion1.name + (potion2 != null ? $" & {potion2.name}" : "");
+
+                PotionPage potionPage = page.GetComponentInChildren<PotionPage>(true);
                 if (potionPage == null)
                 {
-                    Debug.LogError($"PotionPage component not found on prefab: {potionPagePrefab.name}", page);
+                    Debug.LogError($"PotionPage component not found on prefab: {this.potionPagePrefab.name}", page);
                     continue;
                 }
-                
-                potionPage.SetupFromPotion(potion, GetTwoRandomIngredientImages());
-                
-                createdPages.Add(page);
+
+                potionPage.SetupFromPotion(potion1, potion2);
+
+                this.createdPages.Add(page);
             }
 
             // Assign generated pages to UIBook
-            uiBook.SetPages(createdPages);
+            this.uiBook.SetPages(this.createdPages);
 
-            Debug.Log($"PotionBookLoader: Added {createdPages.Count} pages to UIBook.");
+            Debug.Log($"PotionBookLoader: Added {this.createdPages.Count} pages to UIBook.");
         }
-        
-        private static PotionValue[] LoadAllPotionValues()
+
+        /*private static PotionValue[] LoadAllPotionValues()
         {
             var guids = AssetDatabase.FindAssets("t:PotionValue", new[] { POTION_FOLDER });
 
@@ -95,11 +97,11 @@ namespace UI.Page
             {
                 Debug.Log(p.name);
             }
-            
-            return potions;
-        }
 
-        private void LoadAllIngredientImages()
+            return potions;
+        }*/
+
+        /*private void LoadAllIngredientImages()
         {
             var images = new Dictionary<string, Sprite>();
 
@@ -125,19 +127,19 @@ namespace UI.Page
                 Debug.Log($"Loaded ingredient sprite: {name}");
             }
 
-            ingredientImages = images;
-        }
+            this.ingredientImages = images;
+        }*/
 
-        private Sprite[] GetTwoRandomIngredientImages()
+        /*private Sprite[] GetTwoRandomIngredientImages()
         {
-            if (ingredientImages == null || ingredientImages.Count < 2)
+            if (this.ingredientImages == null || this.ingredientImages.Count < 2)
             {
                 Debug.LogWarning("Not enough ingredient images to pick two unique ones.");
                 return Array.Empty<Sprite>();
             }
-            
+
             // Get a random list of unique sprites
-            var sprites = ingredientImages.Values.ToList();
+            var sprites = this.ingredientImages.Values.ToList();
 
             int firstIndex = UnityEngine.Random.Range(0, sprites.Count);
             int secondIndex;
@@ -146,13 +148,12 @@ namespace UI.Page
             do
             {
                 secondIndex = UnityEngine.Random.Range(0, sprites.Count);
-            } 
-            while (secondIndex == firstIndex);
+            } while (secondIndex == firstIndex);
 
             var firstSprite = sprites[firstIndex];
             var secondSprite = sprites[secondIndex];
-           
+
             return new[] { firstSprite, secondSprite };
-        }
+        }*/
     }
 }

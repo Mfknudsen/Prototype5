@@ -57,7 +57,7 @@ namespace UI.Book
             this.uiBook.ConstructUI();
             
             this.done = true;
-
+            
             onEnd?.Invoke();
         }
 
