@@ -15,6 +15,8 @@ MonoBehaviour:
   potionPrefab: {fileID: 5187084931165711824, guid: c078f06de67786e41945e4da57b990af, type: 3}
   onShatterVFX: {fileID: 0}
   description: Maybe what a happy horse feels when running through the forest
+  spriteOne: {fileID: 21300000, guid: 3cac777894e4a477bbd95f93ab01639c, type: 3}
+  spriteTwo: {fileID: 21300000, guid: fb25eb40ebcc1477aad56cc7a7c38383, type: 3}
   effects:
   - rid: 7969916117750644985
   - rid: 3662799380637548544

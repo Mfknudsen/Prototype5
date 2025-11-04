@@ -42,10 +42,12 @@ namespace Potions.Effects
             }
         }
 
+#if UNITY_EDITOR
         public bool GetDebugGizmo()
         {
             return this.debugGizmo;
         }
+#endif
 
         public float GetRadius()
         {

@@ -88,12 +88,12 @@ namespace UI.Book
             this.turnRight.SetActive(false);
             this.turnLeft.SetActive(false);
             
-            LoadPotionsFromScriptableObjects();
+            //LoadPotionsFromScriptableObjects();
         }
 
         private void Update()
         {
-            ManualPageUpdate();
+            this.ManualPageUpdate();
         }
 
         #endregion
@@ -140,30 +140,30 @@ namespace UI.Book
                     break;
 
                 case BookTurn.Left:
-                    if (currentPageIndex > 0)
+                    if (this.currentPageIndex > 0)
                     {
                         this.currentPageIndex--;
+                        this.UpdatePageVisibility();
                         this.bookTurnBookAction.SetDirection(false);
                         this.currentBookAction =
                             this.StartCoroutine(this.bookTurnBookAction.Operation(() =>
                             {
                                 this.currentBookAction = null;
-                                UpdatePageVisibility();
                             }));
                     }
 
                     break;
 
                 case BookTurn.Right:
-                    if (currentPageIndex < pages.Count - 1)
+                    if (this.currentPageIndex < this.pages.Count - 1)
                     {
-                        currentPageIndex++;
+                        this.currentPageIndex++;
+                        this.UpdatePageVisibility();
                         this.bookTurnBookAction.SetDirection(true);
                         this.currentBookAction =
                             this.StartCoroutine(this.bookTurnBookAction.Operation(() =>
                             {
                                 this.currentBookAction = null;
-                                UpdatePageVisibility();
                             }));
                     }
                     break;
@@ -313,50 +313,50 @@ namespace UI.Book
         
         private void UpdatePageVisibility()
         {
-            for (int i = 0; i < pages.Count; i++)
+            for (int i = 0; i < this.pages.Count; i++)
             {
-                pages[i].SetActive(i == currentPageIndex);
+                this.pages[i].SetActive(i == this.currentPageIndex);
             }
             
-            Debug.Log($"Showing page {currentPageIndex + 1} of {pages.Count}");
+            Debug.Log($"Showing page {this.currentPageIndex + 1} of {this.pages.Count}");
         }
         
-        public void CloseBook() => Effect(BookTurn.Close);
+        public void CloseBook() => this.Effect(BookTurn.Close);
 
-        public void FlipRight() => Effect(BookTurn.Right);
+        public void FlipRight() => this.Effect(BookTurn.Right);
         
-        public void FlipLeft() => Effect(BookTurn.Left);
+        public void FlipLeft() => this.Effect(BookTurn.Left);
         
         private void ManualPageUpdate()
         {
             // Only handle input if the book is open
-            if (!bookCanvas.gameObject.activeSelf)
+            if (!this.bookCanvas.gameObject.activeSelf)
                 return;
 
             // Prevent new input while an animation is running
-            if (currentBookAction != null)
+            if (this.currentBookAction != null)
                 return;
 
             // Right Arrow → turn right (next page)
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                FlipRight();
+                this.FlipRight();
             }
 
             // Left Arrow → turn left (previous page)
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                FlipLeft();
+                this.FlipLeft();
             }
 
             // Optional: Escape key closes the book
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                CloseBook();
+                this.CloseBook();
             }
         }
 
-        private void LoadPotionsFromScriptableObjects()
+        /*private void LoadPotionsFromScriptableObjects()
         {
             string folder = "Assets/ScriptableObjects/Potions";
             potions.Clear();
@@ -388,13 +388,13 @@ namespace UI.Book
             {
                 Debug.Log($"Name: {potion.name}");
             }
-        }
+        }*/
         
         public void SetPages(List<GameObject> newPages)
         {
             this.pages = newPages;
             this.currentPageIndex = 0;
-            UpdatePageVisibility();
+            this.UpdatePageVisibility();
         }
         
         #endregion

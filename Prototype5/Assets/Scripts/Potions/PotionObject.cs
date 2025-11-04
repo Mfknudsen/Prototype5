@@ -11,6 +11,7 @@ namespace Potions
 
         [SerializeField] private float forceForShatter;
 
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             foreach (PotionEffectBase potionEffectBase in this.potionValue.GetEffects())
@@ -21,6 +22,7 @@ namespace Potions
                 Gizmos.DrawWireSphere(this.transform.position, potionEffectBase.GetRadius());
             }
         }
+#endif
 
         public PotionValue GetValue()
         {

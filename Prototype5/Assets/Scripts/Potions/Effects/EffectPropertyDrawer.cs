@@ -7,8 +7,11 @@ using UnityEngine;
 
 namespace Potions.Effects.Editor
 {
+#if UNITY_EDITOR
     [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    public class PotionEffectSerializeReferenceDrawer : PropertyAttribute {}
+    public class PotionEffectSerializeReferenceDrawer : PropertyAttribute
+    {
+    }
 
     [CustomPropertyDrawer(typeof(PotionEffectSerializeReferenceDrawer))]
     public class SerializeReferencePropertyDrawer : PropertyDrawer
@@ -60,6 +63,7 @@ namespace Potions.Effects.Editor
                     Type newType = derivedTypes[newIndex - 1];
                     property.managedReferenceValue = Activator.CreateInstance(newType);
                 }
+
                 property.serializedObject.ApplyModifiedProperties();
             }
 
@@ -95,11 +99,13 @@ namespace Potions.Effects.Editor
                 }
                 else
                 {
-                    FieldInfo field = type.GetField(paths[i], BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                    FieldInfo field = type.GetField(paths[i],
+                        BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
                     if (field == null) return null;
                     type = field.FieldType;
                 }
             }
+
             return type;
         }
 
@@ -110,4 +116,5 @@ namespace Potions.Effects.Editor
                 .Where(type => baseType.IsAssignableFrom(type) && !type.IsAbstract && type != baseType);
         }
     }
+#endif
 }
