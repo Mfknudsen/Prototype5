@@ -8,9 +8,9 @@ namespace UI.Book.Slider
         private UIBook uiBook;
         private BookTextInputField textInputField;
         
-        public void Setup(UIBook uiBook, ICustomGUIElement element)
+        public void Setup(UIBook setUIBook, ICustomGUIElement element)
         {
-            this.uiBook = uiBook;
+            this.uiBook = setUIBook;
             throw new System.NotImplementedException();
         }
     }

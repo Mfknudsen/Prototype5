@@ -122,7 +122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7082534152846990281}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: UI Layer Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 1107219471272532224}
   - component: {fileID: 744993901444867440}
   - component: {fileID: 8492146169376484880}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3092325751742069925}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Stand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 75682833675556982}
   - component: {fileID: 8187441293787237596}
   - component: {fileID: 3021477737182416029}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Interact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -901,7 +901,7 @@ GameObject:
   - component: {fileID: 7033890334516484064}
   - component: {fileID: 9067778227836891537}
   - component: {fileID: 5045447094285885393}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -987,7 +987,7 @@ GameObject:
   - component: {fileID: 3872210453235918569}
   - component: {fileID: 1218407235459171682}
   - component: {fileID: 1078559150808332748}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1146,7 +1146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8204104303635504857}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerReadPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1433,7 +1433,7 @@ GameObject:
   - component: {fileID: 8120128684542756763}
   - component: {fileID: 3130166224249445804}
   - component: {fileID: 5720508847267680084}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Invisible UI Layer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1929,6 +1929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93979ef7da448d4c9968af4a0592ac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransformVariable: {fileID: 11400000, guid: ec58220940681b44e95eb43141c15de2, type: 2}
   bookCanvas: {fileID: 2742906422015415585}
   playerStateVariable: {fileID: 11400000, guid: 74e430132044fd04096f52e4a4319956, type: 2}
   preRenderTexture: {fileID: 8400000, guid: 48ae87bae04b3d54e846ef09f3613e7a, type: 2}
@@ -1952,6 +1953,7 @@ MonoBehaviour:
   closeBookActionAction:
     uiBook: {fileID: 3680662792257014938}
     playerStateVariable: {fileID: 11400000, guid: 74e430132044fd04096f52e4a4319956, type: 2}
+  pages: []
 --- !u!1 &7233555688768424456
 GameObject:
   m_ObjectHideFlags: 0
@@ -2292,6 +2294,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8445585161951530441, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -7611661634702333960, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -6192215566044918480, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -5545094327069637045, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -5486618894678569037, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -2304,10 +2322,18 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 3f66bc50991e56c4b80fabbb5ccd55d7, type: 2}
+    - target: {fileID: -5371075105180605856, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -4232836602058136354, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 3a1017e457c5d924794550bd2acb1c7d, type: 2}
+    - target: {fileID: -3540272279435206582, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -2991958732884326784, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -2320,6 +2346,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 3f66bc50991e56c4b80fabbb5ccd55d7, type: 2}
+    - target: {fileID: -2924452496969211786, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -1756586200448832505, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -2332,10 +2362,30 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 3f66bc50991e56c4b80fabbb5ccd55d7, type: 2}
+    - target: {fileID: -391268320553695201, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
       propertyPath: m_Name
       value: Book
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092745716632436640, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2699552177270854225, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2890160469646005028, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4060150841123412111, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -2348,6 +2398,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 3f66bc50991e56c4b80fabbb5ccd55d7, type: 2}
+    - target: {fileID: 4230258410390859754, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697246947029910037, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5463886973042424269, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2356,6 +2414,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2204083cd32c00d44aaed932a480b7d5, type: 2}
+    - target: {fileID: 6293370839908786990, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2402,7 +2468,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 6f7e6b4ef92c5a64d96624664de84e61, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0

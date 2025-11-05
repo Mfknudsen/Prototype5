@@ -29,12 +29,13 @@ namespace UI.Book
             Cursor.lockState = CursorLockMode.Locked;
 
             this.IsOperationDone = true;
-            
+
+            yield return new WaitForSeconds(0.5f);
+
             this.playerStateVariable.Value = PlayerStateEnum.Free;
 
             onEnd?.Invoke();
-
-            yield return null;
+            
         }
     }
 }

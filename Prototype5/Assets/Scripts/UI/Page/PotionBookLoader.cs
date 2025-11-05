@@ -53,10 +53,7 @@ namespace UI.Page
             {
                 PotionValue potion1 = this.potions[i],
                     potion2 = i + 1 < this.potions.Count ? this.potions[i + 1] : null;
-
-                Debug.Log($"{i} : {potion1}");
-                Debug.Log($"{i + 1} : {potion2}");
-
+                
                 if (potion1 == null) continue;
 
                 GameObject page = Instantiate(this.potionPagePrefab, this.pageParent);

@@ -3,16 +3,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using ScriptableVariables.Enums;
+using ScriptableVariables.Objects;
 using TMPro;
 using UI.Book.Button;
 using UI.Book.Slider;
 using UI.Book.TextInputField;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
-using System.IO;
-using Potions;
+
 // ReSharper disable CanSimplifyDictionaryLookupWithTryGetValue
 
 #endregion
@@ -36,6 +36,8 @@ namespace UI.Book
     {
         #region Values
 
+        [SerializeField] private TransformVariable playerTransformVariable;
+
         [SerializeField] private Canvas bookCanvas;
 
         [SerializeField] private PlayerStateVariable playerStateVariable;
@@ -53,9 +55,7 @@ namespace UI.Book
         [SerializeField] private CloseBookAction closeBookActionAction;
 
         [SerializeField] private List<GameObject> pages = new();
-        private int currentPageIndex = 0;
-
-        [SerializeField] private List<GameObject> potions = new();
+        private int currentPageIndex;
 
         private readonly Dictionary<string, BookButton> buttonReferences = new Dictionary<string, BookButton>();
         private readonly Dictionary<string, BookSlider> sliderReferences = new Dictionary<string, BookSlider>();
@@ -80,6 +80,17 @@ namespace UI.Book
 
         #region Build In States
 
+        private void OnEnable()
+        {
+            this.OnCameraTransformUpdate(this.playerTransformVariable.Value);
+            this.playerTransformVariable.AddListener(this.OnCameraTransformUpdate);
+        }
+
+        private void OnDisable()
+        {
+            this.playerTransformVariable.RemoveListener(this.OnCameraTransformUpdate);
+        }
+
         private void Start()
         {
             this.bookCanvas.gameObject.SetActive(false);
@@ -87,13 +98,6 @@ namespace UI.Book
 
             this.turnRight.SetActive(false);
             this.turnLeft.SetActive(false);
-            
-            //LoadPotionsFromScriptableObjects();
-        }
-
-        private void Update()
-        {
-            this.ManualPageUpdate();
         }
 
         #endregion
@@ -108,10 +112,10 @@ namespace UI.Book
 
         public void Effect(BookTurn turn)
         {
-            if (turn == BookTurn.Null) return;
+            if (turn == BookTurn.Null || this.currentBookAction != null) return;
 
-            this.invisiblyUI.SetActive(false);
-            this.StartCoroutine(this.AnimationTrigger(turn, 0.5f));
+            if (turn == BookTurn.Close || turn == BookTurn.Open)
+                this.AnimationTrigger(turn);
 
             this.CopyTextures();
 
@@ -124,26 +128,35 @@ namespace UI.Book
             switch (turn)
             {
                 case BookTurn.Open:
+                    InputManager.Instance.InteractInputEvent.AddListener(this.OnInteractInput);
+                    InputManager.Instance.ArrowAxisInputEvent.AddListener(this.OnArrowInput);
+                    this.invisiblyUI.SetActive(false);
                     this.bookCanvas.gameObject.SetActive(true);
+                    this.UpdatePageVisibility();
                     this.currentBookAction =
                         this.StartCoroutine(this.bookOpenActionAction.Operation(() => this.currentBookAction = null));
-                    this.UpdatePageVisibility();
                     break;
 
                 case BookTurn.Close:
+                    InputManager.Instance.InteractInputEvent.RemoveListener(this.OnInteractInput);
+                    InputManager.Instance.ArrowAxisInputEvent.RemoveListener(this.OnArrowInput);
+                    this.invisiblyUI.SetActive(false);
                     this.currentBookAction =
                         this.StartCoroutine(this.closeBookActionAction.Operation(() =>
                         {
                             this.bookCanvas.gameObject.SetActive(false);
                             this.currentBookAction = null;
+                            Debug.Log($"End: {this.currentBookAction == null}");
                         }));
                     break;
 
                 case BookTurn.Left:
                     if (this.currentPageIndex > 0)
                     {
+                        this.invisiblyUI.SetActive(false);
                         this.currentPageIndex--;
                         this.UpdatePageVisibility();
+                        this.AnimationTrigger(turn);
                         this.bookTurnBookAction.SetDirection(false);
                         this.currentBookAction =
                             this.StartCoroutine(this.bookTurnBookAction.Operation(() =>
@@ -157,8 +170,10 @@ namespace UI.Book
                 case BookTurn.Right:
                     if (this.currentPageIndex < this.pages.Count - 1)
                     {
+                        this.invisiblyUI.SetActive(false);
                         this.currentPageIndex++;
                         this.UpdatePageVisibility();
+                        this.AnimationTrigger(turn);
                         this.bookTurnBookAction.SetDirection(true);
                         this.currentBookAction =
                             this.StartCoroutine(this.bookTurnBookAction.Operation(() =>
@@ -166,6 +181,7 @@ namespace UI.Book
                                 this.currentBookAction = null;
                             }));
                     }
+
                     break;
 
                 case BookTurn.Null:
@@ -203,11 +219,9 @@ namespace UI.Book
             return result;
         }
 
-        private IEnumerator AnimationTrigger(BookTurn trigger, float time)
+        private void AnimationTrigger(BookTurn trigger)
         {
-            if (trigger == BookTurn.Null) yield break;
-
-            yield return new WaitForSeconds(time);
+            if (trigger == BookTurn.Null) return;
 
             int hash = trigger switch
             {
@@ -217,8 +231,6 @@ namespace UI.Book
                 BookTurn.Right => HashTurnRight,
                 _ => throw new ArgumentOutOfRangeException(nameof(trigger), trigger, null)
             };
-
-            //if (trigger is BookTurn.Close or BookTurn.Open) this.playerManager.GetController().TriggerAnimator(hash);
 
             this.bookAnimator.SetTrigger(hash);
         }
@@ -242,6 +254,8 @@ namespace UI.Book
 
             if (element is null) return;
 
+            obj.GetComponent<RectTransform>().localPosition += new Vector3(0, 0, -100f);
+
             Destroy(obj.GetComponent<TReference>());
             this.StartCoroutine(AddGUIReferenceComponent<TElement>(obj, this, element));
         }
@@ -259,7 +273,7 @@ namespace UI.Book
         private void ConstructAsync()
         {
             this.invisiblyUI.SetActive(false);
-            
+
             foreach (Transform t in this.invisiblyUI.transform)
                 Destroy(t.gameObject);
 
@@ -298,11 +312,20 @@ namespace UI.Book
                     this.Replace<BookSlider, BookSliderReference>(o, this.sliderReferences);
                     this.Replace<BookTextInputField, BookTextInputFieldReference>(o, this.textInputFieldReferences);
 
+                    if (o.GetComponent<Image>() is { } image)
+                        image.color = Color.clear;
+
                     if (o.GetComponent<Outline>() is { } outline)
                         Destroy(outline);
 
                     if (o.GetComponent<TextMeshProUGUI>() is { } text)
                         Destroy(text);
+
+                    if (o.GetComponent<Collider>() is { } collider)
+                        Destroy(collider);
+
+                    if (o.GetComponent<Rigidbody>() is { } rigidbody)
+                        Destroy(rigidbody);
                 }
 
                 break;
@@ -310,93 +333,52 @@ namespace UI.Book
 
             this.invisiblyUI.SetActive(true);
         }
-        
+
         private void UpdatePageVisibility()
         {
             for (int i = 0; i < this.pages.Count; i++)
             {
                 this.pages[i].SetActive(i == this.currentPageIndex);
             }
-            
-            Debug.Log($"Showing page {this.currentPageIndex + 1} of {this.pages.Count}");
-        }
-        
-        public void CloseBook() => this.Effect(BookTurn.Close);
 
-        public void FlipRight() => this.Effect(BookTurn.Right);
-        
-        public void FlipLeft() => this.Effect(BookTurn.Left);
-        
-        private void ManualPageUpdate()
-        {
-            // Only handle input if the book is open
-            if (!this.bookCanvas.gameObject.activeSelf)
-                return;
-
-            // Prevent new input while an animation is running
-            if (this.currentBookAction != null)
-                return;
-
-            // Right Arrow → turn right (next page)
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                this.FlipRight();
-            }
-
-            // Left Arrow → turn left (previous page)
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                this.FlipLeft();
-            }
-
-            // Optional: Escape key closes the book
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                this.CloseBook();
-            }
+            //Debug.Log($"Showing page {this.currentPageIndex + 1} of {this.pages.Count}");
         }
 
-        /*private void LoadPotionsFromScriptableObjects()
+        public void FlipRight()
         {
-            string folder = "Assets/ScriptableObjects/Potions";
-            potions.Clear();
+            this.Effect(BookTurn.Right);
+        }
 
-            // Load all PotionValue assets directly from that folder
-            string[] guids = AssetDatabase.FindAssets("t:PotionValue", new[] { folder });
-            if (guids.Length == 0)
-            {
-                Debug.Log($"No PotionValue Assets found in: {folder}");
-            }
+        public void FlipLeft()
+        {
+            this.Effect(BookTurn.Left);
+        }
 
-            foreach (string guid in guids)
-            {
-                string path = AssetDatabase.GUIDToAssetPath(guid);
-                PotionValue potionValue = AssetDatabase.LoadAssetAtPath<PotionValue>(path);
-
-                if (potionValue != null && potionValue.GetPrefab() != null)
-                {
-                    GameObject potionInstance = Instantiate(potionValue.GetPrefab());
-                    potionInstance.name = potionValue.name;
-                    potionInstance.hideFlags = HideFlags.HideInHierarchy;
-
-                    potions.Add(potionInstance);
-                }
-            }
-
-            Debug.Log($"Loaded {potions.Count} potions from {folder}");
-            foreach (var potion in potions)
-            {
-                Debug.Log($"Name: {potion.name}");
-            }
-        }*/
-        
         public void SetPages(List<GameObject> newPages)
         {
             this.pages = newPages;
             this.currentPageIndex = 0;
             this.UpdatePageVisibility();
         }
-        
+
+        private void OnCameraTransformUpdate(Transform input)
+        {
+            this.invisiblyUI.GetComponent<Canvas>().worldCamera = input?.GetComponent<Camera>();
+        }
+
+        private void OnInteractInput()
+        {
+            this.Effect(BookTurn.Close);
+        }
+
+        private void OnArrowInput(Vector2 input)
+        {
+            if (input.x == 0)
+                return;
+
+            this.Effect(input.x < 0 ? BookTurn.Left : BookTurn.Right);
+        }
+
         #endregion
     }
 }

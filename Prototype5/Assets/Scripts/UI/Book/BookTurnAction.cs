@@ -18,8 +18,6 @@ namespace UI.Book
         [SerializeField] private GameObject turnLeftPaper, turnRightPaper, openLeft, openRight;
 
         private bool fromLeftToRight;
-        private bool done;
-        private static readonly int InvertPageID = Shader.PropertyToID("InvertPage");
 
         #endregion
 
@@ -28,36 +26,29 @@ namespace UI.Book
             this.fromLeftToRight = set;
         }
 
-        public bool IsOperationDone => this.done;
-
         public IEnumerator Operation(UnityAction onEnd)
         {
-            this.done = false;
-
             this.SetOpens(false);
             this.SetTurns(true);
-
-            this.turnLeftPaper.GetComponent<Renderer>().material.SetInt(InvertPageID, this.fromLeftToRight ? 0 : 1);
-            this.turnRightPaper.GetComponent<Renderer>().material.SetInt(InvertPageID, this.fromLeftToRight ? 1 : 0);
 
             const float animationTime = 0.5f;
 
             yield return new WaitForSeconds(animationTime * 0.1f);
 
-            if (!this.fromLeftToRight)
+            if (this.fromLeftToRight)
                 this.openRight.SetActive(true);
             else
                 this.openLeft.SetActive(true);
 
-            yield return new WaitForSeconds(animationTime * 0.9f);
+            yield return new WaitForSeconds(animationTime * 0.825f);
 
             this.SetTurns(false);
             this.SetOpens(true);
 
             this.uiBook.ConstructUI();
-            
-            this.done = true;
-            
+
+            yield return new WaitForSeconds(animationTime * 0.075f);
+
             onEnd?.Invoke();
         }
 
