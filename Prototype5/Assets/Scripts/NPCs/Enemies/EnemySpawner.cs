@@ -26,15 +26,20 @@ namespace NPCs.Enemies
             if (spawnPositions.Length == 0) return;
 
             foreach (var position in spawnPositions)
-            {
-                GameObject mob = _useNightMobs ? nightMobPrefab : dayMobPrefab;
+                InstantiateMob(position);
+        }
+
+        private void InstantiateMob(Vector3 position)
+        {
+            GameObject mob = _useNightMobs ? nightMobPrefab : dayMobPrefab;
                 
-                EnemyStateMachine enemyStateMachine = mob.GetComponent<EnemyStateMachine>();
-                enemyStateMachine.playerTransform = playerTransform;
-                enemyStateMachine.damageType = damageType;
+            EnemyStateMachine enemyStateMachine = mob.GetComponent<EnemyStateMachine>();
+            enemyStateMachine.playerTransform = playerTransform;
+            enemyStateMachine.damageType = damageType;
                 
-                Instantiate(mob, position, Quaternion.identity);
-            }
+            CharacterHealth.Health enemyHealth = 
+                Instantiate(mob, position, Quaternion.identity).GetComponent<CharacterHealth.Health>();
+            enemyHealth.LocalDeathAction += enemyStateMachine.OnDeath;
         }
     }
 }

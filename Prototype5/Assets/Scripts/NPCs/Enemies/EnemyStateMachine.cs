@@ -29,6 +29,7 @@ namespace NPCs.Enemies
         [HideInInspector] public Transform playerTransform;
         [HideInInspector] public CharacterHealth.Health playerHealth;
         [HideInInspector] public DamageType damageType;
+        private CharacterHealth.Health enemyHealth;
         
         public float DistanceToTarget => Vector3.Distance(transform.position, playerTransform.position);
 
@@ -37,6 +38,7 @@ namespace NPCs.Enemies
             playerHealth = playerTransform.gameObject.GetComponent<CharacterHealth.Health>();
             agent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
+            enemyHealth = GetComponent<CharacterHealth.Health>();
             
             WanderState = new EnemyWanderState(this);
             ChaseState = new EnemyChaseState(this);
@@ -47,9 +49,15 @@ namespace NPCs.Enemies
         {
             SwitchState(WanderState);
         }
+        
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.T))
+                enemyHealth.ApplyDamageType(30, ScriptableObject.CreateInstance<DamageType>());
+        }
 
         public bool SeesPlayer() {
-            if (playerTransform == null) return false;
+            if (!playerTransform) return false;
 
             Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
             float angle = Vector3.Angle(transform.forward, directionToPlayer);
@@ -61,5 +69,7 @@ namespace NPCs.Enemies
 
             return false;
         }
+
+        public void OnDeath() => Debug.Log("Enemy killed");
     }
 }

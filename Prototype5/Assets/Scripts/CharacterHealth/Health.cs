@@ -2,44 +2,52 @@ using System;
 using System.Collections.Generic;
 using ScriptableVariables.Objects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CharacterHealth
 {
     public class Health : MonoBehaviour
     {
         [SerializeField] private float maxHealth = 100.0f;
-        public GameEvent deathEvent;
+        public GameEvent globalDeathEvent;
+        public Action LocalDeathAction;
 
-        private float currentHealth;
+        private float _currentHealth;
 
         [SerializeField] private List<Resistance> resistances = new List<Resistance>();
 
         private void Start()
         {
-            this.currentHealth = this.maxHealth;
+            _currentHealth = maxHealth;
         }
 
         public void ApplyHeal(float amount)
         {
-            this.currentHealth = Mathf.Min(this.maxHealth, this.currentHealth + amount);
+            _currentHealth = Mathf.Min(maxHealth, _currentHealth + amount);
         }
 
         public void ApplyDamageType(float damageAmount, DamageType damageType)
         {
             float amount = damageAmount;
-            if (damageType != null)
+            if (damageType)
             {
-                foreach (Resistance resistance in this.resistances)
+                foreach (Resistance resistance in resistances)
                 {
                     if (resistance.damageType == damageType)
                         amount *= resistance.multiplier;
                 }
             }
 
-            this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
+            _currentHealth = Mathf.Max(0.0f, _currentHealth - amount);
 
-            if (this.currentHealth == 0.0f)
-                this.deathEvent?.InvokeGameEvents();
+            if (_currentHealth == 0.0f)
+                OnDeath();
+        }
+
+        private void OnDeath()
+        {
+            LocalDeathAction?.Invoke();
+            globalDeathEvent?.InvokeGameEvents();
         }
 
         [Serializable]
