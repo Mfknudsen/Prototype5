@@ -23,6 +23,9 @@ namespace NPCs
 
         private void Start()
         {
+            if (this.GetComponent<Collider>() == null)
+                Debug.LogError("A collider is needed for the interact handling", this);
+
             this.speechBubble.SetText(this.defaultDialog.text);
         }
 
