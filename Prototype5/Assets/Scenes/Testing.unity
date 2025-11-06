@@ -1650,7 +1650,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8502955513247984652, guid: 82d9e129874dc24488d365eb0291fcc6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 598350545}
   m_SourcePrefab: {fileID: 100100000, guid: 82d9e129874dc24488d365eb0291fcc6, type: 3}
 --- !u!1001 &491784418
 PrefabInstance:
@@ -1766,6 +1769,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6ed51704bc548c44a1062e86a905477, type: 3}
+--- !u!1 &598350541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8502955513247984652, guid: 82d9e129874dc24488d365eb0291fcc6, type: 3}
+  m_PrefabInstance: {fileID: 448903634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &598350545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598350541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12fd0710b7e1ef740b97f70aeca58fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransformVariable: {fileID: 11400000, guid: a6eefd8b6e7b757489be447beedd7bf1, type: 2}
+  interactHighlightOffset: {x: 0, y: 0, z: 0}
+  speechBubble: {fileID: 0}
+  defaultDialog: {fileID: 0}
+  speechShowDistance: 5
 --- !u!1001 &598595704
 PrefabInstance:
   m_ObjectHideFlags: 0
