@@ -9,19 +9,23 @@ namespace NPCs.Enemies
         [SerializeField] private GameObject nightMobPrefab;
         [SerializeField] private GameObject dayMobPrefab;
         [SerializeField] private Vector3[] spawnPositions;
+        [SerializeField] private EnemySpawnerReference enemySpawnerReference;
         
         [Header("Attack Player")]
         public Transform playerTransform;
         public DamageType damageType;
 
-        private bool _useNightMobs = true;
+        public bool useNightMobs = true;
 
         private void Awake()
         {
-            SpawnMobs();
+            if (enemySpawnerReference)
+                enemySpawnerReference.value = this;
+            else
+                Debug.Log("Enemy Spawner Reference is null");
         }
 
-        private void SpawnMobs()
+        public void SpawnMobs()
         {
             if (spawnPositions.Length == 0) return;
 
@@ -29,10 +33,16 @@ namespace NPCs.Enemies
                 InstantiateMob(position);
         }
 
+        public void DespawnMobs()
+        {
+            for (int i = 0; i < transform.childCount; i++)
+                transform.GetChild(i).gameObject.GetComponent<EnemyStateMachine>().OnDeath();
+        }
+
         private void InstantiateMob(Vector3 position)
         {
-            GameObject mobPrefab = _useNightMobs ? nightMobPrefab : dayMobPrefab;
-            GameObject mob = Instantiate(mobPrefab, position, Quaternion.identity);
+            GameObject mobPrefab = useNightMobs ? nightMobPrefab : dayMobPrefab;
+            GameObject mob = Instantiate(mobPrefab, position, Quaternion.identity, transform);
             
             EnemyStateMachine enemyStateMachine = mob.GetComponent<EnemyStateMachine>();
             enemyStateMachine.playerTransform = playerTransform;
@@ -40,6 +50,12 @@ namespace NPCs.Enemies
             
             CharacterHealth.Health enemyHealth = mob.GetComponent<CharacterHealth.Health>();
             enemyHealth.LocalDeathAction += enemyStateMachine.OnDeath;
+        }
+
+        private void OnDestroy()
+        {            
+            if (enemySpawnerReference) 
+                enemySpawnerReference.value = null;
         }
     }
 }

@@ -3475,6 +3475,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1202719867}
     - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: enemySpawnerReference
+      value: 
+      objectReference: {fileID: 11400000, guid: f4f6c48588058a24eb274322a6bd2100, type: 2}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: spawnPositions.Array.size
       value: 1
       objectReference: {fileID: 0}

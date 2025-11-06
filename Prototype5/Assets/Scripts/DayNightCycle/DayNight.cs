@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NPCs.Enemies;
 using ScriptableVariables.Objects;
 using UnityEditor;
 using UnityEngine;
@@ -36,6 +37,9 @@ namespace DayNightCycle
         private static Camera playerCamera;
 
         private static TransformVariable cameraTransformVariable;
+        
+        private static EnemySpawner _enemySpawner;
+        private static bool _enemiesSpawned;
 
         #region Getters
 
@@ -131,6 +135,16 @@ namespace DayNightCycle
             _currentDayNightTime = DayNightTime.Evening;
             _currentTime = (float)DayNightTime.Evening;
 
+            AsyncOperationHandle<EnemySpawnerReference> loadEnemySpawner = Addressables
+                .LoadAssetAsync<EnemySpawnerReference>("Assets/ScriptableObjects/Spawners/EnemySpawnerReference.asset");
+            loadEnemySpawner.Completed += t =>
+            {
+                if (loadEnemySpawner.Result.value != null)
+                    _enemySpawner = loadEnemySpawner.Result.value;
+                
+                _onTimeChangeEvent.AddListener(CheckSpawnEnemies);
+            };
+            
 #if UNITY_EDITOR
             EditorApplication.playModeStateChanged += OnExitPlayMode;
 #endif
@@ -214,6 +228,23 @@ namespace DayNightCycle
         private static void OnCameraTransformUpdate(Transform transform)
         {
             playerCamera = transform?.GetComponent<Camera>();
+        }
+
+        private static void CheckSpawnEnemies(DayNightTime dayNightTime)
+        {
+            var spawnTime = _enemySpawner.useNightMobs ? DayNightTime.Night : DayNightTime.Morning;
+            var despawnTime = _enemySpawner.useNightMobs ? DayNightTime.Morning : DayNightTime.Night;
+
+            if (dayNightTime == spawnTime && !_enemiesSpawned)
+            {
+                _enemySpawner.SpawnMobs();
+                _enemiesSpawned = true;
+            }
+            else if (dayNightTime == despawnTime && _enemiesSpawned)
+            {
+                _enemySpawner.DespawnMobs();
+                _enemiesSpawned = false;
+            }
         }
 
         #endregion
