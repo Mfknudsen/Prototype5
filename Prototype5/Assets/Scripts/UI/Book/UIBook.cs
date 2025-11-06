@@ -318,7 +318,7 @@ namespace UI.Book
                 this.pages[i].SetActive(i == this.currentPageIndex);
             }
             
-            Debug.Log($"Showing page {this.currentPageIndex + 1} of {this.pages.Count}");
+            // Debug.Log($"Showing page {this.currentPageIndex + 1} of {this.pages.Count}");
         }
         
         public void CloseBook() => this.Effect(BookTurn.Close);

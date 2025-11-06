@@ -54,8 +54,8 @@ namespace UI.Page
                 PotionValue potion1 = this.potions[i],
                     potion2 = i + 1 < this.potions.Count ? this.potions[i + 1] : null;
 
-                Debug.Log($"{i} : {potion1}");
-                Debug.Log($"{i + 1} : {potion2}");
+                // Debug.Log($"{i} : {potion1}");
+                // Debug.Log($"{i + 1} : {potion2}");
 
                 if (potion1 == null) continue;
 
@@ -77,7 +77,7 @@ namespace UI.Page
             // Assign generated pages to UIBook
             this.uiBook.SetPages(this.createdPages);
 
-            Debug.Log($"PotionBookLoader: Added {this.createdPages.Count} pages to UIBook.");
+            // Debug.Log($"PotionBookLoader: Added {this.createdPages.Count} pages to UIBook.");
         }
 
         /*private static PotionValue[] LoadAllPotionValues()

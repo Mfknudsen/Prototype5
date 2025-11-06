@@ -16,7 +16,7 @@ namespace NPCs.Enemies
 
         private bool _useNightMobs = true;
 
-        private void Start()
+        private void Awake()
         {
             SpawnMobs();
         }
@@ -31,14 +31,14 @@ namespace NPCs.Enemies
 
         private void InstantiateMob(Vector3 position)
         {
-            GameObject mob = _useNightMobs ? nightMobPrefab : dayMobPrefab;
-                
+            GameObject mobPrefab = _useNightMobs ? nightMobPrefab : dayMobPrefab;
+            GameObject mob = Instantiate(mobPrefab, position, Quaternion.identity);
+            
             EnemyStateMachine enemyStateMachine = mob.GetComponent<EnemyStateMachine>();
             enemyStateMachine.playerTransform = playerTransform;
             enemyStateMachine.damageType = damageType;
-                
-            CharacterHealth.Health enemyHealth = 
-                Instantiate(mob, position, Quaternion.identity).GetComponent<CharacterHealth.Health>();
+            
+            CharacterHealth.Health enemyHealth = mob.GetComponent<CharacterHealth.Health>();
             enemyHealth.LocalDeathAction += enemyStateMachine.OnDeath;
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using NPCs.Base;
 using ScriptableVariables.Objects;
 using UnityEngine;
@@ -29,31 +30,26 @@ namespace NPCs.Enemies
         [HideInInspector] public Transform playerTransform;
         [HideInInspector] public CharacterHealth.Health playerHealth;
         [HideInInspector] public DamageType damageType;
-        private CharacterHealth.Health enemyHealth;
+
+        private EnemyDeathState _deathState;
         
         public float DistanceToTarget => Vector3.Distance(transform.position, playerTransform.position);
 
-        private void Awake()
+        public void Awake()
         {
-            playerHealth = playerTransform.gameObject.GetComponent<CharacterHealth.Health>();
             agent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
-            enemyHealth = GetComponent<CharacterHealth.Health>();
             
             WanderState = new EnemyWanderState(this);
             ChaseState = new EnemyChaseState(this);
             AttackState = new EnemyAttackState(this);
+            _deathState = new EnemyDeathState(this);
         }
 
         private void Start()
         {
+            playerHealth = playerTransform.gameObject.GetComponent<CharacterHealth.Health>();
             SwitchState(WanderState);
-        }
-        
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.T))
-                enemyHealth.ApplyDamageType(30, ScriptableObject.CreateInstance<DamageType>());
         }
 
         public bool SeesPlayer() {
@@ -69,7 +65,7 @@ namespace NPCs.Enemies
 
             return false;
         }
-
-        public void OnDeath() => Debug.Log("Enemy killed");
+        
+        public void OnDeath() => SwitchState(_deathState);
     }
 }

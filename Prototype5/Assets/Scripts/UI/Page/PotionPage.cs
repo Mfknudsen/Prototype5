@@ -37,7 +37,7 @@ namespace UI.Page
         {
             if (potion1 != null)
             {
-                Debug.Log(potion1.name);
+                // Debug.Log(potion1.name);
                 // Title
                 if (this.pageTitleLeft != null) this.pageTitleLeft.text = RemovePotionPrefix(potion1.name);
 
@@ -72,7 +72,7 @@ namespace UI.Page
             }
             else
             {
-                Debug.LogError("PotionPage.SetupFromPotion: potion is null", this);
+                // Debug.LogError("PotionPage.SetupFromPotion: potion is null", this);
             }
 
             if (potion2 != null)
