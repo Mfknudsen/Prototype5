@@ -82,7 +82,8 @@ namespace UI.Book
 
         private void OnEnable()
         {
-            this.OnCameraTransformUpdate(this.playerTransformVariable.Value);
+            if (playerTransformVariable.Value != null)
+                this.OnCameraTransformUpdate(this.playerTransformVariable.Value);
             this.playerTransformVariable.AddListener(this.OnCameraTransformUpdate);
         }
 
