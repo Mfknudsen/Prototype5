@@ -2,8 +2,11 @@ using UnityEngine;
 
 namespace Rumors
 {
-    public class Dialog : ScriptableObject
+    [CreateAssetMenu(fileName = "Dialog", menuName = "Scriptable Objects/Dialog")]
+    public sealed class Dialog : ScriptableObject
     {
-        public string text;
+        [SerializeField] [TextArea] private string description;
+
+        [TextArea] public string text;
     }
 }
