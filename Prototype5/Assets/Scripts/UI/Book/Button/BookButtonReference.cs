@@ -38,9 +38,9 @@ namespace UI.Book.Button
 
         #region In
 
-        public void Setup(UIBook uiBook, ICustomGUIElement element)
+        public void Setup(UIBook setUIBook, ICustomGUIElement element)
         {
-            this.uiBook = uiBook;
+            this.uiBook = setUIBook;
 
             if (element is BookButton button) this.bookButton = button;
         }

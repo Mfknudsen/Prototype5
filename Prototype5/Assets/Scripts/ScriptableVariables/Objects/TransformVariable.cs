@@ -12,6 +12,8 @@ namespace ScriptableVariables.Objects
         public Quaternion Rotation => this.Value.rotation;
         public Vector3 Euler => this.Value.rotation.eulerAngles;
 
+        public Vector2 XZ => new Vector2(this.value.position.x, this.value.position.z);
+
         public void Move(Vector3 v)
         {
             if (v == Vector3.zero)

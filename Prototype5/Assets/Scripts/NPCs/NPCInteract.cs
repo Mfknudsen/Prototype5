@@ -1,0 +1,79 @@
+using Interactions;
+using Rumors;
+using ScriptableVariables.Objects;
+using UnityEngine;
+
+namespace NPCs
+{
+    public sealed class NPCInteract : MonoBehaviour, IInteractable
+    {
+        [SerializeField] private TransformVariable playerTransformVariable;
+
+        [SerializeField] private Vector3 interactHighlightOffset;
+
+        [SerializeField] private SpeechBubble speechBubble;
+
+        [SerializeField] private Dialog defaultDialog;
+
+        [SerializeField] private float speechShowDistance = 5f;
+
+        private Dialog currentDialog;
+
+        private NPCInteractBase currentInteractBase;
+
+        private void Start()
+        {
+            if (this.GetComponent<Collider>() == null)
+                Debug.LogError("A collider is needed for the interact handling", this);
+
+            this.speechBubble.SetText(this.defaultDialog.text);
+        }
+
+        private void Update()
+        {
+            if (!this.playerTransformVariable.Value)
+            {
+                this.speechBubble.gameObject.SetActive(false);
+                return;
+            }
+
+            this.speechBubble.gameObject.SetActive(true);
+
+            this.speechBubble.gameObject.SetActive(Vector2.Distance(
+                new Vector2(this.transform.position.x, this.transform.position.z),
+                this.playerTransformVariable.XZ) <= this.speechShowDistance);
+        }
+
+        public void OnTrigger()
+        {
+            this.currentInteractBase?.Trigger(this);
+        }
+
+        public bool IsActive()
+        {
+            return this.gameObject.activeSelf;
+        }
+
+        public Vector3 Hover()
+        {
+            return this.transform.position + this.interactHighlightOffset;
+        }
+
+        public void SetDialog(Dialog set)
+        {
+            this.currentDialog = !set ? this.defaultDialog : set;
+
+            this.speechBubble.SetText(this.currentDialog.text);
+        }
+
+        public void SetCurrentTrigger(NPCInteractBase set)
+        {
+            this.currentInteractBase = set;
+        }
+    }
+
+    public abstract class NPCInteractBase
+    {
+        public abstract void Trigger(NPCInteract npc);
+    }
+}

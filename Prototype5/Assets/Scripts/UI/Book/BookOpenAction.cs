@@ -22,7 +22,7 @@ namespace UI.Book
         {
             this.playerStateVariable.Value = PlayerStateEnum.InMenu;
 
-            yield return null;
+            yield return new WaitForSeconds(0.5f);
 
             this.uiBook.ConstructUI();
             this.IsOperationDone = true;
@@ -31,8 +31,6 @@ namespace UI.Book
             Cursor.lockState = CursorLockMode.None;
 
             onEnd?.Invoke();
-
-            yield return null;
         }
     }
 }

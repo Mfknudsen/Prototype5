@@ -13,7 +13,8 @@ namespace Managers
 
         public readonly UnityEvent<Vector2>
             MoveAxisInputEvent = new UnityEvent<Vector2>(),
-            TurnAxisInputEvent = new UnityEvent<Vector2>();
+            TurnAxisInputEvent = new UnityEvent<Vector2>(),
+            ArrowAxisInputEvent = new UnityEvent<Vector2>();
 
         public readonly UnityEvent
             InteractInputEvent = new UnityEvent(),
@@ -42,6 +43,11 @@ namespace Managers
                 context => this.TurnAxisInputEvent.Invoke(context.ReadValue<Vector2>());
             playerInput.Player.Look.canceled +=
                 context => this.TurnAxisInputEvent.Invoke(context.ReadValue<Vector2>());
+
+            playerInput.Player.Arrows.performed +=
+                context => this.ArrowAxisInputEvent.Invoke(context.ReadValue<Vector2>());
+            playerInput.Player.Arrows.canceled +=
+                context => this.ArrowAxisInputEvent.Invoke(context.ReadValue<Vector2>());
 
             playerInput.Player.Sprint.performed += _ => this.RunInputEvent.Invoke(true);
             playerInput.Player.Sprint.canceled += _ => this.RunInputEvent.Invoke(false);

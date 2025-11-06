@@ -112,6 +112,8 @@ namespace UI.Page
             else
             {
                 this.pageTitleRight.text = "";
+                this.effectDescriptionRight.text = "";
+                this.flavourDescriptionRight.text = "";
                 //Debug.LogError("PotionPage.SetupFromPotion: potion is null", this);
             }
         }
