@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b476188c2099e7458fdef1d2f6d49a3, type: 3}
+  m_Name: Corrupted Potion of Fire
+  m_EditorClassIdentifier: 
+  potionPrefab: {fileID: 5187084931165711824, guid: 2b844a4f8b523ff42addc346e1c1d058, type: 3}
+  onShatterVFX: {fileID: 0}
+  description: Reminds you of your mother's disapproving stare
+  spriteOne: {fileID: 21300000, guid: 70f1c8047eb5f462bb5ad177b646717e, type: 3}
+  spriteTwo: {fileID: 21300000, guid: ae63b3fee11e34d2fa0a2d4ac376efbd, type: 3}
+  effects:
+  - rid: 7969916117750644985
+  - rid: 3662799380637548546
+  references:
+    version: 2
+    RefIds:
+    - rid: 3662799380637548546
+      type: {class: FireEffect, ns: Potions.Effects, asm: Assembly-CSharp}
+      data:
+        debugGizmo: 0
+        effectRadius: 0
+        persistentGameObject: {fileID: 0}
+        effectDuration: 0
+    - rid: 7969916117750644985
+      type: {class: PushBackEffect, ns: Potions.Effects, asm: Assembly-CSharp}
+      data:
+        debugGizmo: 1
+        effectRadius: 2
+        forceStrength: 1500

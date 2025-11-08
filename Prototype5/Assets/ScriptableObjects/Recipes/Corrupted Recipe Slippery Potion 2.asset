@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4ceaff86e832e74ebf7962d44530dbc, type: 3}
+  m_Name: Corrupted Recipe Slippery Potion 2
+  m_EditorClassIdentifier: 
+  ingredients:
+  - ingredientValue: {fileID: 11400000, guid: ffb17f2aff7caa244811fe05c03dafae, type: 2}
+    count: 1
+  - ingredientValue: {fileID: 11400000, guid: fe91b6d0d44ac28488c4279c84a7438e, type: 2}
+    count: 1
+  - ingredientValue: {fileID: 11400000, guid: cd19d81d9683aea45bd67e0b157930d4, type: 2}
+    count: 1
+  potionResults:
+  - {fileID: 11400000, guid: 99f5d8f6ff65ad34586333ba8797dc09, type: 2}

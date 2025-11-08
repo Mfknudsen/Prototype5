@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b476188c2099e7458fdef1d2f6d49a3, type: 3}
+  m_Name: Corrupted Thorn Juice
+  m_EditorClassIdentifier: 
+  potionPrefab: {fileID: 5187084931165711824, guid: 81909da489f21a84cb36e8161267b347, type: 3}
+  onShatterVFX: {fileID: 0}
+  description: For the creatures that think drinking should hurt
+  spriteOne: {fileID: 21300000, guid: 8df6eb9376ce344909f88da6629e7f85, type: 3}
+  spriteTwo: {fileID: 21300000, guid: db385975adeec4fedb8bef9f51ebf5e2, type: 3}
+  effects:
+  - rid: 7969916117750644985
+  - rid: 7969916141511376973
+  references:
+    version: 2
+    RefIds:
+    - rid: 7969916117750644985
+      type: {class: PushBackEffect, ns: Potions.Effects, asm: Assembly-CSharp}
+      data:
+        debugGizmo: 1
+        effectRadius: 2
+        forceStrength: 1500
+    - rid: 7969916141511376973
+      type: {class: ThornEffect, ns: Potions.Effects, asm: Assembly-CSharp}
+      data:
+        debugGizmo: 0
+        effectRadius: 0
+        persistentThornGameObject: {fileID: 4661402579496498467, guid: 27ee6c7f377ec6c48a91c4c7fa565549, type: 3}
+        duration: 0

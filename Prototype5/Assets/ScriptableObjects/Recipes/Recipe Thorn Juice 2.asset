@@ -18,4 +18,4 @@ MonoBehaviour:
   - ingredientValue: {fileID: 11400000, guid: ffb17f2aff7caa244811fe05c03dafae, type: 2}
     count: 1
   potionResults:
-  - {fileID: 11400000, guid: 303c586e561fce84e8d8467f47826c97, type: 2}
+  - {fileID: 11400000, guid: b6468b52a6879974bae2db0e0c4952f9, type: 2}
