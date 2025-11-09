@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 20b9a52b1e7741449a1948864cea4741
+AssetOrigin:
+  serializedVersion: 1
+  productId: 286054
+  packageName: Low Poly Fantasy Village
+  packageVersion: 0.1.0
+  assetPath: Assets/OccaSoftware/Low Poly Fantasy Village/Meshes/bench.fbx
+  uploadId: 670656
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,7 +15,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Color texture
-    second: {fileID: 2100000, guid: 11783c05facd0c149ad53d328816c467, type: 2}
+    second: {fileID: 2100000, guid: e15a82ec3cbf67748b4c73c4cb3bee83, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -21,8 +28,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -112,10 +117,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 286054
-  packageName: Low Poly Fantasy Village
-  packageVersion: 0.1.0
-  assetPath: Assets/OccaSoftware/Low Poly Fantasy Village/Meshes/bench.fbx
-  uploadId: 670656
