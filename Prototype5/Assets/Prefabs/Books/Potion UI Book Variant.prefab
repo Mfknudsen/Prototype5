@@ -45,6 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potions:
+  - {fileID: 11400000, guid: f1f4a3c2007d05248afb2634dbf76bba, type: 2}
+  - {fileID: 11400000, guid: ebebd127fb5d6544483dd80fcbad5c6f, type: 2}
+  - {fileID: 11400000, guid: 9e2daefd4ee3c7b4ca028c5207a70c2c, type: 2}
+  - {fileID: 11400000, guid: 99f5d8f6ff65ad34586333ba8797dc09, type: 2}
+  - {fileID: 11400000, guid: e180a966596a5eb4f9d96fe23dee692f, type: 2}
   - {fileID: 11400000, guid: 10abb55b6c380dc46af0c932618b8ce2, type: 2}
   - {fileID: 11400000, guid: 676a1ecf21ebe6b4c836c1462134bf4c, type: 2}
   - {fileID: 11400000, guid: 184b825e2290871418ad5cfa3a35c9cd, type: 2}
