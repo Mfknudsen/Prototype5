@@ -28,6 +28,9 @@ namespace Managers
         public readonly UnityEvent<int>
             HotbarKey = new UnityEvent<int>();
 
+        public readonly UnityEvent
+            EnemySpawnEvent = new UnityEvent();
+
         private InputManager()
         {
             InputSystem_Actions playerInput = new InputSystem_Actions();

@@ -1,11 +1,15 @@
+using System;
+using DayNightCycle;
 using ScriptableVariables.Objects;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace NPCs.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [Header("Enemy Information")] 
+        [Header("Enemy Information")]
+        public bool useNightMobs = true;
         [SerializeField] private GameObject nightMobPrefab;
         [SerializeField] private GameObject dayMobPrefab;
         [SerializeField] private Vector3[] spawnPositions;
@@ -14,15 +18,27 @@ namespace NPCs.Enemies
         [Header("Attack Player")]
         public Transform playerTransform;
         public DamageType damageType;
-
-        public bool useNightMobs = true;
-
+        
+        private UnityEvent<DayNightTime> _changeTimeEvent;
+        private static bool _enemiesSpawned;
+        
         private void Awake()
         {
+            _changeTimeEvent = DayNight.GetOnTimeChangeEvent();
             if (enemySpawnerReference)
                 enemySpawnerReference.value = this;
             else
                 Debug.Log("Enemy Spawner Reference is null");
+        }
+
+        private void OnEnable()
+        {
+            _changeTimeEvent.AddListener(CheckSpawnEnemies);
+        }
+
+        private void OnDisable()
+        {
+            _changeTimeEvent.RemoveListener(CheckSpawnEnemies);
         }
 
         public void SpawnMobs()
@@ -56,6 +72,23 @@ namespace NPCs.Enemies
         {            
             if (enemySpawnerReference) 
                 enemySpawnerReference.value = null;
+        }
+        
+        private void CheckSpawnEnemies(DayNightTime dayNightTime)
+        {
+            var spawnTime = useNightMobs ? DayNightTime.Night : DayNightTime.Morning;
+            var despawnTime = useNightMobs ? DayNightTime.Morning : DayNightTime.Night;
+
+            if (dayNightTime == spawnTime && !_enemiesSpawned)
+            {
+                SpawnMobs();
+                _enemiesSpawned = true;
+            }
+            else if (dayNightTime == despawnTime && _enemiesSpawned)
+            {
+                DespawnMobs();
+                _enemiesSpawned = false;
+            }
         }
     }
 }
