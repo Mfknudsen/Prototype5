@@ -1,8 +1,6 @@
-using System;
 using DayNightCycle;
 using ScriptableVariables.Objects;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace NPCs.Enemies
 {
@@ -13,21 +11,12 @@ namespace NPCs.Enemies
         [SerializeField] private GameObject nightMobPrefab;
         [SerializeField] private GameObject dayMobPrefab;
         [SerializeField] private Vector3[] spawnPositions;
-        [SerializeField] private EnemySpawnerReference enemySpawnerReference;
         
         [Header("Attack Player")]
         public Transform playerTransform;
         public DamageType damageType;
         
         private static bool _enemiesSpawned;
-        
-        private void Awake()
-        {
-            if (enemySpawnerReference)
-                enemySpawnerReference.value = this;
-            else
-                Debug.Log("Enemy Spawner Reference is null");
-        }
 
         private void OnEnable()
         {
@@ -64,12 +53,6 @@ namespace NPCs.Enemies
             
             CharacterHealth.Health enemyHealth = mob.GetComponent<CharacterHealth.Health>();
             enemyHealth.LocalDeathAction += enemyStateMachine.OnDeath;
-        }
-
-        private void OnDestroy()
-        {            
-            if (enemySpawnerReference) 
-                enemySpawnerReference.value = null;
         }
         
         private void CheckSpawnEnemies(DayNightTime dayNightTime)
