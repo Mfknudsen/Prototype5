@@ -1,3 +1,4 @@
+using DayNightCycle;
 using ScriptableVariables.Objects;
 using UnityEngine;
 
@@ -5,24 +6,26 @@ namespace NPCs.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [Header("Enemy Information")] 
+        [Header("Enemy Information")]
+        public bool useNightMobs = true;
         [SerializeField] private GameObject nightMobPrefab;
         [SerializeField] private GameObject dayMobPrefab;
         [SerializeField] private Vector3[] spawnPositions;
-        [SerializeField] private EnemySpawnerReference enemySpawnerReference;
         
         [Header("Attack Player")]
         public Transform playerTransform;
         public DamageType damageType;
+        
+        private static bool _enemiesSpawned;
 
-        public bool useNightMobs = true;
-
-        private void Awake()
+        private void OnEnable()
         {
-            if (enemySpawnerReference)
-                enemySpawnerReference.value = this;
-            else
-                Debug.Log("Enemy Spawner Reference is null");
+            DayNight.AddListener(CheckSpawnEnemies);
+        }
+
+        private void OnDisable()
+        {
+            DayNight.RemoveListener(CheckSpawnEnemies);
         }
 
         public void SpawnMobs()
@@ -51,11 +54,22 @@ namespace NPCs.Enemies
             CharacterHealth.Health enemyHealth = mob.GetComponent<CharacterHealth.Health>();
             enemyHealth.LocalDeathAction += enemyStateMachine.OnDeath;
         }
+        
+        private void CheckSpawnEnemies(DayNightTime dayNightTime)
+        {
+            var spawnTime = useNightMobs ? DayNightTime.Night : DayNightTime.Morning;
+            var despawnTime = useNightMobs ? DayNightTime.Morning : DayNightTime.Night;
 
-        private void OnDestroy()
-        {            
-            if (enemySpawnerReference) 
-                enemySpawnerReference.value = null;
+            if (dayNightTime == spawnTime && !_enemiesSpawned)
+            {
+                SpawnMobs();
+                _enemiesSpawned = true;
+            }
+            else if (dayNightTime == despawnTime && _enemiesSpawned)
+            {
+                DespawnMobs();
+                _enemiesSpawned = false;
+            }
         }
     }
 }
