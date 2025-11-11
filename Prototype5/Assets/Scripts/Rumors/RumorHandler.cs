@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NPCs;
 using ScriptableVariables.Objects;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Rumors
@@ -64,7 +65,9 @@ namespace Rumors
 
             [SerializeField] private NPCInteract npcToHandIn;
 
-            [SerializeField] private Dialog defaultDialog, onCorrectDialog, onFailDialog;
+            [SerializeField] private Dialog defaultDialog;
+            [FormerlySerializedAs("onCorrectDialog")] [SerializeField] private Dialog onTrueDialog;
+            [FormerlySerializedAs("onFailDialog")] [SerializeField] private Dialog onFalseDialog;
 
             [SerializeField] private List<NPCWithDialog> npcWithDialogs;
 
@@ -91,8 +94,8 @@ namespace Rumors
             public void Apply(RumorHandler handler, TransformVariable playerHandTransformVariable)
             {
                 this.npcToHandIn.SetCurrentTrigger(new RumorHandInInteract(handler, this.defaultDialog,
-                    this.onCorrectDialog,
-                    this.onFailDialog,
+                    this.onTrueDialog,
+                    this.onFalseDialog,
                     playerHandTransformVariable,
                     this.toActivate));
 

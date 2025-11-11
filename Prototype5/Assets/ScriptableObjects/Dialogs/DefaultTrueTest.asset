@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 273c7b37dcb80c54a9c3b738f205977a, type: 3}
-  m_Name: DefaultFailTest
+  m_Name: DefaultTrueTest
   m_EditorClassIdentifier: 
   description: 
-  text: fail
+  text: 'true
+
+    What you have in your hand is the correct potion.'

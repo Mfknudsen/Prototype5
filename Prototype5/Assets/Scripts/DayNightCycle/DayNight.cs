@@ -37,7 +37,7 @@ namespace DayNightCycle
         private static Camera playerCamera;
 
         private static TransformVariable cameraTransformVariable;
-        
+
         private static EnemySpawner _enemySpawner;
         private static bool _enemiesSpawned;
 
@@ -46,6 +46,16 @@ namespace DayNightCycle
         public static int GetCurrentHour()
         {
             return (int)_currentTime;
+        }
+
+        public static (int, int) GetCurrentHourMinutes()
+        {
+            return ((int)_currentTime, (int)(_currentTime % 1 * 60));
+        }
+
+        public static DayNightTime GetCurrentDayNightTime()
+        {
+            return _currentDayNightTime;
         }
 
         #endregion
@@ -104,7 +114,7 @@ namespace DayNightCycle
                 skyboxSetting = t.Result;
 
                 CycleTime = skyboxSetting.GetCycleTime();
-                
+
                 //System works on a 24hour basis but offset to match the desired cycle time
                 _timeOffset = 24.0f / CycleTime;
             };
@@ -141,10 +151,10 @@ namespace DayNightCycle
             {
                 if (loadEnemySpawner.Result.value != null)
                     _enemySpawner = loadEnemySpawner.Result.value;
-                
+
                 _onTimeChangeEvent.AddListener(CheckSpawnEnemies);
             };
-            
+
 #if UNITY_EDITOR
             EditorApplication.playModeStateChanged += OnExitPlayMode;
 #endif
@@ -191,7 +201,7 @@ namespace DayNightCycle
             };
 
             if (_currentDayNightTime != previous)
-                _onTimeChangeEvent.Invoke(_currentDayNightTime);
+                _onTimeChangeEvent?.Invoke(_currentDayNightTime);
 
             if (_currentTime > 24)
                 _currentTime -= 24;

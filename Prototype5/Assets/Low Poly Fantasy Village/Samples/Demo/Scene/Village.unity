@@ -1561,8 +1561,8 @@ MonoBehaviour:
   - toActivate: {fileID: 11400000, guid: 0e01bc3edef54cb4992dcb02df3c9743, type: 2}
     npcToHandIn: {fileID: 1790563072}
     defaultDialog: {fileID: 11400000, guid: 75bfb604e2b5f934b8a9c5b0ab0bd031, type: 2}
-    onCorrectDialog: {fileID: 11400000, guid: ae199707e0a34744e8feea87eecceb68, type: 2}
-    onFailDialog: {fileID: 11400000, guid: 79455a340c1a9d648812075deaec5624, type: 2}
+    onTrueDialog: {fileID: 11400000, guid: ae199707e0a34744e8feea87eecceb68, type: 2}
+    onFalseDialog: {fileID: 11400000, guid: 79455a340c1a9d648812075deaec5624, type: 2}
     npcWithDialogs:
     - npc: {fileID: 1125338200}
       dialog: {fileID: 11400000, guid: 75bfb604e2b5f934b8a9c5b0ab0bd031, type: 2}

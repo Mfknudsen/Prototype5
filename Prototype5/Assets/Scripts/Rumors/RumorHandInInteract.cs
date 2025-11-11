@@ -12,19 +12,21 @@ namespace Rumors
 
         private readonly Rumor correctPotion;
 
-        private readonly Dialog defaultDialog, correctDialog, failDialog;
+        private readonly Dialog defaultDialog, trueDialog, falseDialog;
 
         private readonly TransformVariable playerHandTransformVariable;
 
         private bool done;
 
-        public RumorHandInInteract(RumorHandler handler, Dialog defaultDialog, Dialog correctDialog, Dialog failDialog,
+        private Coroutine currentResponse;
+
+        public RumorHandInInteract(RumorHandler handler, Dialog defaultDialog, Dialog trueDialog, Dialog falseDialog,
             TransformVariable playerHandTransformVariable, Rumor correctPotion)
         {
             this.handler = handler;
             this.defaultDialog = defaultDialog;
-            this.correctDialog = correctDialog;
-            this.failDialog = failDialog;
+            this.trueDialog = trueDialog;
+            this.falseDialog = falseDialog;
             this.playerHandTransformVariable = playerHandTransformVariable;
             this.correctPotion = correctPotion;
         }
@@ -33,6 +35,9 @@ namespace Rumors
         {
             if (this.done)
                 return;
+
+            if (this.currentResponse != null)
+                npc.StopCoroutine(this.currentResponse);
 
             foreach (Transform t in this.playerHandTransformVariable.Value)
             {
@@ -44,10 +49,14 @@ namespace Rumors
 
                 this.done = true;
 
-                npc.StartCoroutine(this.correctPotion.CheckCorrect(potionObject.GetValue())
-                    ? this.CorrectResponse(npc)
-                    : this.FailResponse(npc));
+                this.currentResponse = npc.StartCoroutine(this.correctPotion.CheckCorrect(potionObject.GetValue())
+                    ? this.TrueResponse(npc)
+                    : this.FalseResponse(npc));
+
+                return;
             }
+
+            this.currentResponse = npc.StartCoroutine(this.FalseResponse(npc));
         }
 
         public override void DefaultSet(NPCInteract npc)
@@ -55,24 +64,23 @@ namespace Rumors
             npc.SetDialog(this.defaultDialog);
         }
 
-        private IEnumerator CorrectResponse(NPCInteract npc)
+        private IEnumerator TrueResponse(NPCInteract npc)
         {
-            npc.SetDialog(this.correctDialog);
+            this.done = true;
+            npc.SetDialog(this.trueDialog);
 
             yield return new WaitForSeconds(5);
 
             this.handler.CompleteCurrent();
         }
 
-        private IEnumerator FailResponse(NPCInteract npc)
+        private IEnumerator FalseResponse(NPCInteract npc)
         {
-            npc.SetDialog(this.failDialog);
+            npc.SetDialog(this.falseDialog);
 
             yield return new WaitForSeconds(5);
 
             npc.SetDialog(this.defaultDialog);
-
-            this.done = false;
         }
     }
 }
