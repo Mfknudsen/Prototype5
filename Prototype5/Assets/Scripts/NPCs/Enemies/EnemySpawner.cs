@@ -19,12 +19,10 @@ namespace NPCs.Enemies
         public Transform playerTransform;
         public DamageType damageType;
         
-        private UnityEvent<DayNightTime> _changeTimeEvent;
         private static bool _enemiesSpawned;
         
         private void Awake()
         {
-            _changeTimeEvent = DayNight.GetOnTimeChangeEvent();
             if (enemySpawnerReference)
                 enemySpawnerReference.value = this;
             else
@@ -33,12 +31,12 @@ namespace NPCs.Enemies
 
         private void OnEnable()
         {
-            _changeTimeEvent.AddListener(CheckSpawnEnemies);
+            DayNight.AddListener(CheckSpawnEnemies);
         }
 
         private void OnDisable()
         {
-            _changeTimeEvent.RemoveListener(CheckSpawnEnemies);
+            DayNight.RemoveListener(CheckSpawnEnemies);
         }
 
         public void SpawnMobs()

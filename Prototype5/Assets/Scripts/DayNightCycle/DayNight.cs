@@ -55,11 +55,6 @@ namespace DayNightCycle
             return _currentDayNightTime;
         }
 
-        public static UnityEvent<DayNightTime> GetOnTimeChangeEvent()
-        {
-            return _onTimeChangeEvent;
-        }
-
         #endregion
 
         #region Setters
