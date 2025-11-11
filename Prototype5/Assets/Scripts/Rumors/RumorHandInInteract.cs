@@ -50,6 +50,11 @@ namespace Rumors
             }
         }
 
+        public override void DefaultSet(NPCInteract npc)
+        {
+            npc.SetDialog(this.defaultDialog);
+        }
+
         private IEnumerator CorrectResponse(NPCInteract npc)
         {
             npc.SetDialog(this.correctDialog);
