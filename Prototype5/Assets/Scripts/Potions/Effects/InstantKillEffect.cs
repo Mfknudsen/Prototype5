@@ -36,7 +36,7 @@ namespace Potions.Effects
                 transform.position = target.transform.position;
             }
 
-            potionObject.GetComponent<CharacterHealth.Health>().ApplyDamageType(Mathf.Infinity, null);
+            target.GetComponent<CharacterHealth.Health>().ApplyDamageType(Mathf.Infinity, null);
         }
     }
 }

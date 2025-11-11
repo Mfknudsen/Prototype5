@@ -1,5 +1,4 @@
 using NPCs.Base;
-using Potions;
 using ScriptableVariables.Objects;
 using UnityEngine;
 using UnityEngine.AI;
@@ -33,10 +32,9 @@ namespace NPCs.Enemies
         [HideInInspector] public CharacterHealth.Health enemyHealth;
         [HideInInspector] public float potionDamage;
         [HideInInspector] public DamageType potionDamageType;
-
+        
         private EnemyDeathState _deathState;
         private EnemyGetAttackedState _getAttackedState;
-        
         
         public float DistanceToTarget => Vector3.Distance(transform.position, playerTransform.position);
 
@@ -72,13 +70,7 @@ namespace NPCs.Enemies
             return false;
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.GetComponent<PotionObject>() is { } potion)
-                OnPotionAttack(potion.GetDamageAmount(), potion.GetDamageType());
-        }
-
-        private void OnPotionAttack(float damage, DamageType type)
+        public void OnPotionAttack(float damage, DamageType type)
         {
             potionDamage = damage;
             potionDamageType = type;

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NPCs.Enemies;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,6 +25,8 @@ namespace Potions.Effects
                     Debug.LogError("No NavMeshAgent component for target with tag Character", this);
                 if (this.tags[i] == EffectTargetTag.Character && this.GetComponent<CharacterHealth.Health>() == null)
                     Debug.LogError("No Health component for target with tag Character", this);
+                if (this.tags[i] == EffectTargetTag.Character && this.GetComponent<EnemyStateMachine>() == null)
+                    Debug.LogError("No EnemyStateMachine component for target with tag Character", this);
                 else if (this.tags[i] == EffectTargetTag.RigidBody && this.GetComponent<Rigidbody>() == null)
                     Debug.LogError("No Rigidbody component for target with tag RigidBody", this);
             }

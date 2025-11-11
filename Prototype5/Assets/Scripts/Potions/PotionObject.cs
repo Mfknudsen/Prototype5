@@ -12,10 +12,6 @@ namespace Potions
 
         [SerializeField] private float forceForShatter;
 
-        [SerializeField] private float damageAmount = 30.0f;
-
-        [SerializeField] private DamageType damageType;
-
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
@@ -28,16 +24,8 @@ namespace Potions
             }
         }
 #endif
-
-        #region Getters
-
-        public PotionValue GetValue() => this.potionValue;
         
-        public float GetDamageAmount() => this.damageAmount;
-
-        public DamageType GetDamageType() => this.damageType;
-
-        #endregion
+        public PotionValue GetValue() => this.potionValue;
 
         private void OnCollisionEnter(Collision other)
         {
