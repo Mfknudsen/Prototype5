@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using ScriptableVariables.Objects;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace CharacterHealth
 {
@@ -12,7 +11,7 @@ namespace CharacterHealth
         public GameEvent globalDeathEvent;
         public Action LocalDeathAction;
 
-        private float _currentHealth;
+        public float _currentHealth;
 
         [SerializeField] private List<Resistance> resistances = new List<Resistance>();
 

@@ -68,6 +68,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potionValue: {fileID: 11400000, guid: b6468b52a6879974bae2db0e0c4952f9, type: 2}
   forceForShatter: 200
+  damageAmount: 30
+  damageType: {fileID: 11400000, guid: ae218bfcb3309ca469dd56779d77bce9, type: 2}
 --- !u!65 &7750847899951746458
 BoxCollider:
   m_ObjectHideFlags: 0

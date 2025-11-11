@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Potions.Effects;
+using ScriptableVariables.Objects;
 using UnityEngine;
 
 namespace Potions
@@ -10,6 +11,10 @@ namespace Potions
         [SerializeField] private PotionValue potionValue;
 
         [SerializeField] private float forceForShatter;
+
+        [SerializeField] private float damageAmount = 30.0f;
+
+        [SerializeField] private DamageType damageType;
 
 #if UNITY_EDITOR
         private void OnDrawGizmos()
@@ -24,10 +29,15 @@ namespace Potions
         }
 #endif
 
-        public PotionValue GetValue()
-        {
-            return this.potionValue;
-        }
+        #region Getters
+
+        public PotionValue GetValue() => this.potionValue;
+        
+        public float GetDamageAmount() => this.damageAmount;
+
+        public DamageType GetDamageType() => this.damageType;
+
+        #endregion
 
         private void OnCollisionEnter(Collision other)
         {

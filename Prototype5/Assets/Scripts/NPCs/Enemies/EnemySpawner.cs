@@ -49,6 +49,7 @@ namespace NPCs.Enemies
             enemyStateMachine.damageType = damageType;
             
             CharacterHealth.Health enemyHealth = mob.GetComponent<CharacterHealth.Health>();
+            enemyStateMachine.enemyHealth = enemyHealth;
             enemyHealth.LocalDeathAction += enemyStateMachine.OnDeath;
         }
 

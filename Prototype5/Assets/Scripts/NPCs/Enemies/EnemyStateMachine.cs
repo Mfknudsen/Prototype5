@@ -1,5 +1,5 @@
-using System;
 using NPCs.Base;
+using Potions;
 using ScriptableVariables.Objects;
 using UnityEngine;
 using UnityEngine.AI;
@@ -30,8 +30,13 @@ namespace NPCs.Enemies
         [HideInInspector] public Transform playerTransform;
         [HideInInspector] public CharacterHealth.Health playerHealth;
         [HideInInspector] public DamageType damageType;
+        [HideInInspector] public CharacterHealth.Health enemyHealth;
+        [HideInInspector] public float potionDamage;
+        [HideInInspector] public DamageType potionDamageType;
 
         private EnemyDeathState _deathState;
+        private EnemyGetAttackedState _getAttackedState;
+        
         
         public float DistanceToTarget => Vector3.Distance(transform.position, playerTransform.position);
 
@@ -44,6 +49,7 @@ namespace NPCs.Enemies
             ChaseState = new EnemyChaseState(this);
             AttackState = new EnemyAttackState(this);
             _deathState = new EnemyDeathState(this);
+            _getAttackedState = new EnemyGetAttackedState(this);
         }
 
         private void Start()
@@ -64,6 +70,19 @@ namespace NPCs.Enemies
                         return true;
 
             return false;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.GetComponent<PotionObject>() is { } potion)
+                OnPotionAttack(potion.GetDamageAmount(), potion.GetDamageType());
+        }
+
+        private void OnPotionAttack(float damage, DamageType type)
+        {
+            potionDamage = damage;
+            potionDamageType = type;
+            SwitchState(_getAttackedState);
         }
         
         public void OnDeath() => SwitchState(_deathState);
