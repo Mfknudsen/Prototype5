@@ -25,11 +25,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f4f6c48588058a24eb274322a6bd2100
-    m_Address: Assets/ScriptableObjects/Spawners/EnemySpawnerReference.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6e9a250849cc2af49bdf12f413c1f62e, type: 2}
   m_SchemaSet:

@@ -26,7 +26,11 @@ namespace NPCs
             if (this.GetComponent<Collider>() == null)
                 Debug.LogError("A collider is needed for the interact handling", this);
 
-            this.speechBubble.SetText(this.defaultDialog.text);
+            if (this.currentDialog != null)
+                return;
+
+            this.currentDialog = this.defaultDialog;
+            this.speechBubble.SetText(this.defaultDialog != null ? this.defaultDialog.text : "");
         }
 
         private void Update()
@@ -69,11 +73,14 @@ namespace NPCs
         public void SetCurrentTrigger(NPCInteractBase set)
         {
             this.currentInteractBase = set;
+            set.DefaultSet(this);
         }
     }
 
     public abstract class NPCInteractBase
     {
         public abstract void Trigger(NPCInteract npc);
+
+        public abstract void DefaultSet(NPCInteract npc);
     }
 }
