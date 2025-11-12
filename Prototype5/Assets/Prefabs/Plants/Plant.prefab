@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthTime: 0.5
-  toSpawnIngredientValue: {fileID: 11400000, guid: 2deb61f039a47db4e920d7c6bed642a7, type: 2}
+  toSpawnIngredientValue: {fileID: 11400000, guid: ea610913c1511a042b0fc441b60e130f, type: 2}
   minSpawnCount: 1
   maxSpawnCount: 3
   stageOne: {fileID: 3832317933232511226}
