@@ -33,8 +33,6 @@ namespace UI.Book.Button
 
             this.colors = colorBlock;
 
-            Debug.LogError("S");
-
             base.Awake();
         }
 
@@ -42,7 +40,6 @@ namespace UI.Book.Button
 
         public void Setup(UIBook setUIBook, ICustomGUIElement element)
         {
-            Debug.LogError("Setup");
             this.uiBook = setUIBook;
 
             if (element is BookButton button) this.bookButton = button;
@@ -55,8 +52,6 @@ namespace UI.Book.Button
         protected override void DoStateTransition(SelectionState state, bool instant)
         {
             base.DoStateTransition(state, instant);
-
-            Debug.LogError(state);
 
             if (this.bookButton == null) return;
 
