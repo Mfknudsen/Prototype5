@@ -30,6 +30,6 @@ public sealed class ResetGame : MonoBehaviour
         foreach (TransformVariable transformVariable in this.transformVariables)
             transformVariable.Value = null;
 
-        this.inventoryItemListVariable.Value.Clear();
+        this.inventoryItemListVariable.Value?.Clear();
     }
 }

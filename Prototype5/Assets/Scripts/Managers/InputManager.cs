@@ -5,11 +5,23 @@ using UnityEngine.InputSystem;
 
 namespace Managers
 {
+    public enum Device
+    {
+        Null,
+        KeyboardAndMouse,
+        Gamepad
+    }
+
     public sealed class InputManager
     {
         public static InputManager Instance => _instance ??= new InputManager();
 
         private static InputManager _instance;
+
+        private Device currentDevice;
+
+        public readonly UnityEvent<Device>
+            DeviceChangeEvent = new UnityEvent<Device>();
 
         public readonly UnityEvent<Vector2>
             MoveAxisInputEvent = new UnityEvent<Vector2>(),
@@ -31,6 +43,8 @@ namespace Managers
 
         private InputManager()
         {
+            this.currentDevice = Device.Null;
+
             InputSystem_Actions playerInput = new InputSystem_Actions();
 
             playerInput.Player.Enable();
@@ -41,7 +55,14 @@ namespace Managers
                 context => this.MoveAxisInputEvent.Invoke(context.ReadValue<Vector2>());
 
             playerInput.Player.Look.performed +=
-                context => this.TurnAxisInputEvent.Invoke(context.ReadValue<Vector2>());
+                context =>
+                {
+                    this.OnInputCheckDeviceName(context.control.device.name);
+                    this.TurnAxisInputEvent.Invoke(context.ReadValue<Vector2>() *
+                                                   (this.currentDevice == Device.Gamepad
+                                                       ? GameSettings.Instance.GetGamepadTurnSpeed()
+                                                       : 1));
+                };
             playerInput.Player.Look.canceled +=
                 context => this.TurnAxisInputEvent.Invoke(context.ReadValue<Vector2>());
 
@@ -81,6 +102,21 @@ namespace Managers
 
             playerInput.Disable();
             _instance = null;
+        }
+
+        private void OnInputCheckDeviceName(string deviceName)
+        {
+            Device set = Device.Null;
+            if (deviceName.Contains("Gamepad"))
+                set = Device.Gamepad;
+            else if (deviceName.Contains("Mouse") || deviceName.Contains("Keyboard"))
+                set = Device.KeyboardAndMouse;
+
+            if (this.currentDevice == set)
+                return;
+
+            this.currentDevice = set;
+            this.DeviceChangeEvent.Invoke(this.currentDevice);
         }
 #endif
     }
