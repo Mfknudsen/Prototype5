@@ -443,7 +443,7 @@ Transform:
   m_GameObject: {fileID: 2369146145721304650}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.595, z: -4.898}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1572,7 +1572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8872165598885801652
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1931,6 +1931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransformVariable: {fileID: 11400000, guid: ec58220940681b44e95eb43141c15de2, type: 2}
   bookCanvas: {fileID: 2742906422015415585}
+  bookCamera: {fileID: 4700653157017214353}
   playerStateVariable: {fileID: 11400000, guid: 74e430132044fd04096f52e4a4319956, type: 2}
   preRenderTexture: {fileID: 8400000, guid: 48ae87bae04b3d54e846ef09f3613e7a, type: 2}
   curRenderTexture: {fileID: 8400000, guid: b5776a1f228f0204fbebad5c5dece3e6, type: 2}
@@ -2341,7 +2342,7 @@ PrefabInstance:
     - target: {fileID: -2991958732884326784, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 1b2b2e878e5e43c4e97bcec27afe0f36, type: 2}
+      objectReference: {fileID: 2100000, guid: 9e5ce6c95d9bac54eb6efdf99f5ec0d2, type: 2}
     - target: {fileID: -2991958732884326784, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -2357,7 +2358,7 @@ PrefabInstance:
     - target: {fileID: -1756586200448832505, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 233fab978b4dbee448e03fd865992c5b, type: 2}
+      objectReference: {fileID: 2100000, guid: fbe346d347c2316489bcb4791538877a, type: 2}
     - target: {fileID: -1756586200448832505, guid: 2ec4771a9f2dcb44599b688653b28996, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 

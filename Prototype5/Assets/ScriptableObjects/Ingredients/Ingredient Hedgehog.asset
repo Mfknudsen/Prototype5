@@ -16,3 +16,4 @@ MonoBehaviour:
   description: Behold the Almighty Hedgehog! Oh no, it fell into the pot
   tag1: 5
   tag2: 2
+  sprite: {fileID: 21300000, guid: 033d855c8e7cd46e0b6ff6387f76e4d1, type: 3}

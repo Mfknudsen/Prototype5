@@ -16,3 +16,4 @@ MonoBehaviour:
   description: Full of minerals and, most importantly, bubbles
   tag1: 0
   tag2: 5
+  sprite: {fileID: 21300000, guid: 70f1c8047eb5f462bb5ad177b646717e, type: 3}

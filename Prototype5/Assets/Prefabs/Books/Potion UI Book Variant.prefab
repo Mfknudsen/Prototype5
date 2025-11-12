@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1195699164460579249}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -450.99997, y: -0.000058174133, z: 100}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -248,22 +248,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3092325751742069925, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 3092325751742069925, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 3092325751742069925, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 3680662792257014938, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
-      propertyPath: pages.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3680662792257014938, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
       propertyPath: 'pages.Array.data[0]'
       value: 
@@ -272,30 +256,10 @@ PrefabInstance:
       propertyPath: 'pages.Array.data[1]'
       value: 
       objectReference: {fileID: 2483921262317904249}
-    - target: {fileID: 4866072686224552335, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: fbe346d347c2316489bcb4791538877a, type: 2}
-    - target: {fileID: 6304670951447765994, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6812106696832931223, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6971641667607905300, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
       propertyPath: m_Name
       value: Potion UI Book Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 7231779718589479456, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242418659047021320, guid: 4c176e43fa560dc489b6e1b1843d136f, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 9e5ce6c95d9bac54eb6efdf99f5ec0d2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

@@ -36,23 +36,23 @@ public class MainMenuManager : MonoBehaviour
 
     public void MainMenuButtonClicked(MainMenuButtons buttonClicked)
     {
-        DebugMessage("Button clicked: " + buttonClicked.ToString());
+        this.DebugMessage("Button clicked: " + buttonClicked.ToString());
         switch (buttonClicked)
         {
             case MainMenuButtons.Play:
-                PlayGame();
+                this.PlayGame();
                 break;
             case MainMenuButtons.Settings:
-                OpenSettings();
+                this.OpenSettings();
                 break;
             case MainMenuButtons.Audio:
                 //TODO: Implement audio function
                 break;
             case MainMenuButtons.Back:
-                BackToMainMenu();
+                this.BackToMainMenu();
                 break;
             case MainMenuButtons.Quit:
-                QuitGame();
+                this.QuitGame();
                 break;
             default:
                 Debug.Log("Unknown Menu Button");
@@ -62,7 +62,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void DebugMessage(string message)
     {
-        if (debugMode)
+        if (this.debugMode)
         {
             Debug.Log(message);
         }
@@ -70,19 +70,19 @@ public class MainMenuManager : MonoBehaviour
 
     private void PlayGame()
     {
-        SceneManager.LoadScene(START_SCENE);
+        SceneManager.LoadScene(this.START_SCENE, LoadSceneMode.Single);
     }
 
     private void OpenSettings()
     {
-        MainMenuContainer.SetActive(false);
-        SettingsMenuContainer.SetActive(true);
+        this.MainMenuContainer.SetActive(false);
+        this.SettingsMenuContainer.SetActive(true);
     }
 
     private void BackToMainMenu()
     {
-        SettingsMenuContainer.SetActive(false);
-        MainMenuContainer.SetActive(true);
+        this.SettingsMenuContainer.SetActive(false);
+        this.MainMenuContainer.SetActive(true);
     }
 
     private void QuitGame()

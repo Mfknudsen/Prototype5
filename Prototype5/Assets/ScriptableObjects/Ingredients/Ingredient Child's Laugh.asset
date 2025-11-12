@@ -16,3 +16,4 @@ MonoBehaviour:
   description: One of the most atrocious sounds you can think of
   tag1: 2
   tag2: 3
+  sprite: {fileID: 21300000, guid: db385975adeec4fedb8bef9f51ebf5e2, type: 3}
