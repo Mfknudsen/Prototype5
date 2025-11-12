@@ -21,22 +21,23 @@ namespace NPCs.Enemies
 
         public override void UpdateLogic()
         {
-            fsm.StartCoroutine(AttackSequence(SwitchStateDelay));
+            GetAttacked();
         }
         
-        private void ApplyDamage()
+        private void GetAttacked()
         {
-            if (_isAttacked) return;
-            
+            if (!_isAttacked)
+            {
+                _isAttacked = true;
+                fsm.StartCoroutine(ApplyDamageCoroutine(SwitchStateDelay));                
+            }
+        }
+        
+        private IEnumerator ApplyDamageCoroutine(float seconds)
+        {
             fsm.enemyHealth.ApplyDamageType(fsm.potionDamage, fsm.potionDamageType);
-            _isAttacked = true;
-        }
-        
-        private IEnumerator AttackSequence(float seconds)
-        {
-            ApplyDamage();
             yield return new WaitForSeconds(seconds);
-            fsm.SwitchState(fsm.WanderState);
+            fsm.SwitchState(fsm.previousState);
         }
     }
 }

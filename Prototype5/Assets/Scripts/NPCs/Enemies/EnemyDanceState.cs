@@ -10,7 +10,6 @@ namespace NPCs.Enemies
         private const string DanceAnimation = "Goblin_run";
         private const float TransitionTime = 0.2f;
         private const float AnimationSpeed = 0.7f;
-        private const float DegreesPerSecond = 360;
         private bool _isDancing = false;
         
         public EnemyDanceState(EnemyStateMachine fsm) : base(fsm) {}

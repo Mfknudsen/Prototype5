@@ -28,9 +28,9 @@ MonoBehaviour:
       data:
         debugGizmo: 0
         effectRadius: 0
-        jumpCount: 0
-        jumpHeight: 0
-        danceDuration: 0
+        jumpCount: 2
+        jumpHeight: 1
+        danceDuration: 3
     - rid: 7969916117750644985
       type: {class: PushBackEffect, ns: Potions.Effects, asm: Assembly-CSharp}
       data:
