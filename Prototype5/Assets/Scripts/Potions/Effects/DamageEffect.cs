@@ -1,4 +1,5 @@
 using System;
+using NPCs.Enemies;
 using ScriptableVariables.Objects;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -41,7 +42,8 @@ namespace Potions.Effects
                 transform.position = target.transform.position;
             }
 
-            potionObject.GetComponent<CharacterHealth.Health>().ApplyDamageType(this.damage, this.damageType);
+            if (target.GetComponent<EnemyStateMachine>() is {} enemyStateMachine)
+                enemyStateMachine.OnPotionAttack(this.damage, this.damageType);
         }
     }
 }

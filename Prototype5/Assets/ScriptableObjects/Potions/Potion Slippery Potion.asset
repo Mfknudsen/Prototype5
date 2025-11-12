@@ -29,7 +29,7 @@ MonoBehaviour:
         debugGizmo: 0
         effectRadius: 0
         onHitVFX: {fileID: 0}
-        damage: 0
+        damage: 20
         damageType: {fileID: 0}
     - rid: 7969916117750644985
       type: {class: PushBackEffect, ns: Potions.Effects, asm: Assembly-CSharp}

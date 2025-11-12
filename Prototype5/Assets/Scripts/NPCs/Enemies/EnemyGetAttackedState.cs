@@ -1,37 +1,42 @@
+using System.Collections;
 using NPCs.Base;
+using UnityEngine;
 
 namespace NPCs.Enemies
 {
     public class EnemyGetAttackedState : NpcState<EnemyStateMachine>
     {
-        private const string GetAttackedAnimation = "Goblin_get_attacked";
-        private const int StopFrame = 28;
-        private const int TotalFrames = 70;
-        private const float AnimationSpeed = 0.84f;
+        private const string GetAttackedAnimation = "Goblin_attacked";
+        private const float SwitchStateDelay = 0.7f;
+        
+        private bool _isAttacked = false;
 
         public EnemyGetAttackedState(EnemyStateMachine fsm) : base(fsm) {}
         
         public override void Enter()
         {
             fsm.agent.isStopped = true;
-            fsm.animator.speed = AnimationSpeed;
-            fsm.animator.Play(GetAttackedAnimation, 1, 1f / TotalFrames * StopFrame);
+            fsm.animator.CrossFade(GetAttackedAnimation, 0.1f);
         }
 
         public override void UpdateLogic()
         {
             ApplyDamage();
-            fsm.SwitchState(fsm.WanderState);
+            fsm.StartCoroutine(AttackSequence(SwitchStateDelay));
         }
-
-        public override void Exit()
-        {
-            fsm.animator.speed = 1;
-        }
-
+        
         private void ApplyDamage()
         {
+            if (_isAttacked) return;
+            
             fsm.enemyHealth.ApplyDamageType(fsm.potionDamage, fsm.potionDamageType);
+            _isAttacked = true;
+        }
+        
+        private IEnumerator AttackSequence(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            fsm.SwitchState(fsm.WanderState);
         }
     }
 }

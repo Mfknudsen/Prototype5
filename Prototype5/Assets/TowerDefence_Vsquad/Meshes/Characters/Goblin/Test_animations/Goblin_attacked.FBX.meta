@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: 5156d0d83c36f414083e4bd1d936b803
-AssetOrigin:
-  serializedVersion: 1
-  productId: 145437
-  packageName: Goblin & Cannon
-  packageVersion: 2.0
-  assetPath: Assets/TowerDefence_Vsquad/Meshes/Characters/Goblin/Test_animations/Goblin_attack.FBX
-  uploadId: 362303
+guid: 02f795a23c4174247b0168de8e8f31e6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -198,10 +191,10 @@ ModelImporter:
     second: kopie
   - first:
       21: 2100000
-    second: lambert6
+    second: 
   - first:
       21: 2100002
-    second: 
+    second: lambert7
   - first:
       23: 2300000
     second: kopie
@@ -210,13 +203,13 @@ ModelImporter:
     second: kopie
   - first:
       43: 4300000
-    second: Goblin002
-  - first:
-      43: 4300002
     second: kopie
   - first:
+      43: 4300002
+    second: Goblin002
+  - first:
       74: 7400000
-    second: Goblin_attack
+    second: Goblin_attacked
   - first:
       95: 9500000
     second: //RootNode
@@ -251,18 +244,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Goblin_attack
+      name: Goblin_attacked
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 51
+      lastFrame: 28
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -274,14 +267,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.5157374
-        functionName: GetDamage
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
