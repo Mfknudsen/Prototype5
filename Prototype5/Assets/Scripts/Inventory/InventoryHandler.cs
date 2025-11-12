@@ -93,9 +93,6 @@ namespace Inventory
 
         private void OnInventoryInputEvent()
         {
-            if (this.playerStateVariable.Value != PlayerStateEnum.Free)
-                return;
-
             if (this.backpack.activeSelf)
             {
                 this.backpack.SetActive(false);
@@ -105,6 +102,9 @@ namespace Inventory
             }
             else
             {
+                if (this.playerStateVariable.Value != PlayerStateEnum.Free)
+                    return;
+                
                 this.backpack.SetActive(true);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;

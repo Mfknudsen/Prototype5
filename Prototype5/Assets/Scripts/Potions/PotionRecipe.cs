@@ -37,6 +37,18 @@ namespace Potions
             return true;
         }
 
+        public int IngredientNeededCount()
+        {
+            int result = 0;
+
+            foreach (Ingredient ingredient in this.ingredients)
+            {
+                result += ingredient.count;
+            }
+
+            return result;
+        }
+
         public List<PotionValue> GetResults()
         {
             return this.potionResults;

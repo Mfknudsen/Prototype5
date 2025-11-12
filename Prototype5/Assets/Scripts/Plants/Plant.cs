@@ -72,7 +72,9 @@ namespace Plants
                 t.position = spawnPoint;
             }
 
-            this.transform.parent.GetComponent<SphereCollider>().enabled = true;
+            if (this.transform.parent && this.transform.parent.GetComponent<SphereCollider>() is { } c)
+                c.enabled = true;
+            
             Destroy(this.gameObject);
         }
 

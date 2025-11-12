@@ -29,6 +29,8 @@ namespace Plants
 
         private int spawnedCount;
 
+        private LayerMask rayHitMask;
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.DrawWireSphere(this.transform.position, this.spawnRadius);
@@ -42,6 +44,7 @@ namespace Plants
             }
 
             this.time = this.timeBetweenSpawn;
+            this.rayHitMask = LayerMask.NameToLayer("NavMesh");
         }
 
         private void Update()
@@ -62,8 +65,11 @@ namespace Plants
             Vector3 randomDirection = Random.insideUnitSphere * this.spawnRadius;
 
             randomDirection += this.transform.position;
-            NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, this.spawnRadius, 1);
-            Vector3 finalPosition = hit.position;
+            NavMesh.SamplePosition(randomDirection, out NavMeshHit navHit, this.spawnRadius, 1);
+            Vector3 finalPosition = navHit.position;
+
+            if (Physics.Raycast(finalPosition, -Vector3.up, out RaycastHit rayHit, this.rayHitMask))
+                finalPosition = rayHit.point;
 
             Plant plant =
                 Instantiate(this.plantPrefab, finalPosition, quaternion.identity).GetComponent<Plant>();

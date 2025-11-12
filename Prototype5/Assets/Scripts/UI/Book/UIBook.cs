@@ -40,6 +40,8 @@ namespace UI.Book
 
         [SerializeField] private Canvas bookCanvas;
 
+        [SerializeField] private Camera bookCamera;
+
         [SerializeField] private PlayerStateVariable playerStateVariable;
 
         [SerializeField] private RenderTexture preRenderTexture, curRenderTexture;
@@ -82,7 +84,7 @@ namespace UI.Book
 
         private void OnEnable()
         {
-            if (playerTransformVariable.Value != null)
+            if (this.playerTransformVariable.Value != null)
                 this.OnCameraTransformUpdate(this.playerTransformVariable.Value);
             this.playerTransformVariable.AddListener(this.OnCameraTransformUpdate);
         }
@@ -94,11 +96,14 @@ namespace UI.Book
 
         private void Start()
         {
+            this.bookCamera.gameObject.SetActive(false);
             this.bookCanvas.gameObject.SetActive(false);
             this.invisiblyUI.transform.localScale /= 10000;
 
             this.turnRight.SetActive(false);
             this.turnLeft.SetActive(false);
+
+            this.bookCanvas.worldCamera = Camera.current;
         }
 
         #endregion
@@ -132,6 +137,7 @@ namespace UI.Book
                     InputManager.Instance.InteractInputEvent.AddListener(this.OnInteractInput);
                     InputManager.Instance.ArrowAxisInputEvent.AddListener(this.OnArrowInput);
                     this.invisiblyUI.SetActive(false);
+                    this.bookCamera.gameObject.SetActive(true);
                     this.bookCanvas.gameObject.SetActive(true);
                     this.UpdatePageVisibility();
                     this.currentBookAction =
@@ -145,6 +151,7 @@ namespace UI.Book
                     this.currentBookAction =
                         this.StartCoroutine(this.closeBookActionAction.Operation(() =>
                         {
+                            this.bookCamera.gameObject.SetActive(false);
                             this.bookCanvas.gameObject.SetActive(false);
                             this.currentBookAction = null;
                             Debug.Log($"End: {this.currentBookAction == null}");

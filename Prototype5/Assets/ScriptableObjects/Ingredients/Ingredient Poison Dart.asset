@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Ingredient Poison Dart
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 8097309241775028901, guid: ded1bca859719c643a5c24dc5c9de2d2, type: 3}
+  location: 
   description: Too small for hunting a human
   tag1: 5
   tag2: 3
+  sprite: {fileID: 0}
+  bookShowcaseRotation: {x: 101.193, y: -55.436, z: -54.91998}
+  bookShowcasePositionOffset: {x: 0, y: -0.186, z: -0.021}
