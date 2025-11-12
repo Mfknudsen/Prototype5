@@ -1023,6 +1023,9 @@ MonoBehaviour:
   enemyHealth: {fileID: 0}
   potionDamage: 0
   potionDamageType: {fileID: 0}
+  jumpHeight: 0
+  jumpCount: 0
+  danceDuration: 0
 --- !u!114 &3276455111831975154
 MonoBehaviour:
   m_ObjectHideFlags: 0

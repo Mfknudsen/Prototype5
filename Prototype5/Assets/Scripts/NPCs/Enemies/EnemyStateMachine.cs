@@ -1,3 +1,4 @@
+using System.Collections;
 using NPCs.Base;
 using ScriptableVariables.Objects;
 using UnityEngine;
@@ -35,6 +36,7 @@ namespace NPCs.Enemies
         [HideInInspector] public float jumpHeight;
         [HideInInspector] public int jumpCount;
         [HideInInspector] public float danceDuration;
+        [HideInInspector] public float switchStateDelay = 0.6f;
         
         private EnemyDeathState _deathState;
         private EnemyGetAttackedState _getAttackedState;
@@ -90,6 +92,24 @@ namespace NPCs.Enemies
             jumpCount = count;
             danceDuration = duration;
             SwitchState(_danceState);
+        }
+
+        public void OnFire(float damage, DamageType type, float totalDuration, int numberOfHits)
+        {
+            //TODO: add fire vfx
+            
+            potionDamage = damage;
+            potionDamageType = type;
+            StartCoroutine(GetAttackedOverTimeCoroutine(totalDuration / numberOfHits - switchStateDelay, numberOfHits));
+        }
+
+        private IEnumerator GetAttackedOverTimeCoroutine(float timeBetweenHits, int numberOfHits)
+        {
+            for (int i = 0; i < numberOfHits; i++)
+            {
+                SwitchState(_getAttackedState);
+                yield return new WaitForSeconds(timeBetweenHits);
+            }
         }
     }
 }

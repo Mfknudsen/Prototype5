@@ -7,14 +7,13 @@ namespace NPCs.Enemies
     public class EnemyGetAttackedState : NpcState<EnemyStateMachine>
     {
         private const string GetAttackedAnimation = "Goblin_attacked";
-        private const float SwitchStateDelay = 0.7f;
-        
-        private bool _isAttacked = false;
+        private bool _isAttacked;
 
         public EnemyGetAttackedState(EnemyStateMachine fsm) : base(fsm) {}
         
         public override void Enter()
         {
+            _isAttacked = false;
             fsm.agent.isStopped = true;
             fsm.animator.CrossFade(GetAttackedAnimation, 0.1f);
         }
@@ -29,7 +28,7 @@ namespace NPCs.Enemies
             if (!_isAttacked)
             {
                 _isAttacked = true;
-                fsm.StartCoroutine(ApplyDamageCoroutine(SwitchStateDelay));                
+                fsm.StartCoroutine(ApplyDamageCoroutine(fsm.switchStateDelay));                
             }
         }
         

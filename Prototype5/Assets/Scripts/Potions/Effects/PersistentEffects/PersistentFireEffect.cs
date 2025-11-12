@@ -15,6 +15,10 @@ namespace Potions.Effects.PersistentEffects
 
         [SerializeField] private float damagePerTick;
 
+        public DamageType GetDamageType() => damageType;
+        
+        public float GetDamagePerTick() => damagePerTick;
+        
         private void OnValidate()
         {
             this.sphereCollider = this.GetComponent<SphereCollider>();

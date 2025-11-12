@@ -20,8 +20,8 @@ namespace Potions.Effects
         protected override void Effect(PotionObject potionObject, PotionEffectTarget target)
         {
             Debug.Log("Push back");
-            target.GetComponent<Rigidbody>()
-                .AddExplosionForce(this.forceStrength, potionObject.transform.position, this.effectRadius);
+            // target.GetComponent<Rigidbody>()
+            //     .AddExplosionForce(this.forceStrength, potionObject.transform.position, this.effectRadius);
         }
     }
 }
