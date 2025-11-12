@@ -21,7 +21,6 @@ namespace NPCs.Enemies
 
         public override void UpdateLogic()
         {
-            ApplyDamage();
             fsm.StartCoroutine(AttackSequence(SwitchStateDelay));
         }
         
@@ -35,6 +34,7 @@ namespace NPCs.Enemies
         
         private IEnumerator AttackSequence(float seconds)
         {
+            ApplyDamage();
             yield return new WaitForSeconds(seconds);
             fsm.SwitchState(fsm.WanderState);
         }

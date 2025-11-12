@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using NPCs.Enemies;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,24 +26,8 @@ namespace Potions.Effects
 
         protected override void Effect(PotionObject potionObject, PotionEffectTarget target)
         {
-            NavMeshAgent agent = target.GetComponent<NavMeshAgent>();
-            agent.enabled = false;
-            Rigidbody rb = target.GetComponent<Rigidbody>();
-            bool kinematicState = rb.isKinematic;
-            rb.isKinematic = true;
-
-            Transform transform = target.transform;
-            Sequence sequence = DOTween.Sequence();
-            sequence.Append(transform
-                .DOLocalJump(transform.localPosition, this.jumpHeight, this.jumpCount, this.danceDuration));
-            sequence.Append(transform
-                .DORotate(new Vector3(0, 360, 0), this.danceDuration, RotateMode.FastBeyond360));
-
-            sequence.OnComplete(() =>
-            {
-                rb.isKinematic = kinematicState;
-                agent.enabled = true;
-            });
+            if (target.GetComponent<EnemyStateMachine>() is {} enemyStateMachine)
+                enemyStateMachine.OnDance(this.jumpHeight, this.jumpCount, this.danceDuration);
         }
     }
 }

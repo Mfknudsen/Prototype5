@@ -32,9 +32,13 @@ namespace NPCs.Enemies
         [HideInInspector] public CharacterHealth.Health enemyHealth;
         [HideInInspector] public float potionDamage;
         [HideInInspector] public DamageType potionDamageType;
+        [HideInInspector] public float jumpHeight;
+        [HideInInspector] public int jumpCount;
+        [HideInInspector] public float danceDuration;
         
         private EnemyDeathState _deathState;
         private EnemyGetAttackedState _getAttackedState;
+        private EnemyDanceState _danceState;
         
         public float DistanceToTarget => Vector3.Distance(transform.position, playerTransform.position);
 
@@ -48,6 +52,7 @@ namespace NPCs.Enemies
             AttackState = new EnemyAttackState(this);
             _deathState = new EnemyDeathState(this);
             _getAttackedState = new EnemyGetAttackedState(this);
+            _danceState = new EnemyDanceState(this);
         }
 
         private void Start()
@@ -78,5 +83,13 @@ namespace NPCs.Enemies
         }
         
         public void OnDeath() => SwitchState(_deathState);
+
+        public void OnDance(float height, int count, float duration)
+        {
+            jumpHeight = height;
+            jumpCount = count;
+            danceDuration = duration;
+            SwitchState(_danceState);
+        }
     }
 }
