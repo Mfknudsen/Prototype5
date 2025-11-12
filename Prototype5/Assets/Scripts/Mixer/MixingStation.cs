@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Interactions;
 using Inventory;
 using Potions;
@@ -29,7 +30,7 @@ namespace Mixer
         public void OnTrigger()
         {
             Debug.Log("Mixer");
-            
+
             if (this.handTransformVariable == null || this.handTransformVariable.Value == null)
                 return;
 
@@ -62,7 +63,7 @@ namespace Mixer
                 Debug.Log(currentAddedIngredient.gameObject.name);
             }
 
-            foreach (PotionRecipe potionRecipe in this.allRecipes)
+            foreach (PotionRecipe potionRecipe in this.allRecipes.OrderBy(r => r.IngredientNeededCount()))
             {
                 if (!potionRecipe.CheckCorrect(this.currentAddedIngredients))
                     continue;
@@ -86,7 +87,7 @@ namespace Mixer
 
             this.currentAddedIngredients.Clear();
         }
-        
+
         public bool IsActive()
         {
             return this.enabled;
