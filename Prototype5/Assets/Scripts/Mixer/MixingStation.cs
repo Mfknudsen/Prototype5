@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Interactions;
@@ -5,6 +6,7 @@ using Inventory;
 using Potions;
 using ScriptableVariables.Objects;
 using ScriptableVariables.SystemSpecific;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,17 +16,25 @@ namespace Mixer
     {
         [SerializeField] private List<PotionRecipe> allRecipes;
 
-        [SerializeField] private TransformVariable handTransformVariable;
+        [SerializeField] private TransformVariable handTransformVariable, cameraTransformVariable;
 
         [SerializeField] private InventoryItemListVariable inventoryItemListVariable;
 
         [SerializeField] private Transform resultSpawnPoint;
+
+        [SerializeField] private Transform showcaseAddedPoint;
 
         private List<IngredientObject> currentAddedIngredients;
 
         private void Start()
         {
             this.currentAddedIngredients = new List<IngredientObject>();
+        }
+
+        private void Update()
+        {
+            if (this.cameraTransformVariable.Value)
+                this.showcaseAddedPoint.LookAt(this.cameraTransformVariable.Value);
         }
 
         public void OnTrigger()
@@ -50,6 +60,8 @@ namespace Mixer
             this.inventoryItemListVariable.Remove(ingredientObject.GetComponent<InventoryItem>());
             ingredientObject.gameObject.SetActive(false);
             ingredientObject.transform.parent = null;
+
+            this.OnAddedUpdated();
         }
 
         public void TriggerMixing()
@@ -83,7 +95,7 @@ namespace Mixer
             }
 
             foreach (IngredientObject currentAddedIngredient in this.currentAddedIngredients)
-                Destroy(currentAddedIngredient);
+                Destroy(currentAddedIngredient.gameObject);
 
             this.currentAddedIngredients.Clear();
         }
@@ -96,6 +108,27 @@ namespace Mixer
         public Vector3 Hover()
         {
             return this.transform.position;
+        }
+
+        private void OnAddedUpdated()
+        {
+            const float itemSize = 0.5f, spaceBetween = 0.25f;
+            float offset = (itemSize - 1) * this.currentAddedIngredients.Count / 2f;
+            int i = 0;
+            foreach (IngredientObject currentAddedIngredient in this.currentAddedIngredients)
+            {
+                currentAddedIngredient.transform.parent = this.showcaseAddedPoint;
+                currentAddedIngredient.transform.localRotation = Quaternion.identity;
+                currentAddedIngredient.transform.localPosition =
+                    new Vector3(offset + itemSize * i + spaceBetween, 0, 0);
+
+                currentAddedIngredient.enabled = false;
+                currentAddedIngredient.GetComponent<Collider>().enabled = false;
+                currentAddedIngredient.GetComponent<Rigidbody>().isKinematic = true;
+                currentAddedIngredient.gameObject.SetActive(true);
+
+                i++;
+            }
         }
     }
 }

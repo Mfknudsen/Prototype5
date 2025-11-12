@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Ingredient Witchcraft
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 8097309241775028901, guid: 755a617ba9b12844cbf0d68cb74bfd45, type: 3}
+  location: 
   description: 
   tag1: 0
   tag2: 0
   sprite: {fileID: 0}
+  bookShowcaseRotation: {x: 0, y: 0, z: 0}
+  bookShowcasePositionOffset: {x: 0, y: -0.102, z: 0}

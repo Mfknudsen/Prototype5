@@ -15,6 +15,8 @@ namespace Potions
 
         [SerializeField] private Sprite sprite;
 
+        [SerializeField] private Vector3 bookShowcaseRotation, bookShowcasePositionOffset;
+
         public string GetDescription()
         {
             return this.description;
@@ -43,6 +45,16 @@ namespace Potions
         public IngredientTag GetTag2()
         {
             return this.tag2;
+        }
+
+        public Vector3 GetShowcaseRotation()
+        {
+            return this.bookShowcaseRotation;
+        }
+
+        public Vector3 GetShowcaseOffset()
+        {
+            return this.bookShowcasePositionOffset;
         }
     }
 }

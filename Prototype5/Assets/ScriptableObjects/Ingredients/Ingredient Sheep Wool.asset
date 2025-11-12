@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Ingredient Sheep Wool
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 8097309241775028901, guid: 8dbee3104738f964aadcdd9c3d7a76ff, type: 3}
+  location: 
   description: An elegant sheep is out there turning heads in admiration
   tag1: 2
   tag2: 4
+  sprite: {fileID: 0}
+  bookShowcaseRotation: {x: 0, y: 0, z: 0}
+  bookShowcasePositionOffset: {x: 0, y: -0.102, z: 0}

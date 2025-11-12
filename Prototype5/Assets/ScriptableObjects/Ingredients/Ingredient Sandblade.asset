@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Ingredient Sandblade
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 8097309241775028901, guid: 0502ec30ae5a8614c8f909d1e80d6639, type: 3}
+  location: 
   description: Forged through the delicate art of cooking sand
   tag1: 1
   tag2: 5
+  sprite: {fileID: 0}
+  bookShowcaseRotation: {x: 0, y: 0, z: 0}
+  bookShowcasePositionOffset: {x: 0, y: -0.102, z: 0}

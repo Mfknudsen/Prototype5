@@ -2,7 +2,6 @@ using Inventory;
 using Potions;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace UI.Page
 {
@@ -40,6 +39,8 @@ namespace UI.Page
             this.tag2Left.text = ingredient1.GetTag2().ToString();
 
             GameObject prefab1 = Instantiate(ingredient1.GetPrefab(), this.prefabParentLeft);
+            prefab1.transform.localPosition = ingredient1.GetShowcaseOffset();
+            prefab1.transform.localRotation = Quaternion.Euler(ingredient1.GetShowcaseRotation());
             Destroy(prefab1.GetComponent<Rigidbody>());
             Destroy(prefab1.GetComponent<Collider>());
             Destroy(prefab1.GetComponent<IngredientObject>());
@@ -58,6 +59,8 @@ namespace UI.Page
             this.tag2Right.text = ingredient2.GetTag2().ToString();
 
             GameObject prefab2 = Instantiate(ingredient2.GetPrefab(), this.prefabParentRight);
+            prefab2.transform.localPosition = ingredient2.GetShowcaseOffset();
+            prefab2.transform.localRotation = Quaternion.Euler(ingredient2.GetShowcaseRotation());
             Destroy(prefab2.GetComponent<Rigidbody>());
             Destroy(prefab2.GetComponent<Collider>());
             Destroy(prefab2.GetComponent<IngredientObject>());
@@ -67,8 +70,8 @@ namespace UI.Page
 
         private static string RemoveIngredientPrefix(string name)
         {
-            const string PREFIX = "Ingredient";
-            return name.StartsWith(PREFIX) ? name.Substring(PREFIX.Length + 1) : name;
+            const string prefix = "Ingredient";
+            return name.StartsWith(prefix) ? name.Substring(prefix.Length + 1) : name;
         }
 
         private void SetLayer(GameObject obj, LayerMask layer)

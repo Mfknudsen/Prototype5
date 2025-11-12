@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Ingredient Hedgehog
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 8097309241775028901, guid: 65dd7d5e1eec59143841308cde436252, type: 3}
+  location: 
   description: Behold the Almighty Hedgehog! Oh no, it fell into the pot
   tag1: 5
   tag2: 2
   sprite: {fileID: 21300000, guid: 033d855c8e7cd46e0b6ff6387f76e4d1, type: 3}
+  bookShowcaseRotation: {x: 32.853, y: -86.729, z: -102.974}
+  bookShowcasePositionOffset: {x: 0.003, y: -0.003, z: 0.016}

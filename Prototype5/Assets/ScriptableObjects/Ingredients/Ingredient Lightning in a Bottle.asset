@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Ingredient Lightning in a Bottle
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 8097309241775028901, guid: 04d07619ddeac084ab6cb3716f45d284, type: 3}
+  location: 
   description: How did this even get here?
   tag1: 3
   tag2: 4
   sprite: {fileID: 21300000, guid: 99b335848c7d84c0987b01f42edf7e61, type: 3}
+  bookShowcaseRotation: {x: 0, y: 0, z: 0}
+  bookShowcasePositionOffset: {x: 0, y: -0.079, z: 0}

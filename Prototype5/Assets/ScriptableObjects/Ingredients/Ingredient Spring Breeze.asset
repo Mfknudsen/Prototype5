@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Ingredient Spring Breeze
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 8097309241775028901, guid: 689bb76f0f566ed409156e1441adb4be, type: 3}
+  location: 
   description: Only a slouch would confuse it with a Summer Breeze
   tag1: 1
   tag2: 2
+  sprite: {fileID: 0}
+  bookShowcaseRotation: {x: 0, y: 0, z: 0}
+  bookShowcasePositionOffset: {x: 0, y: -0.102, z: 0}
