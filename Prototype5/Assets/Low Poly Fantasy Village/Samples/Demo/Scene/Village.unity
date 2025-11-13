@@ -1625,9 +1625,29 @@ MonoBehaviour:
   rumorApplies:
   - toActivate: {fileID: 11400000, guid: 0e01bc3edef54cb4992dcb02df3c9743, type: 2}
     npcToHandIn: {fileID: 1790563072}
-    defaultDialog: {fileID: 11400000, guid: 75bfb604e2b5f934b8a9c5b0ab0bd031, type: 2}
-    onTrueDialog: {fileID: 11400000, guid: ae199707e0a34744e8feea87eecceb68, type: 2}
-    onFalseDialog: {fileID: 11400000, guid: 79455a340c1a9d648812075deaec5624, type: 2}
+    defaultDialog: {fileID: 11400000, guid: 10f34fd688f5e4b4eafe5bdf66324c36, type: 2}
+    onTrueDialog: {fileID: 11400000, guid: 852916013082a484a9182f2a6c0b95a9, type: 2}
+    onFalseDialog: {fileID: 11400000, guid: 6e9dbd6d50f7d491591657b5127e27b5, type: 2}
+    npcWithDialogs:
+    - npc: {fileID: 1125338200}
+      dialog: {fileID: 11400000, guid: 75bfb604e2b5f934b8a9c5b0ab0bd031, type: 2}
+    - npc: {fileID: 2087214548}
+      dialog: {fileID: 11400000, guid: 75bfb604e2b5f934b8a9c5b0ab0bd031, type: 2}
+  - toActivate: {fileID: 11400000, guid: 634447fbd6267f544af0551c1bfbd25f, type: 2}
+    npcToHandIn: {fileID: 1790563072}
+    defaultDialog: {fileID: 11400000, guid: 3e65ae9e36fa04f3b9dd65b06788bab2, type: 2}
+    onTrueDialog: {fileID: 11400000, guid: 0f39db58564d544f2ac63495c8bf73a1, type: 2}
+    onFalseDialog: {fileID: 11400000, guid: dd0f333e3c9184d82a65fd7d90012195, type: 2}
+    npcWithDialogs:
+    - npc: {fileID: 1125338200}
+      dialog: {fileID: 11400000, guid: 75bfb604e2b5f934b8a9c5b0ab0bd031, type: 2}
+    - npc: {fileID: 2087214548}
+      dialog: {fileID: 11400000, guid: 75bfb604e2b5f934b8a9c5b0ab0bd031, type: 2}
+  - toActivate: {fileID: 11400000, guid: 2063e212a6750454987643834fa6fb8d, type: 2}
+    npcToHandIn: {fileID: 1790563072}
+    defaultDialog: {fileID: 11400000, guid: 43bb1ca45496340f7b9931faeec6d4ae, type: 2}
+    onTrueDialog: {fileID: 11400000, guid: 92af6bb8913014ec2a6856a6ca859987, type: 2}
+    onFalseDialog: {fileID: 11400000, guid: 8fac5680dee0a46d8bed2cb9cfe049d5, type: 2}
     npcWithDialogs:
     - npc: {fileID: 1125338200}
       dialog: {fileID: 11400000, guid: 75bfb604e2b5f934b8a9c5b0ab0bd031, type: 2}
