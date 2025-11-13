@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DialogTest
   m_EditorClassIdentifier: 
   description: test description
-  text: Lovely day
+  text: test text
