@@ -41,6 +41,7 @@ namespace NPCs.Enemies
         private EnemyDeathState _deathState;
         private EnemyGetAttackedState _getAttackedState;
         private EnemyDanceState _danceState;
+        private bool _isInThorns;
         
         public float DistanceToTarget => Vector3.Distance(transform.position, playerTransform.position);
 
@@ -55,6 +56,7 @@ namespace NPCs.Enemies
             _deathState = new EnemyDeathState(this);
             _getAttackedState = new EnemyGetAttackedState(this);
             _danceState = new EnemyDanceState(this);
+            _isInThorns = false;
         }
 
         private void Start()
@@ -100,16 +102,37 @@ namespace NPCs.Enemies
             
             potionDamage = damage;
             potionDamageType = type;
-            StartCoroutine(GetAttackedOverTimeCoroutine(totalDuration / numberOfHits - switchStateDelay, numberOfHits));
+            StartCoroutine(GetAttackedFire(totalDuration / numberOfHits - switchStateDelay, numberOfHits));
         }
-
-        private IEnumerator GetAttackedOverTimeCoroutine(float timeBetweenHits, int numberOfHits)
+        
+        private IEnumerator GetAttackedFire(float timeBetweenHits, int numberOfHits)
         {
             for (int i = 0; i < numberOfHits; i++)
             {
                 SwitchState(_getAttackedState);
                 yield return new WaitForSeconds(timeBetweenHits);
             }
+        }
+
+        public void OnThornHit(float timeBetweenHits)
+        {
+            if (!_isInThorns)
+            {
+                _isInThorns = true;
+                InvokeRepeating(nameof(GetAttackedThorn), 0f, timeBetweenHits);
+            }
+        }
+
+        public void ExitThorns()
+        {
+            _isInThorns = false;
+            CancelInvoke(nameof(GetAttackedThorn));
+        }
+
+        private void GetAttackedThorn()
+        {
+            if (!_isInThorns) return;
+            SwitchState(_getAttackedState);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Plants;
 using Potions.Effects.PersistentEffects;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -20,7 +21,12 @@ namespace Potions.Effects
         {
             PersistentThornEffect persistentThornEffect =
                 Object.Instantiate(this.persistentThornGameObject).GetComponent<PersistentThornEffect>();
+            
             persistentThornEffect.transform.position = potionObject.transform.position;
+            
+            if (persistentThornEffect.gameObject.GetComponent<ThornSpawner>() is { } thornSpawner)
+                thornSpawner.SpawnThorns(potionObject.transform.position);
+
             persistentThornEffect.Trigger(this.effectRadius, this.duration);
         }
     }

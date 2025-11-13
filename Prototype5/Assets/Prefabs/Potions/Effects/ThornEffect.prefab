@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8407926869469136349}
   - component: {fileID: 67501969923271607}
   - component: {fileID: 8528033363619560299}
+  - component: {fileID: -7383353164204009998}
   m_Layer: 0
   m_Name: ThornEffect
   m_TagString: Untagged
@@ -69,3 +70,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &-7383353164204009998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4661402579496498467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c694cdead7ff954a8011e6f9c9a6da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thornsPrefab: {fileID: 5466154927578926954, guid: a822370a8636746408db620b76b55ef7, type: 3}
+  growthDuration: 1
+  spawnPositionOffset: {x: 0, y: -0.32, z: 0}
