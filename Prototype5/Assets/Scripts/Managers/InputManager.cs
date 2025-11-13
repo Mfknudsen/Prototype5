@@ -107,6 +107,7 @@ namespace Managers
         private void OnInputCheckDeviceName(string deviceName)
         {
             Device set = Device.Null;
+            Debug.Log(deviceName);
             if (deviceName.Contains("Gamepad"))
                 set = Device.Gamepad;
             else if (deviceName.Contains("Mouse") || deviceName.Contains("Keyboard"))
