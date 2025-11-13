@@ -1016,6 +1016,8 @@ MonoBehaviour:
   npcRadius: 13
   chaseSpeed: 4
   wanderSpeed: 2
+  firePrefab: {fileID: 6501403122605529535, guid: b0462f7d0adc5ea4d878308681983488, type: 3}
+  fireOffsetPosition: {x: 0, y: -0.3, z: 0}
   agent: {fileID: 0}
   playerTransform: {fileID: 0}
   playerHealth: {fileID: 0}
@@ -1026,6 +1028,7 @@ MonoBehaviour:
   jumpHeight: 0
   jumpCount: 0
   danceDuration: 0
+  switchStateDelay: 0.6
 --- !u!114 &3276455111831975154
 MonoBehaviour:
   m_ObjectHideFlags: 0

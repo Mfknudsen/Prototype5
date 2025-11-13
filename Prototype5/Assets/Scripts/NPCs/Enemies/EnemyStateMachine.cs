@@ -22,6 +22,10 @@ namespace NPCs.Enemies
         public float chaseSpeed = 4.0f;
         public float wanderSpeed = 2.0f;
 
+        [Header("Attacked by Fire")] 
+        public GameObject firePrefab;
+        public Vector3 fireOffsetPosition = Vector3.zero;
+
         [HideInInspector] public EnemyWanderState WanderState;
         [HideInInspector] public EnemyChaseState ChaseState;
         [HideInInspector] public EnemyAttackState AttackState;
@@ -98,8 +102,6 @@ namespace NPCs.Enemies
 
         public void OnFire(float damage, DamageType type, float totalDuration, int numberOfHits)
         {
-            //TODO: add fire vfx
-            
             potionDamage = damage;
             potionDamageType = type;
             StartCoroutine(GetAttackedFire(totalDuration / numberOfHits - switchStateDelay, numberOfHits));
@@ -107,11 +109,15 @@ namespace NPCs.Enemies
         
         private IEnumerator GetAttackedFire(float timeBetweenHits, int numberOfHits)
         {
+            GameObject fire = Instantiate(firePrefab, transform.position + fireOffsetPosition, Quaternion.identity, transform);
+
             for (int i = 0; i < numberOfHits; i++)
             {
                 SwitchState(_getAttackedState);
                 yield return new WaitForSeconds(timeBetweenHits);
             }
+            
+            Destroy(fire);
         }
 
         public void OnThornHit(float timeBetweenHits)
