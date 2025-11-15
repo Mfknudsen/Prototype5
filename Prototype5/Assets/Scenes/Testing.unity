@@ -6762,7 +6762,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 288429122636158421, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 106.55
+      value: 100.54
       objectReference: {fileID: 0}
     - target: {fileID: 288429122636158421, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6770,7 +6770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 288429122636158421, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.5
+      value: -2.31
       objectReference: {fileID: 0}
     - target: {fileID: 288429122636158421, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6826,7 +6826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: testSpawnPositions.Array.size
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: spawnPositions.Array.data[0].x
@@ -6850,27 +6850,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: testSpawnPositions.Array.data[1].x
-      value: 95.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
-      propertyPath: testSpawnPositions.Array.data[1].z
-      value: -8.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
-      propertyPath: testSpawnPositions.Array.data[2].x
-      value: 100.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
-      propertyPath: testSpawnPositions.Array.data[2].z
-      value: -8.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
-      propertyPath: testSpawnPositions.Array.data[3].x
       value: 106.55
       objectReference: {fileID: 0}
     - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: testSpawnPositions.Array.data[1].z
+      value: -2.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: testSpawnPositions.Array.data[2].x
+      value: 106.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: testSpawnPositions.Array.data[2].z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: testSpawnPositions.Array.data[3].x
+      value: 103.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: testSpawnPositions.Array.data[3].z
-      value: -8.99
+      value: 2.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: testSpawnPositions.Array.data[4].x
+      value: 100.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: testSpawnPositions.Array.data[4].z
+      value: 2.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: testSpawnPositions.Array.data[5].x
+      value: 100.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: testSpawnPositions.Array.data[5].z
+      value: -2.31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

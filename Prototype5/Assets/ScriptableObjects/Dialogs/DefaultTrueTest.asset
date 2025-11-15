@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: DefaultTrueTest
   m_EditorClassIdentifier: 
   description: 
-  text: 'true
-
-    What you have in your hand is the correct potion.'
+  text: '"Perfect! I will give it to him right away!"'

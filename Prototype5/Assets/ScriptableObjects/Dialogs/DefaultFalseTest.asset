@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: DefaultFalseTest
   m_EditorClassIdentifier: 
   description: 
-  text: 'false
-
-    What you have in your hand is not the correct potion.'
+  text: '"I don''t see how this will help..."'
