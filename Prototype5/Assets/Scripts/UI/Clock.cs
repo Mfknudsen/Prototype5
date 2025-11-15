@@ -1,4 +1,3 @@
-using System;
 using DayNightCycle;
 using TMPro;
 using UnityEngine;
@@ -15,6 +14,11 @@ namespace UI
             this.clockText.text =
                 $"{(time.Item1 < 10 ? "0" : "")}{time.Item1} : {(time.Item2 < 10 ? "0" : "")}{time.Item2}";
             this.timeStateText.text = DayNight.GetCurrentDayNightTime().ToString();
+        }
+
+        public void DeactivateClock()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

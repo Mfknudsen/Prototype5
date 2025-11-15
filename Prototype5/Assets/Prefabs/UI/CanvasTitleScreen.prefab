@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &775774990809333172
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1929,3 +1929,4 @@ MonoBehaviour:
   MainMenuContainer: {fileID: 4432985354538265719}
   SettingsMenuContainer: {fileID: 2701105654881063151}
   debugMode: 1
+  pauseGame: {fileID: 0}
