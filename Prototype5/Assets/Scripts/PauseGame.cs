@@ -4,7 +4,7 @@ using ScriptableVariables.Objects;
 using ScriptableVariables.SystemSpecific;
 using UnityEngine;
 
-public sealed class ResetGame : MonoBehaviour
+public sealed class PauseGame : MonoBehaviour
 {
     [SerializeField] private List<TransformVariable> transformVariables;
 
@@ -14,6 +14,8 @@ public sealed class ResetGame : MonoBehaviour
 
     [SerializeField] private GameObject canvasPlayerScreen;
 
+    public GameObject GetCanvasPlayerScreen() => canvasPlayerScreen;
+    
     private void OnEnable()
     {
         InputManager.Instance.EscapeEvent.AddListener(this.OnEscapeInput);

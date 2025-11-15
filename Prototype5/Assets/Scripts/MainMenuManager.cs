@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject MainMenuContainer;
     [SerializeField] private GameObject SettingsMenuContainer;
     [SerializeField] private bool debugMode;
+    [SerializeField] private PauseGame pauseGame;
 
     public enum MainMenuButtons
     {
@@ -70,7 +70,11 @@ public class MainMenuManager : MonoBehaviour
 
     private void PlayGame()
     {
-        SceneManager.LoadScene(this.START_SCENE, LoadSceneMode.Single);
+        Time.timeScale = 1;
+        transform.parent.gameObject.SetActive(false);
+        pauseGame.GetCanvasPlayerScreen().gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void OpenSettings()
