@@ -3,13 +3,16 @@ using Managers;
 using ScriptableVariables.Objects;
 using ScriptableVariables.SystemSpecific;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public sealed class ResetGame : MonoBehaviour
 {
     [SerializeField] private List<TransformVariable> transformVariables;
 
     [SerializeField] private InventoryItemListVariable inventoryItemListVariable;
+
+    [SerializeField] private GameObject canvasTitleScreen;
+
+    [SerializeField] private GameObject canvasPlayerScreen;
 
     private void OnEnable()
     {
@@ -23,9 +26,11 @@ public sealed class ResetGame : MonoBehaviour
 
     private void OnEscapeInput()
     {
-        SceneManager.LoadScene("Scenes/TitleScreen", LoadSceneMode.Single);
+        canvasTitleScreen?.SetActive(true);
+        canvasPlayerScreen?.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Time.timeScale = 0;
 
         foreach (TransformVariable transformVariable in this.transformVariables)
             transformVariable.Value = null;
