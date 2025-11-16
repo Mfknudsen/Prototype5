@@ -80,15 +80,13 @@ namespace Mixer
                 if (!potionRecipe.CheckCorrect(this.currentAddedIngredients))
                     continue;
 
-                const float offset = 0.5f;
-
                 foreach (PotionValue potionValue in potionRecipe.GetResults())
                 {
                     Transform t = Instantiate(potionValue.GetPrefab()).transform;
-                    t.position = this.resultSpawnPoint.position + new Vector3(
-                        Random.Range(-offset, offset),
-                        0,
-                        Random.Range(-offset, offset));
+                    t.position = this.resultSpawnPoint.position;
+
+                    if (t.GetComponent<Rigidbody>() is { } rb)
+                        rb.useGravity = false;
                 }
 
                 break;

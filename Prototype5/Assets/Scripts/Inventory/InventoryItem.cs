@@ -77,6 +77,7 @@ namespace Inventory
 
         private void OnThrowInput()
         {
+            this.rb.useGravity = true;
             this.itemCollider.enabled = true;
             this.rb.isKinematic = false;
             this.rb.AddForce(this.transform.forward * this.throwForce, ForceMode.Impulse);
