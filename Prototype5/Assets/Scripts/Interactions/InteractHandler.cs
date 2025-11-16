@@ -100,11 +100,21 @@ namespace Interactions
                 return;
             }
 
-            if (this.current != null && !this.uiInteractButtonTransform.gameObject.activeSelf)
-                this.uiInteractButtonTransform.gameObject.SetActive(true);
+            if (this.current != null && this.current.Hover() == null)
+            {
+                if (this.uiInteractButtonTransform.gameObject.activeSelf)
+                    this.uiInteractButtonTransform.gameObject.SetActive(false);
+                return;
+            }
 
-            Vector3 position = this.cam.WorldToScreenPoint(this.current.Hover());
-            this.uiInteractButtonTransform.position = position;
+            if (this.current != null && this.current.Hover() is { } hoverPosition)
+            {
+                if (!this.uiInteractButtonTransform.gameObject.activeSelf)
+                    this.uiInteractButtonTransform.gameObject.SetActive(true);
+
+                Vector3 position = this.cam.WorldToScreenPoint(hoverPosition);
+                this.uiInteractButtonTransform.position = position;
+            }
         }
 
         private void OnInputTrigger()

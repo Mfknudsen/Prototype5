@@ -24,8 +24,12 @@ namespace Mixer
 
         [SerializeField] private Transform showcaseAddedPoint;
 
+        [SerializeField] private int maxIngredientAmount = 2;
+
         private List<IngredientObject> currentAddedIngredients;
 
+        public bool CheckCauldronFull() => currentAddedIngredients.Count >= maxIngredientAmount;
+        
         private void Start()
         {
             this.currentAddedIngredients = new List<IngredientObject>();
@@ -40,6 +44,8 @@ namespace Mixer
         public void OnTrigger()
         {
             Debug.Log("Mixer");
+
+            if (this.CheckCauldronFull()) return;
 
             if (this.handTransformVariable == null || this.handTransformVariable.Value == null)
                 return;
@@ -103,8 +109,10 @@ namespace Mixer
             return this.enabled;
         }
 
-        public Vector3 Hover()
+        public Vector3? Hover()
         {
+            if (this.CheckCauldronFull()) 
+                return null;
             return this.transform.position;
         }
 

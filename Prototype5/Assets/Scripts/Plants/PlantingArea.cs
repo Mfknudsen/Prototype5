@@ -50,7 +50,7 @@ namespace Plants
             return this.enabled && this.collider.enabled;
         }
 
-        public Vector3 Hover()
+        public Vector3? Hover()
         {
             return this.transform.position;
         }

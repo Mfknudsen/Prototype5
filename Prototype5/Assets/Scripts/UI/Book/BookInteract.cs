@@ -24,7 +24,7 @@ namespace UI.Book
             return this.gameObject.activeSelf;
         }
 
-        public Vector3 Hover()
+        public Vector3? Hover()
         {
             return this.transform.position;
         }

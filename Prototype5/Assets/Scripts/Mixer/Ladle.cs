@@ -18,8 +18,10 @@ namespace Mixer
             return this.enabled;
         }
 
-        public Vector3 Hover()
+        public Vector3? Hover()
         {
+            if (!mixingStation.CheckCauldronFull()) 
+                return null;
             return this.transform.position;
         }
     }

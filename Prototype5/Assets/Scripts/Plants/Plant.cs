@@ -83,7 +83,7 @@ namespace Plants
             return this.enabled && this.currentTime / 60.0f > this.growthTime;
         }
 
-        public Vector3 Hover()
+        public Vector3? Hover()
         {
             return this.transform.position;
         }

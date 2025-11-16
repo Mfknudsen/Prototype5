@@ -47,7 +47,7 @@ namespace Inventory
             return this.enabled;
         }
 
-        public Vector3 Hover()
+        public Vector3? Hover()
         {
             return this.transform.position;
         }

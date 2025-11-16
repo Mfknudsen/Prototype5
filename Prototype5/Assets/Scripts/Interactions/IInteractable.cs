@@ -8,6 +8,6 @@ namespace Interactions
 
         public bool IsActive();
 
-        public Vector3 Hover();
+        public Vector3? Hover();
     }
 }

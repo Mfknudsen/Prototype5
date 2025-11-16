@@ -58,7 +58,7 @@ namespace NPCs
             return this.gameObject.activeSelf;
         }
 
-        public Vector3 Hover()
+        public Vector3? Hover()
         {
             return this.transform.position + this.interactHighlightOffset;
         }
