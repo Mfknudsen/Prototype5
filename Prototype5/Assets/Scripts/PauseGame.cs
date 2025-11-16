@@ -1,18 +1,15 @@
-using System.Collections.Generic;
+using Inventory;
 using Managers;
-using ScriptableVariables.Objects;
-using ScriptableVariables.SystemSpecific;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public sealed class PauseGame : MonoBehaviour
 {
-    [SerializeField] private List<TransformVariable> transformVariables;
-
-    [SerializeField] private InventoryItemListVariable inventoryItemListVariable;
-
     [SerializeField] private GameObject canvasTitleScreen;
 
     [SerializeField] private GameObject canvasPlayerScreen;
+
+    [SerializeField] private InventoryHandler inventoryHandler;
 
     public GameObject GetCanvasPlayerScreen() => canvasPlayerScreen;
     
@@ -33,10 +30,8 @@ public sealed class PauseGame : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0;
-
-        foreach (TransformVariable transformVariable in this.transformVariables)
-            transformVariable.Value = null;
-
-        this.inventoryItemListVariable.Value?.Clear();
+        
+        EventSystem.current?.SetSelectedGameObject(null);
+        inventoryHandler.SkipNextPotionAttack();
     }
 }

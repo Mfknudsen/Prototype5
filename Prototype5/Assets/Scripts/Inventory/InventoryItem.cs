@@ -24,6 +24,8 @@ namespace Inventory
 
         private UnityEvent<InventoryItem> onTrigger;
 
+        [HideInInspector] public bool skipAttack = false;
+
         public void OnTrigger()
         {
             Debug.Log($"Trigger: {this.gameObject.name}");
@@ -77,6 +79,12 @@ namespace Inventory
 
         private void OnThrowInput()
         {
+            if (skipAttack)
+            {
+                skipAttack = false;
+                return;
+            }
+            
             this.rb.useGravity = true;
             this.itemCollider.enabled = true;
             this.rb.isKinematic = false;

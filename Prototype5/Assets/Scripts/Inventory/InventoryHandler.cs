@@ -321,5 +321,13 @@ namespace Inventory
             
             return currentItemInHand.GetComponent<PotionObject>();
         }
+
+        public void SkipNextPotionAttack()
+        {
+            if (!CheckPotionInHand()) return;
+
+            if (currentItemInHand?.GetComponent<InventoryItem>() is { } item)
+                item.skipAttack = true;
+        }
     }
 }
