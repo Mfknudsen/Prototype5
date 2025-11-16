@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Managers;
+using Potions;
 using ScriptableVariables.Enums;
 using ScriptableVariables.Objects;
 using ScriptableVariables.SystemSpecific;
@@ -312,6 +313,13 @@ namespace Inventory
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             this.gameObject.SetActive(false);
+        }
+
+        public bool CheckPotionInHand()
+        {
+            if (!currentItemInHand) return false;
+            
+            return currentItemInHand.GetComponent<PotionObject>();
         }
     }
 }

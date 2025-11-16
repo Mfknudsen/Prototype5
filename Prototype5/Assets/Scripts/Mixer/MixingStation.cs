@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Interactions;
@@ -6,9 +5,7 @@ using Inventory;
 using Potions;
 using ScriptableVariables.Objects;
 using ScriptableVariables.SystemSpecific;
-using Unity.Mathematics;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Mixer
 {
@@ -25,6 +22,8 @@ namespace Mixer
         [SerializeField] private Transform showcaseAddedPoint;
 
         [SerializeField] private int maxIngredientAmount = 2;
+
+        [SerializeField] private InventoryHandler inventoryHandler;
 
         private List<IngredientObject> currentAddedIngredients;
 
@@ -111,7 +110,7 @@ namespace Mixer
 
         public Vector3? Hover()
         {
-            if (this.CheckCauldronFull()) 
+            if (this.CheckCauldronFull() || inventoryHandler.CheckPotionInHand()) 
                 return null;
             return this.transform.position;
         }
