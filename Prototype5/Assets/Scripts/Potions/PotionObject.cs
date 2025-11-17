@@ -39,7 +39,13 @@ namespace Potions
                 .Select(col => col.GetComponent<PotionEffectTarget>()).Where(component => component != null).ToList();
 
             if (hits.Count == 0)
-                return;
+            {
+                bool isThornPotion = false;
+                foreach (PotionEffectBase potionEffectBase in this.potionValue.GetEffects())
+                    if (potionEffectBase is ThornEffect)
+                        isThornPotion = true;
+                if (!isThornPotion) return;
+            }
             
             foreach (PotionEffectBase potionEffectBase in this.potionValue.GetEffects())
             {
