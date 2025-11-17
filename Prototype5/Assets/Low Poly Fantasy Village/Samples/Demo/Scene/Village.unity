@@ -464,7 +464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 50517150}
   m_Layer: 0
-  m_Name: SpawnPoint2
+  m_Name: CrystalineSpawner2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2162,7 +2162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 274869309}
   m_Layer: 0
-  m_Name: SpawnPoint0
+  m_Name: CrystalineSpawner0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2177,7 +2177,7 @@ Transform:
   m_GameObject: {fileID: 274869308}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.27, y: 0.62, z: 1.71}
+  m_LocalPosition: {x: -3.74, y: 0.62, z: 1.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2466,7 +2466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 445898492}
   m_Layer: 0
-  m_Name: SpawnPoint3
+  m_Name: CrystalineSpawner3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2481,7 +2481,7 @@ Transform:
   m_GameObject: {fileID: 445898491}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.27, y: 0.62, z: -1.82}
+  m_LocalPosition: {x: 1.97, y: 0.62, z: 6.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2605,7 +2605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 584639393}
   m_Layer: 0
-  m_Name: SpawnPoint4
+  m_Name: CrystalineSpawner4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2620,7 +2620,7 @@ Transform:
   m_GameObject: {fileID: 584639392}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.34, y: 0.62, z: 4.88}
+  m_LocalPosition: {x: -2.52, y: 0.62, z: 7.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19929,7 +19929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1975649480}
   m_Layer: 0
-  m_Name: SpawnPoint1
+  m_Name: CrystalineSpawner1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19944,7 +19944,7 @@ Transform:
   m_GameObject: {fileID: 1975649479}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.39, y: 0.62, z: 2.42}
+  m_LocalPosition: {x: -0.52, y: 0.62, z: -3.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20560,6 +20560,10 @@ PrefabInstance:
       propertyPath: timeBetweenSpawns
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4119446290731909454, guid: 975a7ec3c0f5200419617cd0b9a71275, type: 3}
+      propertyPath: m_Name
+      value: CrystalineSpawner
+      objectReference: {fileID: 0}
     - target: {fileID: 4678323450326333835, guid: 975a7ec3c0f5200419617cd0b9a71275, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -20646,7 +20650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8924669329850428777, guid: 975a7ec3c0f5200419617cd0b9a71275, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -35.79
+      value: -47.37
       objectReference: {fileID: 0}
     - target: {fileID: 8924669329850428777, guid: 975a7ec3c0f5200419617cd0b9a71275, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20654,7 +20658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8924669329850428777, guid: 975a7ec3c0f5200419617cd0b9a71275, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.01
+      value: 9.8
       objectReference: {fileID: 0}
     - target: {fileID: 8953576388020542332, guid: 975a7ec3c0f5200419617cd0b9a71275, type: 3}
       propertyPath: maxSpawnCount
