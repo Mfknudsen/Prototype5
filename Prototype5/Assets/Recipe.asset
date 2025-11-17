@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ceaff86e832e74ebf7962d44530dbc, type: 3}
-  m_Name: Recipe Potion of Fire 2
+  m_Name: Recipe
   m_EditorClassIdentifier: 
   ingredients:
-  - ingredientValue: {fileID: 11400000, guid: 5861374817e17204ab6f4526f89aa669, type: 2}
-    count: 1
-  - ingredientValue: {fileID: 11400000, guid: fe91b6d0d44ac28488c4279c84a7438e, type: 2}
-    count: 1
+  - ingredientValue: {fileID: 11400000, guid: 2deb61f039a47db4e920d7c6bed642a7, type: 2}
+    count: 2
   potionResults:
-  - {fileID: 11400000, guid: 676a1ecf21ebe6b4c836c1462134bf4c, type: 2}
+  - {fileID: 11400000, guid: 303c586e561fce84e8d8467f47826c97, type: 2}

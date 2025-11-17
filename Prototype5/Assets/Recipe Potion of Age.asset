@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ceaff86e832e74ebf7962d44530dbc, type: 3}
-  m_Name: Recipe Potion of Groove 2
+  m_Name: Recipe Potion of Age
   m_EditorClassIdentifier: 
   ingredients:
-  - ingredientValue: {fileID: 11400000, guid: 1250a60bde77edb48b83d03379cd3ee5, type: 2}
+  - ingredientValue: {fileID: 11400000, guid: abc7b07936c94f143a98d57c72ce2ed7, type: 2}
     count: 1
-  - ingredientValue: {fileID: 11400000, guid: 58c3a766e1ec61c438e8812a61d8bf32, type: 2}
+  - ingredientValue: {fileID: 11400000, guid: ea610913c1511a042b0fc441b60e130f, type: 2}
     count: 1
   potionResults:
-  - {fileID: 11400000, guid: 184b825e2290871418ad5cfa3a35c9cd, type: 2}
+  - {fileID: 11400000, guid: 10abb55b6c380dc46af0c932618b8ce2, type: 2}
