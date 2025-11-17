@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92b40fe88f478784aaa67c4c91215c50, type: 3}
-  m_Name: Ingredient Hedgehog
+  m_Name: Ingredient Purple Stinger
   m_EditorClassIdentifier: 
   ingredientPrefab: {fileID: 8097309241775028901, guid: 65dd7d5e1eec59143841308cde436252, type: 3}
   location: 
