@@ -101,6 +101,8 @@ namespace DayNightCycle
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
         private static void Initialize()
         {
+            //Remove return to reenable DayNight system
+            return;
             _allLights = new List<DayNightLight>(32);
             _onTimeChangeEvent = new UnityEvent<DayNightTime>();
 
