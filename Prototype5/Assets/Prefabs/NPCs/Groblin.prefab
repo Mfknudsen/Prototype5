@@ -1008,8 +1008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858f6a0ff86f064438e21e1ac342b26f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseStateRange: 15
-  viewAngle: 70
+  chaseStateRange: 18
+  viewAngle: 90
   attackStateRange: 2
   damageAmount: 8
   attackCooldown: 0.8
