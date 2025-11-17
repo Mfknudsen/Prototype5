@@ -3709,7 +3709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &785132409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12494,6 +12494,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 2079618063426196793, guid: 8e590819e6512cd4687400d3587d8f0e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -35.14
+      objectReference: {fileID: 0}
     - target: {fileID: 2080994677070590810, guid: 8e590819e6512cd4687400d3587d8f0e, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -17892,6 +17896,10 @@ PrefabInstance:
     - {fileID: -1810600892155157443, guid: 8e590819e6512cd4687400d3587d8f0e, type: 3}
     - {fileID: 7546300496010738261, guid: 8e590819e6512cd4687400d3587d8f0e, type: 3}
     - {fileID: 9031072250978355114, guid: 8e590819e6512cd4687400d3587d8f0e, type: 3}
+    - {fileID: 2357202460183831334, guid: 8e590819e6512cd4687400d3587d8f0e, type: 3}
+    - {fileID: -1981176674353629320, guid: 8e590819e6512cd4687400d3587d8f0e, type: 3}
+    - {fileID: -2040334549572954066, guid: 8e590819e6512cd4687400d3587d8f0e, type: 3}
+    - {fileID: -953697550568914046, guid: 8e590819e6512cd4687400d3587d8f0e, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e590819e6512cd4687400d3587d8f0e, type: 3}
       insertIndex: 172
