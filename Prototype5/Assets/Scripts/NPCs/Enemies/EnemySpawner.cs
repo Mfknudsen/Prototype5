@@ -95,7 +95,7 @@ namespace NPCs.Enemies
             }
             else if (dayNightTime == despawnTime && _enemiesSpawned)
             {
-                DespawnMobs();
+                // DespawnMobs();
                 _enemiesSpawned = false;
             }
         }
