@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Potions.Effects;
-using ScriptableVariables.Objects;
 using UnityEngine;
 
 namespace Potions
@@ -39,6 +38,9 @@ namespace Potions
                 .OverlapSphere(this.transform.position, this.potionValue.GetMaxRadius())
                 .Select(col => col.GetComponent<PotionEffectTarget>()).Where(component => component != null).ToList();
 
+            if (hits.Count == 0)
+                return;
+            
             foreach (PotionEffectBase potionEffectBase in this.potionValue.GetEffects())
             {
                 potionEffectBase.TriggerEffect(this, hits);
