@@ -30,7 +30,7 @@ MonoBehaviour:
         effectRadius: 0
         persistentGameObject: {fileID: 5389600491076198467, guid: 6ecbe1ff44e67fe49a9e01fab001eb52, type: 3}
         effectDuration: 9
-        numberOfHits: 3
+        numberOfHits: 4
     - rid: 7969916117750644985
       type: {class: PushBackEffect, ns: Potions.Effects, asm: Assembly-CSharp}
       data:
