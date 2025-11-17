@@ -1,4 +1,3 @@
-using System;
 using DayNightCycle;
 using ScriptableVariables.Objects;
 using UnityEditor;
@@ -23,7 +22,7 @@ namespace NPCs.Enemies
         public DamageType damageType;
         
         private static bool _enemiesSpawned;
-
+        
         private void Awake()
         {
             SpawnTestEnemies();
@@ -86,17 +85,10 @@ namespace NPCs.Enemies
         private void CheckSpawnEnemies(DayNightTime dayNightTime)
         {
             var spawnTime = useNightMobs ? DayNightTime.Night : DayNightTime.Morning;
-            var despawnTime = useNightMobs ? DayNightTime.Morning : DayNightTime.Night;
-
             if (dayNightTime == spawnTime && !_enemiesSpawned)
             {
                 SpawnMobs();
                 _enemiesSpawned = true;
-            }
-            else if (dayNightTime == despawnTime && _enemiesSpawned)
-            {
-                // DespawnMobs();
-                _enemiesSpawned = false;
             }
         }
     }
