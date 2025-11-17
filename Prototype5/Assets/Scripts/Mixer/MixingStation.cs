@@ -6,6 +6,7 @@ using Potions;
 using ScriptableVariables.Objects;
 using ScriptableVariables.SystemSpecific;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Mixer
 {
@@ -25,13 +26,17 @@ namespace Mixer
 
         [SerializeField] private InventoryHandler inventoryHandler;
 
+        [SerializeField] private GameObject smokeVFX;
+
         private List<IngredientObject> currentAddedIngredients;
+        private ParticleSystem smokeParticleSystem;
 
         public bool CheckCauldronFull() => currentAddedIngredients.Count >= maxIngredientAmount;
         
         private void Start()
         {
             this.currentAddedIngredients = new List<IngredientObject>();
+            smokeParticleSystem = smokeVFX.GetComponent<ParticleSystem>();
         }
 
         private void Update()
@@ -80,11 +85,13 @@ namespace Mixer
                 Debug.Log(currentAddedIngredient.gameObject.name);
             }
 
+            bool isCorrectRecipe = false;
             foreach (PotionRecipe potionRecipe in this.allRecipes.OrderBy(r => r.IngredientNeededCount()))
             {
                 if (!potionRecipe.CheckCorrect(this.currentAddedIngredients))
                     continue;
 
+                isCorrectRecipe = true;
                 foreach (PotionValue potionValue in potionRecipe.GetResults())
                 {
                     Transform t = Instantiate(potionValue.GetPrefab()).transform;
@@ -96,6 +103,9 @@ namespace Mixer
 
                 break;
             }
+
+            if (!isCorrectRecipe)
+                smokeParticleSystem?.Play();
 
             foreach (IngredientObject currentAddedIngredient in this.currentAddedIngredients)
                 Destroy(currentAddedIngredient.gameObject);
