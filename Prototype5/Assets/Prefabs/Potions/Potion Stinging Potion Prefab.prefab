@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7750847899951746458}
   - component: {fileID: 2603239617512986011}
   m_Layer: 3
-  m_Name: Potion Slippery Potion Prefab
+  m_Name: Potion Stinging Potion Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

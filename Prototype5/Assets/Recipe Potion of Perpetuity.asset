@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ceaff86e832e74ebf7962d44530dbc, type: 3}
-  m_Name: Recipe Slippery Potion
+  m_Name: Recipe Potion of Perpetuity
   m_EditorClassIdentifier: 
   ingredients:
-  - ingredientValue: {fileID: 11400000, guid: 1250a60bde77edb48b83d03379cd3ee5, type: 2}
+  - ingredientValue: {fileID: 11400000, guid: abc7b07936c94f143a98d57c72ce2ed7, type: 2}
     count: 1
-  - ingredientValue: {fileID: 11400000, guid: 56eb0086f4fa7e04580f7b90dd56a34d, type: 2}
+  - ingredientValue: {fileID: 11400000, guid: ea610913c1511a042b0fc441b60e130f, type: 2}
     count: 1
   potionResults:
-  - {fileID: 11400000, guid: f9b01738c45289241b4e367d4fbab2a6, type: 2}
+  - {fileID: 11400000, guid: 10abb55b6c380dc46af0c932618b8ce2, type: 2}
