@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -71,10 +72,11 @@ public class MainMenuManager : MonoBehaviour
     private void PlayGame()
     {
         Time.timeScale = 1;
-        transform.parent.gameObject.SetActive(false);
-        pauseGame.GetCanvasPlayerScreen().gameObject.SetActive(true);
+        this.transform.parent.gameObject.SetActive(false);
+        this.pauseGame?.GetCanvasPlayerScreen().gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        SceneManager.LoadScene(this.START_SCENE, LoadSceneMode.Single);
     }
 
     private void OpenSettings()

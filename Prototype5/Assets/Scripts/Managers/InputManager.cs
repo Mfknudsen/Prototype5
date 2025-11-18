@@ -103,6 +103,7 @@ namespace Managers
             playerInput.Disable();
             _instance = null;
         }
+#endif
 
         private void OnInputCheckDeviceName(string deviceName)
         {
@@ -118,6 +119,5 @@ namespace Managers
             this.currentDevice = set;
             this.DeviceChangeEvent.Invoke(this.currentDevice);
         }
-#endif
     }
 }
