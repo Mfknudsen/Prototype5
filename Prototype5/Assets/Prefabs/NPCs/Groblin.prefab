@@ -1042,8 +1042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  globalDeathEvent: {fileID: 0}
-  _currentHealth: 0
+  globalDeathEvent: {fileID: 11400000, guid: 09f6b8e2188ccd947977df097ea5e065, type: 2}
   resistances: []
 --- !u!114 &7070676052568031101
 MonoBehaviour:

@@ -90,7 +90,11 @@ namespace NPCs.Enemies
             SwitchState(_getAttackedState);
         }
         
-        public void OnDeath() => SwitchState(_deathState);
+        public void OnDeath()
+        {
+            Debug.Log("On death");
+            SwitchState(_deathState);
+        }
 
         public void OnDance(float height, int count, float duration)
         {
