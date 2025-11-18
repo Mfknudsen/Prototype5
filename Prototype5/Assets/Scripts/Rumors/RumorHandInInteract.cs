@@ -50,7 +50,7 @@ namespace Rumors
                 this.done = true;
 
                 this.currentResponse = npc.StartCoroutine(this.correctPotion.CheckCorrect(potionObject.GetValue())
-                    ? this.TrueResponse(npc)
+                    ? this.TrueResponse(npc, potionObject)
                     : this.FalseResponse(npc));
 
                 return;
@@ -64,10 +64,11 @@ namespace Rumors
             npc.SetDialog(this.defaultDialog);
         }
 
-        private IEnumerator TrueResponse(NPCInteract npc)
+        private IEnumerator TrueResponse(NPCInteract npc, Object potionObject)
         {
             this.done = true;
             npc.SetDialog(this.trueDialog);
+            Object.Destroy(potionObject);
 
             yield return new WaitForSeconds(5);
 
