@@ -4,7 +4,7 @@ public sealed class GameSettings
 
     private static GameSettings instance;
 
-    private float gamepadTurnSpeed = 200;
+    private float gamepadTurnSpeed = 100;
 
     #region Getters
 
