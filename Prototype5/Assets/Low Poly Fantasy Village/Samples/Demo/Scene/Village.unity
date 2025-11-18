@@ -1459,11 +1459,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7824877656828778782, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: baseSpeed
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7824877656828778782, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: sprintSpeed
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7858170753812542288, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_AnchorMax.y
