@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14f8e2c7463e264c99af5868583bf78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 15
   globalDeathEvent: {fileID: 0}
   resistances: []
 --- !u!114 &7070676052568031101
