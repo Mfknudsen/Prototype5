@@ -23,7 +23,7 @@ public class MainMenuManager : MonoBehaviour
     // Singleton access to static instance
     public void Awake()
     {
-        Application.targetFrameRate = 144;
+        //Application.targetFrameRate = 144;
 
         if (_manager == null)
         {
@@ -76,7 +76,7 @@ public class MainMenuManager : MonoBehaviour
         this.pauseGame?.GetCanvasPlayerScreen().gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        SceneManager.LoadScene(this.START_SCENE, LoadSceneMode.Single);
+        //SceneManager.LoadScene(this.START_SCENE, LoadSceneMode.Single);
     }
 
     private void OpenSettings()
