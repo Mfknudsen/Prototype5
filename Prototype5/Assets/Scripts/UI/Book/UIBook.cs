@@ -3,7 +3,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Inventory;
 using Managers;
+using Potions;
 using ScriptableVariables.Enums;
 using ScriptableVariables.Objects;
 using TMPro;
@@ -310,7 +312,10 @@ namespace UI.Book
                 //Clean the copied ui
                 foreach (GameObject o in GetAllByRoot(obj))
                 {
-                    if (!o.activeSelf)
+                    if (!o.activeSelf ||
+                        o.GetComponent<InventoryItem>() != null ||
+                        o.GetComponent<PotionObject>() != null ||
+                        o.GetComponent<IngredientObject>() != null)
                     {
                         Destroy(o);
                         continue;

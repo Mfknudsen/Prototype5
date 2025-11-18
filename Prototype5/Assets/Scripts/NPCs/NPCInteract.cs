@@ -41,11 +41,14 @@ namespace NPCs
                 return;
             }
 
-            this.speechBubble.gameObject.SetActive(true);
+            //this.speechBubble.gameObject.SetActive(true);
 
-            this.speechBubble.gameObject.SetActive(Vector2.Distance(
+            bool inRange = Vector2.Distance(
                 new Vector2(this.transform.position.x, this.transform.position.z),
-                this.playerTransformVariable.XZ) <= this.speechShowDistance);
+                this.playerTransformVariable.XZ) <= this.speechShowDistance;
+
+            if (this.speechBubble.gameObject.activeSelf != inRange)
+                this.speechBubble.gameObject.SetActive(inRange);
         }
 
         public void OnTrigger()

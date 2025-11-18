@@ -7,20 +7,14 @@ namespace Potions
     [CreateAssetMenu(fileName = "PotionRecipe", menuName = "Scriptable Objects/Potion Recipe")]
     public class PotionRecipe : ScriptableObject
     {
-        [SerializeField] private List<Ingredient> ingredients;
+        [SerializeField] private List<IngredientAndAmount> ingredients;
 
         [SerializeField] private List<PotionValue> potionResults;
 
-        [Serializable]
-        private struct Ingredient
-        {
-            [SerializeField] public IngredientValue ingredientValue;
-            [SerializeField] public int count;
-        }
 
         public bool CheckCorrect(List<IngredientObject> toCheck)
         {
-            foreach (Ingredient ingredient in this.ingredients)
+            foreach (IngredientAndAmount ingredient in this.ingredients)
             {
                 int count = 0;
 
@@ -41,7 +35,7 @@ namespace Potions
         {
             int result = 0;
 
-            foreach (Ingredient ingredient in this.ingredients)
+            foreach (IngredientAndAmount ingredient in this.ingredients)
             {
                 result += ingredient.count;
             }
@@ -53,5 +47,17 @@ namespace Potions
         {
             return this.potionResults;
         }
+
+        public List<IngredientAndAmount> GetIngredientsWithAmounts()
+        {
+            return this.ingredients;
+        }
+    }
+
+    [Serializable]
+    public struct IngredientAndAmount
+    {
+        [SerializeField] public IngredientValue ingredientValue;
+        [SerializeField] public int count;
     }
 }

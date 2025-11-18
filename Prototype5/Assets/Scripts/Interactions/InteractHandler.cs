@@ -55,17 +55,19 @@ namespace Interactions
 
             Ray ray = new Ray(this.cameraTransform.Position, this.cameraTransform.Forward);
 
-            // ReSharper disable once Unity.PreferNonAllocApi
-            RaycastHit[] hits =
-                Physics.SphereCastAll(ray, .25f, this.maxDistance, this.layerMask);
+            RaycastHit[] results = new RaycastHit[16];
+            int size = Physics.SphereCastNonAlloc(ray, .25f, results, this.maxDistance, this.layerMask);
 
             IInteractable closest = null;
 
-            if (hits.Length == 0)
+            if (size == 0)
                 return;
 
-            foreach (RaycastHit raycastHit in hits)
+            //foreach (RaycastHit raycastHit in hits)
+            for (int i = 0; i < size; i++)
             {
+                RaycastHit raycastHit = results[i];
+
                 if (Vector3.Distance(raycastHit.point, this.playerTransform.Position) >
                     this.maxDistance)
                     continue;

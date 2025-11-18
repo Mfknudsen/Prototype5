@@ -1,3 +1,4 @@
+using System.Text;
 using DayNightCycle;
 using TMPro;
 using UnityEngine;
@@ -8,17 +9,24 @@ namespace UI
     {
         [SerializeField] private TextMeshProUGUI clockText, timeStateText;
 
+        private const string a = "", b = "0", c = " : ";
+
         private void Update()
         {
             (int, int) time = DayNight.GetCurrentHourMinutes();
             this.clockText.text =
-                $"{(time.Item1 < 10 ? "0" : "")}{time.Item1} : {(time.Item2 < 10 ? "0" : "")}{time.Item2}";
+                new StringBuilder().Append(time.Item1 < 10 ? b : a)
+                    .Append(time.Item1)
+                    .Append(c)
+                    .Append(time.Item2 < 10 ? b : a)
+                    .Append(time.Item2)
+                    .ToString();
             this.timeStateText.text = DayNight.GetCurrentDayNightTime().ToString();
         }
 
         public void DeactivateClock()
         {
-            gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
     }
 }
