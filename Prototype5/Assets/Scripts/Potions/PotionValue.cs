@@ -14,9 +14,10 @@ namespace Potions
 
         [SerializeField] private GameObject onShatterVFX;
 
-        [SerializeField] [TextArea] private string description;
+        [SerializeField] [TextArea] private string description, flavor;
         [SerializeField] private Sprite spriteOne, spriteTwo;
 
+        [SerializeField] private Vector3 bookShowcaseRotation, bookShowcasePositionOffset;
 
         [SerializeReference]
 #if UNITY_EDITOR
@@ -57,7 +58,9 @@ namespace Potions
             return this.maxEffectDistance;
         }
 
-        public string GetDescription() => description;
+        public string GetDescription() => this.description;
+
+        public string GetFlavor() => this.flavor;
 
         public Sprite GetSpriteOne()
         {
@@ -67,6 +70,16 @@ namespace Potions
         public Sprite GetSpriteTwo()
         {
             return this.spriteTwo;
+        }
+
+        public Vector3 GetShowcaseRotation()
+        {
+            return this.bookShowcaseRotation;
+        }
+
+        public Vector3 GetShowcaseOffset()
+        {
+            return this.bookShowcasePositionOffset;
         }
     }
 }

@@ -15,8 +15,11 @@ MonoBehaviour:
   potionPrefab: {fileID: 5187084931165711824, guid: e293222db9b0681488f209337a79bbeb, type: 3}
   onShatterVFX: {fileID: 0}
   description: Reminds you of your mother's disapproving stare
+  flavor: 
   spriteOne: {fileID: 21300000, guid: 70f1c8047eb5f462bb5ad177b646717e, type: 3}
   spriteTwo: {fileID: 21300000, guid: ae63b3fee11e34d2fa0a2d4ac376efbd, type: 3}
+  bookShowcaseRotation: {x: 0, y: 0, z: 0}
+  bookShowcasePositionOffset: {x: 0, y: 0, z: 0}
   effects:
   - rid: 7969916117750644985
   - rid: 3662799380637548546
@@ -27,7 +30,7 @@ MonoBehaviour:
       type: {class: FireEffect, ns: Potions.Effects, asm: Assembly-CSharp}
       data:
         debugGizmo: 0
-        effectRadius: 0
+        effectRadius: 2
         persistentGameObject: {fileID: 5389600491076198467, guid: 6ecbe1ff44e67fe49a9e01fab001eb52, type: 3}
         effectDuration: 9
         numberOfHits: 4

@@ -15,8 +15,11 @@ MonoBehaviour:
   potionPrefab: {fileID: 5187084931165711824, guid: 530d134a3645fb44481f05a0110349f9, type: 3}
   onShatterVFX: {fileID: 0}
   description: Wait, I thought she was of marrying age! Oh, she is actually older..
+  flavor: 
   spriteOne: {fileID: 21300000, guid: 99b335848c7d84c0987b01f42edf7e61, type: 3}
   spriteTwo: {fileID: 21300000, guid: 7a429e38a3e63494296851cb65573299, type: 3}
+  bookShowcaseRotation: {x: 0, y: 0, z: 0}
+  bookShowcasePositionOffset: {x: 0, y: 0, z: 0}
   effects:
   - rid: 7969916117750644985
   - rid: 3662799380637548545
@@ -27,7 +30,7 @@ MonoBehaviour:
       type: {class: InstantKillEffect, ns: Potions.Effects, asm: Assembly-CSharp}
       data:
         debugGizmo: 0
-        effectRadius: 0
+        effectRadius: 2
         onHitVFX: {fileID: 0}
     - rid: 7969916117750644985
       type: {class: PushBackEffect, ns: Potions.Effects, asm: Assembly-CSharp}

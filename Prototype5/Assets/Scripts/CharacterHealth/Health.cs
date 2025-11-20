@@ -11,7 +11,7 @@ namespace CharacterHealth
         public GameEvent globalDeathEvent;
         public Action LocalDeathAction;
 
-        public float _currentHealth;
+        private float _currentHealth;
 
         [SerializeField] private List<Resistance> resistances = new List<Resistance>();
 
