@@ -32,7 +32,7 @@ namespace Managers
             InteractInputEvent = new UnityEvent(),
             JumpInputEvent = new UnityEvent(),
             InventoryEvent = new UnityEvent(),
-            AttackEvent = new UnityEvent(),
+            ClickEvent = new UnityEvent(),
             EscapeEvent = new UnityEvent();
 
         public readonly UnityEvent<bool>
@@ -77,7 +77,7 @@ namespace Managers
             playerInput.Player.Interact.performed += _ => this.InteractInputEvent.Invoke();
             playerInput.Player.Jump.performed += _ => this.JumpInputEvent.Invoke();
             playerInput.Player.Inventory.performed += _ => this.InventoryEvent.Invoke();
-            playerInput.Player.Attack.performed += _ => this.AttackEvent.Invoke();
+            playerInput.Player.Attack.performed += _ => this.ClickEvent.Invoke();
             playerInput.Player.Pause.performed += _ => this.EscapeEvent.Invoke();
 
             playerInput.Player.HotbarKey.performed += context =>

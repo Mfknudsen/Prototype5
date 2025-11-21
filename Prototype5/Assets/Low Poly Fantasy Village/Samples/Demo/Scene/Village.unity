@@ -21732,9 +21732,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1266357763}
     m_Modifications:
+    - target: {fileID: 3099297684333854648, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 1464214581}
     - target: {fileID: 6227706697516243588, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6708178328669154218, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
       propertyPath: m_Pivot.x
@@ -21816,10 +21820,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7542462661812027570, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
-      propertyPath: pauseGame
-      value: 
-      objectReference: {fileID: 873169422}
     - target: {fileID: 9137365717234325420, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
       propertyPath: m_Name
       value: CanvasIntro

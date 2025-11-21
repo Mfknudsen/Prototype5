@@ -64,14 +64,14 @@ namespace Inventory
                 this.itemCollider.enabled = false;
                 this.rb.isKinematic = true;
                 if (this.throwable)
-                    InputManager.Instance.AttackEvent.AddListener(this.OnThrowInput);
+                    InputManager.Instance.ClickEvent.AddListener(this.OnThrowInput);
             }
             else if (!set && this.inHand)
             {
                 this.itemCollider.enabled = true;
                 this.rb.isKinematic = false;
                 if (this.throwable)
-                    InputManager.Instance.AttackEvent.RemoveListener(this.OnThrowInput);
+                    InputManager.Instance.ClickEvent.RemoveListener(this.OnThrowInput);
             }
 
             this.inHand = set;
@@ -93,7 +93,7 @@ namespace Inventory
             this.backpack.Remove(this);
 
             this.inHand = false;
-            InputManager.Instance.AttackEvent.RemoveListener(this.OnThrowInput);
+            InputManager.Instance.ClickEvent.RemoveListener(this.OnThrowInput);
         }
 
         public void AddEventListener(UnityAction<InventoryItem> action)
