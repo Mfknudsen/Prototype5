@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Managers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -13,6 +14,7 @@ namespace UI
 
         private int _currentIndex = 0;
         private List<TextMeshProUGUI> _textList;
+        private Image _background;
         private bool _isFadingIn;
         private bool _isFadingOut;
         
@@ -28,7 +30,7 @@ namespace UI
             uiManager.SetCanvas(UIManager.CanvasType.Player, false);
             uiManager.SetCanvas(UIManager.CanvasType.Minimap, false);
             
-            GetTextList();
+            GetUIElements();
         }
 
         private void OnEnable()
@@ -41,8 +43,9 @@ namespace UI
             InputManager.Instance.ClickEvent.RemoveListener(DisplayNextText);
         }
 
-        private void GetTextList()
+        private void GetUIElements()
         {
+            _background = GetComponent<Image>();
             _textList = new List<TextMeshProUGUI>();
             foreach (Transform child in transform)
             {
@@ -53,6 +56,9 @@ namespace UI
 
         private void DisplayNextText()
         {
+            if (_currentIndex == _textList.Count)
+                return;
+            
             if (_textList[_currentIndex].color.a < 1 && !_isFadingOut)
                 StartCoroutine(FadeIn());
             else
@@ -84,7 +90,7 @@ namespace UI
             while (_textList[_currentIndex].color.a < 1f)
             {
                 _textList[_currentIndex].color += new Color(0, 0, 0, fadeTimeIncrement);
-                yield return 0;
+                yield return null;
             }
             _isFadingIn = false;
         }
@@ -101,7 +107,7 @@ namespace UI
             while (_textList[_currentIndex].color.a > 0f)
             {
                 _textList[_currentIndex].color -= new Color(0, 0, 0, fadeTimeIncrement);
-                yield return 0;
+                yield return null;
             }
 
             _isFadingOut = false;
@@ -110,10 +116,21 @@ namespace UI
             
             if (_currentIndex == _textList.Count)
             {
-                StartGame();
+                StartCoroutine(FadeOutBackground());
                 yield break;
             }
             StartCoroutine(FadeIn());
+        }
+
+        private IEnumerator FadeOutBackground()
+        {
+            while (_background.color.a > 0f)
+            {
+                _background.color -= new Color(0, 0, 0, fadeTimeIncrement);
+                yield return null;
+            }
+            
+            StartGame();
         }
     }
 }

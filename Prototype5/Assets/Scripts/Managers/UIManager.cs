@@ -29,7 +29,6 @@ namespace Managers
                     canvasMinimapScreen?.SetActive(isActive);
                     break;
                 default:
-                    Debug.Log("Canvas type not in list.");
                     break;
             }
         }
