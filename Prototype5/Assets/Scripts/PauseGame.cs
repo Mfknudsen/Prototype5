@@ -9,9 +9,13 @@ public sealed class PauseGame : MonoBehaviour
 
     [SerializeField] private GameObject canvasPlayerScreen;
 
+    [SerializeField] private GameObject canvasMinimapScreen;
+    
     [SerializeField] private InventoryHandler inventoryHandler;
 
     public GameObject GetCanvasPlayerScreen() => canvasPlayerScreen;
+
+    public GameObject GetCanvasMinimapScreen() => canvasMinimapScreen;
     
     private void OnEnable()
     {
@@ -27,6 +31,7 @@ public sealed class PauseGame : MonoBehaviour
     {
         canvasTitleScreen?.SetActive(true);
         canvasPlayerScreen?.SetActive(false);
+        canvasMinimapScreen?.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0;
