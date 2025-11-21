@@ -21732,14 +21732,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1266357763}
     m_Modifications:
+    - target: {fileID: 1817919729012940608, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817919729012940608, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16497
+      objectReference: {fileID: 0}
     - target: {fileID: 3099297684333854648, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 1464214581}
-    - target: {fileID: 6227706697516243588, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6708178328669154218, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
       propertyPath: m_Pivot.x
       value: 0

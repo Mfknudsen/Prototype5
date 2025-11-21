@@ -7,14 +7,12 @@ namespace Managers
         [SerializeField] private GameObject canvasPauseScreen;
         [SerializeField] private GameObject canvasPlayerScreen;
         [SerializeField] private GameObject canvasMinimapScreen;
-        [SerializeField] private GameObject canvasIntroScreen;
 
         public enum CanvasType
         {
             Pause,
             Player,
-            Minimap,
-            Intro
+            Minimap
         }
         
         public void SetCanvas(CanvasType canvasType, bool isActive)
@@ -29,9 +27,6 @@ namespace Managers
                     break;
                 case CanvasType.Minimap:
                     canvasMinimapScreen?.SetActive(isActive);
-                    break;
-                case CanvasType.Intro:
-                    canvasIntroScreen?.SetActive(isActive);
                     break;
                 default:
                     Debug.Log("Canvas type not in list.");

@@ -76,7 +76,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278206577
+    rgba: 16497
   m_fontColor: {r: 0.4415095, g: 0.25229114, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278206577
+    rgba: 16497
   m_fontColor: {r: 0.4415095, g: 0.25229114, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34bda5462f0607140817f3a13afaeee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOutTime: 1
+  fadeTimeIncrement: 0.01
   uiManager: {fileID: 0}
 --- !u!1 &9137365717234325420
 GameObject:

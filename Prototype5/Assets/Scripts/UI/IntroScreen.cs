@@ -1,22 +1,29 @@
+using System.Collections;
 using System.Collections.Generic;
 using Managers;
+using TMPro;
 using UnityEngine;
 
 namespace UI
 {
     public class IntroScreen : MonoBehaviour
     {
-        [SerializeField] private float fadeOutTime = 1f;
+        [SerializeField] private float fadeTimeIncrement = 0.01f;
         [SerializeField] private UIManager uiManager;
 
-        private int _currentIndex = 1;
-        private List<Transform> _textList;
+        private int _currentIndex = 0;
+        private List<TextMeshProUGUI> _textList;
+        private bool _isFadingIn;
+        private bool _isFadingOut;
         
         private void Awake()
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Time.timeScale = 0;
+            
+            _isFadingIn = false;
+            _isFadingOut = false;
             
             uiManager.SetCanvas(UIManager.CanvasType.Player, false);
             uiManager.SetCanvas(UIManager.CanvasType.Minimap, false);
@@ -36,24 +43,20 @@ namespace UI
 
         private void GetTextList()
         {
-            _textList = new List<Transform>();
+            _textList = new List<TextMeshProUGUI>();
             foreach (Transform child in transform)
-                _textList.Add(child);   
+            {
+                child.GetComponent<TextMeshProUGUI>().color -= new Color(0, 0, 0, 1);
+                _textList.Add(child.GetComponent<TextMeshProUGUI>());   
+            }
         }
 
         private void DisplayNextText()
         {
-            if (_currentIndex == _textList.Count)
-            {
-                StartGame();
-                return;
-            }
-            
-            if (_currentIndex != 0)
-                _textList[_currentIndex - 1].gameObject.SetActive(false);
-            
-            _textList[_currentIndex].gameObject.SetActive(true);
-            _currentIndex++;
+            if (_textList[_currentIndex].color.a < 1 && !_isFadingOut)
+                StartCoroutine(FadeIn());
+            else
+                StartCoroutine(FadeOut());
         }
 
         private void StartGame()
@@ -67,6 +70,50 @@ namespace UI
             
             gameObject.SetActive(false);
         }
-        
+
+        private IEnumerator FadeIn()
+        {
+            if (_isFadingIn)
+            {
+                _textList[_currentIndex].color += new Color(0, 0, 0, 1f);
+                yield break;
+            }
+            _isFadingIn = true;
+            _textList[_currentIndex].gameObject.SetActive(true);
+            
+            while (_textList[_currentIndex].color.a < 1f)
+            {
+                _textList[_currentIndex].color += new Color(0, 0, 0, fadeTimeIncrement);
+                yield return 0;
+            }
+            _isFadingIn = false;
+        }
+
+        private IEnumerator FadeOut()
+        {
+            if (_isFadingOut)
+            {
+                _textList[_currentIndex].color -= new Color(0, 0, 0, 1f);
+                yield break;
+            }
+            
+            _isFadingOut = true;
+            while (_textList[_currentIndex].color.a > 0f)
+            {
+                _textList[_currentIndex].color -= new Color(0, 0, 0, fadeTimeIncrement);
+                yield return 0;
+            }
+
+            _isFadingOut = false;
+            _textList[_currentIndex].gameObject.SetActive(false);
+            _currentIndex++;
+            
+            if (_currentIndex == _textList.Count)
+            {
+                StartGame();
+                yield break;
+            }
+            StartCoroutine(FadeIn());
+        }
     }
 }
