@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +9,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject MainMenuContainer;
     [SerializeField] private GameObject SettingsMenuContainer;
     [SerializeField] private bool debugMode;
-    [SerializeField] private PauseGame pauseGame;
+    [SerializeField] private UIManager uiManager;
 
     private const string StartScene = "Village";
 
@@ -82,9 +83,9 @@ public class MainMenuManager : MonoBehaviour
     private void UnpauseGame()
     {
         Time.timeScale = 1;
-        this.transform.parent.gameObject.SetActive(false);
-        this.pauseGame?.GetCanvasPlayerScreen().gameObject.SetActive(true);
-        this.pauseGame?.GetCanvasMinimapScreen().gameObject.SetActive(true);
+        uiManager.SetCanvas(UIManager.CanvasType.Pause, false);
+        uiManager.SetCanvas(UIManager.CanvasType.Player, true);
+        uiManager.SetCanvas(UIManager.CanvasType.Minimap, true);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

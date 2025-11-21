@@ -5,17 +5,8 @@ using UnityEngine.EventSystems;
 
 public sealed class PauseGame : MonoBehaviour
 {
-    [SerializeField] private GameObject canvasTitleScreen;
-
-    [SerializeField] private GameObject canvasPlayerScreen;
-
-    [SerializeField] private GameObject canvasMinimapScreen;
-    
+    [SerializeField] private UIManager uiManager;
     [SerializeField] private InventoryHandler inventoryHandler;
-
-    public GameObject GetCanvasPlayerScreen() => canvasPlayerScreen;
-
-    public GameObject GetCanvasMinimapScreen() => canvasMinimapScreen;
     
     private void OnEnable()
     {
@@ -29,9 +20,9 @@ public sealed class PauseGame : MonoBehaviour
 
     private void OnEscapeInput()
     {
-        canvasTitleScreen?.SetActive(true);
-        canvasPlayerScreen?.SetActive(false);
-        canvasMinimapScreen?.SetActive(false);
+        uiManager.SetCanvas(UIManager.CanvasType.Pause, true);
+        uiManager.SetCanvas(UIManager.CanvasType.Player, false);
+        uiManager.SetCanvas(UIManager.CanvasType.Minimap, false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0;
