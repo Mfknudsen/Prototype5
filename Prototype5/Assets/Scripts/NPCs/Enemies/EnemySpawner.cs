@@ -25,6 +25,7 @@ namespace NPCs.Enemies
         
         private void Awake()
         {
+            _enemiesSpawned = false;
             SpawnTestEnemies();
         }
 
