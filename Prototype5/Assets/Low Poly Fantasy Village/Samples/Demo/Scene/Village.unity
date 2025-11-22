@@ -18572,10 +18572,23 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1266357763}
     m_Modifications:
+    - target: {fileID: 1034118970078614202, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
+      propertyPath: m_text
+      value: "Daybreak, the woods are safe and I can gather more ingredients. \n
+        \nRemember; two in the cauldron, stir with the ladle, throw with precision."
+      objectReference: {fileID: 0}
     - target: {fileID: 3099297684333854648, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 1514454598}
+    - target: {fileID: 4263330528959167671, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
+      propertyPath: m_text
+      value: 'The book, the potions from it''s recipes stop them, but why?
+
+
+        I''m
+        losing time. By sundown, I must be ready.'
+      objectReference: {fileID: 0}
     - target: {fileID: 6708178328669154218, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
