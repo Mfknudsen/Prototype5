@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using ScriptableVariables.Objects;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CharacterHealth
 {
@@ -9,21 +10,21 @@ namespace CharacterHealth
     {
         [SerializeField] private float maxHealth = 100.0f;
         public GameEvent globalDeathEvent;
-        public Action LocalDeathAction;
-        public Action<float> LocalHealthChangeAction;
+        public UnityEvent localDeathAction = new UnityEvent();
+        public UnityEvent<float> localHealthChangeAction = new UnityEvent<float>();
 
-        private float _currentHealth;
+        [SerializeField]private float currentHealth;
 
         [SerializeField] private List<Resistance> resistances = new List<Resistance>();
 
         private void Start()
         {
-            _currentHealth = maxHealth;
+            this.currentHealth = this.maxHealth;
         }
 
         public void ApplyHeal(float amount)
         {
-            _currentHealth = Mathf.Min(maxHealth, _currentHealth + amount);
+            this.currentHealth = Mathf.Min(this.maxHealth, this.currentHealth + amount);
         }
 
         public void ApplyDamageType(float damageAmount, DamageType damageType)
@@ -31,24 +32,23 @@ namespace CharacterHealth
             float amount = damageAmount;
             if (damageType)
             {
-                foreach (Resistance resistance in resistances)
+                foreach (Resistance resistance in this.resistances)
                 {
                     if (resistance.damageType == damageType)
                         amount *= resistance.multiplier;
                 }
             }
 
-            _currentHealth = Mathf.Max(0.0f, _currentHealth - amount);
-            LocalHealthChangeAction.Invoke(_currentHealth / maxHealth);
-            
-            if (_currentHealth == 0.0f)
-                OnDeath();
+            this.currentHealth = Mathf.Max(0.0f, this.currentHealth - amount);
+            this.localHealthChangeAction.Invoke(this.currentHealth / this.maxHealth);
+
+            if (this.currentHealth == 0.0f) this.OnDeath();
         }
 
         private void OnDeath()
         {
-            LocalDeathAction?.Invoke();
-            globalDeathEvent?.InvokeGameEvents();
+            this.localDeathAction?.Invoke();
+            this.globalDeathEvent?.InvokeGameEvents();
         }
 
         [Serializable]

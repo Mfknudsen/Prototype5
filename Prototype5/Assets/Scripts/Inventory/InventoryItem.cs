@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 namespace Inventory
 {
+    [RequireComponent(typeof(AudioSource))]
     public sealed class InventoryItem : MonoBehaviour, IInteractable
     {
         [SerializeField] private Collider itemCollider;
@@ -14,17 +15,19 @@ namespace Inventory
 
         [SerializeField] private InventoryItemListVariable backpack;
 
-        [SerializeField] private string ItemName;
+        [SerializeField] private string itemName;
 
         [SerializeField] private float throwForce;
 
         [SerializeField] private bool throwable;
 
+        [SerializeField] private AudioClip audioClip;
+
         private bool inHand;
 
         private UnityEvent<InventoryItem> onTrigger;
 
-        [HideInInspector] public bool skipAttack = false;
+        [HideInInspector] public bool skipAttack;
 
         public void OnTrigger()
         {
@@ -32,16 +35,19 @@ namespace Inventory
             this.onTrigger?.Invoke(this);
             this.gameObject.SetActive(false);
             this.backpack.Add(this);
+
+            AudioSource source = this.GetComponent<AudioSource>();
+            source.PlayOneShot(this.audioClip);
         }
 
         public bool CheckAgainstPrefab(string toCheck)
         {
-            return this.ItemName.Equals(toCheck);
+            return this.itemName.Equals(toCheck);
         }
 
         public string GetPrefabPath()
         {
-            return this.ItemName;
+            return this.itemName;
         }
 
         public bool IsActive()
@@ -59,19 +65,24 @@ namespace Inventory
             if (set == this.inHand)
                 return;
 
-            if (set && !this.inHand)
+            switch (set)
             {
-                this.itemCollider.enabled = false;
-                this.rb.isKinematic = true;
-                if (this.throwable)
-                    InputManager.Instance.ClickEvent.AddListener(this.OnThrowInput);
-            }
-            else if (!set && this.inHand)
-            {
-                this.itemCollider.enabled = true;
-                this.rb.isKinematic = false;
-                if (this.throwable)
-                    InputManager.Instance.ClickEvent.RemoveListener(this.OnThrowInput);
+                case true when !this.inHand:
+                {
+                    this.itemCollider.enabled = false;
+                    this.rb.isKinematic = true;
+                    if (this.throwable)
+                        InputManager.Instance.ClickEvent.AddListener(this.OnThrowInput);
+                    break;
+                }
+                case false when this.inHand:
+                {
+                    this.itemCollider.enabled = true;
+                    this.rb.isKinematic = false;
+                    if (this.throwable)
+                        InputManager.Instance.ClickEvent.RemoveListener(this.OnThrowInput);
+                    break;
+                }
             }
 
             this.inHand = set;
@@ -79,12 +90,12 @@ namespace Inventory
 
         private void OnThrowInput()
         {
-            if (skipAttack)
+            if (this.skipAttack)
             {
-                skipAttack = false;
+                this.skipAttack = false;
                 return;
             }
-            
+
             this.rb.useGravity = true;
             this.itemCollider.enabled = true;
             this.rb.isKinematic = false;

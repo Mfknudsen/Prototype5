@@ -28,7 +28,7 @@ namespace NPCs.Enemies
 
         [HideInInspector] public EnemyWanderState WanderState;
         [HideInInspector] public EnemyChaseState ChaseState;
-        [HideInInspector] public EnemyAttackState AttackState;
+         public EnemyAttackState AttackState;
         
         [HideInInspector] public NavMeshAgent agent;
         [HideInInspector] public Transform playerTransform;

@@ -1,45 +1,55 @@
+using System;
 using NPCs.Base;
 using UnityEngine;
 using System.Collections;
 
 namespace NPCs.Enemies
 {
+    [Serializable]
     public class EnemyAttackState : NpcState<EnemyStateMachine>
     {
         private const string AttackAnimation = "Goblin_attack";
         private const float AnimationSpeed = 1.0f;
-        
+
+        [SerializeField] private AudioClip attackAudioClip;
+        [SerializeField] private AudioSource audioSource;
+
         private bool _canAttack = true;
-        
-        public EnemyAttackState(EnemyStateMachine fsm) : base(fsm) {}
+
+        public EnemyAttackState(EnemyStateMachine fsm) : base(fsm)
+        {
+        }
 
         public override void Enter()
         {
-            fsm.agent.isStopped = true;
-            
-            fsm.animator.speed = AnimationSpeed;
-            fsm.animator.Play(AttackAnimation);
+            this.fsm.agent.isStopped = true;
+
+            this.fsm.animator.speed = AnimationSpeed;
+            this.fsm.animator.Play(AttackAnimation);
         }
 
         public override void UpdateLogic()
         {
-            if (fsm.DistanceToTarget >= fsm.attackStateRange)
-                fsm.SwitchState(fsm.WanderState);
-            else if (_canAttack)
-                fsm.StartCoroutine(AttackPlayerCoroutine());
+            if (this.fsm.DistanceToTarget >= this.fsm.attackStateRange)
+                this.fsm.SwitchState(this.fsm.WanderState);
+            else if (this._canAttack) this.fsm.StartCoroutine(this.AttackPlayerCoroutine());
         }
 
         private void AttackPlayer()
         {
-            fsm.playerHealth.ApplyDamageType(fsm.damageAmount, fsm.damageType);
-            _canAttack = false;
+            this.fsm.playerHealth.ApplyDamageType(this.fsm.damageAmount, this.fsm.damageType);
+
+            if (this.audioSource && this.attackAudioClip)
+                this.audioSource.PlayOneShot(this.attackAudioClip);
+            
+            this._canAttack = false;
         }
 
         private IEnumerator AttackPlayerCoroutine()
         {
-            AttackPlayer();
-            yield return new WaitForSeconds(fsm.attackCooldown);
-            _canAttack = true;
+            this.AttackPlayer();
+            yield return new WaitForSeconds(this.fsm.attackCooldown);
+            this._canAttack = true;
         }
     }
 }
