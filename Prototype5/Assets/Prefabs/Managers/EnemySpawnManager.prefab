@@ -49,6 +49,7 @@ MonoBehaviour:
   useNightMobs: 1
   nightMobPrefab: {fileID: 5314854918806782011, guid: c346b4fa302c02f40967de656eeae867, type: 3}
   dayMobPrefab: {fileID: 5314854918806782011, guid: c346b4fa302c02f40967de656eeae867, type: 3}
+  healthBarCanvas: {fileID: 8924963703286168331, guid: 6240fcef9d8d77748ab9a09524bcfe60, type: 3}
   spawnPositions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
