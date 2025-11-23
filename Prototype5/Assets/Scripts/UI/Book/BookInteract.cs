@@ -28,5 +28,10 @@ namespace UI.Book
         {
             return this.transform.position;
         }
+        
+        public string GetInteractName()
+        {
+            return this.gameObject.name;
+        }
     }
 }

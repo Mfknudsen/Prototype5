@@ -87,6 +87,11 @@ namespace Plants
         {
             return this.transform.position;
         }
+        
+        public string GetInteractName()
+        {
+            return this.gameObject.name;
+        }
 
         public void AddEventListener(UnityAction<Plant> action)
         {

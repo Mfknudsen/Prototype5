@@ -53,6 +53,8 @@ namespace Inventory
         {
             return this.transform.position;
         }
+        
+        public string GetInteractName() => this.gameObject.name;
 
         public void SetInHand(bool set)
         {

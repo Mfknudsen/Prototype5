@@ -1,7 +1,10 @@
+using System.Net;
 using Managers;
 using ScriptableVariables.Enums;
 using ScriptableVariables.Objects;
+using TMPro;
 using UnityEngine;
+using Utils;
 
 namespace Interactions
 {
@@ -10,20 +13,25 @@ namespace Interactions
         [SerializeField] private PlayerStateVariable playerStateVariable;
 
         [SerializeField] private RectTransform uiInteractButtonTransform;
-
         [SerializeField] private Canvas canvas;
 
         [SerializeField] private LayerMask layerMask;
-
         [SerializeField] private TransformVariable cameraTransform, playerTransform;
 
         [SerializeField] private float maxDistance = 5.0f;
-
+        
+        // Used to display the name on mouse hover 
+        [SerializeField] private TextMeshProUGUI interactLabel;
+        
         private Camera cam;
 
-        private bool down;
+        // The currently highlighted object
+        private Highlightable lastHighlighted;
+        private IInteractable lastDebugInteractable = null;
+
 
         private IInteractable current;
+
 
         private void Start()
         {
@@ -60,26 +68,26 @@ namespace Interactions
 
             IInteractable closest = null;
 
-            if (size == 0)
-                return;
-
-            //foreach (RaycastHit raycastHit in hits)
-            for (int i = 0; i < size; i++)
+            if (size != 0)
             {
-                RaycastHit raycastHit = results[i];
+                for (int i = 0; i < size; i++)
+                {
+                    RaycastHit raycastHit = results[i];
 
-                if (Vector3.Distance(raycastHit.point, this.playerTransform.Position) >
-                    this.maxDistance)
-                    continue;
+                    if (Vector3.Distance(raycastHit.point, this.playerTransform.Position) > this.maxDistance)
+                        continue;
 
-                if (!raycastHit.collider.gameObject.TryGetComponent(out IInteractable interactable))
-                    continue;
+                    if (!raycastHit.collider.TryGetComponent(out IInteractable interactable))
+                        continue;
 
-                if (!interactable.IsActive())
-                    continue;
+                    if (!interactable.IsActive())
+                        continue;
 
-                closest = interactable;
+                    closest = interactable;
+                }
             }
+            
+            UpdateHighlight(closest);
 
             this.current = closest;
         }
@@ -109,7 +117,7 @@ namespace Interactions
                 return;
             }
 
-            if (this.current != null && this.current.Hover() is { } hoverPosition)
+            if (this.current.Hover() is { } hoverPosition)
             {
                 if (!this.uiInteractButtonTransform.gameObject.activeSelf)
                     this.uiInteractButtonTransform.gameObject.SetActive(true);
@@ -118,13 +126,63 @@ namespace Interactions
                 this.uiInteractButtonTransform.position = position;
             }
         }
+        
+        private void UpdateHighlight(IInteractable closest)
+        {
+            // Unhighlight the previous highlighted object
+            if (lastHighlighted != null)
+            {
+                lastHighlighted.Unhighlight();
+                lastHighlighted = null;
+            }
+
+            // If no current interactable, stop here
+            if (closest == null)
+                return;
+
+            // Find Highlightable on the same object
+            if (closest is MonoBehaviour mb)
+            {
+                Highlightable h = mb.GetComponent<Highlightable>();
+                if (h != null)
+                {
+                    h.Highlight();
+                    lastHighlighted = h;
+                }
+            }
+            
+            // Only log when object CHANGES
+            if (closest != lastDebugInteractable)
+            {
+                Debug.Log($"[InteractHandler] Closest interactable: {closest} on object {((MonoBehaviour)closest).gameObject.name}");
+
+                lastDebugInteractable = closest;
+            }
+            
+            DisplayHighlightedName(closest);
+
+        }
+
+        private void DisplayHighlightedName(IInteractable closest)
+        {
+            if (closest == null)
+            {
+                interactLabel.text = "E";
+                return;
+            }
+
+            // Get GameObject name
+            string name = NameUtils.CleanName(closest.GetInteractName());
+            
+            // Set UI text
+            interactLabel.text = $"Pick up: {name}";
+        }
 
         private void OnInputTrigger()
         {
             if (this.playerStateVariable.Value != PlayerStateEnum.Free)
                 return;
 
-            Debug.Log("Trigger");
             this.current?.OnTrigger();
         }
 

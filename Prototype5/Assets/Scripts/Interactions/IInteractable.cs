@@ -9,5 +9,7 @@ namespace Interactions
         public bool IsActive();
 
         public Vector3? Hover();
+
+        public string GetInteractName();
     }
 }

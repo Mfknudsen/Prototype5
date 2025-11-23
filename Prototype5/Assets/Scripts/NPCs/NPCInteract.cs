@@ -65,6 +65,11 @@ namespace NPCs
         {
             return this.transform.position + this.interactHighlightOffset;
         }
+        
+        public string GetInteractName()
+        {
+            return this.gameObject.name;
+        }
 
         public void SetDialog(Dialog set)
         {

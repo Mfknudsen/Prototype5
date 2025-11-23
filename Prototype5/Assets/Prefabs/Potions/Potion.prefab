@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 6398016380117158941}
   - component: {fileID: 7750847899951746458}
   - component: {fileID: 2603239617512986011}
+  - component: {fileID: 4891384441296611437}
   m_Layer: 3
   m_Name: Potion
   m_TagString: Untagged
@@ -167,6 +168,7 @@ MonoBehaviour:
   ItemName: Potion
   throwForce: 5
   throwable: 1
+  skipAttack: 0
 --- !u!114 &6398016380117158941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,8 +183,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potionValue: {fileID: 11400000, guid: 303c586e561fce84e8d8467f47826c97, type: 2}
   forceForShatter: 200
-  damageAmount: 30
-  damageType: {fileID: 11400000, guid: 280e1525c5c479d418d3bbedf81adb36, type: 2}
 --- !u!65 &7750847899951746458
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -231,6 +231,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4891384441296611437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187084931165711824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ec5e75bf1e464696a2ffe08dffa084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 9fa052200dc4c4e5cba4b2863ef46bca, type: 2}
 --- !u!1 &6277664592801891797
 GameObject:
   m_ObjectHideFlags: 0

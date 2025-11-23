@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Utils;
 
 namespace UI.Book
 {
@@ -45,7 +46,7 @@ namespace UI.Book
             {
                 // Debug.Log(potion1.name);
                 // Title
-                if (this.pageTitleLeft != null) this.pageTitleLeft.text = RemovePotionPrefix(recipe1.name);
+                if (this.pageTitleLeft != null) this.pageTitleLeft.text = NameUtils.RemovePotionPrefix(recipe1.name);
 
                 PotionValue result = recipe1.GetResults()[0];
 
@@ -111,7 +112,7 @@ namespace UI.Book
             if (recipe2 != null)
             {
                 // Title
-                if (this.pageTitleRight != null) this.pageTitleRight.text = RemovePotionPrefix(recipe2.name);
+                if (this.pageTitleRight != null) this.pageTitleRight.text = NameUtils.RemovePotionPrefix(recipe2.name);
 
                 PotionValue result = recipe1.GetResults()[0];
 
@@ -173,12 +174,7 @@ namespace UI.Book
                 }
             }
         }
-
-        private static string RemovePotionPrefix(string name)
-        {
-            const string PREFIX = "Potion";
-            return name.StartsWith(PREFIX) ? name.Substring(PREFIX.Length + 1) : name;
-        }
+        
 
         private void SetLayer(GameObject obj, LayerMask layer)
         {

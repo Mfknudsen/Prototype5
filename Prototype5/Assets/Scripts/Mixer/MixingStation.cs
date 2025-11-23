@@ -124,6 +124,11 @@ namespace Mixer
                 return null;
             return this.transform.position;
         }
+        
+        public string GetInteractName()
+        {
+            return this.gameObject.name;
+        }
 
         private void OnAddedUpdated()
         {
