@@ -73,9 +73,8 @@ namespace NPCs.Enemies
 
             EnemyHealthBar enemyHealthBar = mob.GetComponentInChildren<EnemyHealthBar>();
             enemyHealthBar.SetEnemyTransform(mob.transform);
+            enemyHealthBar.SetPlayerCamera(_playerCamera);
             enemyHealthBar.transform.SetParent(enemyHealthBarCanvas.transform);
-            if (enemyHealthBar.GetComponent<FaceCamera>() is { } faceCamera)
-                faceCamera.camera = _playerCamera;
             
             CharacterHealth.Health enemyHealth = mob.GetComponent<CharacterHealth.Health>();
             enemyStateMachine.enemyHealth = enemyHealth;

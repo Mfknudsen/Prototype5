@@ -740,7 +740,6 @@ GameObject:
   - component: {fileID: 8684420888029163203}
   - component: {fileID: 1622950500609601406}
   - component: {fileID: 9088584148977928656}
-  - component: {fileID: 2906484457422551333}
   m_Layer: 0
   m_Name: Border
   m_TagString: Untagged
@@ -805,19 +804,6 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2906484457422551333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2996087314771966685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c702c6005fdbef247be50ec4d0309785, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
 --- !u!1 &3038712567887083516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,7 +1145,6 @@ GameObject:
   - component: {fileID: 5791902189980178983}
   - component: {fileID: 712356977315942932}
   - component: {fileID: 4637848108700366952}
-  - component: {fileID: 389429044426555513}
   m_Layer: 0
   m_Name: EnemyHealthBar
   m_TagString: Untagged
@@ -1274,19 +1259,6 @@ MonoBehaviour:
   onComplete:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &389429044426555513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6236233625375517550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c702c6005fdbef247be50ec4d0309785, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
 --- !u!1 &6314808840171731393
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,19 +11,26 @@ namespace UI
         [SerializeField] private Gradient colorGradient;
         [SerializeField] private UnityEvent<float> onProgress;
         [SerializeField] private UnityEvent onComplete;
-
+        
         private Image _progressImage;
         private Coroutine _progressAnimation;
         private Vector3 _offsetFromEnemy;
         private Transform _enemyTransform;
+        private Camera _playerCamera;
 
         public void SetEnemyTransform(Transform enemyTransform)
         {
             _enemyTransform = enemyTransform;
         }
 
+        public void SetPlayerCamera(Camera playerCamera)
+        {
+            _playerCamera = playerCamera;
+        }
+
         private void Update()
         {
+            LookAtPlayer();
             FollowEnemy();
         }
         
@@ -73,8 +80,18 @@ namespace UI
             }
         }
 
-        private void FollowEnemy() => transform.position = _enemyTransform.position + _offsetFromEnemy;
+        private void FollowEnemy()
+        {
+            if (_enemyTransform)
+                transform.position = _enemyTransform.position + _offsetFromEnemy;
+        }
 
+        private void LookAtPlayer()
+        {
+            if (_playerCamera)
+                transform.LookAt(_playerCamera.transform, Vector3.up);
+        } 
+        
         public void DestroyEnemyHealthBar() => Destroy(gameObject);
 
     }
