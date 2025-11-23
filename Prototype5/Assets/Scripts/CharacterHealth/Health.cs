@@ -10,6 +10,7 @@ namespace CharacterHealth
         [SerializeField] private float maxHealth = 100.0f;
         public GameEvent globalDeathEvent;
         public Action LocalDeathAction;
+        public Action<float> LocalHealthChangeAction;
 
         private float _currentHealth;
 
@@ -38,7 +39,8 @@ namespace CharacterHealth
             }
 
             _currentHealth = Mathf.Max(0.0f, _currentHealth - amount);
-
+            LocalHealthChangeAction.Invoke(_currentHealth / maxHealth);
+            
             if (_currentHealth == 0.0f)
                 OnDeath();
         }

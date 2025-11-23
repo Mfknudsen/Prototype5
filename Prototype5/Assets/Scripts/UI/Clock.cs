@@ -23,10 +23,5 @@ namespace UI
                     .ToString();
             this.timeStateText.text = DayNight.GetCurrentDayNightTime().ToString();
         }
-
-        public void DeactivateClock()
-        {
-            this.gameObject.SetActive(false);
-        }
     }
 }

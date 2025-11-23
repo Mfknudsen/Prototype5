@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,15 +6,17 @@ public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager _manager;
 
-    [SerializeField] private string START_SCENE = "Scenes/SampleScene";
     [SerializeField] private GameObject MainMenuContainer;
     [SerializeField] private GameObject SettingsMenuContainer;
     [SerializeField] private bool debugMode;
-    [SerializeField] private PauseGame pauseGame;
+    [SerializeField] private UIManager uiManager;
+
+    private const string StartScene = "Village";
 
     public enum MainMenuButtons
     {
-        Play,
+        StartGame,
+        Unpause,
         Settings,
         Quit,
         Audio,
@@ -24,7 +27,6 @@ public class MainMenuManager : MonoBehaviour
     public void Awake()
     {
         //Application.targetFrameRate = 144;
-
         if (_manager == null)
         {
             _manager = this;
@@ -40,8 +42,11 @@ public class MainMenuManager : MonoBehaviour
         this.DebugMessage("Button clicked: " + buttonClicked.ToString());
         switch (buttonClicked)
         {
-            case MainMenuButtons.Play:
-                this.PlayGame();
+            case MainMenuButtons.StartGame:
+                this.StartGame();
+                break;
+            case MainMenuButtons.Unpause:
+                this.UnpauseGame();
                 break;
             case MainMenuButtons.Settings:
                 this.OpenSettings();
@@ -69,14 +74,20 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    private void PlayGame()
+    private void StartGame()
+    {
+        if (StartScene != null) 
+            SceneManager.LoadScene(StartScene);
+    }
+    
+    private void UnpauseGame()
     {
         Time.timeScale = 1;
-        this.transform.parent.gameObject.SetActive(false);
-        this.pauseGame?.GetCanvasPlayerScreen().gameObject.SetActive(true);
+        uiManager.SetCanvas(UIManager.CanvasType.Pause, false);
+        uiManager.SetCanvas(UIManager.CanvasType.Player, true);
+        uiManager.SetCanvas(UIManager.CanvasType.Minimap, true);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        //SceneManager.LoadScene(this.START_SCENE, LoadSceneMode.Single);
     }
 
     private void OpenSettings()

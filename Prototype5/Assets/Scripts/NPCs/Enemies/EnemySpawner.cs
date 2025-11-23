@@ -1,5 +1,6 @@
 using DayNightCycle;
 using ScriptableVariables.Objects;
+using UI;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace NPCs.Enemies
         public bool useNightMobs = true;
         [SerializeField] private GameObject nightMobPrefab;
         [SerializeField] private GameObject dayMobPrefab;
+        [SerializeField] private Canvas enemyHealthBarCanvas;
         [SerializeField] private Vector3[] spawnPositions;
         
         [Header("Attack Player")]
@@ -22,9 +24,15 @@ namespace NPCs.Enemies
         public DamageType damageType;
         
         private static bool _enemiesSpawned;
+        private Camera _playerCamera;
         
         private void Awake()
         {
+            _enemiesSpawned = false;
+            _playerCamera = playerTransform.GetComponentInChildren<Camera>();
+            if (_playerCamera == null)
+                Debug.Log("Player camera not found.");
+            
             SpawnTestEnemies();
         }
 
@@ -62,10 +70,17 @@ namespace NPCs.Enemies
             EnemyStateMachine enemyStateMachine = mob.GetComponent<EnemyStateMachine>();
             enemyStateMachine.playerTransform = playerTransform;
             enemyStateMachine.damageType = damageType;
+
+            EnemyHealthBar enemyHealthBar = mob.GetComponentInChildren<EnemyHealthBar>();
+            enemyHealthBar.SetEnemyTransform(mob.transform);
+            enemyHealthBar.transform.SetParent(enemyHealthBarCanvas.transform);
+            if (enemyHealthBar.GetComponent<FaceCamera>() is { } faceCamera)
+                faceCamera.camera = _playerCamera;
             
             CharacterHealth.Health enemyHealth = mob.GetComponent<CharacterHealth.Health>();
             enemyStateMachine.enemyHealth = enemyHealth;
             enemyHealth.LocalDeathAction += enemyStateMachine.OnDeath;
+            enemyHealth.LocalHealthChangeAction += enemyHealthBar.SetProgress;
         }
 
         private void SpawnTestEnemies()
