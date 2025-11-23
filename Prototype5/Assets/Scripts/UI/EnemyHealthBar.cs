@@ -74,5 +74,8 @@ namespace UI
         }
 
         private void FollowEnemy() => transform.position = _enemyTransform.position + _offsetFromEnemy;
+
+        public void DestroyEnemyHealthBar() => Destroy(gameObject);
+
     }
 }

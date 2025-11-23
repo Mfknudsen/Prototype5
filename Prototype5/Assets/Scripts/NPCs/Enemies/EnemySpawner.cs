@@ -80,6 +80,7 @@ namespace NPCs.Enemies
             CharacterHealth.Health enemyHealth = mob.GetComponent<CharacterHealth.Health>();
             enemyStateMachine.enemyHealth = enemyHealth;
             enemyHealth.LocalDeathAction += enemyStateMachine.OnDeath;
+            enemyHealth.LocalDeathAction += enemyHealthBar.DestroyEnemyHealthBar;
             enemyHealth.LocalHealthChangeAction += enemyHealthBar.SetProgress;
         }
 
