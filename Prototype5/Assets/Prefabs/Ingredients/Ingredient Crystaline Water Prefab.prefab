@@ -97,7 +97,7 @@ MonoBehaviour:
   itemCollider: {fileID: 2166424323410291543}
   rb: {fileID: 492659842253325}
   backpack: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}
-  itemName: 
+  itemName: Crystaline Water
   throwForce: 0
   throwable: 0
   audioClip: {fileID: 0}

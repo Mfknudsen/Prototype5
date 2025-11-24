@@ -97,7 +97,7 @@ MonoBehaviour:
   itemCollider: {fileID: 1067118215456023092}
   rb: {fileID: 5334570982430269313}
   backpack: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}
-  itemName: 
+  itemName: Narcissus Leaf
   throwForce: 0
   throwable: 0
   audioClip: {fileID: 0}

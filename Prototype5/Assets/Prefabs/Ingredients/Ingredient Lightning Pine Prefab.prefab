@@ -97,7 +97,7 @@ MonoBehaviour:
   itemCollider: {fileID: 8832760613778066973}
   rb: {fileID: 4139563699433058826}
   backpack: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}
-  itemName: 
+  itemName: Lightning Pine
   throwForce: 0
   throwable: 0
   audioClip: {fileID: 0}

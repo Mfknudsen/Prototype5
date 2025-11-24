@@ -97,7 +97,7 @@ MonoBehaviour:
   itemCollider: {fileID: 8234349714421744193}
   rb: {fileID: -4784734921380556506}
   backpack: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}
-  itemName: 
+  itemName: Ringing Bell
   throwForce: 0
   throwable: 0
   audioClip: {fileID: 0}

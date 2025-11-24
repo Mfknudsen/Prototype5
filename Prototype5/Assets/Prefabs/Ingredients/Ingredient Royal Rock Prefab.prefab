@@ -97,7 +97,7 @@ MonoBehaviour:
   itemCollider: {fileID: 6209833306882661785}
   rb: {fileID: -1365898550458160948}
   backpack: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}
-  itemName: 
+  itemName: Royal Rock
   throwForce: 0
   throwable: 0
   audioClip: {fileID: 0}

@@ -97,7 +97,7 @@ MonoBehaviour:
   itemCollider: {fileID: 5319902330845036117}
   rb: {fileID: 7435369844675975900}
   backpack: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}
-  itemName: 
+  itemName: Poison Dart
   throwForce: 0
   throwable: 0
   audioClip: {fileID: 0}
