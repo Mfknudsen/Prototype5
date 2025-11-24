@@ -1432,7 +1432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7606262035328276592, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 43.52
+      value: 52.17
       objectReference: {fileID: 0}
     - target: {fileID: 7606262035328276592, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1440,11 +1440,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7606262035328276592, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.4
+      value: -8.05
       objectReference: {fileID: 0}
     - target: {fileID: 7606262035328276592, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7085419
+      value: -0.860322
       objectReference: {fileID: 0}
     - target: {fileID: 7606262035328276592, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1452,7 +1452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7606262035328276592, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7056688
+      value: 0.509751
       objectReference: {fileID: 0}
     - target: {fileID: 7606262035328276592, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1464,7 +1464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7606262035328276592, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 89.767
+      value: 298.706
       objectReference: {fileID: 0}
     - target: {fileID: 7606262035328276592, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2376,7 +2376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5972965616656381258, guid: 44bf535fdf2784389b6d625f4a29f73e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 47.664
+      value: 50.92
       objectReference: {fileID: 0}
     - target: {fileID: 5972965616656381258, guid: 44bf535fdf2784389b6d625f4a29f73e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2384,11 +2384,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5972965616656381258, guid: 44bf535fdf2784389b6d625f4a29f73e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.986
+      value: -4.62
       objectReference: {fileID: 0}
     - target: {fileID: 5972965616656381258, guid: 44bf535fdf2784389b6d625f4a29f73e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.22134304
+      value: 0.9988855
       objectReference: {fileID: 0}
     - target: {fileID: 5972965616656381258, guid: 44bf535fdf2784389b6d625f4a29f73e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2396,7 +2396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5972965616656381258, guid: 44bf535fdf2784389b6d625f4a29f73e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.97519606
+      value: 0.04719909
       objectReference: {fileID: 0}
     - target: {fileID: 5972965616656381258, guid: 44bf535fdf2784389b6d625f4a29f73e, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2408,7 +2408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5972965616656381258, guid: 44bf535fdf2784389b6d625f4a29f73e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -205.576
+      value: 5.411
       objectReference: {fileID: 0}
     - target: {fileID: 5972965616656381258, guid: 44bf535fdf2784389b6d625f4a29f73e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -18507,11 +18507,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4263330528959167671, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
       propertyPath: m_text
-      value: 'The recipe book, only those potions stop them, but why?
+      value: 'The recipe book, only those potions stop them.
 
 
-        I''m
-        losing time. By sundown, I must be ready.'
+        By sundown,
+        I must be ready.'
       objectReference: {fileID: 0}
     - target: {fileID: 4263330528959167671, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
       propertyPath: m_fontStyle
