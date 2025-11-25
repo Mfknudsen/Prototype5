@@ -55,7 +55,7 @@ MonoBehaviour:
   itemName: Potion of Groove
   throwForce: 5
   throwable: 1
-  audioClip: {fileID: 8300000, guid: 01d2612e492d86947be4a7f8cd7e4b71, type: 3}
+  audioClip: {fileID: 0}
   skipAttack: 0
 --- !u!114 &6398016380117158941
 MonoBehaviour:
