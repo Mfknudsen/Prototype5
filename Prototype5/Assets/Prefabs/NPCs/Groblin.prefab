@@ -1086,7 +1086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseStateRange: 100
-  viewAngle: 90
+  viewAngle: 200
   attackStateRange: 2
   damageAmount: 8
   attackCooldown: 0.8
