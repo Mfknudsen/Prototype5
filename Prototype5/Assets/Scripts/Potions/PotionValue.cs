@@ -19,6 +19,8 @@ namespace Potions
 
         [SerializeField] private Vector3 bookShowcaseRotation, bookShowcasePositionOffset;
 
+        [SerializeField] private AudioClip onShatterSound;
+
         [SerializeReference]
 #if UNITY_EDITOR
         [SerializeReferenceDrawer]
@@ -41,6 +43,11 @@ namespace Potions
 
                 this.maxEffectDistance = Mathf.Max(this.maxEffectDistance, potionEffectBase.GetRadius());
             }
+        }
+
+        public AudioClip GetShatterSound()
+        {
+            return this.onShatterSound;
         }
 
         public GameObject GetPrefab()

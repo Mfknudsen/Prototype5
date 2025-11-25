@@ -17,6 +17,6 @@ MonoBehaviour:
   description: Full of minerals and, most importantly, bubbles
   tag1: 0
   tag2: 5
-  sprite: {fileID: 21300000, guid: 70f1c8047eb5f462bb5ad177b646717e, type: 3}
+  sprite: {fileID: 21300000, guid: 892a8c20f70934b4c9ac90359ca792df, type: 3}
   bookShowcaseRotation: {x: 0, y: -79.709, z: 0}
   bookShowcasePositionOffset: {x: 0, y: -0.102, z: 0}

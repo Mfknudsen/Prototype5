@@ -1,3 +1,4 @@
+using System;
 using DayNightCycle;
 using ScriptableVariables.Objects;
 using UI;
@@ -8,32 +9,34 @@ namespace NPCs.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [Header("Testing")] 
-        [HideInInspector] public bool inTestingScene;
+        [Header("Testing")] [HideInInspector] public bool inTestingScene;
         [HideInInspector] public Vector3[] testSpawnPositions;
-        
-        [Header("Enemy Information")]
-        public bool useNightMobs = true;
+
+        [Header("Enemy Information")] public bool useNightMobs = true;
         [SerializeField] private GameObject nightMobPrefab;
         [SerializeField] private GameObject dayMobPrefab;
         [SerializeField] private Canvas enemyHealthBarCanvas;
         [SerializeField] private Vector3[] spawnPositions;
-        
-        [Header("Attack Player")]
-        public Transform playerTransform;
+
+        [Header("Attack Player")] public Transform playerTransform;
         public DamageType damageType;
-        
+
         private static bool _enemiesSpawned;
         private Camera _playerCamera;
-        
+
         private void Awake()
         {
             _enemiesSpawned = false;
             _playerCamera = playerTransform.GetComponentInChildren<Camera>();
             if (_playerCamera == null)
                 Debug.Log("Player camera not found.");
-            
+
             SpawnTestEnemies();
+        }
+
+        private void Update()
+        {
+            
         }
 
         private void OnEnable()
@@ -66,21 +69,21 @@ namespace NPCs.Enemies
         {
             GameObject mobPrefab = useNightMobs ? nightMobPrefab : dayMobPrefab;
             GameObject mob = Instantiate(mobPrefab, position, Quaternion.identity, transform);
-            
+
             EnemyStateMachine enemyStateMachine = mob.GetComponent<EnemyStateMachine>();
             enemyStateMachine.playerTransform = playerTransform;
             enemyStateMachine.damageType = damageType;
 
             EnemyHealthBar enemyHealthBar = mob.GetComponentInChildren<EnemyHealthBar>();
             enemyHealthBar.SetEnemyTransform(mob.transform);
+            enemyHealthBar.SetPlayerCamera(_playerCamera);
             enemyHealthBar.transform.SetParent(enemyHealthBarCanvas.transform);
-            if (enemyHealthBar.GetComponent<FaceCamera>() is { } faceCamera)
-                faceCamera.camera = _playerCamera;
-            
+
             CharacterHealth.Health enemyHealth = mob.GetComponent<CharacterHealth.Health>();
             enemyStateMachine.enemyHealth = enemyHealth;
-            enemyHealth.LocalDeathAction += enemyStateMachine.OnDeath;
-            enemyHealth.LocalHealthChangeAction += enemyHealthBar.SetProgress;
+            enemyHealth.localDeathAction.AddListener(enemyStateMachine.OnDeath);
+            enemyHealth.localDeathAction.AddListener(enemyHealthBar.DestroyEnemyHealthBar);
+            enemyHealth.localHealthChangeAction.AddListener(enemyHealthBar.SetProgress);
         }
 
         private void SpawnTestEnemies()
@@ -88,7 +91,7 @@ namespace NPCs.Enemies
             if (!inTestingScene) return;
             SpawnMobsAtLocations(testSpawnPositions);
         }
-        
+
         private void SpawnMobsAtLocations(Vector3[] positions)
         {
             if (positions.Length == 0) return;
@@ -96,7 +99,7 @@ namespace NPCs.Enemies
             foreach (var position in positions)
                 InstantiateMob(position);
         }
-        
+
         private void CheckSpawnEnemies(DayNightTime dayNightTime)
         {
             var spawnTime = useNightMobs ? DayNightTime.Night : DayNightTime.Morning;
@@ -134,6 +137,6 @@ namespace NPCs.Enemies
             serializedObject.ApplyModifiedProperties();
         }
     }
-    
+
 #endif
 }

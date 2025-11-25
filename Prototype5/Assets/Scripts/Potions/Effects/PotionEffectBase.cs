@@ -41,7 +41,7 @@ namespace Potions.Effects
                 this.Effect(potionObject, potionEffectTarget);
             }
         }
-
+        
 #if UNITY_EDITOR
         public bool GetDebugGizmo()
         {

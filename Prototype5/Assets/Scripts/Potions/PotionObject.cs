@@ -23,7 +23,7 @@ namespace Potions
             }
         }
 #endif
-        
+
         public PotionValue GetValue() => this.potionValue;
 
         private void OnCollisionEnter(Collision other)
@@ -33,6 +33,15 @@ namespace Potions
 
             if (magnitude < this.forceForShatter)
                 return;
+
+            AudioClip sound = this.potionValue.GetShatterSound();
+
+            if (sound)
+            {
+                GameObject soundObject = new GameObject();
+                soundObject.AddComponent<AudioSource>().PlayOneShot(sound);
+                Destroy(soundObject, sound.length + 0.01f);
+            }
 
             List<PotionEffectTarget> hits = Physics
                 .OverlapSphere(this.transform.position, this.potionValue.GetMaxRadius())
@@ -46,7 +55,7 @@ namespace Potions
                         isThornPotion = true;
                 if (!isThornPotion) return;
             }
-            
+
             foreach (PotionEffectBase potionEffectBase in this.potionValue.GetEffects())
             {
                 potionEffectBase.TriggerEffect(this, hits);
