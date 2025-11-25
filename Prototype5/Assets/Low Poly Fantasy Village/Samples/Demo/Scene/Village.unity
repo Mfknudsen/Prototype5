@@ -1553,7 +1553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8020468614364741827, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.75
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 8020468614364741827, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21693,6 +21693,10 @@ PrefabInstance:
       propertyPath: 'allRecipes.Array.data[4]'
       value: 
       objectReference: {fileID: 11400000, guid: 7f9cd4c7b75632848a07c744931377c7, type: 2}
+    - target: {fileID: 5488010228871868254, guid: 6743ac30c8a8e9d4db3084dd09e0ccb5, type: 3}
+      propertyPath: MaxDistance
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
