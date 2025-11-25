@@ -18774,7 +18774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1514454598}
   inventoryHandler: {fileID: 2136470411}
-  playerStateVariable: {fileID: 0}
+  playerStateVariable: {fileID: 11400000, guid: 74e430132044fd04096f52e4a4319956, type: 2}
   isInTitleScene: 0
 --- !u!4 &873169423
 Transform:
@@ -19251,11 +19251,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: useNightMobs
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: inTestingScene
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: healthBarCanvas

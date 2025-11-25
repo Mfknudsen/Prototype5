@@ -406,6 +406,8 @@ GameObject:
   - component: {fileID: 4518584906532649348}
   - component: {fileID: 2960959777072266065}
   - component: {fileID: 3266953024906841472}
+  - component: {fileID: 3968982748377777570}
+  - component: {fileID: 8740081790209579474}
   m_Layer: 10
   m_Name: MinimapArrow
   m_TagString: Untagged
@@ -413,21 +415,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6582134842821981966
-Transform:
+--- !u!224 &6582134842821981966
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2158959196268705906}
-  serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 18.07, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6432014990184400984}
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 18.07}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!33 &4518584906532649348
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -459,7 +465,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4e446bd1037074877b55b57ffa843397, type: 2}
+  - {fileID: 2100000, guid: 7233b1014b0ac4ae597d6712d1f9886b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -503,6 +509,34 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &3968982748377777570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2158959196268705906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
+--- !u!114 &8740081790209579474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2158959196268705906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2664504995678644231
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,6 +975,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   globalDeathEvent: {fileID: 11400000, guid: 09f6b8e2188ccd947977df097ea5e065, type: 2}
+  localDeathAction:
+    m_PersistentCalls:
+      m_Calls: []
+  localHealthChangeAction:
+    m_PersistentCalls:
+      m_Calls: []
+  currentHealth: 0
   resistances:
   - damageType: {fileID: 11400000, guid: 280e1525c5c479d418d3bbedf81adb36, type: 2}
     multiplier: 1
@@ -1317,6 +1358,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   globalDeathEvent: {fileID: 0}
+  localDeathAction:
+    m_PersistentCalls:
+      m_Calls: []
+  localHealthChangeAction:
+    m_PersistentCalls:
+      m_Calls: []
+  currentHealth: 0
   resistances: []
 --- !u!1 &9083520733775824979
 GameObject:
