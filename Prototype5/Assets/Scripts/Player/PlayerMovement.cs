@@ -30,13 +30,11 @@ namespace Player
 
         private void Start()
         {
-            this.playerStateVariable.Value = PlayerStateEnum.Free;
-
             this.playerTransformVariable.Value = this.transform;
             this.cameraTransformVariable.Value = this.cameraTransform;
             this.handTransformVariable.Value = this.handTransform;
 
-            this.playerStateVariable.Value = PlayerStateEnum.Free;
+            //this.playerStateVariable.Value = PlayerStateEnum.Free;
         }
 
         private void OnEnable()

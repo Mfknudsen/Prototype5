@@ -9,12 +9,12 @@ namespace UI
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            gameObject.SetActive(true);
+            this.gameObject.SetActive(true);
         }
 
         public void RestartButton()
         {
-            SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
         }
 
         public void ExitButton()
