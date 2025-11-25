@@ -1,4 +1,5 @@
 using Managers;
+using ScriptableVariables.Enums;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject SettingsMenuContainer;
     [SerializeField] private bool debugMode;
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private PlayerStateVariable playerStateVariable;
 
     private const string StartScene = "Village";
 
@@ -76,18 +78,20 @@ public class MainMenuManager : MonoBehaviour
 
     private void StartGame()
     {
-        if (StartScene != null) 
+        if (StartScene != null)
             SceneManager.LoadScene(StartScene);
     }
-    
+
     private void UnpauseGame()
     {
         Time.timeScale = 1;
-        uiManager.SetCanvas(UIManager.CanvasType.Pause, false);
-        uiManager.SetCanvas(UIManager.CanvasType.Player, true);
-        uiManager.SetCanvas(UIManager.CanvasType.Minimap, true);
+        this.uiManager.SetCanvas(UIManager.CanvasType.Pause, false);
+        this.uiManager.SetCanvas(UIManager.CanvasType.Player, true);
+        this.uiManager.SetCanvas(UIManager.CanvasType.Minimap, true);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        this.playerStateVariable.Value = PlayerStateEnum.Free;
     }
 
     private void OpenSettings()

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d10d3a15e0c55e498ed2b145e29544e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageOnTouch: 15
+  damageOnTouch: 100
   damageType: {fileID: 11400000, guid: ae218bfcb3309ca469dd56779d77bce9, type: 2}
 --- !u!64 &8528033363619560299
 MeshCollider:
@@ -85,3 +85,4 @@ MonoBehaviour:
   thornsPrefab: {fileID: 5466154927578926954, guid: a822370a8636746408db620b76b55ef7, type: 3}
   growthDuration: 1
   spawnPositionOffset: {x: 0, y: -0.32, z: 0}
+  timeBetweenHits: 3
