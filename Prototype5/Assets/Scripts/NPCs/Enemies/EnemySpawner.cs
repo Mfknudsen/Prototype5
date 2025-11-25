@@ -1,3 +1,4 @@
+using System;
 using DayNightCycle;
 using ScriptableVariables.Objects;
 using UI;
@@ -31,6 +32,11 @@ namespace NPCs.Enemies
                 Debug.Log("Player camera not found.");
 
             SpawnTestEnemies();
+        }
+
+        private void Update()
+        {
+            
         }
 
         private void OnEnable()
