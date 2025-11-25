@@ -175,12 +175,10 @@ namespace Interactions
 
             if (closest.GetInteractName().Contains("Book"))
             {   
-                Debug.Log($"Book: {closest.GetInteractName()}");
                 name = NameUtils.CleanBookName(closest.GetInteractName());
             }
             else
             {
-                Debug.Log($"Not Book: {closest.GetInteractName()}");
                 name = NameUtils.CleanName(closest.GetInteractName());
             }
             
