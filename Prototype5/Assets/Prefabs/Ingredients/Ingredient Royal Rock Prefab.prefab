@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3699700953282828291}
   - component: {fileID: -1365898550458160948}
   - component: {fileID: 6209833306882661785}
+  - component: {fileID: 8213067309094942896}
   m_Layer: 0
   m_Name: Ingredient Royal Rock Prefab
   m_TagString: Untagged
@@ -149,6 +150,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5377074458154104396, guid: d97e271026e987e4c87c2661ddcee24e, type: 3}
+--- !u!114 &8213067309094942896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8097309241775028901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ec5e75bf1e464696a2ffe08dffa084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 9fa052200dc4c4e5cba4b2863ef46bca, type: 2}
 --- !u!1001 &8348778344746142528
 PrefabInstance:
   m_ObjectHideFlags: 0

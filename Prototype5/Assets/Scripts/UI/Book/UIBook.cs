@@ -71,6 +71,8 @@ namespace UI.Book
 
         private Coroutine currentBookAction;
 
+        [SerializeField] private string bookVariantType;
+
         #region Hash
 
         private static readonly int HashCloseBook = Animator.StringToHash("CloseBook"),
@@ -390,6 +392,11 @@ namespace UI.Book
                 return;
 
             this.Effect(input.x < 0 ? BookTurn.Left : BookTurn.Right);
+        }
+
+        public string GetBookVariantType()
+        {
+            return bookVariantType;
         }
 
         #endregion

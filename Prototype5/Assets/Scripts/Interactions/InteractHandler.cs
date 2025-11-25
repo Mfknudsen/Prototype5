@@ -171,11 +171,21 @@ namespace Interactions
                 return;
             }
 
-            // Get GameObject name
-            string name = NameUtils.CleanName(closest.GetInteractName());
+            string name;
+
+            if (closest.GetInteractName().Contains("Book"))
+            {   
+                Debug.Log($"Book: {closest.GetInteractName()}");
+                name = NameUtils.CleanBookName(closest.GetInteractName());
+            }
+            else
+            {
+                Debug.Log($"Not Book: {closest.GetInteractName()}");
+                name = NameUtils.CleanName(closest.GetInteractName());
+            }
             
             // Set UI text
-            interactLabel.text = $"Pick up: {name}";
+            interactLabel.text = $"Interact with: {name}";
         }
 
         private void OnInputTrigger()

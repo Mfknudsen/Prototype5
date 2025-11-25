@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3699700953282828291}
   - component: {fileID: -4784734921380556506}
   - component: {fileID: 8234349714421744193}
+  - component: {fileID: 5465605565565802920}
   m_Layer: 0
   m_Name: Ingredient Ringing Bell Prefab
   m_TagString: Untagged
@@ -149,6 +150,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4214344059481257165, guid: d0d4272b1c9e100459563e16f31c3cab, type: 3}
+--- !u!114 &5465605565565802920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8097309241775028901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ec5e75bf1e464696a2ffe08dffa084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 9fa052200dc4c4e5cba4b2863ef46bca, type: 2}
 --- !u!1001 &5277669959359924724
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Utils
@@ -33,14 +34,39 @@ namespace Utils
             return name.Trim();
         }
 
+        public static string RemoveCloneFromName(string name)
+        {
+            return string.IsNullOrEmpty(name) ? name : name.Replace("(Clone)", "");
+        }
+
+        public static string RemoveIngredientFromName(string name)
+        {
+            return string.IsNullOrEmpty(name) ? name : name.Replace("Ingredient", "");
+        }
+
         public static string CleanName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
                 return name;
 
-            // Apply each cleanup step in order
+            // Apply each cleanup step in order 
             name = RemovePotionPrefix(name);
+            name = RemoveIngredientFromName(name);
             name = RemovePrefabFromName(name);
+            name = RemoveCloneFromName(name);
+            name = RemoveItemNumberFromName(name);
+
+            return name.Trim();
+        }
+        
+        public static string CleanBookName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                return name;
+
+            // Apply each cleanup step in order
+            name = RemovePrefabFromName(name);
+            name = RemoveCloneFromName(name);
             name = RemoveItemNumberFromName(name);
 
             return name.Trim();

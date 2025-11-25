@@ -10,7 +10,7 @@ namespace UI.Book
         [SerializeField] private UIBook uiBook;
         [SerializeField] private Transform playerReadPosition;
         [SerializeField] private TransformVariable playerTransform, cameraTransform;
-
+        
         public void OnTrigger()
         {
             this.uiBook.Effect(BookTurn.Open);
@@ -29,9 +29,10 @@ namespace UI.Book
             return this.transform.position;
         }
         
+        
         public string GetInteractName()
         {
-            return this.gameObject.name;
+            return uiBook.GetBookVariantType();
         }
     }
 }

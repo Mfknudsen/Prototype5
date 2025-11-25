@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3699700953282828291}
   - component: {fileID: 5558385315244950673}
   - component: {fileID: 3720353377754634786}
+  - component: {fileID: 5074333306200327847}
   m_Layer: 0
   m_Name: Ingredient Serious Flower Prefab
   m_TagString: Untagged
@@ -149,6 +150,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1350639393950675995, guid: efa21b2ec812e6a43897a5e866ca75a6, type: 3}
+--- !u!114 &5074333306200327847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8097309241775028901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ec5e75bf1e464696a2ffe08dffa084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 9fa052200dc4c4e5cba4b2863ef46bca, type: 2}
 --- !u!1001 &4406830720699376329
 PrefabInstance:
   m_ObjectHideFlags: 0

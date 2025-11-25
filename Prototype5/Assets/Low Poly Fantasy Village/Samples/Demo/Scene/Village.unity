@@ -1730,6 +1730,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9202416355748009674, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202416355748009674, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202416355748009674, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202416355748009674, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9202416355748009674, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2032,6 +2052,10 @@ PrefabInstance:
     - target: {fileID: 3214192518874838956, guid: 87c458676588ece4780e6e4bf36656cf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.9864098
+      objectReference: {fileID: 0}
+    - target: {fileID: 5049184611716894217, guid: 87c458676588ece4780e6e4bf36656cf, type: 3}
+      propertyPath: bookVariantType
+      value: Potion Book
       objectReference: {fileID: 0}
     - target: {fileID: 5392567894493037163, guid: 87c458676588ece4780e6e4bf36656cf, type: 3}
       propertyPath: m_IsActive
@@ -2513,6 +2537,10 @@ PrefabInstance:
     - target: {fileID: 5972965616656381258, guid: 44bf535fdf2784389b6d625f4a29f73e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7050324682168741444, guid: 44bf535fdf2784389b6d625f4a29f73e, type: 3}
+      propertyPath: bookVariantType
+      value: Recipe Book
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19216,6 +19244,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: useNightMobs
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: inTestingScene
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: healthBarCanvas
       value: 
       objectReference: {fileID: 1760487909}
@@ -21087,6 +21123,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 308435131890319375, guid: 7e1b14b4d7d203d4c9859ae6e7e7ef35, type: 3}
+      propertyPath: bookVariantType
+      value: Ingredient Book
+      objectReference: {fileID: 0}
     - target: {fileID: 3995885268147641089, guid: 7e1b14b4d7d203d4c9859ae6e7e7ef35, type: 3}
       propertyPath: m_LocalPosition.x
       value: 46.758606

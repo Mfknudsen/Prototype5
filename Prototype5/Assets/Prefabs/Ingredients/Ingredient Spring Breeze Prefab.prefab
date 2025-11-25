@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3699700953282828291}
   - component: {fileID: 7010478527079379439}
   - component: {fileID: 1743733772969537023}
+  - component: {fileID: 1488928358362110984}
   m_Layer: 0
   m_Name: Ingredient Spring Breeze Prefab
   m_TagString: Untagged
@@ -149,6 +150,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8223340764860925320, guid: 5816ea9ff7eef3e4abb7e32296eb0696, type: 3}
+--- !u!114 &1488928358362110984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8097309241775028901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ec5e75bf1e464696a2ffe08dffa084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 9fa052200dc4c4e5cba4b2863ef46bca, type: 2}
 --- !u!1001 &431022942013983121
 PrefabInstance:
   m_ObjectHideFlags: 0
