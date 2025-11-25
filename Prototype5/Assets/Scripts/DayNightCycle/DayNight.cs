@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using NPCs.Enemies;
 using ScriptableVariables.Objects;
 using UnityEditor;
 using UnityEngine;
@@ -205,7 +204,7 @@ namespace DayNightCycle
                                           ((float)DayNightTime.Night - (float)DayNightTime.Afternoon),
                 DayNightTime.Night => (_currentTime - (float)DayNightTime.Night) /
                                       ((float)DayNightTime.Midnight - (float)DayNightTime.Night),
-                DayNightTime.Midnight => (_currentTime + (24 - (float)DayNightTime.Midnight)) /
+                DayNightTime.Midnight => (_currentTime + (_currentTime >= (float)DayNightTime.Midnight ? -22 : 2)) /
                                          ((float)DayNightTime.Morning + (24 - (float)DayNightTime.Midnight)),
                 _ => throw new ArgumentOutOfRangeException()
             };
