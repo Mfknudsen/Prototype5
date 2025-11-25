@@ -1927,3 +1927,4 @@ MonoBehaviour:
   SettingsMenuContainer: {fileID: 2701105654881063151}
   debugMode: 1
   uiManager: {fileID: 0}
+  playerStateVariable: {fileID: 11400000, guid: 74e430132044fd04096f52e4a4319956, type: 2}
