@@ -1,3 +1,4 @@
+using System;
 using Inventory;
 using Managers;
 using ScriptableVariables.Enums;
@@ -9,15 +10,20 @@ public sealed class PauseGame : MonoBehaviour
     [SerializeField] private UIManager uiManager;
     [SerializeField] private InventoryHandler inventoryHandler;
     [SerializeField] private PlayerStateVariable playerStateVariable;
+    [SerializeField] private bool isInTitleScene;
 
     private void OnEnable()
     {
-        InputManager.Instance.EscapeEvent.AddListener(this.OnEscapeInput);
+        if (isInTitleScene)
+            Time.timeScale = 0;
+        else
+            InputManager.Instance.EscapeEvent.AddListener(this.OnEscapeInput);
     }
 
     private void OnDisable()
     {
-        InputManager.Instance.EscapeEvent.AddListener(this.OnEscapeInput);
+        if (!isInTitleScene)
+            InputManager.Instance.EscapeEvent.RemoveListener(this.OnEscapeInput);
     }
 
     private void OnEscapeInput()
