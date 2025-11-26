@@ -86,8 +86,8 @@ namespace Interactions
                     closest = interactable;
                 }
             }
-            
-            UpdateHighlight(closest);
+
+            this.UpdateHighlight(closest);
 
             this.current = closest;
         }
@@ -130,10 +130,10 @@ namespace Interactions
         private void UpdateHighlight(IInteractable closest)
         {
             // Unhighlight the previous highlighted object
-            if (lastHighlighted != null)
+            if (this.lastHighlighted != null)
             {
-                lastHighlighted.Unhighlight();
-                lastHighlighted = null;
+                this.lastHighlighted.Unhighlight();
+                this.lastHighlighted = null;
             }
 
             // If no current interactable, stop here
@@ -147,19 +147,19 @@ namespace Interactions
                 if (h != null)
                 {
                     h.Highlight();
-                    lastHighlighted = h;
+                    this.lastHighlighted = h;
                 }
             }
             
             // Only log when object CHANGES
-            if (closest != lastDebugInteractable)
+            if (closest != this.lastDebugInteractable)
             {
-                Debug.Log($"[InteractHandler] Closest interactable: {closest} on object {((MonoBehaviour)closest).gameObject.name}");
+                //Debug.Log($"[InteractHandler] Closest interactable: {closest} on object {((MonoBehaviour)closest).gameObject.name}");
 
-                lastDebugInteractable = closest;
+                this.lastDebugInteractable = closest;
             }
-            
-            DisplayHighlightedName(closest);
+
+            this.DisplayHighlightedName(closest);
 
         }
 
@@ -167,7 +167,7 @@ namespace Interactions
         {
             if (closest == null)
             {
-                interactLabel.text = "E";
+                this.interactLabel.text = "E";
                 return;
             }
 
@@ -183,7 +183,7 @@ namespace Interactions
             }
             
             // Set UI text
-            interactLabel.text = $"Interact with: {name}";
+            this.interactLabel.text = $"Interact with: {name}";
         }
 
         private void OnInputTrigger()
