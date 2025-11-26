@@ -54,7 +54,7 @@ MonoBehaviour:
   rb: {fileID: 2603239617512986011}
   backpack: {fileID: 11400000, guid: fa05d585da744f34581dfd96db2e234d, type: 2}
   itemName: Potion of Perpetuity
-  throwForce: 5
+  throwForce: 15
   throwable: 1
   audioClip: {fileID: 0}
   skipAttack: 0
