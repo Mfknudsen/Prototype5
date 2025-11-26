@@ -21447,6 +21447,14 @@ PrefabInstance:
       propertyPath: _buttonType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4729534348532227658, guid: 952dfc4444f77bf4eaba7497f634663b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729534348532227658, guid: 952dfc4444f77bf4eaba7497f634663b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4763424233588145810, guid: 952dfc4444f77bf4eaba7497f634663b, type: 3}
       propertyPath: pauseGame
       value: 
@@ -21462,6 +21470,22 @@ PrefabInstance:
     - target: {fileID: 5644364590190885041, guid: 952dfc4444f77bf4eaba7497f634663b, type: 3}
       propertyPath: m_Name
       value: CanvasPauseScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7376024082181596947, guid: 952dfc4444f77bf4eaba7497f634663b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7376024082181596947, guid: 952dfc4444f77bf4eaba7497f634663b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620459988986329845, guid: 952dfc4444f77bf4eaba7497f634663b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620459988986329845, guid: 952dfc4444f77bf4eaba7497f634663b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8774623953911003839, guid: 952dfc4444f77bf4eaba7497f634663b, type: 3}
       propertyPath: m_Pivot.x

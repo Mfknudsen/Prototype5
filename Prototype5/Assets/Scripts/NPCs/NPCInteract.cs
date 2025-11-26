@@ -58,7 +58,7 @@ namespace NPCs
 
         public bool IsActive()
         {
-            return this.gameObject.activeSelf;
+            return this.gameObject.activeSelf && this.currentInteractBase != null;
         }
 
         public Vector3? Hover()
