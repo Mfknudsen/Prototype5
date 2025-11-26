@@ -17,6 +17,6 @@ MonoBehaviour:
   description: Only a slouch would confuse it with a Summer Breeze
   tag1: 1
   tag2: 2
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 822286474d834497a885837dcea3c3cd, type: 3}
   bookShowcaseRotation: {x: 0, y: 0, z: 0}
   bookShowcasePositionOffset: {x: 0, y: -0.102, z: 0}

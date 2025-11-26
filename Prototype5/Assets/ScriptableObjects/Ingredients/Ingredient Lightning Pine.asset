@@ -17,6 +17,6 @@ MonoBehaviour:
   description: How did this even get here?
   tag1: 3
   tag2: 4
-  sprite: {fileID: 21300000, guid: 99b335848c7d84c0987b01f42edf7e61, type: 3}
+  sprite: {fileID: 21300000, guid: 116f8ffc07be84c82b03558bb234d580, type: 3}
   bookShowcaseRotation: {x: 0, y: 0, z: 0}
   bookShowcasePositionOffset: {x: 0, y: -0.079, z: 0}

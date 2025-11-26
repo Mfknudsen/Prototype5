@@ -17,6 +17,6 @@ MonoBehaviour:
   description: Too small for hunting a human
   tag1: 5
   tag2: 3
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: c08301f6380974445a9307cd1d21d4c7, type: 3}
   bookShowcaseRotation: {x: 101.193, y: -55.436, z: -54.91998}
   bookShowcasePositionOffset: {x: 0, y: -0.186, z: -0.021}
