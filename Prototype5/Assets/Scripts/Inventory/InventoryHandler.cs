@@ -253,6 +253,7 @@ namespace Inventory
                     button.SetText(itemCounter == null || itemCounter.Count == 0
                         ? ""
                         : $"{itemCounter.ItemName}\n{itemCounter.Count}");
+                    button.SetSprite(itemCounter?.Sprite);
                     index++;
                 }
             }
