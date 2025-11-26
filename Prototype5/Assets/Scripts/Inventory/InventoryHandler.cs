@@ -188,8 +188,14 @@ namespace Inventory
             if (this.playerStateVariable.Value != PlayerStateEnum.Free)
                 return;
 
+            int previousIndex = hotbarIndexSelected - 1;
+            if (previousIndex < 0)
+                previousIndex = 9;
+            
+            this.hotbar.transform.GetChild(0).GetChild(previousIndex)?.GetComponent<OnUIButtonClick>().SetBorderInactive();
+            
             this.hotbarIndexSelected = input;
-
+            
             if (this.handTransform.Value == null)
                 return;
 
@@ -206,6 +212,8 @@ namespace Inventory
             if (index < 0)
                 index = 9;
 
+            this.hotbar.transform.GetChild(0).GetChild(index)?.GetComponent<OnUIButtonClick>().SetBorderActive();
+            
             ItemCounter itemCounter = this.itemCounters[index];
             if (itemCounter == null)
                 return;

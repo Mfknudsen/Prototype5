@@ -16,6 +16,8 @@ namespace Inventory
 
         [SerializeField] private Image image;
 
+        [SerializeField] private GameObject border;
+
         public void OnClick()
         {
             this.image.color = Color.green;
@@ -46,6 +48,16 @@ namespace Inventory
         public void SetSprite(Sprite set)
         {
             this.image.sprite = set;
+        }
+
+        public void SetBorderActive()
+        {
+            this.border?.SetActive(true);
+        }
+
+        public void SetBorderInactive()
+        {
+            this.border?.SetActive(false);
         }
     }
 }

@@ -269,6 +269,7 @@ MonoBehaviour:
   index: 0
   text: {fileID: 512929271449415902}
   image: {fileID: 1933207178055672433}
+  border: {fileID: 0}
 --- !u!222 &6784574314026063997
 CanvasRenderer:
   m_ObjectHideFlags: 0
