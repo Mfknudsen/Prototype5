@@ -14,8 +14,8 @@ namespace DayNightCycle
     public enum DayNightTime
     {
         Morning = 5,
-        Evening = 8,
-        Afternoon = 14,
+        Afternoon = 8,
+        Evening = 14,
         Night = 18,
         Midnight = 22
     }
@@ -140,8 +140,8 @@ namespace DayNightCycle
 
             PlayerLoop.SetPlayerLoop(playerLoopSystem);
 
-            _currentDayNightTime = DayNightTime.Evening;
-            _currentTime = (float)DayNightTime.Evening;
+            _currentDayNightTime = DayNightTime.Afternoon;
+            _currentTime = (float)DayNightTime.Afternoon;
 
 #if UNITY_EDITOR
             EditorApplication.playModeStateChanged += OnExitPlayMode;
@@ -181,9 +181,9 @@ namespace DayNightCycle
             _currentDayNightTime = _currentTime switch
             {
                 < (float)DayNightTime.Morning => DayNightTime.Midnight,
-                < (float)DayNightTime.Evening => DayNightTime.Morning,
-                < (float)DayNightTime.Afternoon => DayNightTime.Evening,
-                < (float)DayNightTime.Night => DayNightTime.Afternoon,
+                < (float)DayNightTime.Afternoon => DayNightTime.Morning,
+                < (float)DayNightTime.Evening => DayNightTime.Afternoon,
+                < (float)DayNightTime.Night => DayNightTime.Evening,
                 < (float)DayNightTime.Midnight => DayNightTime.Night,
                 _ => DayNightTime.Midnight
             };
@@ -197,11 +197,11 @@ namespace DayNightCycle
             float t = _currentDayNightTime switch
             {
                 DayNightTime.Morning => (_currentTime - (float)DayNightTime.Morning) /
-                                        ((float)DayNightTime.Evening - (float)DayNightTime.Morning),
-                DayNightTime.Evening => (_currentTime - (float)DayNightTime.Evening) /
-                                        ((float)DayNightTime.Afternoon - (float)DayNightTime.Evening),
+                                        ((float)DayNightTime.Afternoon - (float)DayNightTime.Morning),
                 DayNightTime.Afternoon => (_currentTime - (float)DayNightTime.Afternoon) /
-                                          ((float)DayNightTime.Night - (float)DayNightTime.Afternoon),
+                                        ((float)DayNightTime.Evening - (float)DayNightTime.Afternoon),
+                DayNightTime.Evening => (_currentTime - (float)DayNightTime.Evening) /
+                                          ((float)DayNightTime.Night - (float)DayNightTime.Evening),
                 DayNightTime.Night => (_currentTime - (float)DayNightTime.Night) /
                                       ((float)DayNightTime.Midnight - (float)DayNightTime.Night),
                 DayNightTime.Midnight => (_currentTime + (_currentTime >= (float)DayNightTime.Midnight ? -22 : 2)) /

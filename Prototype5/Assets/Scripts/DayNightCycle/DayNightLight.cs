@@ -12,13 +12,13 @@ namespace DayNightCycle
         [SerializeField] private bool morningOnState = true;
         [SerializeField] private float morningIntensity = 1;
 
-        [Header("Evening")] [SerializeField] private Color eveningColor = Color.white;
-        [SerializeField] private bool eveningOnState = true;
-        [SerializeField] private float eveningIntensity = 1;
-
         [Header("Afternoon")] [SerializeField] private Color afternoonColor = Color.white;
         [SerializeField] private bool afternoonOnState = true;
         [SerializeField] private float afternoonIntensity = 1;
+
+        [Header("Evening")] [SerializeField] private Color eveningColor = Color.white;
+        [SerializeField] private bool eveningOnState = true;
+        [SerializeField] private float eveningIntensity = 1;
 
         [Header("Night")] [SerializeField] private Color nightColor = Color.white;
         [SerializeField] private bool nightOnState = true;
@@ -57,12 +57,12 @@ namespace DayNightCycle
                     this.lightComponent.color = Color.Lerp(this.morningColor, this.eveningColor, time);
                     this.lightComponent.intensity = Mathf.Lerp(this.morningIntensity, this.eveningIntensity, time);
                     return;
-                case DayNightTime.Evening:
+                case DayNightTime.Afternoon:
                     this.lightComponent.enabled = this.eveningOnState;
                     this.lightComponent.color = Color.Lerp(this.eveningColor, this.afternoonColor, time);
                     this.lightComponent.intensity = Mathf.Lerp(this.eveningIntensity, this.afternoonIntensity, time);
                     return;
-                case DayNightTime.Afternoon:
+                case DayNightTime.Evening:
                     this.lightComponent.enabled = this.afternoonOnState;
                     this.lightComponent.color = Color.Lerp(this.afternoonColor, this.nightColor, time);
                     this.lightComponent.intensity = Mathf.Lerp(this.afternoonIntensity, this.nightIntensity, time);
