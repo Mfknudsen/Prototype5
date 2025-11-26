@@ -85,10 +85,6 @@ namespace UI.Book
                 List<IngredientAndAmount> ingredientsWithAmounts = recipe1.GetIngredientsWithAmounts();
                 for (int i = 0; i < 3; i++)
                 {
-                    if (i >= ingredientsWithAmounts.Count)
-                        break;
-                    IngredientAndAmount current = ingredientsWithAmounts[i];
-
                     Transform parent = i switch
                     {
                         0 => this.ingredient1Left,
@@ -96,6 +92,20 @@ namespace UI.Book
                         2 => this.ingredient3Left,
                         _ => throw new ArgumentOutOfRangeException()
                     };
+
+                    if (i >= ingredientsWithAmounts.Count)
+                    {
+                        parent.gameObject.SetActive(false);
+                        continue;
+                    }
+
+                    IngredientAndAmount current = ingredientsWithAmounts[i];
+
+                    Image image = parent.GetComponent<Image>();
+                    image.color = Color.white;
+                    image.sprite = current.ingredientValue.GetSprite();
+
+                    continue;
 
                     GameObject instance = Instantiate(current.ingredientValue.GetPrefab(), parent);
                     instance.transform.localPosition = current.ingredientValue.GetShowcaseOffset();
@@ -152,8 +162,6 @@ namespace UI.Book
 
                 for (int i = 0; i < Math.Min(ingredientsWithAmounts.Count, 3); i++)
                 {
-                    IngredientAndAmount current = ingredientsWithAmounts[i];
-
                     Transform parent = i switch
                     {
                         0 => this.ingredient1Right,
@@ -161,6 +169,20 @@ namespace UI.Book
                         2 => this.ingredient3Right,
                         _ => throw new ArgumentOutOfRangeException()
                     };
+
+                    if (i >= ingredientsWithAmounts.Count)
+                    {
+                        parent.gameObject.SetActive(false);
+                        continue;
+                    }
+
+                    IngredientAndAmount current = ingredientsWithAmounts[i];
+
+                    Image image = parent.GetComponent<Image>();
+                    image.color = Color.white;
+                    image.sprite = current.ingredientValue.GetSprite();
+
+                    continue;
 
                     GameObject instance = Instantiate(current.ingredientValue.GetPrefab(), parent);
                     instance.transform.localPosition = current.ingredientValue.GetShowcaseOffset();
@@ -174,7 +196,7 @@ namespace UI.Book
                 }
             }
         }
-        
+
 
         private void SetLayer(GameObject obj, LayerMask layer)
         {

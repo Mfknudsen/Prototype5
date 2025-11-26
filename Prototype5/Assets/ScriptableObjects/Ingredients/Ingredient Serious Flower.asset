@@ -17,6 +17,6 @@ MonoBehaviour:
   description: What if you climb that wall without using your hands
   tag1: 0
   tag2: 3
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 99b335848c7d84c0987b01f42edf7e61, type: 3}
   bookShowcaseRotation: {x: 0, y: 0, z: 0}
   bookShowcasePositionOffset: {x: 0, y: -0.102, z: 0}

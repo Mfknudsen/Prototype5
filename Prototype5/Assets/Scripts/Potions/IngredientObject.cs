@@ -10,5 +10,10 @@ namespace Potions
         {
             return this.value.Equals(toCheck);
         }
+
+        public Sprite GetSprite()
+        {
+            return this.value.GetSprite();
+        }
     }
 }

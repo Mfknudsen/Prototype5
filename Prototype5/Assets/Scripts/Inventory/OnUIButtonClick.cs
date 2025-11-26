@@ -42,5 +42,10 @@ namespace Inventory
             this.isHotbar = setHotbar;
             this.index = setIndex;
         }
+
+        public void SetSprite(Sprite set)
+        {
+            this.image.sprite = set;
+        }
     }
 }

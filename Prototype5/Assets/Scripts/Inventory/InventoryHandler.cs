@@ -34,6 +34,7 @@ namespace Inventory
         {
             public int Count;
             public string ItemName;
+            public Sprite Sprite;
         }
 
         private void Start()
@@ -105,7 +106,7 @@ namespace Inventory
             {
                 if (this.playerStateVariable.Value != PlayerStateEnum.Free)
                     return;
-                
+
                 this.backpack.SetActive(true);
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -159,7 +160,8 @@ namespace Inventory
                     this.itemCounters[i] = new ItemCounter
                     {
                         ItemName = inventoryItem.GetPrefabPath(),
-                        Count = 1
+                        Count = 1,
+                        Sprite = inventoryItem.GetComponent<IngredientObject>()?.GetSprite()
                     };
 
                     break;
@@ -238,6 +240,7 @@ namespace Inventory
                 button.SetText(itemCounter == null || itemCounter.Count == 0
                     ? ""
                     : $"{itemCounter.ItemName}\n{itemCounter.Count}");
+                button.SetSprite(itemCounter?.Sprite);
                 index++;
             }
 
@@ -311,7 +314,7 @@ namespace Inventory
         public bool CheckPotionInHand()
         {
             if (!currentItemInHand) return false;
-            
+
             return currentItemInHand.GetComponent<PotionObject>();
         }
 
