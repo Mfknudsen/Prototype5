@@ -17,6 +17,6 @@ MonoBehaviour:
   description: An elegant sheep is out there turning heads in admiration
   tag1: 2
   tag2: 4
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 372668172bbd24d9ba41fbba6a8dee57, type: 3}
   bookShowcaseRotation: {x: 0, y: 0, z: 0}
   bookShowcasePositionOffset: {x: 0, y: -0.102, z: 0}
