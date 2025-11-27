@@ -157,11 +157,15 @@ namespace Inventory
                     if (this.itemCounters[i] != null)
                         continue;
 
+                    Sprite sprite = inventoryItem.GetComponent<IngredientObject>().GetSprite();
+
+                    sprite ??= inventoryItem.GetComponent<PotionObject>().GetSprite();
+
                     this.itemCounters[i] = new ItemCounter
                     {
                         ItemName = inventoryItem.GetPrefabPath(),
                         Count = 1,
-                        Sprite = inventoryItem.GetComponent<IngredientObject>()?.GetSprite()
+                        Sprite = sprite
                     };
 
                     break;
@@ -191,11 +195,12 @@ namespace Inventory
             int previousIndex = hotbarIndexSelected - 1;
             if (previousIndex < 0)
                 previousIndex = 9;
-            
-            this.hotbar.transform.GetChild(0).GetChild(previousIndex)?.GetComponent<OnUIButtonClick>().SetBorderInactive();
-            
+
+            this.hotbar.transform.GetChild(0).GetChild(previousIndex)?.GetComponent<OnUIButtonClick>()
+                .SetBorderInactive();
+
             this.hotbarIndexSelected = input;
-            
+
             if (this.handTransform.Value == null)
                 return;
 
@@ -213,7 +218,7 @@ namespace Inventory
                 index = 9;
 
             this.hotbar.transform.GetChild(0).GetChild(index)?.GetComponent<OnUIButtonClick>().SetBorderActive();
-            
+
             ItemCounter itemCounter = this.itemCounters[index];
             if (itemCounter == null)
                 return;

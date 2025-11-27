@@ -14,6 +14,8 @@ namespace Potions
 
         [SerializeField] private GameObject onShatterVFX;
 
+        [SerializeField] private Sprite potionSprite;
+        
         [SerializeField] [TextArea] private string description, flavor;
         [SerializeField] private Sprite spriteOne, spriteTwo;
 
@@ -87,6 +89,11 @@ namespace Potions
         public Vector3 GetShowcaseOffset()
         {
             return this.bookShowcasePositionOffset;
+        }
+
+        public Sprite GetPotionSprite()
+        {
+            return this.potionSprite;
         }
     }
 }

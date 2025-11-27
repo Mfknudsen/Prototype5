@@ -63,5 +63,10 @@ namespace Potions
 
             Destroy(this.gameObject);
         }
+
+        public Sprite GetSprite()
+        {
+            return this.potionValue.GetPotionSprite();
+        }
     }
 }
