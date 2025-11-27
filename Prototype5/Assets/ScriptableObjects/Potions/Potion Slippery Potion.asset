@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potionPrefab: {fileID: 5187084931165711824, guid: c078f06de67786e41945e4da57b990af, type: 3}
   onShatterVFX: {fileID: 0}
+  potionSprite: {fileID: 21300000, guid: 0ef0cdee84c790f40a2288e2a3f51d2e, type: 3}
   description: Maybe what a happy horse feels when running through the forest
   flavor: 
   spriteOne: {fileID: 21300000, guid: 3cac777894e4a477bbd95f93ab01639c, type: 3}
   spriteTwo: {fileID: 21300000, guid: fb25eb40ebcc1477aad56cc7a7c38383, type: 3}
   bookShowcaseRotation: {x: 0, y: 0, z: 0}
   bookShowcasePositionOffset: {x: 0, y: 0, z: 0}
+  onShatterSound: {fileID: 0}
   effects:
   - rid: 7969916117750644985
   - rid: 3662799380637548544

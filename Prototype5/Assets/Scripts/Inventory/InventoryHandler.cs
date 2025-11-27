@@ -157,9 +157,9 @@ namespace Inventory
                     if (this.itemCounters[i] != null)
                         continue;
 
-                    Sprite sprite = inventoryItem.GetComponent<IngredientObject>().GetSprite();
+                    Sprite sprite = inventoryItem.GetComponent<IngredientObject>()?.GetSprite();
 
-                    sprite ??= inventoryItem.GetComponent<PotionObject>().GetSprite();
+                    sprite ??= inventoryItem.GetComponent<PotionObject>()?.GetSprite();
 
                     this.itemCounters[i] = new ItemCounter
                     {
