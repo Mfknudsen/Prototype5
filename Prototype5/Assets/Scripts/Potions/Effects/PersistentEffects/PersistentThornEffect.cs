@@ -20,9 +20,10 @@ namespace Potions.Effects.PersistentEffects
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out PotionEffectTarget potionEffectTarget))
+            if (!other.TryGetComponent(out PotionEffectTarget potionEffectTarget))
                 return;
 
+            //TODO Error check
             if (!potionEffectTarget.GetTargetTags().Contains(EffectTargetTag.Character))
                 return;
 

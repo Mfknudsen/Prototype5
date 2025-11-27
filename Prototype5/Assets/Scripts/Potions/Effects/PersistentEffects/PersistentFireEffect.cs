@@ -33,7 +33,7 @@ namespace Potions.Effects.PersistentEffects
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out PotionEffectTarget potionEffectTarget))
+            if (!other.TryGetComponent(out PotionEffectTarget potionEffectTarget))
                 return;
 
             if (!potionEffectTarget.GetTargetTags().Contains(EffectTargetTag.Character))
