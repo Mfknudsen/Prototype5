@@ -18584,7 +18584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4263330528959167671, guid: 97d1b6351de6db5429015d950b46e9d3, type: 3}
       propertyPath: m_text
-      value: 'The recipe book, only these potions stop them.
+      value: 'The recipe book, only those potions stop them.
 
 
         By sundown,
