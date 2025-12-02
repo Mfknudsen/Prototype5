@@ -21,7 +21,7 @@ MonoBehaviour:
   spriteTwo: {fileID: 21300000, guid: db385975adeec4fedb8bef9f51ebf5e2, type: 3}
   bookShowcaseRotation: {x: 0, y: 0, z: 0}
   bookShowcasePositionOffset: {x: 0, y: 0, z: 0}
-  onShatterSound: {fileID: 0}
+  onShatterSound: {fileID: 8300000, guid: 45d0ccf93cb13454d8c734d5e6d86b60, type: 3}
   effects:
   - rid: 7969916117750644985
   - rid: 7969916141511376973
