@@ -25,10 +25,10 @@ namespace NPCs.Enemies
         [Header("Attacked by Fire")] 
         public GameObject firePrefab;
         public Vector3 fireOffsetPosition = Vector3.zero;
-
+        
         [HideInInspector] public EnemyWanderState WanderState;
         [HideInInspector] public EnemyChaseState ChaseState;
-         public EnemyAttackState AttackState;
+        [HideInInspector] public EnemyAttackState AttackState;
         
         [HideInInspector] public NavMeshAgent agent;
         [HideInInspector] public Transform playerTransform;
@@ -41,6 +41,9 @@ namespace NPCs.Enemies
         [HideInInspector] public int jumpCount;
         [HideInInspector] public float danceDuration;
         [HideInInspector] public float switchStateDelay = 0.6f;
+        
+        [HideInInspector] public AudioClip onAttackSound;
+        [HideInInspector] public AudioClip onDeathSound;
         
         private EnemyDeathState _deathState;
         private EnemyGetAttackedState _getAttackedState;

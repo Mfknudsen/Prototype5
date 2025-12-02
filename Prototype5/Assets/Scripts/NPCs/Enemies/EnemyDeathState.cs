@@ -26,5 +26,15 @@ namespace NPCs.Enemies
             float animationLength = fsm.animator.GetCurrentAnimatorClipInfo(0).Length;
             Object.Destroy(fsm.gameObject, animationLength + TimeBeforeDespawn);
         }
+        
+        private void PlayDeathSound()
+        {
+            if (fsm.onDeathSound is {} sound && sound)
+            {
+                GameObject soundObject = new GameObject();
+                soundObject.AddComponent<AudioSource>().PlayOneShot(sound);
+                Object.Destroy(soundObject, (float)(sound.length + 0.01));
+            }
+        }
     }
 }

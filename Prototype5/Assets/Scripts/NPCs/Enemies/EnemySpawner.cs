@@ -1,4 +1,3 @@
-using System;
 using DayNightCycle;
 using ScriptableVariables.Objects;
 using UI;
@@ -9,7 +8,8 @@ namespace NPCs.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [Header("Testing")] [HideInInspector] public bool inTestingScene;
+        [Header("Testing")] 
+        [HideInInspector] public bool inTestingScene;
         [HideInInspector] public Vector3[] testSpawnPositions;
 
         [Header("Enemy Information")] public bool useNightMobs = true;
@@ -18,9 +18,14 @@ namespace NPCs.Enemies
         [SerializeField] private Canvas enemyHealthBarCanvas;
         [SerializeField] private Vector3[] spawnPositions;
 
-        [Header("Attack Player")] public Transform playerTransform;
+        [Header("Attack Player")] 
+        public Transform playerTransform;
         public DamageType damageType;
-
+        
+        [Header("Enemy Sounds")]
+        public AudioClip onAttackSound;
+        public AudioClip onDeathSound;
+        
         private static bool _enemiesSpawned;
         private Camera _playerCamera;
 
@@ -32,11 +37,6 @@ namespace NPCs.Enemies
                 Debug.Log("Player camera not found.");
 
             SpawnTestEnemies();
-        }
-
-        private void Update()
-        {
-            
         }
 
         private void OnEnable()
@@ -73,6 +73,8 @@ namespace NPCs.Enemies
             EnemyStateMachine enemyStateMachine = mob.GetComponent<EnemyStateMachine>();
             enemyStateMachine.playerTransform = playerTransform;
             enemyStateMachine.damageType = damageType;
+            enemyStateMachine.onAttackSound = onAttackSound;
+            enemyStateMachine.onDeathSound = onDeathSound;
 
             EnemyHealthBar enemyHealthBar = mob.GetComponentInChildren<EnemyHealthBar>();
             enemyHealthBar.SetEnemyTransform(mob.transform);

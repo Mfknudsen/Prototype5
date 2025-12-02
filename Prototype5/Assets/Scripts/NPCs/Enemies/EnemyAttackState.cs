@@ -2,6 +2,7 @@ using System;
 using NPCs.Base;
 using UnityEngine;
 using System.Collections;
+using Object = UnityEngine.Object;
 
 namespace NPCs.Enemies
 {
@@ -26,6 +27,7 @@ namespace NPCs.Enemies
 
             this.fsm.animator.speed = AnimationSpeed;
             this.fsm.animator.Play(AttackAnimation);
+            PlayAttackSound();
         }
 
         public override void UpdateLogic()
@@ -50,6 +52,16 @@ namespace NPCs.Enemies
             this.AttackPlayer();
             yield return new WaitForSeconds(this.fsm.attackCooldown);
             this._canAttack = true;
+        }
+
+        private void PlayAttackSound()
+        {
+            if (fsm.onAttackSound is {} sound && sound)
+            {
+                GameObject soundObject = new GameObject();
+                soundObject.AddComponent<AudioSource>().PlayOneShot(sound);
+                Object.Destroy(soundObject, (float)(sound.length + 0.01));
+            }
         }
     }
 }
