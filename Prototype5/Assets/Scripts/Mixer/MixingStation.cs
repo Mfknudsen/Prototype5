@@ -6,7 +6,6 @@ using Potions;
 using ScriptableVariables.Objects;
 using ScriptableVariables.SystemSpecific;
 using UnityEngine;
-using UnityEngine.VFX;
 
 namespace Mixer
 {
@@ -27,6 +26,10 @@ namespace Mixer
         [SerializeField] private InventoryHandler inventoryHandler;
 
         [SerializeField] private GameObject smokeVFX;
+
+        [SerializeField] private AudioClip incorrectPotionSound;
+
+        [SerializeField] private AudioClip correctPotionSound;
 
         private List<IngredientObject> currentAddedIngredients;
         private ParticleSystem smokeParticleSystem;
@@ -105,12 +108,27 @@ namespace Mixer
             }
 
             if (!isCorrectRecipe)
+            {
+                PlaySound(incorrectPotionSound);
                 smokeParticleSystem?.Play();
+            }
+            else
+                PlaySound(correctPotionSound);
 
             foreach (IngredientObject currentAddedIngredient in this.currentAddedIngredients)
                 Destroy(currentAddedIngredient.gameObject);
 
             this.currentAddedIngredients.Clear();
+        }
+
+        private void PlaySound(AudioClip sound)
+        {
+            if (sound)
+            {
+                GameObject soundObject = new GameObject();
+                soundObject.AddComponent<AudioSource>().PlayOneShot(sound);
+                Destroy(soundObject, (float)(sound.length + 0.01));
+            }
         }
 
         public bool IsActive()
