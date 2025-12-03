@@ -45,9 +45,11 @@ namespace NPCs.Enemies
 
         private void PlayAttackSound()
         {
-            if (fsm.audioSource && fsm.onAttackSound is {} sound && sound)
+            if (fsm.onAttackSound is {} sound && sound)
             {
                 GameObject soundObject = new GameObject();
+                AudioSource audioSource = soundObject.AddComponent<AudioSource>();
+                audioSource.volume = fsm.attackSoundVolume;
                 fsm.audioSource.PlayOneShot(sound);
                 Object.Destroy(soundObject, (float)(sound.length + 0.01));
             }

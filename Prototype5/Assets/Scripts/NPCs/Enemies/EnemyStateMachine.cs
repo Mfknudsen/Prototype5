@@ -3,7 +3,6 @@ using NPCs.Base;
 using ScriptableVariables.Objects;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace NPCs.Enemies
 {
@@ -27,7 +26,9 @@ namespace NPCs.Enemies
         
         [Header("Sounds")]
         public AudioClip onAttackSound;
+        [Range(0, 1)] public float attackSoundVolume;
         public AudioClip onDeathSound;
+        [Range(0, 1)] public float deathSoundVolume;
 
         [HideInInspector] public EnemyWanderState WanderState;
         [HideInInspector] public EnemyChaseState ChaseState;

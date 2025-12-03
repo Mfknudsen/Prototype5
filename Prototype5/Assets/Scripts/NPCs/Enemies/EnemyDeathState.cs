@@ -26,7 +26,9 @@ namespace NPCs.Enemies
             if (fsm.onDeathSound is {} sound && sound)
             {
                 GameObject soundObject = new GameObject();
-                soundObject.AddComponent<AudioSource>().PlayOneShot(sound);
+                AudioSource audioSource = soundObject.AddComponent<AudioSource>();
+                audioSource.volume = fsm.deathSoundVolume;
+                audioSource.PlayOneShot(sound);
                 Object.Destroy(soundObject, (float)(sound.length + 0.01));
             }
         }

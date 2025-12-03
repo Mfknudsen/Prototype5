@@ -1207,7 +1207,9 @@ MonoBehaviour:
   firePrefab: {fileID: 6501403122605529535, guid: b0462f7d0adc5ea4d878308681983488, type: 3}
   fireOffsetPosition: {x: 0, y: -0.3, z: 0}
   onAttackSound: {fileID: 8300000, guid: 6bf3fb5ccdb34af4c83068442617eb3a, type: 3}
+  attackSoundVolume: 0.47
   onDeathSound: {fileID: 8300000, guid: 720b3ba5870dcc3458e595a3842d25ec, type: 3}
+  deathSoundVolume: 0.172
   agent: {fileID: 0}
   playerTransform: {fileID: 0}
   playerHealth: {fileID: 0}
