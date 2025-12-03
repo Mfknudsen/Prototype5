@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Died
+  m_text: The Town is Saved!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e7542293ab47c4b81bc97b44639907fc, type: 2}
   m_sharedMaterial: {fileID: 3533032703553244414, guid: e7542293ab47c4b81bc97b44639907fc, type: 2}
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -421.90817, y: 0, z: -330.17816, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RESTART
+  m_text: REPLAY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 3245282727138956651}
   - component: {fileID: 243069300969016986}
   m_Layer: 5
-  m_Name: CanvasGameOver
+  m_Name: CanvasYouWin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
