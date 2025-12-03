@@ -14,7 +14,7 @@ namespace Potions.Effects.PersistentEffects
         public void Trigger(float radius, float duration)
         {
             this.transform.localScale = new Vector3(radius * 2f, this.transform.localScale.y, radius * 2f);
-
+            
             Destroy(this.gameObject, duration);
         }
 

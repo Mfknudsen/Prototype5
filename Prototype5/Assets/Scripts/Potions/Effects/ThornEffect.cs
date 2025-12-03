@@ -26,8 +26,6 @@ namespace Potions.Effects
             
             if (persistentThornEffect.gameObject.GetComponent<ThornSpawner>() is { } thornSpawner)
                 thornSpawner.SpawnThorns(potionObject.transform.position);
-
-            persistentThornEffect.Trigger(this.effectRadius, this.duration);
         }
     }
 }
