@@ -83,6 +83,7 @@ namespace Inventory
         {
             InputManager.Instance.InventoryEvent.AddListener(this.OnInventoryInputEvent);
             InputManager.Instance.HotbarKey.AddListener(this.OnHotbarSelectInput);
+            InputManager.Instance.HotbarScroll.AddListener(this.OnHotbarScrollInput);
             this.backpackItems.AddListener(this.OnBackpackUpdate);
         }
 
@@ -90,6 +91,7 @@ namespace Inventory
         {
             InputManager.Instance.InventoryEvent.RemoveListener(this.OnInventoryInputEvent);
             InputManager.Instance.HotbarKey.RemoveListener(this.OnHotbarSelectInput);
+            InputManager.Instance.HotbarScroll.RemoveListener(this.OnHotbarScrollInput);
             this.backpackItems.RemoveListener(this.OnBackpackUpdate);
         }
 
@@ -242,6 +244,16 @@ namespace Inventory
             }
         }
 
+        private void OnHotbarScrollInput(bool scrollUp)
+        {
+            int hotbarSize = hotbar.transform.GetChild(0).childCount;
+            
+            if (scrollUp)
+                OnHotbarSelectInput((hotbarIndexSelected + 1) % hotbarSize);
+            else
+                OnHotbarSelectInput((hotbarIndexSelected - 1 + hotbarSize) % hotbarSize);
+        }
+        
         private void UpdatePlacements()
         {
             int index = 0;

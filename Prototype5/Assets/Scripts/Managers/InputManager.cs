@@ -41,6 +41,9 @@ namespace Managers
         public readonly UnityEvent<int>
             HotbarKey = new UnityEvent<int>();
 
+        public readonly UnityEvent<bool>
+            HotbarScroll = new UnityEvent<bool>();
+
         private InputManager()
         {
             this.currentDevice = Device.Null;
@@ -87,6 +90,15 @@ namespace Managers
 
                 int index = int.Parse(context.control.displayName);
                 this.HotbarKey.Invoke(index);
+            };
+
+            playerInput.Player.HotbarScroll.performed += context =>
+            {
+                if (context.ReadValue<float>() == 0.0f)
+                    return;
+                
+                bool scrollUp = context.ReadValue<float>() > 0;
+                this.HotbarScroll.Invoke(scrollUp);
             };
 
 #if UNITY_EDITOR
