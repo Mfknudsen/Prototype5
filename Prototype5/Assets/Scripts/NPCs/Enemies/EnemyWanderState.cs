@@ -14,6 +14,8 @@ namespace NPCs.Enemies
         
         public override void Enter()
         {
+            fsm.enemyMovementAudio.StartMovementAudio();
+            
             fsm.agent.isStopped = false;
             fsm.agent.speed = fsm.wanderSpeed;
             
@@ -32,7 +34,7 @@ namespace NPCs.Enemies
             Wander();
         }
         
-        void Wander()
+        private void Wander()
         {
             NavMeshAgent agent = fsm.agent;
         

@@ -12,9 +12,11 @@ namespace NPCs.Enemies
 
         public override void Enter()
         {
+            fsm.enemyMovementAudio.StartMovementAudio();
+
             fsm.agent.isStopped = false;
             fsm.agent.speed = fsm.chaseSpeed;
-
+            
             fsm.animator.speed = AnimationSpeed;
             fsm.animator.CrossFade(ChaseAnimation, TransitionTime);
         }

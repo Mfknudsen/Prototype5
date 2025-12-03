@@ -3,6 +3,7 @@ using NPCs.Base;
 using ScriptableVariables.Objects;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace NPCs.Enemies
 {
@@ -44,6 +45,7 @@ namespace NPCs.Enemies
         [HideInInspector] public float danceDuration;
         [HideInInspector] public float switchStateDelay = 0.6f;
         [HideInInspector] public AudioSource audioSource;
+        [HideInInspector] public EnemyMovementAudio enemyMovementAudio;
 
         private EnemyDeathState _deathState;
         private EnemyGetAttackedState _getAttackedState;
@@ -56,7 +58,7 @@ namespace NPCs.Enemies
         {
             agent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
-            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource = gameObject.GetComponent<AudioSource>();
 
             WanderState = new EnemyWanderState(this);
             ChaseState = new EnemyChaseState(this);

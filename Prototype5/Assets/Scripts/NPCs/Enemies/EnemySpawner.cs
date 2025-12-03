@@ -80,6 +80,9 @@ namespace NPCs.Enemies
             enemyHealth.localDeathAction.AddListener(enemyStateMachine.OnDeath);
             enemyHealth.localDeathAction.AddListener(enemyHealthBar.DestroyEnemyHealthBar);
             enemyHealth.localHealthChangeAction.AddListener(enemyHealthBar.SetProgress);
+
+            EnemyMovementAudio enemyMovementAudio = mob.GetComponent<EnemyMovementAudio>();
+            enemyStateMachine.enemyMovementAudio = enemyMovementAudio;
         }
 
         private void SpawnTestEnemies()

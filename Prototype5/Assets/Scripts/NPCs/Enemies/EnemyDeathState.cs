@@ -11,6 +11,7 @@ namespace NPCs.Enemies
 
         public override void Enter()
         {
+            fsm.enemyMovementAudio.StopMovementAudio();
             fsm.agent.isStopped = true;
             fsm.animator.CrossFade(DeathAnimation, 0.1f);
         }

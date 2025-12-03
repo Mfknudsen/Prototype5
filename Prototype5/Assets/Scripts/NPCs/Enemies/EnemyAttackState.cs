@@ -17,6 +17,7 @@ namespace NPCs.Enemies
 
         public override void Enter()
         {
+            fsm.enemyMovementAudio.StopMovementAudio();
             this.fsm.agent.isStopped = true;
             CalculateAnimationSpeed();
             this.fsm.animator.Play(AttackAnimation);
