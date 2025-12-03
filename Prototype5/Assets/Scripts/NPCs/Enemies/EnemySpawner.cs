@@ -25,6 +25,11 @@ namespace NPCs.Enemies
         private static bool _enemiesSpawned;
         private Camera _playerCamera;
 
+        public int GetEnemyCount()
+        {
+            return gameObject.transform.childCount;
+        }
+        
         private void Awake()
         {
             _enemiesSpawned = false;

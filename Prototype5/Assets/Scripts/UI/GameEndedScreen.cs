@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace UI
 {
-    public class GameOverScreen : MonoBehaviour
+    public class GameEndedScreen : MonoBehaviour
     {
         public void ActivateScreen()
         {
