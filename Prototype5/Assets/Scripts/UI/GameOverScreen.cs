@@ -7,6 +7,7 @@ namespace UI
     {
         public void ActivateScreen()
         {
+            Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             this.gameObject.SetActive(true);
