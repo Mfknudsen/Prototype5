@@ -8,28 +8,24 @@ namespace NPCs.Enemies
 {
     public class EnemyStateMachine : NpcStateMachine<EnemyStateMachine>
     {
-        [Header("Chase Player")]
-        public float chaseStateRange = 15.0f;
+        [Header("Chase Player")] public float chaseStateRange = 15.0f;
         public float viewAngle = 40.0f;
-        
-        [Header("Attack Player")]
-        public float attackStateRange = 2.0f;
+
+        [Header("Attack Player")] public float attackStateRange = 2.0f;
         public float damageAmount = 8.0f;
         public float attackCooldown = 1f; // in seconds
 
-        [Header("Movement")] 
-        public float npcRadius = 7.0f;
+        [Header("Movement")] public float npcRadius = 7.0f;
         public float chaseSpeed = 4.0f;
         public float wanderSpeed = 2.0f;
 
-        [Header("Attacked by Fire")] 
-        public GameObject firePrefab;
+        [Header("Attacked by Fire")] public GameObject firePrefab;
         public Vector3 fireOffsetPosition = Vector3.zero;
-        
+
         [HideInInspector] public EnemyWanderState WanderState;
         [HideInInspector] public EnemyChaseState ChaseState;
         [HideInInspector] public EnemyAttackState AttackState;
-        
+
         [HideInInspector] public NavMeshAgent agent;
         [HideInInspector] public Transform playerTransform;
         [HideInInspector] public CharacterHealth.Health playerHealth;
@@ -41,22 +37,24 @@ namespace NPCs.Enemies
         [HideInInspector] public int jumpCount;
         [HideInInspector] public float danceDuration;
         [HideInInspector] public float switchStateDelay = 0.6f;
-        
+
+        [HideInInspector] public AudioSource audioSource;
         [HideInInspector] public AudioClip onAttackSound;
         [HideInInspector] public AudioClip onDeathSound;
-        
+
         private EnemyDeathState _deathState;
         private EnemyGetAttackedState _getAttackedState;
         private EnemyDanceState _danceState;
         private bool _isInThorns;
-        
+
         public float DistanceToTarget => Vector3.Distance(transform.position, playerTransform.position);
 
         public void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
-            
+            audioSource = gameObject.AddComponent<AudioSource>();
+
             WanderState = new EnemyWanderState(this);
             ChaseState = new EnemyChaseState(this);
             AttackState = new EnemyAttackState(this);
@@ -72,7 +70,8 @@ namespace NPCs.Enemies
             SwitchState(WanderState);
         }
 
-        public bool SeesPlayer() {
+        public bool SeesPlayer()
+        {
             if (!playerTransform) return false;
 
             Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
@@ -92,7 +91,7 @@ namespace NPCs.Enemies
             potionDamageType = type;
             SwitchState(_getAttackedState);
         }
-        
+
         public void OnDeath() => SwitchState(_deathState);
 
         public void OnDance(float height, int count, float duration)
@@ -109,17 +108,18 @@ namespace NPCs.Enemies
             potionDamageType = type;
             StartCoroutine(GetAttackedFire(totalDuration / numberOfHits - switchStateDelay, numberOfHits));
         }
-        
+
         private IEnumerator GetAttackedFire(float timeBetweenHits, int numberOfHits)
         {
-            GameObject fire = Instantiate(firePrefab, transform.position + fireOffsetPosition, Quaternion.identity, transform);
+            GameObject fire = Instantiate(firePrefab, transform.position + fireOffsetPosition, Quaternion.identity,
+                transform);
 
             for (int i = 0; i < numberOfHits; i++)
             {
                 SwitchState(_getAttackedState);
                 yield return new WaitForSeconds(timeBetweenHits);
             }
-            
+
             Destroy(fire);
         }
 
@@ -143,5 +143,9 @@ namespace NPCs.Enemies
             if (!_isInThorns) return;
             SwitchState(_getAttackedState);
         }
+
+        public void AttackPlayer() => AttackState.AttackPlayer();
+        public void ResetCanAttack() => AttackState.ResetCanAttack();
+        
     }
 }

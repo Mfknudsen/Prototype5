@@ -19199,9 +19199,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: onDeathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 720b3ba5870dcc3458e595a3842d25ec, type: 3}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: useNightMobs
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
+      propertyPath: onAttackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6bf3fb5ccdb34af4c83068442617eb3a, type: 3}
     - target: {fileID: 2099648611829184879, guid: 59169caba78938c499655b68e4a304d2, type: 3}
       propertyPath: inTestingScene
       value: 0
