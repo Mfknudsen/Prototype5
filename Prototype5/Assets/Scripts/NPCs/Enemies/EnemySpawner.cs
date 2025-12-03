@@ -22,10 +22,6 @@ namespace NPCs.Enemies
         public Transform playerTransform;
         public DamageType damageType;
         
-        [Header("Enemy Sounds")]
-        public AudioClip onAttackSound;
-        public AudioClip onDeathSound;
-        
         private static bool _enemiesSpawned;
         private Camera _playerCamera;
 
@@ -73,8 +69,6 @@ namespace NPCs.Enemies
             EnemyStateMachine enemyStateMachine = mob.GetComponent<EnemyStateMachine>();
             enemyStateMachine.playerTransform = playerTransform;
             enemyStateMachine.damageType = damageType;
-            enemyStateMachine.onAttackSound = onAttackSound;
-            enemyStateMachine.onDeathSound = onDeathSound;
 
             EnemyHealthBar enemyHealthBar = mob.GetComponentInChildren<EnemyHealthBar>();
             enemyHealthBar.SetEnemyTransform(mob.transform);

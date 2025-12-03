@@ -8,7 +8,8 @@ namespace NPCs.Enemies
 {
     public class EnemyStateMachine : NpcStateMachine<EnemyStateMachine>
     {
-        [Header("Chase Player")] public float chaseStateRange = 15.0f;
+        [Header("Chase Player")]
+        public float chaseStateRange = 15.0f;
         public float viewAngle = 40.0f;
 
         [Header("Attack Player")] public float attackStateRange = 2.0f;
@@ -19,8 +20,13 @@ namespace NPCs.Enemies
         public float chaseSpeed = 4.0f;
         public float wanderSpeed = 2.0f;
 
-        [Header("Attacked by Fire")] public GameObject firePrefab;
+        [Header("Attacked by Fire")]
+        public GameObject firePrefab;
         public Vector3 fireOffsetPosition = Vector3.zero;
+        
+        [Header("Sounds")]
+        public AudioClip onAttackSound;
+        public AudioClip onDeathSound;
 
         [HideInInspector] public EnemyWanderState WanderState;
         [HideInInspector] public EnemyChaseState ChaseState;
@@ -37,10 +43,7 @@ namespace NPCs.Enemies
         [HideInInspector] public int jumpCount;
         [HideInInspector] public float danceDuration;
         [HideInInspector] public float switchStateDelay = 0.6f;
-
         [HideInInspector] public AudioSource audioSource;
-        [HideInInspector] public AudioClip onAttackSound;
-        [HideInInspector] public AudioClip onDeathSound;
 
         private EnemyDeathState _deathState;
         private EnemyGetAttackedState _getAttackedState;
