@@ -13,13 +13,17 @@ namespace CharacterHealth
         public UnityEvent localDeathAction = new UnityEvent();
         public UnityEvent<float> localHealthChangeAction = new UnityEvent<float>();
 
-        [SerializeField]private float currentHealth;
-
+        [SerializeField] private float currentHealth;
         [SerializeField] private List<Resistance> resistances = new List<Resistance>();
 
+        private bool _isDead;
+
+        public bool GetIsDead() => _isDead;
+        
         private void Start()
         {
             this.currentHealth = this.maxHealth;
+            this._isDead = false;
         }
 
         public void ApplyHeal(float amount)
@@ -47,6 +51,7 @@ namespace CharacterHealth
 
         private void OnDeath()
         {
+            _isDead = true;
             this.localDeathAction?.Invoke();
             this.globalDeathEvent?.InvokeGameEvents();
         }

@@ -146,6 +146,10 @@ namespace NPCs.Enemies
 
         public void AttackPlayer() => AttackState.AttackPlayer();
         public void ResetCanAttack() => AttackState.ResetCanAttack();
-        
+        public void DespawnEnemy() => _deathState.DespawnEnemy();
+        public void PlayDeathSound() => _deathState.PlayDeathSound();
+        public void GetAttacked() => _getAttackedState.GetAttacked();
+        public void SwitchPreviousState() => _getAttackedState.SwitchPreviousState();
+
     }
 }

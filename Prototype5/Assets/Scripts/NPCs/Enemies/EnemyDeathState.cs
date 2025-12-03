@@ -6,7 +6,6 @@ namespace NPCs.Enemies
     public class EnemyDeathState : NpcState<EnemyStateMachine>
     {
         private const string DeathAnimation = "Goblin_death";
-        private const float TimeBeforeDespawn = 2f;
         
         public EnemyDeathState(EnemyStateMachine fsm) : base(fsm) {}
 
@@ -16,18 +15,12 @@ namespace NPCs.Enemies
             fsm.animator.CrossFade(DeathAnimation, 0.1f);
         }
 
-        public override void UpdateLogic()
+        public void DespawnEnemy()
         {
-            DespawnEnemy();
-        }
-
-        private void DespawnEnemy()
-        {
-            float animationLength = fsm.animator.GetCurrentAnimatorClipInfo(0).Length;
-            Object.Destroy(fsm.gameObject, animationLength + TimeBeforeDespawn);
+            Object.Destroy(fsm.gameObject);
         }
         
-        private void PlayDeathSound()
+        public void PlayDeathSound()
         {
             if (fsm.onDeathSound is {} sound && sound)
             {
