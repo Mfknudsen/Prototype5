@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 1a3222bbaac8f4da08281400e5a5afe5
+  - enabled: 1
     path: Assets/Low Poly Fantasy Village/Samples/Demo/Scene/Village.unity
     guid: a6c782db10356fe4a93dd4985d7c143a
   m_configObjects:
