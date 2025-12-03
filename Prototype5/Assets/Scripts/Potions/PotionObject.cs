@@ -30,7 +30,7 @@ namespace Potions
         {
             Vector3 collisionForce = other.impulse / Time.fixedDeltaTime;
             float magnitude = collisionForce.magnitude;
-
+            
             if (magnitude < this.forceForShatter)
                 return;
 
@@ -43,18 +43,34 @@ namespace Potions
                 Destroy(soundObject, sound.length + 0.01f);
             }
 
-            List<PotionEffectTarget> hits = Physics
-                .OverlapSphere(this.transform.position, this.potionValue.GetMaxRadius())
-                .Select(col => col.GetComponent<PotionEffectTarget>()).Where(component => component != null).ToList();
+            List<PotionEffectTarget> hits = new List<PotionEffectTarget>();
 
-            if (hits.Count == 0)
+            foreach (PotionEffectTarget potionEffectTarget in FindObjectsByType<PotionEffectTarget>(FindObjectsSortMode
+                         .None))
             {
-                bool isThornPotion = false;
-                foreach (PotionEffectBase potionEffectBase in this.potionValue.GetEffects())
-                    if (potionEffectBase is ThornEffect)
-                        isThornPotion = true;
-                if (!isThornPotion) return;
+                if (potionEffectTarget.GetComponent<SphereCollider>() is not { } c)
+                    continue;
+
+                
+                float distance = Vector3.Distance(this.transform.position,
+                    potionEffectTarget.transform.position + c.center);
+
+                if (this.potionValue.GetMaxRadius() + c.radius < distance)
+                    continue;
+
+                hits.Add(potionEffectTarget);
             }
+            
+            // if (hits.Count == 0)
+            // {
+            //     bool isThornPotion = false;
+            //     foreach (PotionEffectBase potionEffectBase in this.potionValue.GetEffects())
+            //         if (potionEffectBase is ThornEffect)
+            //             isThornPotion = true;
+            //     
+            //     if (!isThornPotion) 
+            //         return;
+            // }
 
             foreach (PotionEffectBase potionEffectBase in this.potionValue.GetEffects())
             {

@@ -15,7 +15,7 @@ namespace Potions
         [SerializeField] private GameObject onShatterVFX;
 
         [SerializeField] private Sprite potionSprite;
-        
+
         [SerializeField] [TextArea] private string description, flavor;
         [SerializeField] private Sprite spriteOne, spriteTwo;
 
@@ -29,22 +29,10 @@ namespace Potions
 #endif
         private List<PotionEffectBase> effects;
 
-        private float maxEffectDistance;
 
         private void OnValidate()
         {
             this.effects ??= new List<PotionEffectBase>();
-
-            foreach (PotionEffectBase potionEffectBase in this.effects)
-            {
-                if (potionEffectBase == null)
-                {
-                    Debug.LogError("Potion Effect Is Null", this);
-                    continue;
-                }
-
-                this.maxEffectDistance = Mathf.Max(this.maxEffectDistance, potionEffectBase.GetRadius());
-            }
         }
 
         public AudioClip GetShatterSound()
@@ -64,7 +52,19 @@ namespace Potions
 
         public float GetMaxRadius()
         {
-            return this.maxEffectDistance;
+            float maxEffectDistance = 0;
+            foreach (PotionEffectBase potionEffectBase in this.effects)
+            {
+                if (potionEffectBase == null)
+                {
+                    Debug.LogError("Potion Effect Is Null", this);
+                    continue;
+                }
+
+                maxEffectDistance = Mathf.Max(maxEffectDistance, potionEffectBase.GetRadius());
+            }
+
+            return maxEffectDistance;
         }
 
         public string GetDescription() => this.description;
