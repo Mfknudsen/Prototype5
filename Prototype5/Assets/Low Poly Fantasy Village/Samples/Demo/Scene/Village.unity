@@ -19004,7 +19004,7 @@ MonoBehaviour:
   enemySpawner: {fileID: 1942696341}
   failStateEvent: {fileID: 11400000, guid: 09f6b8e2188ccd947977df097ea5e065, type: 2}
   winStateEvent: {fileID: 11400000, guid: 99bb1159414d3944a8b4ca75e86d3350, type: 2}
-  maxNumberOfDays: 2
+  maxNumberOfDays: 1
 --- !u!4 &910953991
 Transform:
   m_ObjectHideFlags: 0
