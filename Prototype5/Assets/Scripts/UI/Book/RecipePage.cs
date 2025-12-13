@@ -104,18 +104,6 @@ namespace UI.Book
                     Image image = parent.GetComponent<Image>();
                     image.color = Color.white;
                     image.sprite = current.ingredientValue.GetSprite();
-
-                    continue;
-
-                    GameObject instance = Instantiate(current.ingredientValue.GetPrefab(), parent);
-                    instance.transform.localPosition = current.ingredientValue.GetShowcaseOffset();
-                    instance.transform.localRotation = Quaternion.Euler(current.ingredientValue.GetShowcaseRotation());
-                    instance.transform.localScale = Vector3.one;
-                    Destroy(instance.GetComponent<Rigidbody>());
-                    Destroy(instance.GetComponent<Collider>());
-                    Destroy(instance.GetComponent<IngredientObject>());
-                    Destroy(instance.GetComponent<InventoryItem>());
-                    this.SetLayer(instance, layer);
                 }
             }
 
@@ -124,7 +112,7 @@ namespace UI.Book
                 // Title
                 if (this.pageTitleRight != null) this.pageTitleRight.text = NameUtils.RemovePotionPrefix(recipe2.name);
 
-                PotionValue result = recipe1.GetResults()[0];
+                PotionValue result = recipe2.GetResults()[0];
 
                 // Effect
                 if (this.descriptionRight != null) this.descriptionRight.text = result.GetDescription();
@@ -181,18 +169,6 @@ namespace UI.Book
                     Image image = parent.GetComponent<Image>();
                     image.color = Color.white;
                     image.sprite = current.ingredientValue.GetSprite();
-
-                    continue;
-
-                    GameObject instance = Instantiate(current.ingredientValue.GetPrefab(), parent);
-                    instance.transform.localPosition = current.ingredientValue.GetShowcaseOffset();
-                    instance.transform.localRotation = Quaternion.Euler(current.ingredientValue.GetShowcaseRotation());
-                    instance.transform.localScale = Vector3.one;
-                    Destroy(instance.GetComponent<Rigidbody>());
-                    Destroy(instance.GetComponent<Collider>());
-                    Destroy(instance.GetComponent<IngredientObject>());
-                    Destroy(instance.GetComponent<InventoryItem>());
-                    this.SetLayer(instance, layer);
                 }
             }
         }

@@ -15,12 +15,12 @@ MonoBehaviour:
   potionPrefab: {fileID: 5187084931165711824, guid: 756c65fb002191f499d7e2a17034b33a, type: 3}
   onShatterVFX: {fileID: 0}
   potionSprite: {fileID: 21300000, guid: b34a6c021d9158a4baad1a6c00df4824, type: 3}
-  description: Your charm, of course, is far more powerful
-  flavor: 
+  description: My charm, of course, is far more powerful.
+  flavor: Tastes like loss of control (in a good way).
   spriteOne: {fileID: 21300000, guid: 033d855c8e7cd46e0b6ff6387f76e4d1, type: 3}
   spriteTwo: {fileID: 21300000, guid: acf25e7e021cc434cabeccadffd0bbae, type: 3}
   bookShowcaseRotation: {x: 0, y: 0, z: 0}
-  bookShowcasePositionOffset: {x: 0, y: 0, z: 0}
+  bookShowcasePositionOffset: {x: 0, y: 0, z: 0.2}
   onShatterSound: {fileID: 8300000, guid: 45d0ccf93cb13454d8c734d5e6d86b60, type: 3}
   effects:
   - rid: 7969916117750644985
