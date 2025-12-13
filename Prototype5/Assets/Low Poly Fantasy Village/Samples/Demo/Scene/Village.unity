@@ -21994,6 +21994,34 @@ PrefabInstance:
       propertyPath: 'allRecipes.Array.data[4]'
       value: 
       objectReference: {fileID: 11400000, guid: 7f9cd4c7b75632848a07c744931377c7, type: 2}
+    - target: {fileID: 8082935705972930715, guid: 6743ac30c8a8e9d4db3084dd09e0ccb5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.185
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082935705972930715, guid: 6743ac30c8a8e9d4db3084dd09e0ccb5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.681
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082935705972930715, guid: 6743ac30c8a8e9d4db3084dd09e0ccb5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8452638
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082935705972930715, guid: 6743ac30c8a8e9d4db3084dd09e0ccb5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.52128047
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082935705972930715, guid: 6743ac30c8a8e9d4db3084dd09e0ccb5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.09432037
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082935705972930715, guid: 6743ac30c8a8e9d4db3084dd09e0ccb5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.069996886
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082935705972930715, guid: 6743ac30c8a8e9d4db3084dd09e0ccb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 11.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
