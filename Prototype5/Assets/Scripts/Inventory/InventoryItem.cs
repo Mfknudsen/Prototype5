@@ -23,6 +23,18 @@ namespace Inventory
 
         [SerializeField] private AudioClip audioClip;
 
+        [SerializeField] private Vector3 handPosition = Vector3.zero;
+        
+        [SerializeField] private Vector3 handScale = Vector3.one;
+        
+        [SerializeField] private Vector3 handRotation = Vector3.zero;
+
+        private Vector3 originalPosition;
+        
+        private Vector3 originalScale;
+        
+        private Vector3 originalRotation;
+        
         private bool inHand;
 
         private UnityEvent<InventoryItem> onTrigger;
@@ -71,6 +83,14 @@ namespace Inventory
             {
                 case true when !this.inHand:
                 {
+                    this.originalPosition = this.transform.localPosition;
+                    this.originalScale = this.transform.localScale;
+                    this.originalRotation = this.transform.localEulerAngles;
+                    
+                    this.transform.localPosition = this.handPosition;
+                    this.transform.localScale = this.handScale;
+                    this.transform.localRotation = Quaternion.Euler(this.handRotation);
+                    
                     this.itemCollider.enabled = false;
                     this.rb.isKinematic = true;
                     if (this.throwable)
@@ -79,6 +99,10 @@ namespace Inventory
                 }
                 case false when this.inHand:
                 {
+                    this.transform.localPosition = this.originalPosition;
+                    this.transform.localScale = this.originalScale;
+                    this.transform.localRotation = Quaternion.Euler(this.originalRotation);
+                    
                     this.itemCollider.enabled = true;
                     this.rb.isKinematic = false;
                     if (this.throwable)

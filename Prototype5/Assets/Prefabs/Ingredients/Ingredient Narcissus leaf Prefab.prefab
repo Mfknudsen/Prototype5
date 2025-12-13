@@ -102,6 +102,9 @@ MonoBehaviour:
   throwForce: 0
   throwable: 0
   audioClip: {fileID: 0}
+  handPosition: {x: 0, y: 0.05, z: 0}
+  handScale: {x: 1.2, y: 1.2, z: 1.2}
+  handRotation: {x: 90, y: 0, z: 0}
   skipAttack: 0
 --- !u!54 &5334570982430269313
 Rigidbody:
