@@ -1,15 +1,24 @@
 using ScriptableVariables.Objects;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace DayNightCycle
 {
     public class DirectionalLight : MonoBehaviour
     {
-        [SerializeField] private TransformVariable lightTransformVariable;
-        
         private void Awake()
         {
-            this.lightTransformVariable.Value = this.transform;
+            Addressables.LoadAssetAsync<TransformVariable>(
+                "Assets/ScriptableObjects/Variables/DirectionalLightTransform.asset").Completed += t =>
+            {
+                if (t.Status != UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                {
+                    Debug.LogError("Failed to load directional light transform");
+                    return;
+                }
+
+                t.Result.Value = transform;
+            };
         }
     }
 }

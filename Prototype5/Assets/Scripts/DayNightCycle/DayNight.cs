@@ -37,6 +37,8 @@ namespace DayNightCycle
 
         private static TransformVariable cameraTransformVariable;
 
+        private static TransformVariable directionalLightTransformVariable;
+
         private static Transform directionalLightTransform;
 
         private static Light directionalLight;
@@ -140,8 +142,8 @@ namespace DayNightCycle
                     "Assets/ScriptableObjects/Variables/DirectionalLightTransform.asset");
             lightTransformVariable.Completed += t =>
             {
-                directionalLightTransform = t.Result.Value;
-                directionalLight = directionalLightTransform?.GetComponent<Light>();
+                directionalLightTransformVariable = t.Result;
+                directionalLightTransformVariable.AddListener(OnDirectionalLightTransformUpdate);
             };
 
             PlayerLoopSystem playerLoopSystem = PlayerLoop.GetCurrentPlayerLoop();
@@ -172,6 +174,7 @@ namespace DayNightCycle
                 return;
 
             cameraTransformVariable?.RemoveListener(OnCameraTransformUpdate);
+            directionalLightTransformVariable?.RemoveListener(OnDirectionalLightTransformUpdate);
 
             PlayerLoopSystem playerLoopSystem = PlayerLoop.GetCurrentPlayerLoop();
             for (int i = 0; i < playerLoopSystem.subSystemList.Length; i++)
@@ -225,9 +228,13 @@ namespace DayNightCycle
             if (skyboxSetting != null)
             {
                 (Color color, float intensity, float lightRotation) = skyboxSetting.Get(_currentDayNightTime, t);
-                directionalLightTransform.eulerAngles = Vector3.right * lightRotation;
-                directionalLight.intensity = intensity;
-                
+
+                if (directionalLightTransform != null)
+                {
+                    directionalLight.intensity = intensity;
+                    directionalLightTransform.eulerAngles = Vector3.right * lightRotation;
+                }
+
                 //RenderSettings.skybox.color = color;
                 RenderSettings.ambientLight = color;
                 RenderSettings.ambientIntensity = intensity;
@@ -242,6 +249,12 @@ namespace DayNightCycle
         private static void OnCameraTransformUpdate(Transform transform)
         {
             playerCamera = transform?.GetComponent<Camera>();
+        }
+
+        private static void OnDirectionalLightTransformUpdate(Transform t)
+        {
+            directionalLightTransform = t;
+            directionalLight = directionalLightTransform?.GetComponent<Light>();
         }
 
         #endregion
