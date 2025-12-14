@@ -235,7 +235,6 @@ namespace DayNightCycle
                     directionalLightTransform.eulerAngles = Vector3.right * lightRotation;
                 }
 
-                //RenderSettings.skybox.color = color;
                 RenderSettings.ambientLight = color;
                 RenderSettings.ambientIntensity = intensity;
                 if (playerCamera != null)
@@ -248,7 +247,8 @@ namespace DayNightCycle
 
         private static void OnCameraTransformUpdate(Transform transform)
         {
-            playerCamera = transform?.GetComponent<Camera>();
+            cameraTransformVariable.Value = transform;
+            playerCamera = cameraTransformVariable.Value?.GetComponent<Camera>();
         }
 
         private static void OnDirectionalLightTransformUpdate(Transform t)

@@ -1,7 +1,9 @@
+using System;
 using Managers;
 using ScriptableVariables.Enums;
 using ScriptableVariables.Objects;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Player
 {
@@ -11,7 +13,7 @@ namespace Player
 
         [SerializeField] private Transform cameraTransform, handTransform;
 
-        [SerializeField] private TransformVariable cameraTransformVariable,
+        [SerializeField] private TransformVariable
             handTransformVariable,
             playerTransformVariable;
 
@@ -28,10 +30,24 @@ namespace Player
 
         private bool run;
 
+        private void Awake()
+        {
+            Addressables.LoadAssetAsync<TransformVariable>(
+                "Assets/ScriptableObjects/Variables/CameraTransform.asset").Completed += t =>
+            {
+                if (t.Status != UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                {
+                    Debug.LogError("Failed to load camera transform");
+                    return;
+                }
+
+                t.Result.Value = this.cameraTransform;
+            };
+        }
+
         private void Start()
         {
             this.playerTransformVariable.Value = this.transform;
-            this.cameraTransformVariable.Value = this.cameraTransform;
             this.handTransformVariable.Value = this.handTransform;
 
             //this.playerStateVariable.Value = PlayerStateEnum.Free;
