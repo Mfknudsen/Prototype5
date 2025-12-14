@@ -15,8 +15,8 @@ namespace DayNightCycle
     {
         Morning = 5,
         Noon = 12,
-        Evening = 18,
-        Night = 21,
+        Evening = 17,
+        Night = 20,
         Midnight = 23
     }
 
