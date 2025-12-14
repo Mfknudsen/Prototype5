@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87561f7e621874b4dadf98a11db1e513
+    m_Address: Assets/ScriptableObjects/Variables/DirectionalLightTransform.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ec58220940681b44e95eb43141c15de2
     m_Address: Assets/ScriptableObjects/Variables/CameraTransform.asset
     m_ReadOnly: 0

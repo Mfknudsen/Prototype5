@@ -37,6 +37,10 @@ namespace DayNightCycle
 
         private static TransformVariable cameraTransformVariable;
 
+        private static Transform directionalLightTransform;
+
+        private static Light directionalLight;
+
         #region Getters
 
         public static int GetCurrentHour()
@@ -131,6 +135,15 @@ namespace DayNightCycle
                 cameraTransformVariable.AddListener(OnCameraTransformUpdate);
             };
 
+            AsyncOperationHandle<TransformVariable> lightTransformVariable =
+                Addressables.LoadAssetAsync<TransformVariable>(
+                    "Assets/ScriptableObjects/Variables/DirectionalLightTransform.asset");
+            lightTransformVariable.Completed += t =>
+            {
+                directionalLightTransform = t.Result.Value;
+                directionalLight = directionalLightTransform?.GetComponent<Light>();
+            };
+
             PlayerLoopSystem playerLoopSystem = PlayerLoop.GetCurrentPlayerLoop();
             for (int i = 0; i < playerLoopSystem.subSystemList.Length; i++)
             {
@@ -211,7 +224,10 @@ namespace DayNightCycle
 
             if (skyboxSetting != null)
             {
-                (Color color, float intensity) = skyboxSetting.Get(_currentDayNightTime, t);
+                (Color color, float intensity, float lightRotation) = skyboxSetting.Get(_currentDayNightTime, t);
+                directionalLightTransform.eulerAngles = Vector3.right * lightRotation;
+                directionalLight.intensity = intensity;
+                
                 //RenderSettings.skybox.color = color;
                 RenderSettings.ambientLight = color;
                 RenderSettings.ambientIntensity = intensity;

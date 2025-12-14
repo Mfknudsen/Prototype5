@@ -14,12 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minutesPerDay: 6
   morningColor: {r: 0.17547162, g: 0.36513594, b: 0.5849056, a: 1}
-  morningIntensity: 1
+  morningIntensity: 0.4
+  morningLightRotation: 30
   noonColor: {r: 0.043137256, g: 0.77254903, b: 1, a: 1}
   noonIntensity: 1
+  noonLightRotation: 90
   eveningColor: {r: 0.4943396, g: 0.28462997, b: 0.24157348, a: 1}
-  eveningIntensity: 1
+  eveningIntensity: 0.7
+  eveningLightRotation: 150
   nightColor: {r: 0.15465288, g: 0.18110813, b: 0.4037736, a: 1}
-  nightIntensity: 1
+  nightIntensity: 0.3
+  nightLightRotation: 175
   midnightColor: {r: 0.058462042, g: 0.15134306, b: 0.2603773, a: 1}
-  midnightIntensity: 1
+  midnightIntensity: 0
+  midnightLightRotation: 180
