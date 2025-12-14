@@ -969,9 +969,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Better end them before dawn breaks.
+  m_text: 'Better kill all groblins before dawn breaks.
 
-    Too many will be summoned otherwise...'
+    Too many will be summoned
+    otherwise...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3a4f457f6c3211d4d8986b4138a0fea2, type: 2}
   m_sharedMaterial: {fileID: -7419776120251519728, guid: 3a4f457f6c3211d4d8986b4138a0fea2, type: 2}
@@ -1186,6 +1187,7 @@ GameObject:
   - component: {fileID: 1537406970109728459}
   - component: {fileID: 7896695916428043624}
   - component: {fileID: 8605694981041237907}
+  - component: {fileID: 9135293355735869115}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -1250,7 +1252,6 @@ MonoBehaviour:
   playerStateVariable: {fileID: 11400000, guid: 74e430132044fd04096f52e4a4319956, type: 2}
   cameraTransform: {fileID: 7373795340436703339}
   handTransform: {fileID: 8020468614364741827}
-  cameraTransformVariable: {fileID: 11400000, guid: ec58220940681b44e95eb43141c15de2, type: 2}
   handTransformVariable: {fileID: 11400000, guid: 8cce1e528e086c24f8f2d948e86e5b2a, type: 2}
   playerTransformVariable: {fileID: 11400000, guid: a6eefd8b6e7b757489be447beedd7bf1, type: 2}
   controller: {fileID: 1280120569408198420}
@@ -1426,6 +1427,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9135293355735869115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989371418687495725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd575664b5b69c54ca1f41dfe849cabb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 2
 --- !u!1 &6469484704334315488
 GameObject:
   m_ObjectHideFlags: 0
