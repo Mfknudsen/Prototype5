@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DayNightCycle
 {
@@ -12,9 +13,9 @@ namespace DayNightCycle
         [SerializeField] private bool morningOnState = true;
         [SerializeField] private float morningIntensity = 1;
 
-        [Header("Afternoon")] [SerializeField] private Color afternoonColor = Color.white;
-        [SerializeField] private bool afternoonOnState = true;
-        [SerializeField] private float afternoonIntensity = 1;
+        [Header("Noon")] [SerializeField] private Color noonColor = Color.white;
+        [SerializeField] private bool noonOnState = true;
+        [SerializeField] private float noonIntensity = 1;
 
         [Header("Evening")] [SerializeField] private Color eveningColor = Color.white;
         [SerializeField] private bool eveningOnState = true;
@@ -54,18 +55,18 @@ namespace DayNightCycle
                     return;
                 case DayNightTime.Morning:
                     this.lightComponent.enabled = this.morningOnState;
-                    this.lightComponent.color = Color.Lerp(this.morningColor, this.eveningColor, time);
-                    this.lightComponent.intensity = Mathf.Lerp(this.morningIntensity, this.eveningIntensity, time);
+                    this.lightComponent.color = Color.Lerp(this.morningColor, this.noonColor, time);
+                    this.lightComponent.intensity = Mathf.Lerp(this.morningIntensity, this.noonIntensity, time);
                     return;
-                case DayNightTime.Afternoon:
-                    this.lightComponent.enabled = this.eveningOnState;
-                    this.lightComponent.color = Color.Lerp(this.eveningColor, this.afternoonColor, time);
-                    this.lightComponent.intensity = Mathf.Lerp(this.eveningIntensity, this.afternoonIntensity, time);
+                case DayNightTime.Noon:
+                    this.lightComponent.enabled = this.noonOnState;
+                    this.lightComponent.color = Color.Lerp(this.noonColor, this.eveningColor, time);
+                    this.lightComponent.intensity = Mathf.Lerp(this.noonIntensity, this.eveningIntensity, time);
                     return;
                 case DayNightTime.Evening:
-                    this.lightComponent.enabled = this.afternoonOnState;
-                    this.lightComponent.color = Color.Lerp(this.afternoonColor, this.nightColor, time);
-                    this.lightComponent.intensity = Mathf.Lerp(this.afternoonIntensity, this.nightIntensity, time);
+                    this.lightComponent.enabled = this.eveningOnState;
+                    this.lightComponent.color = Color.Lerp(this.eveningColor, this.nightColor, time);
+                    this.lightComponent.intensity = Mathf.Lerp(this.eveningIntensity, this.nightIntensity, time);
                     return;
                 case DayNightTime.Night:
                     this.lightComponent.enabled = this.nightOnState;
