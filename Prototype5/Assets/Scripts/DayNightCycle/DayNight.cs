@@ -14,10 +14,10 @@ namespace DayNightCycle
     public enum DayNightTime
     {
         Morning = 5,
-        Noon = 8,
-        Evening = 14,
-        Night = 18,
-        Midnight = 22
+        Noon = 12,
+        Evening = 18,
+        Night = 21,
+        Midnight = 23
     }
 
     public static class DayNight
