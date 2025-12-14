@@ -368,7 +368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2538c9df67af6c047b25a65a9a201c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightTransformVariable: {fileID: 11400000, guid: 87561f7e621874b4dadf98a11db1e513, type: 2}
 --- !u!1 &39539140
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +914,13 @@ PrefabInstance:
     - target: {fileID: 1303605799246443563, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325064505518143083, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
+      propertyPath: m_text
+      value: 'Better kill all groblins before dawn breaks.
+
+        Too many will
+        be summoned otherwise...'
       objectReference: {fileID: 0}
     - target: {fileID: 1402036393417478129, guid: a4aca783c8fd8554bbd038637905b455, type: 3}
       propertyPath: m_AnchorMax.y
