@@ -65,11 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Daybreak, the woods are safe and I can gather more ingredients. \nOnly
-    these potions stop them, the book has the recipes. \nRemember; two in the cauldron,
-    stir with the ladle, throw with precision."
+  m_text: "Daybreak, the woods are safe and I can gather more ingredients. \n \nRemember;
+    two in the cauldron, stir with the ladle, throw with precision."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e7542293ab47c4b81bc97b44639907fc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 48748510fc999584fa399cd5104063e5, type: 2}
   m_sharedMaterial: {fileID: 3533032703553244414, guid: e7542293ab47c4b81bc97b44639907fc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -104,11 +103,11 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: -2
-  m_wordSpacing: -7
-  m_lineSpacing: 0
+  m_characterSpacing: -10
+  m_wordSpacing: -3.6
+  m_lineSpacing: -58.4
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: 63.4
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
@@ -135,7 +134,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4409709000994438669
@@ -205,8 +204,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Another night I\u2019ve held them off. Is the army coming?"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e7542293ab47c4b81bc97b44639907fc, type: 2}
-  m_sharedMaterial: {fileID: 3533032703553244414, guid: e7542293ab47c4b81bc97b44639907fc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 48748510fc999584fa399cd5104063e5, type: 2}
+  m_sharedMaterial: {fileID: 3348631423433646522, guid: 48748510fc999584fa399cd5104063e5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -240,11 +239,11 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: -2
-  m_wordSpacing: -7
-  m_lineSpacing: 0
+  m_characterSpacing: -10
+  m_wordSpacing: -3.6
+  m_lineSpacing: -58.4
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: 63.4
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
@@ -339,9 +338,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: By sundown, I must be ready.
+  m_text: 'The recipe book, only those potions stop them.
+
+
+    By sundown, I must
+    be ready.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e7542293ab47c4b81bc97b44639907fc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 48748510fc999584fa399cd5104063e5, type: 2}
   m_sharedMaterial: {fileID: 3533032703553244414, guid: e7542293ab47c4b81bc97b44639907fc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -376,11 +379,11 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: -2
-  m_wordSpacing: -7
-  m_lineSpacing: 0
+  m_characterSpacing: -10
+  m_wordSpacing: -3.6
+  m_lineSpacing: -58.4
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
+  m_paragraphSpacing: 63.4
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
@@ -503,6 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTimeIncrement: 0.01
   uiManager: {fileID: 0}
+  playerStateVariable: {fileID: 11400000, guid: 74e430132044fd04096f52e4a4319956, type: 2}
 --- !u!1 &9137365717234325420
 GameObject:
   m_ObjectHideFlags: 0

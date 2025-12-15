@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: EXIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3a4f457f6c3211d4d8986b4138a0fea2, type: 2}
+  m_sharedMaterial: {fileID: -7419776120251519728, guid: 3a4f457f6c3211d4d8986b4138a0fea2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -171,7 +171,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 62, y: 184}
-  m_SizeDelta: {x: 480.95, y: 50}
+  m_SizeDelta: {x: 632.2, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1483229509073122798
 CanvasRenderer:
@@ -203,8 +203,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: The Town is Saved!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e7542293ab47c4b81bc97b44639907fc, type: 2}
-  m_sharedMaterial: {fileID: 3533032703553244414, guid: e7542293ab47c4b81bc97b44639907fc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3a4f457f6c3211d4d8986b4138a0fea2, type: 2}
+  m_sharedMaterial: {fileID: -7419776120251519728, guid: 3a4f457f6c3211d4d8986b4138a0fea2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -228,8 +228,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 104.2
-  m_fontSizeBase: 104.2
+  m_fontSize: 85
+  m_fontSizeBase: 85
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -430,8 +430,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: REPLAY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3a4f457f6c3211d4d8986b4138a0fea2, type: 2}
+  m_sharedMaterial: {fileID: -7419776120251519728, guid: 3a4f457f6c3211d4d8986b4138a0fea2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -455,8 +455,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
