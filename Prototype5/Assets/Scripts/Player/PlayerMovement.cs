@@ -14,6 +14,7 @@ namespace Player
         [SerializeField] private Transform cameraTransform, handTransform;
 
         [SerializeField] private TransformVariable
+            cameraTransformVariable,
             handTransformVariable,
             playerTransformVariable;
 
@@ -47,6 +48,7 @@ namespace Player
 
         private void Start()
         {
+            this.cameraTransformVariable.Value = this.cameraTransform;
             this.playerTransformVariable.Value = this.transform;
             this.handTransformVariable.Value = this.handTransform;
 
