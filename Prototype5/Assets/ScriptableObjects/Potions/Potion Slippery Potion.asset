@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potionPrefab: {fileID: 5187084931165711824, guid: c078f06de67786e41945e4da57b990af, type: 3}
   onShatterVFX: {fileID: 0}
-  potionSprite: {fileID: 21300000, guid: 0ef0cdee84c790f40a2288e2a3f51d2e, type: 3}
+  potionSprite: {fileID: 21300000, guid: 32124351d22a9174f869543f5164e5a5, type: 3}
   description: Small, but mighty. Like a bee's smooch.
   flavor: Tastes just a little painful.
   spriteOne: {fileID: 21300000, guid: 3cac777894e4a477bbd95f93ab01639c, type: 3}

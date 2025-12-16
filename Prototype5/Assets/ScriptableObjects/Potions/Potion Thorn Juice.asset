@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potionPrefab: {fileID: 5187084931165711824, guid: d472d977f3df92948923dfafbe944d3e, type: 3}
   onShatterVFX: {fileID: 0}
-  potionSprite: {fileID: 21300000, guid: a5a55fd7633ad154d9527dc1f29c17ac, type: 3}
+  potionSprite: {fileID: 21300000, guid: 69fdb3e5f39651d469ce0b16b9c464bb, type: 3}
   description: For the creatures that think drinking should hurt.
   flavor: Tastes like growing thorns.
   spriteOne: {fileID: 21300000, guid: 8df6eb9376ce344909f88da6629e7f85, type: 3}

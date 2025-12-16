@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potionPrefab: {fileID: 5187084931165711824, guid: 530d134a3645fb44481f05a0110349f9, type: 3}
   onShatterVFX: {fileID: 0}
-  potionSprite: {fileID: 21300000, guid: 75cc911594c3c0b43907005aa0cdfdf0, type: 3}
+  potionSprite: {fileID: 21300000, guid: 5ef9729bdd26db84792e1ef9bb9cac54, type: 3}
   description: It grants endless life to anyone who does NOT touch it.
   flavor: Tastes like withering away.
   spriteOne: {fileID: 21300000, guid: 99b335848c7d84c0987b01f42edf7e61, type: 3}
