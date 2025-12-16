@@ -74,15 +74,15 @@ namespace DayNightCycle
             _onTimeChangeEvent.RemoveListener(toRemove);
         }
 
-        public static void SetTime(float timeInMinutes)
+        public static void SetTime(float timeInHours)
         {
-            _currentTime = timeInMinutes * _timeOffset % 24;
+            _currentTime = timeInHours;
         }
 
         public static void SetTime(DayNightTime dayNightTime)
         {
             _currentDayNightTime = dayNightTime;
-            _currentTime = (float)dayNightTime * _timeOffset;
+            _currentTime = (float)dayNightTime;
         }
 
         #endregion
@@ -155,8 +155,7 @@ namespace DayNightCycle
 
             PlayerLoop.SetPlayerLoop(playerLoopSystem);
 
-            _currentDayNightTime = DayNightTime.Noon;
-            _currentTime = (float)DayNightTime.Noon;
+            SetTime(DayNightTime.Morning);
 
 #if UNITY_EDITOR
             EditorApplication.playModeStateChanged += OnExitPlayMode;
@@ -215,9 +214,9 @@ namespace DayNightCycle
                 DayNightTime.Morning => (_currentTime - (float)DayNightTime.Morning) /
                                         ((float)DayNightTime.Noon - (float)DayNightTime.Morning),
                 DayNightTime.Noon => (_currentTime - (float)DayNightTime.Noon) /
-                                        ((float)DayNightTime.Evening - (float)DayNightTime.Noon),
+                                     ((float)DayNightTime.Evening - (float)DayNightTime.Noon),
                 DayNightTime.Evening => (_currentTime - (float)DayNightTime.Evening) /
-                                          ((float)DayNightTime.Night - (float)DayNightTime.Evening),
+                                        ((float)DayNightTime.Night - (float)DayNightTime.Evening),
                 DayNightTime.Night => (_currentTime - (float)DayNightTime.Night) /
                                       ((float)DayNightTime.Midnight - (float)DayNightTime.Night),
                 DayNightTime.Midnight => (_currentTime + (_currentTime >= (float)DayNightTime.Midnight ? -22 : 2)) /

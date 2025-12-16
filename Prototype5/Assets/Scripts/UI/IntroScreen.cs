@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DayNightCycle;
 using Managers;
 using ScriptableVariables.Enums;
 using TMPro;
@@ -72,6 +73,8 @@ namespace UI
 
         private void StartGame()
         {
+            DayNight.SetTime(DayNightTime.Morning);
+
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -98,7 +101,7 @@ namespace UI
             while (this._textList[this._currentIndex].color.a < 1f)
             {
                 this._textList[this._currentIndex].color +=
-                    new Color(0, 0, 0, this.fadeTimeIncrement );
+                    new Color(0, 0, 0, this.fadeTimeIncrement);
                 yield return null;
             }
 
@@ -116,7 +119,7 @@ namespace UI
             this._isFadingOut = true;
             while (this._textList[this._currentIndex].color.a > 0f)
             {
-                this._textList[this._currentIndex].color -= new Color(0, 0, 0, this.fadeTimeIncrement );
+                this._textList[this._currentIndex].color -= new Color(0, 0, 0, this.fadeTimeIncrement);
                 yield return null;
             }
 
@@ -137,7 +140,7 @@ namespace UI
         {
             while (this._background.color.a > 0f)
             {
-                this._background.color -= new Color(0, 0, 0, this.fadeTimeIncrement );
+                this._background.color -= new Color(0, 0, 0, this.fadeTimeIncrement);
                 yield return null;
             }
 
